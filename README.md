@@ -15,9 +15,9 @@ For more detailed information have a look at the project [dokumentation](https:/
 2. Open UnityHub and login
 3. Add your License
 4. Install Editor version **2021.3.0f1** - you don't need to add any specific modules, except Visual Studios if you want to use that as your IDE
-5. Clone the project
-6. Open the project with Unity
-7. You are ready to develop :v: 
+6. Clone the project (using GitHub)
+7. Open the project with Unity
+8. You are ready to develop :v: 
 
 ## Build and play
 tbc
