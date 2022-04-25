@@ -14,7 +14,7 @@ For more detailed information have a look at the project [dokumentation](https:/
 1. Download and Install Unity(Hub): https://unity3d.com/de/get-unity/download
 2. Open UnityHub and login
 3. Add your License
-4. Install Editor version **2021.3.0f1** - you don't need to add any specific modules, except Visual Studios if you want to use that as your IDE
+4. Install Editor version **2021.3.1f1** - you don't need to add any specific modules, except Visual Studios if you want to use that as your IDE
 6. Clone the project (using GitHub)
 7. Open the project with Unity
 8. You are ready to develop :v: 
