@@ -11,7 +11,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: ad5cc8499eb3f43439c02eb1f62381e4, type: 3}
   m_ShaderKeywords: BOOLEAN_DB96F4EA_ON _CAPE_KEY1 _FLATCOLORS_ON _GLOSSYREFLECTIONS_OFF
     _KEYWORD0_ON _SPECULARHIGHLIGHTS_OFF _TOGGLESWITCH1_ON
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -65,6 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _CEL1POWER: 0.563
     - _CEL1SIZE: 0.1
     - _CEL2POWER: 0.427
@@ -81,6 +82,7 @@ Material:
     - _CLOTH3COLOR: {r: 0.21589604, g: 0.21698111, b: 0.15454787, a: 0}
     - _COATOFARMSCOLOR: {r: 1, g: 0, b: 0, a: 0}
     - _EYESCOLOR: {r: 0.02723388, g: 0.1132075, b: 0.02941043, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FEATHERS1COLOR: {r: 0.7735849, g: 0.492613, b: 0.492613, a: 0}
     - _FEATHERS2COLOR: {r: 0.6792453, g: 0, b: 0, a: 0}
     - _FEATHERS3COLOR: {r: 0, g: 0.1793142, b: 0.7264151, a: 0}
