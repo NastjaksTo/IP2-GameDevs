@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// Hold all player attributes. Set, change and show them.
@@ -15,10 +17,12 @@ public class PlayerAttributes : MonoBehaviour {
     public int currentHealth;
 
     public int maxStamina;
-    public int currentStamina;
-
+    public float currentStamina;
+    public float staminaRegenerationSpeed;
+    
     public int maxMana;
-    public int currentMana;
+    public float currentMana;
+    public float manaRegenerationSpeed;
 
     public bool fireKnowladgeEquiped;
     public bool iceKnowladgeEquiped;
@@ -52,6 +56,9 @@ public class PlayerAttributes : MonoBehaviour {
         currentHealth = maxHealth;
         currentMana = maxMana;
         currentStamina = maxStamina;
+
+        manaRegenerationSpeed = 1;
+        staminaRegenerationSpeed = 5;
     }
 
     /// <summary>
@@ -162,30 +169,24 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
-                    Debug.Log("fireKnowladgeEquiped, " + fireKnowladgeEquiped);
                 } else {
                     fireKnowladgeEquiped = false;
-                    Debug.Log("fireKnowladgeEquiped, " + fireKnowladgeEquiped);
                 }
             } 
             
             if (playerAttributes[i].type == Attributes.IceKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     iceKnowladgeEquiped = true;
-                    Debug.Log("iceKnowladgeEquiped, " + iceKnowladgeEquiped);
                 } else {
                     iceKnowladgeEquiped = false;
-                    Debug.Log("iceKnowladgeEquiped, " + iceKnowladgeEquiped);
                 }
             } 
             
             if (playerAttributes[i].type == Attributes.EarthKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     earthKnowladgeEquiped = true;
-                    Debug.Log("earthKnowladgeEquiped, " + earthKnowladgeEquiped);
                 } else {
                     earthKnowladgeEquiped = false;
-                    Debug.Log("earthKnowladgeEquiped, " + earthKnowladgeEquiped);
                 }
 
             }
@@ -207,5 +208,15 @@ public class PlayerAttributes : MonoBehaviour {
         }
     }
 
+    private void Update() {
+        if (currentMana < maxMana)
+        {
+            currentMana += manaRegenerationSpeed * Time.deltaTime;
+        }
+        if (currentStamina < maxStamina && !Input.GetKey(KeyCode.LeftShift))
+        {
+            currentStamina += staminaRegenerationSpeed * Time.deltaTime;
+        }
+    }
 }
 

@@ -71,6 +71,8 @@ namespace StarterAssets {
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
+        public PlayerAttributes playerattributes;
+        
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
@@ -145,9 +147,21 @@ namespace StarterAssets {
                 _cinemachineTargetYaw, 0.0f);
         }
 
-        private void Move() {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? sprintSpeed : moveSpeed;
+        private void Move()
+        {
+            float targetSpeed = moveSpeed;
+            if (playerattributes.currentStamina > 0)
+            {
+                // set target speed based on move speed, sprint speed and if sprint is pressed
+                targetSpeed = _input.sprint ? sprintSpeed : moveSpeed;
+                if (_input.sprint)
+                {
+                    playerattributes.currentStamina -= 5 * Time.deltaTime;
+                }
+            }
+
+
+
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

@@ -6973,8 +6973,8 @@ MonoBehaviour:
   player: {fileID: 1364778335}
   screenManager: {fileID: 228920681}
   healthBar: {fileID: 1635052077}
-  staminaBar: {fileID: 38707968}
-  manaBar: {fileID: 2115249676}
+  staminaBar: {fileID: 2115249676}
+  manaBar: {fileID: 38707968}
 --- !u!1 &1046392046
 GameObject:
   m_ObjectHideFlags: 0
@@ -9172,6 +9172,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3356350656522571620, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: playerattributes
+      value: 
+      objectReference: {fileID: 1364778335}
     - target: {fileID: 3356350656522571631, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_Name
       value: PlayerArmature
@@ -9236,6 +9240,10 @@ PrefabInstance:
       propertyPath: Skilltree
       value: 
       objectReference: {fileID: 25048811}
+    - target: {fileID: 7161293030734863111, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: playerattributes
+      value: 
+      objectReference: {fileID: 1364778335}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
 --- !u!1 &1388336901 stripped
@@ -15178,7 +15186,7 @@ GameObject:
   - component: {fileID: 2115249677}
   - component: {fileID: 2115249676}
   m_Layer: 5
-  m_Name: HelthRepresentation
+  m_Name: StaminaRepresentation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
