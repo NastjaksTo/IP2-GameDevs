@@ -20,9 +20,13 @@ public class PlayerAttributes : MonoBehaviour {
     public int maxMana;
     public int currentMana;
 
+    public bool fireKnowladgeEquiped;
+    public bool iceKnowladgeEquiped;
+    public bool earthKnowladgeEquiped;
+
     public TextMeshProUGUI textHealthPoints;         //referenz set in editor
     public TextMeshProUGUI textArmor;                //referenz set in editor
-    public TextMeshProUGUI textPhysicalDamage;      //referenz set in editor
+    public TextMeshProUGUI textPhysicalDamage;       //referenz set in editor
    
 
 
@@ -155,6 +159,36 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.Stamina)
                 maxStamina = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             
+            if (playerAttributes[i].type == Attributes.FireKnowledge) {
+                if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
+                    fireKnowladgeEquiped = true;
+                    Debug.Log("fireKnowladgeEquiped, " + fireKnowladgeEquiped);
+                } else {
+                    fireKnowladgeEquiped = false;
+                    Debug.Log("fireKnowladgeEquiped, " + fireKnowladgeEquiped);
+                }
+            } 
+            
+            if (playerAttributes[i].type == Attributes.IceKnowledge) {
+                if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
+                    iceKnowladgeEquiped = true;
+                    Debug.Log("iceKnowladgeEquiped, " + iceKnowladgeEquiped);
+                } else {
+                    iceKnowladgeEquiped = false;
+                    Debug.Log("iceKnowladgeEquiped, " + iceKnowladgeEquiped);
+                }
+            } 
+            
+            if (playerAttributes[i].type == Attributes.EarthKnowledge) {
+                if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
+                    earthKnowladgeEquiped = true;
+                    Debug.Log("earthKnowladgeEquiped, " + earthKnowladgeEquiped);
+                } else {
+                    earthKnowladgeEquiped = false;
+                    Debug.Log("earthKnowladgeEquiped, " + earthKnowladgeEquiped);
+                }
+
+            }
         }
     }
 

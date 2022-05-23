@@ -35,6 +35,9 @@ public class Attribute {
 /// </summary>
 public enum Attributes {
     Armor,
+    EarthKnowledge,
+    FireKnowledge,
+    IceKnowledge,
     HealthPoints,
     ManaPoints,
     PhysicalDamage,

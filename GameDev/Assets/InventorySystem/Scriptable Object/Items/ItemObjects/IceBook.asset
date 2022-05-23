@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
-  m_Name: Weapon_Sword_Gold
+  m_Name: IceBook
   m_EditorClassIdentifier: 
-  itemName: Gold Sword
-  uiDisplayImage: {fileID: 21300000, guid: 7ca0c8586e4adc746b065054556167cd, type: 3}
+  itemName: Book of Ice
+  uiDisplayImage: {fileID: 21300000, guid: df5a30bc3adf52842adcd6316a27bd64, type: 3}
   istStackable: 0
-  itemType: 11
-  itemDescription: 'A sword made of pure gold. Very decadent.
-
-    Physical damage:
-    11'
+  itemType: 10
+  itemDescription: Book to learn ice skills. You can equip them to use the skill.
   data:
-    Id: 8
+    Id: 11
     buffs:
-    - attribute: 0
-      buffValue: 20
+    - attribute: 3
+      buffValue: 1
