@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2931074951484146830}
   - component: {fileID: 2901192045526437896}
   m_Layer: 0
-  m_Name: MultitemPrefeb
+  m_Name: LootBagPrefeb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,10 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0763fd2c93326c54abecde55cf96036a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Loot:
-  - {fileID: 11400000, guid: 24b31d914dd696f41bbd04add091b194, type: 2}
-  - {fileID: 11400000, guid: 24b31d914dd696f41bbd04add091b194, type: 2}
-  - {fileID: 11400000, guid: 0bae04424f5713e449897d8eb9888ac7, type: 2}
+  itemInBag: []
 --- !u!65 &2901192045526437896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -128,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 824638a65d2debc4bb6fbabf9cc9c3fb, type: 3}
       propertyPath: m_Name
-      value: loot_GFX
+      value: Lootbag_GFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 824638a65d2debc4bb6fbabf9cc9c3fb, type: 3}
