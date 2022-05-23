@@ -9,16 +9,16 @@ using UnityEngine.SceneManagement;
 public class UiScreenManager : MonoBehaviour {
 
     public static bool InventoryUiOpen = false;
-    public GameObject inventoryUI;                      //referenz set in editor
+    public GameObject inventoryUI;                      //reference set in editor
 
     public static bool SkillUiOpen = false;
-    public GameObject skillUi;                          //referenz set in editor
+    public GameObject skillUi;                          //reference set in editor
 
     public static bool MenuUiOpen = false;
-    public GameObject MenuUi;                           //referenz set in editor
+    public GameObject MenuUi;                           //reference set in editor
 
     public static bool DeathUiOpen = false;
-    public GameObject DeathUi;                          //referenz set in editor
+    public GameObject DeathUi;                          //reference set in editor
 
     public static bool isOneUiOpen = false;
 
@@ -117,7 +117,7 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void LoadMenu() {
         Debug.Log("TODO: LOAD THE GAME MENU");
-        //SceneManager.LoadScene("Menu"); //läd Menue Szene 
+        SceneManager.LoadScene("MainMenu"); //load Menu Scene 
         Time.timeScale = 1f;
     }
 
