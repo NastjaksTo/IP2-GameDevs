@@ -113,10 +113,9 @@ public class UiScreenManager : MonoBehaviour {
     //------------- UI Button functions -------------
 
     /// <summary>
-    /// Loade the main manu of the game -> Sene change
+    /// Load the main manu of the game -> Scene change
     /// </summary>
     public void LoadMenu() {
-        Debug.Log("TODO: LOAD THE GAME MENU");
         SceneManager.LoadScene("MainMenu"); //load Menu Scene 
         Time.timeScale = 1f;
     }
