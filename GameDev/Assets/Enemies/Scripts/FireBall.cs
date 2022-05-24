@@ -6,9 +6,8 @@ public class FireBall : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Damage to Player from Fireball");
             //make Damage to Player
             Destroy(gameObject);
         }
