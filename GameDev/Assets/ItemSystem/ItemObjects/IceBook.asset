@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
+  m_Name: IceBook
+  m_EditorClassIdentifier: 
+  itemName: Book of Ice
+  uiDisplayImage: {fileID: 21300000, guid: df5a30bc3adf52842adcd6316a27bd64, type: 3}
+  istStackable: 0
+  itemType: 10
+  itemDescription: Book to learn ice skills. You can equip them to use the skill.
+  data:
+    Id: 11
+    buffs:
+    - attribute: 3
+      buffValue: 1
