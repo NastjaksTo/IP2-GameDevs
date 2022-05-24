@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -35,7 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Enemy
   - 
   m_SortingLayers:
   - name: Default
