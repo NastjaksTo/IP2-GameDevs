@@ -48,7 +48,7 @@ public class SlimeAgent : MonoBehaviour
 
     private void WalkOrAttack()
     {
-        if (isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 6.0f)
         {
             navMeshAgent.destination = movePositionTransform.position;
             animator.SetBool("isFighting", true);
@@ -58,7 +58,7 @@ public class SlimeAgent : MonoBehaviour
                 Attack();
             }
         }
-        if (!isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) > 6.0f)
         {
             navMeshAgent.destination = spawnpoint;
             animator.SetBool("isFighting", false);
@@ -123,7 +123,7 @@ public class SlimeAgent : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -137,7 +137,7 @@ public class SlimeAgent : MonoBehaviour
         {
             isInRange = false;
         }
-    }
+    }*/
 
     private void changeAttack()
     {

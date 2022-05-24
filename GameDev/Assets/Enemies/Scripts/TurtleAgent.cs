@@ -45,7 +45,7 @@ public class TurtleAgent : MonoBehaviour
 
     private void WalkOrAttack()
     {
-        if (isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 6.0f)
         {
             navMeshAgent.destination = movePositionTransform.position;
             animator.SetBool("isFighting", true);
@@ -55,7 +55,7 @@ public class TurtleAgent : MonoBehaviour
                 Attack();
             }
         }
-        if (!isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) > 6.0f)
         {
             navMeshAgent.destination = spawnpoint;
             animator.SetBool("isFighting", false);
@@ -137,15 +137,15 @@ public class TurtleAgent : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             doDamage = true;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -159,7 +159,7 @@ public class TurtleAgent : MonoBehaviour
         {
             isInRange = false;
         }
-    }
+    }*/
 
     private void changeAttack()
     {

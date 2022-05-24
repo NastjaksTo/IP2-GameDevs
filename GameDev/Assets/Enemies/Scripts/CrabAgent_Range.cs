@@ -44,13 +44,13 @@ public class CrabAgent_Range : MonoBehaviour
 
     private void WalkOrAttack()
     {
-        if (isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 25.0f)
         {
             animator.SetTrigger("Jump");
             navMeshAgent.destination = movePositionTransform.position;
             Attack();
         }
-        if (!isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) > 25.0f)
         {
             navMeshAgent.destination = spawnpoint;
 
@@ -97,22 +97,6 @@ public class CrabAgent_Range : MonoBehaviour
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);
             }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            isInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            isInRange = false;
         }
     }
 }

@@ -52,12 +52,11 @@ public class FatDragonScript : MonoBehaviour
         timer += Time.deltaTime;
         WalkOrAttack();
         getDamage();
-        Debug.Log(timer);
     }
 
     private void WalkOrAttack()
     {
-        if (isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 50.0f)
         {
             navMeshAgent.destination = movePositionTransform.position;
             navMeshAgent.speed = 5;
@@ -91,7 +90,7 @@ public class FatDragonScript : MonoBehaviour
                 }
             }
         }
-        if (!isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) > 50.0f)
         {
             navMeshAgent.speed = 5;
             navMeshAgent.destination = spawnpoint;

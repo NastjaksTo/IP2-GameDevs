@@ -43,7 +43,7 @@ public class CrabAgent : MonoBehaviour
 
     private void WalkOrAttack()
     {
-        if (isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 15.0f)
         {
             navMeshAgent.destination = movePositionTransform.position;
             animator.SetBool("Run Forward", true);
@@ -52,7 +52,7 @@ public class CrabAgent : MonoBehaviour
                 Attack();
             }
         }
-        if (!isInRange)
+        if (Vector3.Distance(movePositionTransform.position, transform.position) > 15.0f)
         {
             navMeshAgent.destination = spawnpoint;
             animator.ResetTrigger("Smash Attack");
