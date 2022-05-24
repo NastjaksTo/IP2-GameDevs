@@ -35,8 +35,8 @@ public class PlayerSkillsystem : MonoBehaviour
         // EXP Tiktak VORÜBERGEHENDER PLATZHALTER
         if (other.gameObject.tag == "exp") 
         {
-            playerlevel.AddExp(50);
-            Debug.Log("added 50 exp, your current Level is:" + playerlevel.getLevel());
+            playerlevel.AddExp(150);
+            Debug.Log("added 150 exp, your current Level is:" + playerlevel.getLevel());
             Debug.Log("You need" + playerlevel.getExpToLevelUp() + "EXP to level up");
         }
     }
