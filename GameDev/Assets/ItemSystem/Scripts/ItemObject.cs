@@ -11,11 +11,31 @@ using UnityEngine;
 public class ItemObject : ScriptableObject {
 
     public string itemName;
+    public GameObject characterDisplay;
     public Sprite uiDisplayImage;               // inventory image
     public bool istStackable;
     public ItemType itemType;
     [TextArea(5, 20)] public string itemDescription;
     public Item data = new Item();
+
+    //public List<string> boneNames = new List<string>();
+
+    //public void OnValidate() {
+    //    boneNames.Clear();
+    //    if (characterDisplay == null) {
+    //        return;
+    //    }
+    //    if (!characterDisplay.GetComponent<SkinnedMeshRenderer>()) {
+    //        var renderer = characterDisplay.GetComponent<SkinnedMeshRenderer>();
+    //        var bones = renderer.bones;
+
+    //        foreach (var bone in bones) {
+    //            boneNames.Add(bone.name);
+    //        }
+    //    }
+
+       
+    //}
 }
 
 

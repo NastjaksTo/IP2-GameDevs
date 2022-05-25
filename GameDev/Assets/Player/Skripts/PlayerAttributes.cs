@@ -6,12 +6,23 @@ using TMPro;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Hold all player attributes. Set, change and show them.
+/// Hold all player attributes. Set, change and show them. And puts the armor on the player.
 /// </summary>
 public class PlayerAttributes : MonoBehaviour {
 
-    public InventoryObject playerEquipment;     //referenz to the EquipObject from the player. Referenz set in editor
+    public InventoryObject playerEquipment;     //reference to the EquipObject from the player. Referenz set in editor
     public Attribute[] playerAttributes;        //array of the attributes that the player have. Attributes set in editor
+
+    private Transform chestOnPlayer;              
+    private Transform glovesOnPlayer;
+    private Transform trousersOnPlayer;
+    private Transform bootsOnPlayer;
+
+    private Transform weaponOnPlayer;
+    public Transform weaponTransform;
+
+
+    private BoneCombiner boneCombiner;
 
     public int maxHealth;
     public int currentHealth;
@@ -28,9 +39,9 @@ public class PlayerAttributes : MonoBehaviour {
     public bool iceKnowladgeEquiped;
     public bool earthKnowladgeEquiped;
 
-    public TextMeshProUGUI textHealthPoints;         //referenz set in editor
-    public TextMeshProUGUI textArmor;                //referenz set in editor
-    public TextMeshProUGUI textPhysicalDamage;       //referenz set in editor
+    public TextMeshProUGUI textHealthPoints;         //reference set in editor
+    public TextMeshProUGUI textArmor;                //reference set in editor
+    public TextMeshProUGUI textPhysicalDamage;       //reference set in editor
    
 
 
@@ -41,12 +52,14 @@ public class PlayerAttributes : MonoBehaviour {
     /// </summary>
     private void Start() {
 
+        boneCombiner = new BoneCombiner(gameObject);
+
         for (int i = 0; i < playerAttributes.Length; i++) {
             playerAttributes[i].SetParent(this);
         }
         for (int i = 0; i < playerEquipment.GetSlots.Length; i++) {
-            playerEquipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
-            playerEquipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
+            playerEquipment.GetSlots[i].OnBeforeUpdate += OnRemoveItemFromEquip;
+            playerEquipment.GetSlots[i].OnAfterUpdate += OnAddItemToEquip;
         }
 
         SetDefaultPlayerValue();
@@ -65,7 +78,7 @@ public class PlayerAttributes : MonoBehaviour {
     /// Remove the buff in the slot, from the player.
     /// </summary>
     /// <param name="_slot">the slot with the item that is removed</param>
-    public void OnBeforeSlotUpdate(InventorySlot _slot) {
+    public void OnRemoveItemFromEquip(InventorySlot _slot) {
 
         if (_slot.ItemObject == null) { //wenn vorher nichts im slot ist 
             return;
@@ -84,6 +97,29 @@ public class PlayerAttributes : MonoBehaviour {
                     }
                 }
 
+                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausgerüstete Item etwas hat, was den Char angezogen werden kann
+                    switch (_slot.AllowedItems[0]) {
+
+                        case ItemType.Armor:
+                            Destroy(chestOnPlayer.gameObject);
+                            break;
+                        case ItemType.Boots:
+                            Destroy(bootsOnPlayer.gameObject);
+                            break;
+                        case ItemType.Glove:
+                            Destroy(glovesOnPlayer.gameObject);
+                            break;
+                        case ItemType.Trousers:
+                            Destroy(trousersOnPlayer.gameObject);
+                            break;
+                        case ItemType.Weapon:
+                            Destroy(weaponOnPlayer.gameObject);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
                 break;
 
             case InterfaceType.Dealer:
@@ -99,7 +135,7 @@ public class PlayerAttributes : MonoBehaviour {
     /// Add the buff of the item in the slot to the player 
     /// </summary>
     /// <param name="_slot">the slot with the item that is add</param>
-    public void OnAfterSlotUpdate(InventorySlot _slot) {
+    public void OnAddItemToEquip(InventorySlot _slot) {
 
         if (_slot.ItemObject == null) {
             return;
@@ -118,6 +154,34 @@ public class PlayerAttributes : MonoBehaviour {
                         }
                     }
                 }
+
+
+                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausgerüstete Item etwas hat, was den Char angezogen werden kann
+                    switch (_slot.AllowedItems[0]) {
+                     
+                        case ItemType.Armor:
+                            //chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneName);
+                            chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                            break;
+                        case ItemType.Boots:
+                            //bootsOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                            break;
+                        case ItemType.Glove:
+                            //glovesOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                            break;
+                        case ItemType.Trousers:
+                            //trousersOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                            break;
+                        case ItemType.Weapon:
+                            weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform).transform;
+                            break;                       
+                        default:
+                            break;  
+                    }
+                }
+
+
+
 
                 break;
             case InterfaceType.Dealer:
