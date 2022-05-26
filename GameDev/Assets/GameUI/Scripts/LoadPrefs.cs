@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Scrpits;
+using GameUI.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;

@@ -1,11 +1,9 @@
-using System.Collections;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Scrpits
+namespace GameUI.Scripts
 {
     /// <summary>
     /// For controlling Popup-menus and the Quit button
@@ -20,6 +18,7 @@ namespace Scrpits
         [Header("Levels To Load")] 
         public string newGameLevel;                                      //reference for the new game level
         private string _levelToLoad;                                     //reference for loading an existing level
+        
         [SerializeField] private GameObject noSavedGameDialog = null;
 
         /// <summary>
@@ -27,6 +26,8 @@ namespace Scrpits
         /// </summary>
         public void NewGameDialogYes()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Time.timeScale = 1f;
             SceneManager.LoadScene(newGameLevel);
         }
 
@@ -72,6 +73,9 @@ namespace Scrpits
             PlayerPrefs.SetFloat("masterVolume", AudioListener.volume);
         }
 
+        /// <summary>
+        /// resets the volume value to the default value
+        /// </summary>
         public void ResetButton(string menuType)
         {
             if (menuType == "Audio")
