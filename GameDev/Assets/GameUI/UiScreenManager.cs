@@ -1,24 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Manage the ingame Uis. Open and close them and defines the functions of the buttons in the menus.
+/// Manage the in game Uis. Open and close them and defines the functions of the buttons in the menus.
 /// </summary>
 public class UiScreenManager : MonoBehaviour {
 
-    public static bool InventoryUiOpen = false;
+    [Header("InventoryUI")]
+    public static bool inventoryUiOpen = false;
     public GameObject inventoryUI;                      //reference set in editor
-
-    public static bool SkillUiOpen = false;
+    
+    [Header("SkillUI")]
+    public static bool skillUiOpen = false;
     public GameObject skillUi;                          //reference set in editor
+    
+    [Header("PauseMenuUI")]
+    public static bool pauseMenuUiOpen = false;
+    public GameObject pauseMenuUi;                           //reference set in editor
 
-    public static bool MenuUiOpen = false;
-    public GameObject MenuUi;                           //reference set in editor
-
-    public static bool DeathUiOpen = false;
-    public GameObject DeathUi;                          //reference set in editor
+    [Header("DeathUI")]
+    public static bool deathUiOpen = false;
+    public GameObject deathUi;                          //reference set in editor
 
     public static bool isOneUiOpen = false;
 
@@ -30,7 +32,7 @@ public class UiScreenManager : MonoBehaviour {
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         inventoryUI.SetActive(true);
-        InventoryUiOpen = true;
+        inventoryUiOpen = true;
         isOneUiOpen = true;
     }
 
@@ -40,7 +42,7 @@ public class UiScreenManager : MonoBehaviour {
     private void CloseInventoryUi() {
         Cursor.lockState = CursorLockMode.Locked;
         inventoryUI.SetActive(false);
-        InventoryUiOpen = false;
+        inventoryUiOpen = false;
         Time.timeScale = 1f;
         isOneUiOpen = false;
     }
@@ -52,7 +54,7 @@ public class UiScreenManager : MonoBehaviour {
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         skillUi.SetActive(true);
-        SkillUiOpen = true;
+        skillUiOpen = true;
         isOneUiOpen = true;
     }
 
@@ -62,28 +64,28 @@ public class UiScreenManager : MonoBehaviour {
     private void CloseSkillUi() {
         Cursor.lockState = CursorLockMode.Locked;
         skillUi.SetActive(false);
-        SkillUiOpen = false;
+        skillUiOpen = false;
         Time.timeScale = 1f;
         isOneUiOpen = false;
     }
 
     /// <summary>
-    /// Opens the ingame menu UI. Makes the mouse pointer visible and freezes the game time. 
+    /// Opens the in game menu UI. Makes the mouse pointer visible and freezes the game time. 
     /// </summary>
-    private void OpenMenueUi() {
+    private void OpenPauseMenueUi() {
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
-        MenuUi.SetActive(true);
-        MenuUiOpen = true;
+        pauseMenuUi.SetActive(true);
+        pauseMenuUiOpen = true;
     }
 
     /// <summary>
-    /// Close the ingame menu UI. Locked the Cursor and lets the game time continue if no other ui ist open.
+    /// Close the in game menu UI. Locked the Cursor and lets the game time continue if no other ui ist open.
     /// </summary>
-    public void CloseMenueUi() {
+    public void ClosePauseMenueUi() {
         Cursor.lockState = CursorLockMode.Locked;
-        MenuUi.SetActive(false);
-        MenuUiOpen = false;
+        pauseMenuUi.SetActive(false);
+        pauseMenuUiOpen = false;
         if (!isOneUiOpen) {
             Time.timeScale = 1f;
         }
@@ -95,8 +97,8 @@ public class UiScreenManager : MonoBehaviour {
     public void OpenDeathUi() {
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
-        DeathUi.SetActive(true);
-        DeathUiOpen = true;
+        deathUi.SetActive(true);
+        deathUiOpen = true;
     }
 
     /// <summary>
@@ -104,8 +106,8 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void CloseDeathUi() {
         Cursor.lockState = CursorLockMode.Locked;
-        DeathUi.SetActive(false);
-        DeathUiOpen = false;
+        deathUi.SetActive(false);
+        deathUiOpen = false;
         Time.timeScale = 1f;
     }
 
@@ -145,27 +147,27 @@ public class UiScreenManager : MonoBehaviour {
     /// On Esc and if the DeathUi is closed: close the menuUI when its open, or open it if its closed.
     /// </summary>
     void Update() {
-        if (Input.GetKeyDown(KeyCode.I) && !DeathUiOpen) {
-            if (InventoryUiOpen ) {
+        if (Input.GetKeyDown(KeyCode.I) && !deathUiOpen) {
+            if (inventoryUiOpen ) {
                 CloseInventoryUi();
-            } else if (!MenuUiOpen && !isOneUiOpen) {
+            } else if (!pauseMenuUiOpen && !isOneUiOpen) {
                 OpenInventoryUi();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && !DeathUiOpen) {
-            if (SkillUiOpen) {
+        if (Input.GetKeyDown(KeyCode.K) && !deathUiOpen) {
+            if (skillUiOpen) {
                 CloseSkillUi();
-            } else if (!MenuUiOpen && !isOneUiOpen) {
+            } else if (!pauseMenuUiOpen && !isOneUiOpen) {
                 OpenSkillyUi();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !DeathUiOpen) {
-            if (MenuUiOpen) {
-                CloseMenueUi();
+        if (Input.GetKeyDown(KeyCode.Escape) && !deathUiOpen) {
+            if (pauseMenuUiOpen) {
+                ClosePauseMenueUi();
             } else {
-                OpenMenueUi();
+                OpenPauseMenueUi();
             }
         }
 
