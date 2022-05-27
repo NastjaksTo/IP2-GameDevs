@@ -11,15 +11,15 @@ namespace GameUI.Scripts
     public class MenuController : MonoBehaviour
     {
         [Header("Volume Settings")] 
-        [SerializeField] private TMP_Text volumeTextValue = null;       //reference for the volume Text value in the UI
-        [SerializeField] private Slider volumeSlider = null;            //reference for the volume slider
+        [SerializeField] private TMP_Text volumeTextValue;       //reference for the volume Text value in the UI
+        [SerializeField] private Slider volumeSlider;            //reference for the volume slider
         [SerializeField] private float defaultVolume = 0.5f;
 
         [Header("Levels To Load")] 
         public string newGameLevel;                                      //reference for the new game level
-        private string _levelToLoad;                                     //reference for loading an existing level
+        private string levelToLoad;                                     
         
-        [SerializeField] private GameObject noSavedGameDialog = null;
+        [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
 
         /// <summary>
         /// if the Player hits the "Yes"-Button, it will automatically load a new Game level
@@ -38,8 +38,8 @@ namespace GameUI.Scripts
         {
             if (PlayerPrefs.HasKey("SavedLevel"))
             {
-                _levelToLoad = PlayerPrefs.GetString("SavedLevel");
-                SceneManager.LoadScene(_levelToLoad);
+                levelToLoad = PlayerPrefs.GetString("SavedLevel");
+                SceneManager.LoadScene(levelToLoad);
             }
             else
             {
