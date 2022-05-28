@@ -9,14 +9,19 @@ public class PlayerSkillsystem : MonoBehaviour
 {
     public LevelSystem playerlevel; // Get LevelSystem reference
 
+    public static PlayerSkillsystem playerskillsystem;
+    
     public GameObject fire1; // FireSpell 1 reference
     public GameObject fire2; // FireSpell 2 reference
     public GameObject fire3; // FireSpell 3 reference
     
     public GameObject ice1; // IceSpell 1 reference
     public GameObject ice2; // IceSpell 2 reference
+    public GameObject ice3; // IceSpell 3 reference
     
     public GameObject earth1; // EarthSpell 1 reference
+    public GameObject earth2; // EarthSpell 2 reference
+    public GameObject earth3; // EarthSpell 3 reference
     
     public Transform spawner; // SpellSpawner reference
     
@@ -25,9 +30,12 @@ public class PlayerSkillsystem : MonoBehaviour
 
     public PlayerAttributes playerattributes;
     
+    public GameObject lvlupeffect;
+    
     private void Awake()
     {
         playerlevel = new LevelSystem(); // Create new LevelSystem for the player
+        playerskillsystem = this;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +53,14 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         return playerlevel.getSP();
     }
+    
+    public void PlayLvlUpEffect()
+    {
+        var newLvlUpEffect = Instantiate(lvlupeffect, transform.position + (Vector3.up * 0.35f), transform.rotation * Quaternion.Euler (-90f, 0f, 0f));
+        newLvlUpEffect.transform.parent = gameObject.transform;
+        Debug.Log("levelup effect");
+    }
+
     
     private void CooldownStart() // Starting the cooldown of spells
     {
@@ -75,8 +91,7 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!_cooldown) return;
             if (!(playerattributes.currentMana >= 20)) return;
             playerattributes.currentMana -= 20;
-            var newfireball2 = Instantiate(fire2, spawner.position, transform.rotation);
-            newfireball2.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 20f; //* (2 * skillTree.SkillLevels[0]);
+            var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
             Destroy(newfireball2, 2);
             CooldownStart();
         }
@@ -99,9 +114,8 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!_cooldown) return;
             if (!(playerattributes.currentMana >= 25)) return;
             playerattributes.currentMana -= 25;
-            var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
-            newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 10f; //* (2 * skillTree.SkillLevels[0]);
-            Destroy(newice1, 2);
+            var newice3 = Instantiate(ice3, transform.position+(transform.forward*10)+(Vector3.up*10f), transform.rotation * Quaternion.Euler (90f, 0f, 0f));
+            Destroy(newice3, 6);
             CooldownStart();
         }
         else if (skillTree.skillLevels[7] > 0)
@@ -119,7 +133,7 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!(playerattributes.currentMana >= 15)) return;
             playerattributes.currentMana -= 15;
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
-            newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 10f; //* (2 * skillTree.SkillLevels[0]);
+            newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 30f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newice1, 2);
             CooldownStart();
         }
@@ -132,9 +146,11 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!_cooldown) return;
             if (!(playerattributes.currentMana >= 25)) return;
             playerattributes.currentMana -= 25;
-            var newearth3 = Instantiate(earth1, transform.position, transform.rotation);
+            var newearth3 = Instantiate(earth3, transform.position, transform.rotation);
             newearth3.transform.parent = gameObject.transform;
+            var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth3, 10);
+            Destroy(newearth2, 20);
             CooldownStart();
         }
         else if (skillTree.skillLevels[8] > 0)
@@ -142,9 +158,8 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!_cooldown) return;
             if (!(playerattributes.currentMana >= 20)) return;
             playerattributes.currentMana -= 20;
-            var newearth2 = Instantiate(earth1, transform.position, transform.rotation);
-            newearth2.transform.parent = gameObject.transform;
-            Destroy(newearth2, 10);
+            var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
+            Destroy(newearth2, 20);
             CooldownStart();
         }
         else
@@ -153,8 +168,7 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!(playerattributes.currentMana >= 15)) return;
             playerattributes.currentMana -= 15;
             var newearth1 = Instantiate(earth1, transform.position, transform.rotation);
-            newearth1.transform.parent = gameObject.transform;
-            Destroy(newearth1, 10);
+            Destroy(newearth1, 20);
             CooldownStart();
         }
     } 

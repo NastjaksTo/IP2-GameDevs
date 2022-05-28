@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static SkillTree;
+using static PlayerSkillsystem;
 
 public class LevelSystem
 {
@@ -28,6 +29,7 @@ public class LevelSystem
             skillpoints++;
             _exp -= _expToLevelUp;
             _expToLevelUp += _expToLevelUp;
+            playerskillsystem.PlayLvlUpEffect();
             skillTree.UpdateAllSkillUI();
         }
     }
