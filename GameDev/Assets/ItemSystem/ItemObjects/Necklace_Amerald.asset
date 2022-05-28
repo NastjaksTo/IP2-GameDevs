@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Necklace_Amerald
   m_EditorClassIdentifier: 
   itemName: Amerald Necklace
+  characterDisplay: {fileID: 0}
   uiDisplayImage: {fileID: 21300000, guid: a1c2fccde5486974aba45dc8274c094b, type: 3}
   istStackable: 0
   itemType: 0
-  itemDescription: 'This is an incredibly good description
-
-    30 bonus for life
-    points.'
+  itemDescription: "This is an incredibly good description.\n\n + 30 max Health"
   data:
     Id: 4
     buffs:

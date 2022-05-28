@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Armor_Lether
   m_EditorClassIdentifier: 
   itemName: Lether Armor
+  characterDisplay: {fileID: 0}
   uiDisplayImage: {fileID: 21300000, guid: bdee396dc2c134c44be139536c58c88d, type: 3}
   istStackable: 0
   itemType: 1
   itemDescription: 'Leather Armor, they are made of leather... of a drunken troll.
 
-    Armor:
-    10'
+
+    +
+    20 Armor'
   data:
     Id: 1
     buffs:
     - attribute: 0
-      buffValue: 10
+      buffValue: 20

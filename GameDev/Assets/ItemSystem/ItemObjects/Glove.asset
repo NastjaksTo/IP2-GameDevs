@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Glove
   m_EditorClassIdentifier: 
   itemName: Leather gloves
+  characterDisplay: {fileID: 0}
   uiDisplayImage: {fileID: 21300000, guid: 4de0a8aeb9a34844ca8c494fa0341830, type: 3}
   istStackable: 0
   itemType: 6
   itemDescription: 'Leather gloves, they are made of leather... of a drunken troll.
 
-    Armor:
-    20'
+
+    +
+    10 Armor'
   data:
     Id: 2
     buffs:
     - attribute: 0
-      buffValue: 20
+      buffValue: 10
