@@ -133,7 +133,7 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!(playerattributes.currentMana >= 15)) return;
             playerattributes.currentMana -= 15;
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
-            newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 30f; //* (2 * skillTree.SkillLevels[0]);
+            newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 40f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newice1, 2);
             CooldownStart();
         }
