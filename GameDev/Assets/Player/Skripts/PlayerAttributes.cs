@@ -40,10 +40,10 @@ public class PlayerAttributes : MonoBehaviour {
     public bool earthKnowladgeEquiped;
 
     public TextMeshProUGUI textHealthPoints;         //reference set in editor
+    public TextMeshProUGUI textMaxMana;              //reference set in editor
+    public TextMeshProUGUI textMaxStamina;           //reference set in editor
     public TextMeshProUGUI textArmor;                //reference set in editor
     public TextMeshProUGUI textPhysicalDamage;       //reference set in editor
-   
-
 
     /// <summary>
     /// loob through all attributes of the player and set the parent.
@@ -269,7 +269,13 @@ public class PlayerAttributes : MonoBehaviour {
                 textPhysicalDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
             if (playerAttributes[i].type == Attributes.Armor)
                 textArmor.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+            if (playerAttributes[i].type == Attributes.ManaPoints)
+                textMaxMana.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+            if (playerAttributes[i].type == Attributes.Stamina)
+                textMaxStamina.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
         }
+
+
     }
 
     private void Update() {
