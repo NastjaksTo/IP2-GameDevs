@@ -548,37 +548,6 @@ Transform:
   m_Father: {fileID: 8377667151857704670}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &743768798812381056
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2173289259355567961}
-  m_Layer: 0
-  m_Name: swordHand
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2173289259355567961
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743768798812381056}
-  m_LocalRotation: {x: 0.6998881, y: -0, z: -0, w: 0.71425253}
-  m_LocalPosition: {x: -0.84, y: 1.335, z: -0.03}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 308590582368928935}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 88.836, y: 0, z: 0}
 --- !u!1 &815204063425694195
 GameObject:
   m_ObjectHideFlags: 0
@@ -5020,8 +4989,7 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2173289259355567961}
+  m_Children: []
   m_Father: {fileID: 6068054994472305620}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

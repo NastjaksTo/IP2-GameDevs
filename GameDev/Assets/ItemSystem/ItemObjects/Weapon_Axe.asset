@@ -13,16 +13,21 @@ MonoBehaviour:
   m_Name: Weapon_Axe
   m_EditorClassIdentifier: 
   itemName: Double Axe
-  characterDisplay: {fileID: 5193304468136172182, guid: e33452043350ccc41aa0136cd51f6c6f, type: 3}
+  characterDisplay: {fileID: 9190878331159525150, guid: 4edc3603e15f0884b937810156617f74, type: 3}
   uiDisplayImage: {fileID: 21300000, guid: 89aade9b94becbb419bc77b087b72e24, type: 3}
   istStackable: 0
   itemType: 11
   itemDescription: 'Double blade, double power.
 
 
-    + 300 Physical damage'
+    + 300 Physical damage
+
+    -
+    30 max Stamina'
   data:
     Id: 7
     buffs:
     - attribute: 6
       buffValue: 300
+    - attribute: 7
+      buffValue: -30
