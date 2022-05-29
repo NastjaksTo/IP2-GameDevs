@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using static SkillTree;
 using static PlayerSkillsystem;
 
@@ -11,7 +12,7 @@ public class LevelSystem
     private float _exp;
     private float _expToLevelUp;
     public int skillpoints;
-    
+
     public LevelSystem() // Setting standard variables to LevelSystem
     {
         _level = 1;
@@ -23,6 +24,7 @@ public class LevelSystem
     public void AddExp(int amount) // Gain experience and level up
     {
         _exp += amount;
+
         if (_exp > _expToLevelUp)
         {
             _level++;
@@ -48,6 +50,10 @@ public class LevelSystem
     public float getExpToLevelUp() // Return currently needed expierence in order to level up
     {
         return _expToLevelUp-_exp;
+    }
+    public float getExp() // Return currently needed expierence in order to level up
+   {
+        return _exp;
     }
 
 }

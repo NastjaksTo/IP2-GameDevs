@@ -12828,6 +12828,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
+    - target: {fileID: 3381462763234088242, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4943210760029019007, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -12965,12 +12969,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2728292566946903567, guid: dbb6206525783b842b8cb276648027ad, type: 3}
     - target: {fileID: 7161293030734863111, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: textCurrentXP
+      value: 
+      objectReference: {fileID: 292044755}
+    - target: {fileID: 7161293030734863111, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: playerattributes
       value: 
       objectReference: {fileID: 1364778335}
+    - target: {fileID: 7161293030734863111, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: textCurrentLevel
+      value: 
+      objectReference: {fileID: 1312552548}
     - target: {fileID: 7315601071711175479, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353421158329539873, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7583146325603344536, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_Mesh
@@ -12979,7 +12995,11 @@ PrefabInstance:
     - target: {fileID: 7692773251923763330, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -3893433874774863117, guid: 45f944a4396b0a54398eb1abe6743296, type: 3}
+      objectReference: {fileID: 4300000, guid: ba3eaedf5b135cf45a659743fb10f5ed, type: 3}
+    - target: {fileID: 7692773251923763330, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7692773251923763330, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_RootBone
       value: 

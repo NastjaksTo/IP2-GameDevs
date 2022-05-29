@@ -180,9 +180,6 @@ public class PlayerAttributes : MonoBehaviour {
                     }
                 }
 
-
-
-
                 break;
             case InterfaceType.Dealer:
                 break;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using static SkillTree;
 
 
@@ -31,11 +32,20 @@ public class PlayerSkillsystem : MonoBehaviour
     public PlayerAttributes playerattributes;
     
     public GameObject lvlupeffect;
-    
+
+    public TextMeshProUGUI textCurrentXP;           //reference set in editor
+    public TextMeshProUGUI textCurrentLevel;        //reference set in editor
+    // public TextMeshProUGUI textneededXP;            //reference set in editor
+
     private void Awake()
     {
         playerlevel = new LevelSystem(); // Create new LevelSystem for the player
         playerskillsystem = this;
+
+        textCurrentXP.text = playerlevel.getExp().ToString();
+        textCurrentLevel.text = playerlevel.getLevel().ToString();
+        //textneededXP.text = playerlevel.getExpToLevelUp().ToString();
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -44,6 +54,9 @@ public class PlayerSkillsystem : MonoBehaviour
         if (other.gameObject.tag == "exp") 
         {
             playerlevel.AddExp(150);
+            textCurrentXP.text = playerlevel.getExp().ToString();
+            textCurrentLevel.text = playerlevel.getLevel().ToString();
+
             Debug.Log("added 150 exp, your current Level is:" + playerlevel.getLevel());
             Debug.Log("You need" + playerlevel.getExpToLevelUp() + "EXP to level up");
         }
