@@ -16,21 +16,22 @@ public class SaveData : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.O))
         {
+            Debug.Log("Saving..");
             SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, this);
             inventory.Save();
             equipment.Save();
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+
+        if (Input.GetKeyDown(KeyCode.L))
         {
+            Debug.Log("Loading..");
             PlayerData data = SaveSystem.LoadPlayer();
 
             skillsystem.playerlevel._level = data.level;
             attributes.currentHealth = data.health;
-            inventory.Load();
-            equipment.Load();
         }
 
         if (Input.GetKeyDown(KeyCode.G))

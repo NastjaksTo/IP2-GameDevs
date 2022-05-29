@@ -43,8 +43,10 @@ public class InventoryInterface : MonoBehaviour {
             inventory.Container.Slots[i].parentUserInterface = this;
             inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
         }
-
+        
         CreateSlots();
+        
+        inventory.Load();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnPointerEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnPointerExitInterface(gameObject); });
         UpdateAllSlotDisplay();
@@ -121,7 +123,7 @@ public class InventoryInterface : MonoBehaviour {
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.ItemObject.uiDisplayImage;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amountOfItemInInventorySlot == 1 ? "" : _slot.amountOfItemInInventorySlot.ToString("n0");
-        } else { //wenn ichts im slot drin ist muss die UI an der stelle für den slot geclerat werden
+        } else { //wenn ichts im slot drin ist muss die UI an der stelle fï¿½r den slot geclerat werden
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
