@@ -8,7 +8,7 @@ using static PlayerSkillsystem;
 
 public class LevelSystem
 {
-    private int _level;
+    public int _level;
     private float _exp;
     private float _expToLevelUp;
     public int skillpoints;
@@ -40,7 +40,7 @@ public class LevelSystem
     {
         return _level;
     }
-
+    
     public int getSP() // Return current skillpoints
     {
         return skillpoints;

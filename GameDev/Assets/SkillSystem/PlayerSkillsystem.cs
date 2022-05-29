@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using TMPro;
 using static SkillTree;
@@ -30,6 +31,7 @@ public class PlayerSkillsystem : MonoBehaviour
     private bool _cooldown = true; // Cooldown Boolean for spells
 
     public PlayerAttributes playerattributes;
+    public ThirdPersonController player;
     
     public GameObject lvlupeffect;
 
@@ -66,6 +68,8 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         return playerlevel.getSP();
     }
+    
+    
     
     public void PlayLvlUpEffect()
     {
@@ -184,7 +188,7 @@ public class PlayerSkillsystem : MonoBehaviour
             Destroy(newearth1, 20);
             CooldownStart();
         }
-    } 
+    }
 
     private void Update()
     {

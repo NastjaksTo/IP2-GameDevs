@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Data.Common;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -72,6 +73,8 @@ namespace StarterAssets {
         private GameObject _mainCamera;
 
         public PlayerAttributes playerattributes;
+        public PlayerSkillsystem playerskillsystem;
+        public LevelSystem levelSystem;
         
         private const float _threshold = 0.01f;
 
@@ -93,6 +96,7 @@ namespace StarterAssets {
             if (_mainCamera == null) {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
         }
 
         private void Start() {
@@ -111,6 +115,18 @@ namespace StarterAssets {
             _hasAnimator = TryGetComponent(out _animator);
             AddGravity(); // Call the gravity function each update
             Move(); // Call the move function each update
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                PlayerData data = SaveSystem.LoadPlayer();
+
+                Vector3 position;
+                position.x = data.position[0];
+                position.y = data.position[1];
+                position.z = data.position[2];
+                transform.position = position;
+            }
+
         }
 
         private void LateUpdate() {

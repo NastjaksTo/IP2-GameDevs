@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 2729172093653292501}
   - component: {fileID: 8304597424742125487}
   - component: {fileID: 3356350656522571621}
+  - component: {fileID: 74846484923444678}
   - component: {fileID: 3356350656522571620}
   - component: {fileID: 4788531997525321119}
   - component: {fileID: 1313494248862749459}
@@ -145,6 +146,18 @@ CharacterController:
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.93, z: 0}
+--- !u!114 &74846484923444678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356350656522571631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b02c6bf40f2ef145a697a20488fcb40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3356350656522571620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +182,8 @@ MonoBehaviour:
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  playerattributes: {fileID: 0}
+  playerskillsystem: {fileID: 0}
 --- !u!114 &4788531997525321119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,9 +237,16 @@ MonoBehaviour:
   fire3: {fileID: 7114378276753457434, guid: dd6dad5b930710f47b3ac07f4a4b9c79, type: 3}
   ice1: {fileID: 5576160405666681078, guid: b311a131d54fb664897849016c8c648a, type: 3}
   ice2: {fileID: 2496535390941249919, guid: edfcb0fc59bfe4f4c96a2ff5da7f2ab7, type: 3}
+  ice3: {fileID: 0}
   earth1: {fileID: 7790810724462694517, guid: bf5054d29673abc4892420e59d5169f2, type: 3}
+  earth2: {fileID: 0}
+  earth3: {fileID: 0}
   spawner: {fileID: 1429952242671585746}
-  Skilltree: {fileID: 0}
+  playerattributes: {fileID: 0}
+  player: {fileID: 0}
+  lvlupeffect: {fileID: 0}
+  textCurrentXP: {fileID: 0}
+  textCurrentLevel: {fileID: 0}
 --- !u!114 &3356350656522571619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,13 +394,21 @@ MonoBehaviour:
     totalAttributValue:
       baseAttributeValue: 0
       modifiedValue: 0
+  weaponTransform: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   maxStamina: 0
   currentStamina: 0
+  staminaRegenerationSpeed: 0
   maxMana: 0
   currentMana: 0
+  manaRegenerationSpeed: 0
+  fireKnowladgeEquiped: 0
+  iceKnowladgeEquiped: 0
+  earthKnowladgeEquiped: 0
   textHealthPoints: {fileID: 0}
+  textMaxMana: {fileID: 0}
+  textMaxStamina: {fileID: 0}
   textArmor: {fileID: 0}
   textPhysicalDamage: {fileID: 0}
 --- !u!1 &6945179642636056116
