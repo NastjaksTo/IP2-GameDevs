@@ -8,8 +8,8 @@ public class CrabAgent : MonoBehaviour
     private Transform movePositionTransform;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private FoVScript fov;
     private Vector3 spawnpoint;
-    private bool isInRange;
     private bool doDamage;
     private int attackOrRoll;
     private bool defend;
@@ -18,13 +18,16 @@ public class CrabAgent : MonoBehaviour
     private float endDefend;
     private int health;
 
+    /// <summary>
+    /// References set to all necessary Context
+    /// </summary>
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        fov = GetComponent<FoVScript>();
         spawnpoint = this.transform.position;
-        isInRange = false;
         attackOrRoll = Random.Range(1, 4);
         defend = false;
         timer = 0.0f;
@@ -32,8 +35,15 @@ public class CrabAgent : MonoBehaviour
         endDefend = 2.0f;
         health = 100;
         doDamage = false;
+        fov.Radius = 15.0f;
+        fov.Angle = 180.0f;
     }
 
+    /// <summary>
+    /// timer counting while Update
+    /// checking for Target
+    /// checking for incoming Damage
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
@@ -41,9 +51,15 @@ public class CrabAgent : MonoBehaviour
         getDamage();
     }
 
+
+    /// <summary>
+    /// if the Player is in Range, the Enemy will Run towards the Target. Once it is in Range it will attack.
+    /// 
+    /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
+    /// </summary>
     private void WalkOrAttack()
     {
-        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 15.0f)
+        if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
             animator.SetBool("Run Forward", true);
@@ -52,7 +68,7 @@ public class CrabAgent : MonoBehaviour
                 Attack();
             }
         }
-        if (Vector3.Distance(movePositionTransform.position, transform.position) > 15.0f)
+        if (!fov.CanSeePlayer)
         {
             navMeshAgent.destination = spawnpoint;
             animator.ResetTrigger("Smash Attack");
@@ -67,6 +83,10 @@ public class CrabAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy is nearby the Target one of the Three Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move
+    /// while Attacking the Enemy ist not Running
+    /// </summary>
     private void Attack()
     {
         if (attackOrRoll == 1)
@@ -109,6 +129,10 @@ public class CrabAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Target is doing Damage to the Enemy, the health is being lowered
+    /// if the health is equal or lower 0, the Enemy dies.
+    /// </summary>
     private void getDamage()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -127,6 +151,9 @@ public class CrabAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy is able to hit the Player, the Player is getting damaged.
+    /// </summary>
     private void DoDamage()
     {
         if (doDamage)
@@ -136,30 +163,9 @@ public class CrabAgent : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            doDamage = true;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            isInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            isInRange = false;
-        }
-    }
-
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 3 is picked to choose the next Attackpattern. All Triggers are resetted.
+    /// </summary>
     private void changeAttack()
     {
         attackOrRoll = Random.Range(1, 4);

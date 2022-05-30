@@ -8,8 +8,8 @@ public class TurtleAgent : MonoBehaviour
     private Transform movePositionTransform;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private FoVScript fov;
     private Vector3 spawnpoint;
-    private bool isInRange;
     private float timer;
     private float timeToChangeAttack;
     private int health;
@@ -19,13 +19,16 @@ public class TurtleAgent : MonoBehaviour
     private bool defend;
     private bool doDamage;
 
+    /// <summary>
+    /// References set to all necessary Context
+    /// </summary>
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        fov = GetComponent<FoVScript>();
         spawnpoint = this.transform.position;
-        isInRange = false;
         timer = 0.0f;
         timeToChangeAttack = 0.8f;
         wichAttack = Random.Range(1, 4);
@@ -34,8 +37,15 @@ public class TurtleAgent : MonoBehaviour
         defend = false;
         attackRange = 2.0f;
         doDamage = false;
+        fov.Radius = 6.0f;
+        fov.Angle = 100.0f;
     }
 
+    /// <summary>
+    /// timer counting while Update
+    /// checking for Target
+    /// checking for incoming Damage
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
@@ -43,9 +53,14 @@ public class TurtleAgent : MonoBehaviour
         getDamage();
     }
 
+    /// <summary>
+    /// if the Player is in Range, the Enemy will Run towards the Target. Once it is in Range it will attack.
+    /// 
+    /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
+    /// </summary>
     private void WalkOrAttack()
     {
-        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 6.0f)
+        if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
             animator.SetBool("isFighting", true);
@@ -55,7 +70,7 @@ public class TurtleAgent : MonoBehaviour
                 Attack();
             }
         }
-        if (Vector3.Distance(movePositionTransform.position, transform.position) > 6.0f)
+        if (!fov.CanSeePlayer)
         {
             navMeshAgent.destination = spawnpoint;
             animator.SetBool("isFighting", false);
@@ -63,13 +78,17 @@ public class TurtleAgent : MonoBehaviour
             animator.ResetTrigger("Attack2");
             animator.SetBool("Defend", false);
 
-            if (Vector3.Distance(this.transform.position, spawnpoint) < 2.0f)
+            if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
                 animator.SetBool("Walk", false);
             }
         }
     }
 
+    /// <summary>
+    /// if the Enemy is nearby the Target one of the Three Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move
+    /// while Attacking the Enemy ist not Walking
+    /// </summary>
     private void Attack()
     {
         animator.SetBool("Walk", false);
@@ -110,6 +129,10 @@ public class TurtleAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Target is doing Damage to the Enemy, the health is being lowered
+    /// if the health is equal or lower 0, the Enemy dies.
+    /// </summary>
     private void getDamage()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -128,6 +151,9 @@ public class TurtleAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy is able to hit the Player, the Player is getting damaged.
+    /// </summary>
     private void DoDamage()
     {
         if (doDamage)
@@ -137,6 +163,9 @@ public class TurtleAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// If the Trigger Collider of the Turtle will collide with the Player, the bool to deal Damage is set to true;
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -145,22 +174,9 @@ public class TurtleAgent : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            isInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            isInRange = false;
-        }
-    }*/
-
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 3 is picked to choose the next Attackpattern. All Triggers are resetted.
+    /// </summary>
     private void changeAttack()
     {
         wichAttack = Random.Range(1, 4);
