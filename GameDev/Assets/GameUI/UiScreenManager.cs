@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -249,7 +250,10 @@ namespace GameUI {
             Debug.Log("OpenMainMenu");
         }
 
-
+        public void loadgame()
+        {
+            savedata.DataLoad();
+        }
 
         //------------- UI MainMenu Button functions -------------
         /// <summary>
@@ -257,12 +261,12 @@ namespace GameUI {
         /// </summary>
         public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
 
-            Debug.Log("LOAD");
-
+            Debug.Log("Loading game...");
             CloseMainMenuUI();
-            savedata.DataLoad();
-           
+            Invoke("loadgame", 1f);
         }
+        
+        
 
 
         /// <summary>
