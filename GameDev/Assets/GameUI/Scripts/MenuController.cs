@@ -18,10 +18,8 @@ namespace GameUI.Scripts
 
         [Header("Levels To Load")] 
         public string newGameLevel;                                      //reference for the new game level
-        private string levelToLoad;
 
         public GameObject menu;
-        public SaveData savedata;
    
         
         [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
@@ -35,38 +33,6 @@ namespace GameUI.Scripts
             Time.timeScale = 1f;
             menu.SetActive(false);
             
-        }
-
-        /// <summary>
-        /// any moment, that we choose to load the game, we check, if there is a file named "SavedLevel"
-        /// </summary>
-        public void LoadGameDialogYes()
-        {
-        
-            menu.SetActive(false);
-            Time.timeScale = 1f;
-
-            savedata.DataLoad();
-
-            /*
-            if (PlayerPrefs.HasKey("SavedLevel"))
-            {
-                levelToLoad = PlayerPrefs.GetString("SavedLevel");
-                Time.timeScale = 1f;
-                menu.SetActive(false);
-            }
-            else
-            {
-                noSavedGameDialog.SetActive(true);
-            }*/
-        }
-
-        /// <summary>
-        /// method for quitting the game
-        /// </summary>
-        public void ExitButton()
-        {
-            Application.Quit();
         }
 
         /// <summary>

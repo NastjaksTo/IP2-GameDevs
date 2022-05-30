@@ -48,7 +48,6 @@ public class SaveData : MonoBehaviour
 
     public void DataLoad()
     {
-        Debug.Log("Loading..");
         PlayerData data = SaveSystem.LoadPlayer();
 
         skillsystem.playerlevel._level = data.level;
@@ -60,5 +59,6 @@ public class SaveData : MonoBehaviour
         equipment.Load();
         
         player.PositionLoad();
+        Debug.Log("[DataLoad] Loading..");
     }
 }

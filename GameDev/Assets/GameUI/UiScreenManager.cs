@@ -33,7 +33,10 @@ namespace GameUI {
         private static bool _isOneIngameUiOpen = false;
         private static bool _isOneInMenueUiOpen = false;
 
-        public GameObject menumenu;
+        private static bool _mainMenu;
+        public GameObject mainMenu;
+
+        public SaveData savedata;
 
         /// <summary>
         /// Opens the playerstats UI.
@@ -124,7 +127,6 @@ namespace GameUI {
         /// Open the death UI. Makes the mouse pointer visible and freezes the game time. 
         /// </summary>
         public void OpenDeathUi() {
-            //alert.CloseCollectAlertUi();
             Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.Confined;
             deathUi.SetActive(true);
@@ -168,6 +170,26 @@ namespace GameUI {
             _pauseMenuContainerUiOpen = false;
             Time.timeScale = 1f;
         }
+
+
+
+     
+
+        public void OpenMainMenuUI() {
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Confined;
+            mainMenu.SetActive(true);
+            _mainMenu = true;
+        }
+
+        public void CloseMainMenuUI() {
+            Cursor.lockState = CursorLockMode.Locked;
+            mainMenu.SetActive(false);
+            _mainMenu = false;
+            Time.timeScale = 1f;
+        }
+
+
 
         //------------- IN menu UI -------------
 
@@ -221,20 +243,34 @@ namespace GameUI {
         /// <summary>
         /// Load the main menu of the game -> Scene change
         /// </summary>
-        public void LoadMenu() {
-           //SceneManager.LoadScene("MainMenu"); //load Menu Scene 
+        public void OpenMainMenu() {
             ClosePauseContainerUi();
-            Cursor.lockState = CursorLockMode.Confined;
-            menumenu.SetActive(true);
-            Time.timeScale = 0f;
+            OpenMainMenuUI();
+            Debug.Log("OpenMainMenu");
         }
 
+
+
+        //------------- UI MainMenu Button functions -------------
         /// <summary>
         /// Load the last saved game state 
         /// </summary>
         public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
-            Debug.Log("TODO: LOAD LAST SAVED GAME STATE");
-            Time.timeScale = 1f;
+
+            Debug.Log("LOAD");
+
+            CloseMainMenuUI();
+            savedata.DataLoad();
+           
+        }
+
+
+        /// <summary>
+        /// method for quitting the game
+        /// </summary>
+        public void ExitButton() {
+            Application.Quit();
+            Debug.Log("QUIT");
         }
 
 
@@ -245,7 +281,7 @@ namespace GameUI {
         /// On Esc and if the DeathUi is closed: close the menuUI when its open, or open it if its closed.
         /// </summary>
         public void Update() {
-            if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen) {
+            if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen && !_mainMenu) {
                 if (_inventoryUiOpen) {
                     CloseInventoryUi();
                 } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
@@ -253,7 +289,7 @@ namespace GameUI {
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.K) && !_deathUiOpen) {
+            if (Input.GetKeyDown(KeyCode.K) && !_deathUiOpen && !_mainMenu) {
                 if (_skillUiOpen) {
                     CloseSkillUi();
                 } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
@@ -261,7 +297,7 @@ namespace GameUI {
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen) {
+            if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen && !_mainMenu) {
                 if (_questUiOpen) {
                    CloseQuestUi();
                 } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
@@ -274,7 +310,7 @@ namespace GameUI {
                     ClosePauseContainerUi();
                 } else {
 
-                    if (!_isOneIngameUiOpen && !_isOneInMenueUiOpen) {
+                    if (!_isOneIngameUiOpen && !_isOneInMenueUiOpen && !_mainMenu) {
                         OpenPauseContainerMenuUi();
                     }
 
