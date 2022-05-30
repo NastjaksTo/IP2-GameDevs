@@ -13,7 +13,7 @@ public class PlayerAttributes : MonoBehaviour {
     public InventoryObject playerEquipment;     //reference to the EquipObject from the player. Referenz set in editor
     public Attribute[] playerAttributes;        //array of the attributes that the player have. Attributes set in editor
 
-    private Transform chestOnPlayer;              
+    private Transform chestOnPlayer;
     private Transform glovesOnPlayer;
     private Transform trousersOnPlayer;
     private Transform bootsOnPlayer;
@@ -30,7 +30,7 @@ public class PlayerAttributes : MonoBehaviour {
     public int maxStamina;
     public float currentStamina;
     public float staminaRegenerationSpeed;
-    
+
     public int maxMana;
     public float currentMana;
     public float manaRegenerationSpeed;
@@ -96,30 +96,33 @@ public class PlayerAttributes : MonoBehaviour {
                         }
                     }
                 }
-                /*
+
                 if (_slot.ItemObject.characterDisplay != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
 
                         case ItemType.Armor:
-                            Destroy(chestOnPlayer.gameObject);
+                            //Destroy(chestOnPlayer.gameObject);
                             break;
                         case ItemType.Boots:
-                            Destroy(bootsOnPlayer.gameObject);
+                            //Destroy(bootsOnPlayer.gameObject);
                             break;
                         case ItemType.Glove:
-                            Destroy(glovesOnPlayer.gameObject);
+                            //Destroy(glovesOnPlayer.gameObject);
                             break;
                         case ItemType.Trousers:
-                            Destroy(trousersOnPlayer.gameObject);
+                            //Destroy(trousersOnPlayer.gameObject);
                             break;
                         case ItemType.Weapon:
-                           // Destroy(weaponOnPlayer.gameObject);
+
+                            Destroy(weaponOnPlayer?.gameObject);
+
+
                             break;
                         default:
                             break;
                     }
                 }
-                */
+
 
                 break;
 
@@ -156,10 +159,10 @@ public class PlayerAttributes : MonoBehaviour {
                     }
                 }
 
-            /*
+
                 if (_slot.ItemObject.characterDisplay != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
-                     
+
                         case ItemType.Armor:
                             //chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneName);
                             //chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
@@ -175,11 +178,11 @@ public class PlayerAttributes : MonoBehaviour {
                             break;
                         case ItemType.Weapon:
                             weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform).transform;
-                            break;                       
+                            break;
                         default:
-                            break;  
+                            break;
                     }
-                }*/
+                }
 
                 break;
             case InterfaceType.Dealer:
@@ -220,30 +223,30 @@ public class PlayerAttributes : MonoBehaviour {
     /// </summary>
     private void SetMaxAttributValuesToPlayer() {
         for (int i = 0; i < playerAttributes.Length; i++) {
-           
+
             if (playerAttributes[i].type == Attributes.HealthPoints)
-                maxHealth = playerAttributes[i].totalAttributValue.TotalAttributeValue; 
+                maxHealth = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             if (playerAttributes[i].type == Attributes.ManaPoints)
-                maxMana = playerAttributes[i].totalAttributValue.TotalAttributeValue; 
+                maxMana = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             if (playerAttributes[i].type == Attributes.Stamina)
                 maxStamina = playerAttributes[i].totalAttributValue.TotalAttributeValue;
-            
+
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
                 } else {
                     fireKnowladgeEquiped = false;
                 }
-            } 
-            
+            }
+
             if (playerAttributes[i].type == Attributes.IceKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     iceKnowladgeEquiped = true;
                 } else {
                     iceKnowladgeEquiped = false;
                 }
-            } 
-            
+            }
+
             if (playerAttributes[i].type == Attributes.EarthKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     earthKnowladgeEquiped = true;
@@ -260,7 +263,7 @@ public class PlayerAttributes : MonoBehaviour {
     /// </summary>
     private void SetUiAttributValues() {
         for (int i = 0; i < playerAttributes.Length; i++) {
-           
+
             if (playerAttributes[i].type == Attributes.HealthPoints)
                 textHealthPoints.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
             if (playerAttributes[i].type == Attributes.PhysicalDamage)
@@ -278,12 +281,10 @@ public class PlayerAttributes : MonoBehaviour {
 
     private void Update() {
         AttributeModified();
-        if (currentMana < maxMana)
-        {
+        if (currentMana < maxMana) {
             currentMana += manaRegenerationSpeed * Time.deltaTime;
         }
-        if (currentStamina < maxStamina && !Input.GetKey(KeyCode.LeftShift))
-        {
+        if (currentStamina < maxStamina && !Input.GetKey(KeyCode.LeftShift)) {
             currentStamina += staminaRegenerationSpeed * Time.deltaTime;
         }
     }
