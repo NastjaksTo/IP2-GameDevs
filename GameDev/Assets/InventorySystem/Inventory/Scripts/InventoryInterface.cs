@@ -32,6 +32,7 @@ public class InventoryInterface : MonoBehaviour {
     public bool AAAA = true;
 
 
+
     /// <summary>
     ///  Start is called before the first frame update
     ///  Loop over all items inside the interfaces database and link the items to the interface as the parent.
@@ -39,28 +40,26 @@ public class InventoryInterface : MonoBehaviour {
     ///  Add OnEnterInterface and OnExitInterface event to the interface.
     /// </summary>
     void Start() {
-        LoadInterface();
 
-        inventory.Clear();
-
+        for (int i = 0; i < inventory.Container.Slots.Length; i++) {
+            inventory.Container.Slots[i].parentUserInterface = this;
+            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
+        }
+        
+        CreateSlots();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnPointerEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnPointerExitInterface(gameObject); });
         UpdateAllSlotDisplay();
     }
 
     public void LoadInterface() {
-       
-
-        if (AAAA) {
-
-            for (int i = 0; i < inventory.Container.Slots.Length; i++) {
+        for (int i = 0; i < inventory.Container.Slots.Length; i++) {
                 inventory.Container.Slots[i].parentUserInterface = this;
-                inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
-            }
-
-            CreateSlots();
-            AAAA = false;
+                inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate; 
         }
+        CreateSlots();
+     
+    
     }
 
     /// <summary>
@@ -134,7 +133,7 @@ public class InventoryInterface : MonoBehaviour {
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.ItemObject.uiDisplayImage;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amountOfItemInInventorySlot == 1 ? "" : _slot.amountOfItemInInventorySlot.ToString("n0");
-        } else { //wenn ichts im slot drin ist muss die UI an der stelle für den slot geclerat werden
+        } else { //wenn ichts im slot drin ist muss die UI an der stelle fï¿½r den slot geclerat werden
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";

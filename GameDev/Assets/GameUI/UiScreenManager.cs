@@ -33,6 +33,7 @@ namespace GameUI {
         private static bool _isOneIngameUiOpen = false;
         private static bool _isOneInMenueUiOpen = false;
 
+        public GameObject menumenu;
 
         /// <summary>
         /// Opens the playerstats UI.
@@ -221,8 +222,11 @@ namespace GameUI {
         /// Load the main menu of the game -> Scene change
         /// </summary>
         public void LoadMenu() {
-            SceneManager.LoadScene("MainMenu"); //load Menu Scene 
-            Time.timeScale = 1f;
+           //SceneManager.LoadScene("MainMenu"); //load Menu Scene 
+            ClosePauseContainerUi();
+            Cursor.lockState = CursorLockMode.Confined;
+            menumenu.SetActive(true);
+            Time.timeScale = 0f;
         }
 
         /// <summary>

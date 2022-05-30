@@ -20,6 +20,10 @@ namespace GameUI.Scripts
         public string newGameLevel;                                      //reference for the new game level
         private string levelToLoad;
 
+        public GameObject menu;
+        public SaveData savedata;
+   
+        
         [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
         
         /// <summary>
@@ -29,7 +33,8 @@ namespace GameUI.Scripts
         {
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
-            SceneManager.LoadScene(newGameLevel);
+            menu.SetActive(false);
+            
         }
 
         /// <summary>
@@ -37,15 +42,23 @@ namespace GameUI.Scripts
         /// </summary>
         public void LoadGameDialogYes()
         {
+        
+            menu.SetActive(false);
+            Time.timeScale = 1f;
+
+            savedata.DataLoad();
+
+            /*
             if (PlayerPrefs.HasKey("SavedLevel"))
             {
                 levelToLoad = PlayerPrefs.GetString("SavedLevel");
-                SceneManager.LoadScene(levelToLoad);
+                Time.timeScale = 1f;
+                menu.SetActive(false);
             }
             else
             {
                 noSavedGameDialog.SetActive(true);
-            }
+            }*/
         }
 
         /// <summary>
