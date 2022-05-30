@@ -501,6 +501,7 @@ GameObject:
   - component: {fileID: 408332485}
   - component: {fileID: 408332483}
   - component: {fileID: 408332486}
+  - component: {fileID: 1889466955}
   m_Layer: 0
   m_Name: Red
   m_TagString: Untagged
@@ -598,6 +599,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!114 &1889466955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22c7f6b8cc190243a8492f1c6e97979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  angle: 0
+  playerRef: {fileID: 0}
+  canSeePlayer: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &133440
 GameObject:
   m_ObjectHideFlags: 0

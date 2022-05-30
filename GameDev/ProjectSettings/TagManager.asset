@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boss
+  - CinemachineTarget
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
+  - playerMask
   m_SortingLayers:
   - name: Default
     uniqueID: 0

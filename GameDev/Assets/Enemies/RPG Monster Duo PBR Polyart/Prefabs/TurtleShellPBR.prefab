@@ -819,8 +819,8 @@ GameObject:
   - component: {fileID: 2891566721430085065}
   - component: {fileID: 2774714449480700554}
   - component: {fileID: 3908642321611781103}
-  - component: {fileID: 1764313161203061589}
   - component: {fileID: 3908642321611781105}
+  - component: {fileID: 1624144848}
   m_Layer: 30
   m_Name: TurtleShellPBR
   m_TagString: Untagged
@@ -915,18 +915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b600d9fc58008d4ba152b46816fac45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1764313161203061589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1774625739149480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b600d9fc58008d4ba152b46816fac45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &3908642321611781105
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -940,6 +928,28 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.4, z: 0}
+--- !u!114 &1624144848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774625739149480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22c7f6b8cc190243a8492f1c6e97979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  angle: 0
+  playerRef: {fileID: 0}
+  canSeePlayer: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1822049695589022
 GameObject:
   m_ObjectHideFlags: 0

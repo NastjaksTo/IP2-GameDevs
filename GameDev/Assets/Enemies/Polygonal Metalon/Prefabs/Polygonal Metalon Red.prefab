@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 1386743815}
   - component: {fileID: 7602085566958109741}
   - component: {fileID: 1386743816}
+  - component: {fileID: 1928561542}
   m_Layer: 30
   m_Name: Polygonal Metalon Red
   m_TagString: Untagged
@@ -220,6 +221,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!114 &1928561542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128758269040250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c22c7f6b8cc190243a8492f1c6e97979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0
+  angle: 0
+  playerRef: {fileID: 0}
+  canSeePlayer: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 2147483648
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &1130806907750044
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +880,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4503046169023880}
-  - component: {fileID: 92994351}
   m_Layer: 30
   m_Name: RigPelvis
   m_TagString: Untagged
@@ -884,19 +906,6 @@ Transform:
   m_Father: {fileID: 4444695180855720}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &92994351
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639718499868046}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.5, y: 1.5, z: 3}
-  m_Center: {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &1654413139868126
 GameObject:
   m_ObjectHideFlags: 0
