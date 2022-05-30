@@ -12685,6 +12685,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: inf
+      value: 
+      objectReference: {fileID: 1904307459}
+    - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: inf1
+      value: 
+      objectReference: {fileID: 1904307459}
+    - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: inf2
+      value: 
+      objectReference: {fileID: 1624170920}
+    - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1707960643}
@@ -12844,6 +12856,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3356350656522571620, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1707960650}
     - target: {fileID: 3356350656522571620, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: sprintSpeed
       value: 5.5
@@ -17092,6 +17108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e54e5a728a9234ab24fcf1460ed8a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1707960650 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8304597424742125487, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+  m_PrefabInstance: {fileID: 1384534704}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1711872003
 PrefabInstance:
   m_ObjectHideFlags: 0

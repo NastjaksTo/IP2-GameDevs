@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using GameUI.Scripts;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 /// <summary>
@@ -29,7 +32,7 @@ public class InventoryInterface : MonoBehaviour {
     public TextMeshProUGUI itemTitelUI;
     public TextMeshProUGUI itemDescriptionUI;
     public Image itemImageUI;
-
+    
 
     /// <summary>
     ///  Start is called before the first frame update
@@ -45,8 +48,10 @@ public class InventoryInterface : MonoBehaviour {
         }
         
         CreateSlots();
+        //inventory.Load();
+
         
-        inventory.Load();
+        
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnPointerEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnPointerExitInterface(gameObject); });
         UpdateAllSlotDisplay();
@@ -75,6 +80,14 @@ public class InventoryInterface : MonoBehaviour {
         }
     }
 
+    public void LoadInterface()
+    {
+        for (int i = 0; i < inventory.Container.Slots.Length; i++) {
+            inventory.Container.Slots[i].parentUserInterface = this;
+            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
+        }
+        CreateSlots();
+    }
 
     /// <summary>
     /// Adds an event to the Slot.

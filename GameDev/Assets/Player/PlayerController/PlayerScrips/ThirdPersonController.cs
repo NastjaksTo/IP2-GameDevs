@@ -47,6 +47,8 @@ namespace StarterAssets {
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        public Animator anim;
+        
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -95,13 +97,18 @@ namespace StarterAssets {
             // get a reference to our main camera
             if (_mainCamera == null) {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                
             }
 
         }
 
-        private void Start() {
+        private void Start()
+        {
+            anim.enabled = !anim.enabled;
+            anim.enabled = true; 
+            
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-
+                
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -115,8 +122,8 @@ namespace StarterAssets {
             _hasAnimator = TryGetComponent(out _animator);
             AddGravity(); // Call the gravity function each update
             Move(); // Call the move function each update
-
-            if (Input.GetKeyDown(KeyCode.M))
+            
+            if (Input.GetKeyDown(KeyCode.L))
             {
                 PlayerData data = SaveSystem.LoadPlayer();
 

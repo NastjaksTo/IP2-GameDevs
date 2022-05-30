@@ -96,8 +96,8 @@ public class PlayerAttributes : MonoBehaviour {
                         }
                     }
                 }
-
-                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausgerüstete Item etwas hat, was den Char angezogen werden kann
+                /*
+                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausgerï¿½stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
 
                         case ItemType.Armor:
@@ -113,12 +113,13 @@ public class PlayerAttributes : MonoBehaviour {
                             Destroy(trousersOnPlayer.gameObject);
                             break;
                         case ItemType.Weapon:
-                            Destroy(weaponOnPlayer.gameObject);
+                           // Destroy(weaponOnPlayer.gameObject);
                             break;
                         default:
                             break;
                     }
                 }
+                */
 
                 break;
 
@@ -155,13 +156,13 @@ public class PlayerAttributes : MonoBehaviour {
                     }
                 }
 
-
-                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausgerüstete Item etwas hat, was den Char angezogen werden kann
+            /*
+                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausgerï¿½stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
                      
                         case ItemType.Armor:
                             //chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneName);
-                            chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                            //chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
                             break;
                         case ItemType.Boots:
                             //bootsOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
@@ -178,7 +179,7 @@ public class PlayerAttributes : MonoBehaviour {
                         default:
                             break;  
                     }
-                }
+                }*/
 
                 break;
             case InterfaceType.Dealer:
@@ -276,6 +277,7 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     private void Update() {
+        AttributeModified();
         if (currentMana < maxMana)
         {
             currentMana += manaRegenerationSpeed * Time.deltaTime;

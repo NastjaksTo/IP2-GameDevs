@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,10 +18,10 @@ namespace GameUI.Scripts
 
         [Header("Levels To Load")] 
         public string newGameLevel;                                      //reference for the new game level
-        private string levelToLoad;                                     
-        
-        [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
+        private string levelToLoad;
 
+        [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
+        
         /// <summary>
         /// if the Player hits the "Yes"-Button, it will automatically load a new Game level
         /// </summary>

@@ -13,6 +13,8 @@ public class SaveData : MonoBehaviour
     public GameObject playermodel;
     public InventoryObject inventory;
     public InventoryObject equipment;
+    public InventoryInterface inf1;
+    public InventoryInterface inf2;
 
     private void Update()
     {
@@ -32,6 +34,14 @@ public class SaveData : MonoBehaviour
 
             skillsystem.playerlevel._level = data.level;
             attributes.currentHealth = data.health;
+            inf1.LoadInterface();
+            inf2.LoadInterface();
+
+            inventory.Load();
+            equipment.Load();
+            
+            
+            
         }
 
         if (Input.GetKeyDown(KeyCode.G))
