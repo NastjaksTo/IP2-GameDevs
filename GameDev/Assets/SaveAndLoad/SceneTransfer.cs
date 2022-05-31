@@ -6,13 +6,11 @@ public class SceneTransfer : MonoBehaviour
 {
     public GameObject menucontrol;
     public bool loaded;
+
     // Start is called before the first frame update
     void Start()
     {
         loaded = false;
         DontDestroyOnLoad(gameObject);
     }
-
-    // Update is called once per frame
-
 }

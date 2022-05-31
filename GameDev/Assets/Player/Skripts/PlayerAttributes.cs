@@ -18,7 +18,7 @@ public class PlayerAttributes : MonoBehaviour {
     private Transform trousersOnPlayer;
     private Transform bootsOnPlayer;
 
-    private Transform weaponOnPlayer;
+    private GameObject weaponOnPlayer;
     public Transform weaponTransform;
 
 
@@ -113,7 +113,7 @@ public class PlayerAttributes : MonoBehaviour {
                             //Destroy(trousersOnPlayer.gameObject);
                             break;
                         case ItemType.Weapon:
-                            //Destroy(weaponOnPlayer?.gameObject);
+                            Destroy(weaponOnPlayer?.gameObject);
 
 
                             break;
@@ -176,7 +176,7 @@ public class PlayerAttributes : MonoBehaviour {
                             //trousersOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
                             break;
                         case ItemType.Weapon:
-                            weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform).transform;
+                            weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform);
                             break;
                         default:
                             break;
