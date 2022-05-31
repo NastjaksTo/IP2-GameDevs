@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Iron Sword
   characterDisplay: {fileID: 3213851043470871558, guid: 5676bdababfc9c144824b1050aa60674, type: 3}
+  ItemNameToDisplay: Schwert2
   uiDisplayImage: {fileID: 21300000, guid: 4f94e4339d710d94faccd90a7d0ff64a, type: 3}
   istStackable: 0
   itemType: 11
@@ -23,7 +24,7 @@ MonoBehaviour:
 
     + 43 Physical damage'
   data:
-    Id: 9
+    Id: 12
     buffs:
     - attribute: 6
       buffValue: 43

@@ -21,6 +21,9 @@ public class PlayerAttributes : MonoBehaviour {
     private Transform weaponOnPlayer;
     public Transform weaponTransform;
 
+    public GameObject schwert1;
+    public GameObject schwert2;
+    public GameObject schwert3;
 
     private BoneCombiner boneCombiner;
 
@@ -114,7 +117,21 @@ public class PlayerAttributes : MonoBehaviour {
                             break;
                         case ItemType.Weapon:
 
-                            Destroy(weaponOnPlayer?.gameObject);
+                            if (_slot.ItemObject?.ItemNameToDisplay == "Schwert1") {
+                                schwert1.SetActive(false);
+                            }
+                            if (_slot.ItemObject?.ItemNameToDisplay == "Schwert2") {
+                                schwert2.SetActive(false);
+                            }
+                            if (_slot.ItemObject?.ItemNameToDisplay == "Schwert3") {
+                                schwert3.SetActive(false);
+                            }
+
+                            //if (weaponOnPlayer != null) {
+
+                            //    Destroy(weaponOnPlayer?.gameObject);
+                            //}
+
 
 
                             break;
@@ -177,7 +194,19 @@ public class PlayerAttributes : MonoBehaviour {
                             //trousersOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
                             break;
                         case ItemType.Weapon:
-                            weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform).transform;
+
+
+                            if (_slot.ItemObject?.ItemNameToDisplay == "Schwert1") {
+                                schwert1.SetActive(true);
+                            }
+                            if (_slot.ItemObject?.ItemNameToDisplay == "Schwert2") {
+                                schwert2.SetActive(true);
+                            }
+                            if (_slot.ItemObject?.ItemNameToDisplay == "Schwert3") {
+                                schwert3.SetActive(true);
+                            }
+
+                            //weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform).transform;
                             break;
                         default:
                             break;

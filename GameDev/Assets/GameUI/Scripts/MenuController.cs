@@ -18,43 +18,22 @@ namespace GameUI.Scripts
 
         [Header("Levels To Load")] 
         public string newGameLevel;                                      //reference for the new game level
-        private string levelToLoad;
 
+        public GameObject menu;
+   
+        
         [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
         
-        /// <summary>
-        /// if the Player hits the "Yes"-Button, it will automatically load a new Game level
-        /// </summary>
-        public void NewGameDialogYes()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
-            SceneManager.LoadScene(newGameLevel);
-        }
-
-        /// <summary>
-        /// any moment, that we choose to load the game, we check, if there is a file named "SavedLevel"
-        /// </summary>
-        public void LoadGameDialogYes()
-        {
-            if (PlayerPrefs.HasKey("SavedLevel"))
-            {
-                levelToLoad = PlayerPrefs.GetString("SavedLevel");
-                SceneManager.LoadScene(levelToLoad);
-            }
-            else
-            {
-                noSavedGameDialog.SetActive(true);
-            }
-        }
-
-        /// <summary>
-        /// method for quitting the game
-        /// </summary>
-        public void ExitButton()
-        {
-            Application.Quit();
-        }
+        ///// <summary>
+        ///// if the Player hits the "Yes"-Button, it will automatically load a new Game level
+        ///// </summary>
+        //public void NewGameDialogYes()
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Time.timeScale = 1f;
+        //    menu.SetActive(false);
+            
+        //}
 
         /// <summary>
         /// setting the volume of the music in the game

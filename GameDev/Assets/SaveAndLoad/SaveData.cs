@@ -8,20 +8,19 @@ public class SaveData : MonoBehaviour
 {
     public PlayerSkillsystem skillsystem;
     public PlayerAttributes attributes;
-    public ThirdPersonController player;
-    public SkillTree skilltree;
-    public GameObject playermodel;
     public InventoryObject inventory;
     public InventoryObject equipment;
     public InventoryInterface inf1;
     public InventoryInterface inf2;
+    public ThirdPersonController player;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("Saving..");
-            SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, this);
+            
+            SaveSystem.SavePlayer(skillsystem, attributes, this);
             inventory.Save();
             equipment.Save();
         }
@@ -31,7 +30,7 @@ public class SaveData : MonoBehaviour
         {
             Debug.Log("Loading..");
             PlayerData data = SaveSystem.LoadPlayer();
-
+            
             skillsystem.playerlevel._level = data.level;
             attributes.currentHealth = data.health;
             inf1.LoadInterface();
@@ -39,14 +38,27 @@ public class SaveData : MonoBehaviour
 
             inventory.Load();
             equipment.Load();
-            
-            
-            
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
             Debug.Log(skillsystem.playerlevel.getLevel());
         }
+    }
+
+    public void DataLoad()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        skillsystem.playerlevel._level = data.level;
+        attributes.currentHealth = data.health;
+        inf1.LoadInterface();
+        inf2.LoadInterface();
+
+        inventory.Load();
+        equipment.Load();
+        
+        player.PositionLoad();
+        Debug.Log("[DataLoad] Loading..");
     }
 }

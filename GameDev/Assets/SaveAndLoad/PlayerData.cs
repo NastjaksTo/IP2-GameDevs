@@ -10,9 +10,9 @@ public class PlayerData
     public int health;
     public float[] position;
 
-    public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SaveData player)
+    public PlayerData(PlayerSkillsystem playerskillsystem, PlayerAttributes attributes, SaveData player)
     {
-        level = PlayerSkillsystem.playerskillsystem.playerlevel.getLevel();
+        level = playerskillsystem.playerlevel.getLevel();
         health = attributes.currentHealth;
         
         position = new float[3];
