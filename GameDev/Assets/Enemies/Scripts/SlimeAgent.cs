@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class SlimeAgent : MonoBehaviour
 {
     private Transform movePositionTransform;
+    private PlayerAttributes player;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
@@ -13,11 +14,13 @@ public class SlimeAgent : MonoBehaviour
     private float timer;
     private float timeToChangeAttack;
     private int fullHealth;
-    private int health;
     private int wichAttack;
     private float attackRange;
     private int ID;
     private bool doDamage;
+
+    private int health;
+    private int damage;
 
     [SerializeField]
     GameObject BigSlime;
@@ -28,6 +31,7 @@ public class SlimeAgent : MonoBehaviour
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
@@ -35,13 +39,16 @@ public class SlimeAgent : MonoBehaviour
         timer = 0.0f;
         timeToChangeAttack = 0.8f;
         wichAttack = Random.Range(1, 3);
-        fullHealth = 100;
-        health = fullHealth;
         attackRange = 2.0f;
         ID = GetInstanceID();
         doDamage = false;
         fov.Radius = 6.0f;
         fov.Angle = 100.0f;
+
+        health = fullHealth;
+        fullHealth = 100;
+        damage = 10;
+
     }
 
     /// <summary>
@@ -144,8 +151,8 @@ public class SlimeAgent : MonoBehaviour
     {
         if(doDamage)
         {
-            //Make Damage to Player
-            Debug.Log("Damage to Player from Slime");
+            player.currentHealth = (int)(player.currentHealth - damage);
+            doDamage = false;
         }
     }
 
@@ -154,7 +161,7 @@ public class SlimeAgent : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.GetComponent<PlayerAttributes>())
         {
             doDamage = true;
         }

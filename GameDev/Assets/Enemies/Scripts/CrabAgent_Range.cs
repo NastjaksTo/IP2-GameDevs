@@ -96,7 +96,7 @@ public class CrabAgent_Range : MonoBehaviour
         if(movePositionTransform != null)
             {
             GameObject fireBall = Instantiate(fireball, projectileSpawnpoint.transform.position, Quaternion.identity);
-            Vector3 direction = movePositionTransform.position - projectileSpawnpoint.transform.position;
+            Vector3 direction = movePositionTransform.position - (projectileSpawnpoint.transform.position - new Vector3(0,1,0));
 
             fireBall.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
         } 
@@ -119,6 +119,7 @@ public class CrabAgent_Range : MonoBehaviour
             if (health <= 0)
             {
                 animator.SetTrigger("Die");
+                navMeshAgent.enabled = false;
                 Destroy(gameObject, 5.0f);
             }
         }
