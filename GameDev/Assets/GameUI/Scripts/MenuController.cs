@@ -24,16 +24,16 @@ namespace GameUI.Scripts
         
         [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
         
-        /// <summary>
-        /// if the Player hits the "Yes"-Button, it will automatically load a new Game level
-        /// </summary>
-        public void NewGameDialogYes()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Time.timeScale = 1f;
-            menu.SetActive(false);
+        ///// <summary>
+        ///// if the Player hits the "Yes"-Button, it will automatically load a new Game level
+        ///// </summary>
+        //public void NewGameDialogYes()
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Time.timeScale = 1f;
+        //    menu.SetActive(false);
             
-        }
+        //}
 
         /// <summary>
         /// setting the volume of the music in the game

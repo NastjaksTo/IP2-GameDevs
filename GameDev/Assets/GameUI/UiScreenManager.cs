@@ -10,6 +10,10 @@ namespace GameUI {
 
         public GameObject playerStatsUI;                        //reference set in editor
 
+        public InventoryInterface InventoryInterface;
+        public InventoryInterface EquippmentInterface;
+        public InventoryObject invent;
+        public InventoryObject euqipp;
         private static bool _inventoryUiOpen = false;
         public GameObject inventoryUI;                          //reference set in editor
 
@@ -38,6 +42,11 @@ namespace GameUI {
         public GameObject mainMenu;
 
         public SaveData savedata;
+
+   
+        private void Start() {
+                OpenMainMenuUI();
+        }
 
         /// <summary>
         /// Opens the playerstats UI.
@@ -171,9 +180,6 @@ namespace GameUI {
             _pauseMenuContainerUiOpen = false;
             Time.timeScale = 1f;
         }
-
-
-
      
 
         public void OpenMainMenuUI() {
@@ -245,36 +251,55 @@ namespace GameUI {
         /// Load the main menu of the game -> Scene change
         /// </summary>
         public void OpenMainMenu() {
-            ClosePauseContainerUi();
-            OpenMainMenuUI();
-            Debug.Log("OpenMainMenu");
+
+            invent.Clear();
+            euqipp.Clear();
+
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene("GameScene");
+
+            //ClosePauseContainerUi();
+            //OpenMainMenuUI();
+            //Debug.Log("OpenMainMenu");
         }
 
-        public void loadgame()
-        {
+        public void loadgame() {
             savedata.DataLoad();
         }
+
 
         //------------- UI MainMenu Button functions -------------
         /// <summary>
         /// Load the last saved game state 
         /// </summary>
         public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
-
-            Debug.Log("Loading game...");
             CloseMainMenuUI();
             Invoke("loadgame", 1f);
+            ClosePauseContainerUi();
         }
         
         
-
-
         /// <summary>
         /// method for quitting the game
         /// </summary>
         public void ExitButton() {
             Application.Quit();
-            Debug.Log("QUIT");
+        }
+
+
+        public void LoadInterface() {
+            invent.Clear();
+            euqipp.Clear();
+            InventoryInterface.LoadInterface();
+            EquippmentInterface.LoadInterface();
+           
+        }
+
+        public void StartNewGame() {
+            CloseMainMenuUI();
+            //LoadInterface();
+            ClosePauseContainerUi();
+            Debug.Log("GRRRRRRRRR");
         }
 
 
@@ -285,10 +310,24 @@ namespace GameUI {
         /// On Esc and if the DeathUi is closed: close the menuUI when its open, or open it if its closed.
         /// </summary>
         public void Update() {
+
+            if (Input.GetKeyDown(KeyCode.Z)) {
+                Debug.Log("_inventoryUiOpen " + _inventoryUiOpen);
+                Debug.Log("_pauseMenuContainerUiOpen " + _pauseMenuContainerUiOpen);
+                Debug.Log("_isOneIngameUiOpen " + _isOneIngameUiOpen);
+                Debug.Log("_deathUiOpen " + _deathUiOpen);
+                Debug.Log("_isOneInMenueUiOpen " + _isOneInMenueUiOpen);
+                Debug.Log("_mainMenu " + _mainMenu);
+            }
+
             if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen && !_mainMenu) {
+                Debug.Log("aaaaaaaaaaaaaaa");
+
+
                 if (_inventoryUiOpen) {
                     CloseInventoryUi();
                 } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
+                    Debug.Log("222aaaaaaaaaaaaaaa");
                     OpenInventoryUi();
                 }
             }
@@ -310,11 +349,13 @@ namespace GameUI {
             }
 
             if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen) {
+                Debug.Log("bbbbbbbbbbbbbb");
                 if (_pauseMenuContainerUiOpen) {
                     ClosePauseContainerUi();
                 } else {
 
                     if (!_isOneIngameUiOpen && !_isOneInMenueUiOpen && !_mainMenu) {
+                        Debug.Log("2222222bbbbbbbbbbbbbb");
                         OpenPauseContainerMenuUi();
                     }
 

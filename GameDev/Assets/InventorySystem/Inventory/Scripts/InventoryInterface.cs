@@ -53,11 +53,15 @@ public class InventoryInterface : MonoBehaviour {
     }
 
     public void LoadInterface() {
-        for (int i = 0; i < inventory.Container.Slots.Length; i++) {
+        if (AAAA) {
+            for (int i = 0; i < inventory.Container.Slots.Length; i++) {
                 inventory.Container.Slots[i].parentUserInterface = this;
-                inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate; 
+                inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
+            }
+            CreateSlots();
+            AAAA = false;
         }
-        CreateSlots();
+     
      
     
     }
