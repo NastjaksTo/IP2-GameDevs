@@ -113,8 +113,7 @@ public class PlayerAttributes : MonoBehaviour {
                             //Destroy(trousersOnPlayer.gameObject);
                             break;
                         case ItemType.Weapon:
-
-                            Destroy(weaponOnPlayer?.gameObject);
+                            //Destroy(weaponOnPlayer?.gameObject);
 
 
                             break;

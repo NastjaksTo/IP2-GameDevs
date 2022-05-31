@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,6 +34,11 @@ namespace GameUI {
         private static bool _isOneIngameUiOpen = false;
         private static bool _isOneInMenueUiOpen = false;
 
+
+        private void Awake()
+        {
+            ClosePauseContainerUi();
+        }
 
         /// <summary>
         /// Opens the playerstats UI.
@@ -241,6 +247,16 @@ namespace GameUI {
         /// On Esc and if the DeathUi is closed: close the menuUI when its open, or open it if its closed.
         /// </summary>
         public void Update() {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Debug.Log("death: " + _deathUiOpen);
+                Debug.Log("pausecontainer: " + _pauseMenuContainerUiOpen);
+                Debug.Log("isOneIngameUIOpen: " + _isOneIngameUiOpen);
+                Debug.Log("quest: " + _questUiOpen);
+                Debug.Log("inv: " + _inventoryUiOpen);
+                Debug.Log("Skill: " + _skillUiOpen);
+            }
+            
             if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen) {
                 if (_inventoryUiOpen) {
                     CloseInventoryUi();

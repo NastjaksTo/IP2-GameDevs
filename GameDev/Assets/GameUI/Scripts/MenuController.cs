@@ -19,9 +19,16 @@ namespace GameUI.Scripts
         [Header("Levels To Load")] 
         public string newGameLevel;                                      //reference for the new game level
         private string levelToLoad;
+        public GameObject scenetransfer;
+
 
         [SerializeField] private GameObject noSavedGameDialog;          //reference for the no saved game popup
-        
+
+        public void Start()
+        {
+            scenetransfer = GameObject.FindGameObjectWithTag("SceneTransfer");
+        }
+
         /// <summary>
         /// if the Player hits the "Yes"-Button, it will automatically load a new Game level
         /// </summary>
@@ -30,6 +37,7 @@ namespace GameUI.Scripts
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
             SceneManager.LoadScene(newGameLevel);
+            scenetransfer.GetComponent<SceneTransfer>().loaded = false;
         }
 
         /// <summary>
@@ -37,7 +45,9 @@ namespace GameUI.Scripts
         /// </summary>
         public void LoadGameDialogYes()
         {
-            if (PlayerPrefs.HasKey("SavedLevel"))
+            SceneManager.LoadScene("GameScene");
+            scenetransfer.GetComponent<SceneTransfer>().loaded = true;
+            /*if (PlayerPrefs.HasKey("SavedLevel"))
             {
                 levelToLoad = PlayerPrefs.GetString("SavedLevel");
                 SceneManager.LoadScene(levelToLoad);
@@ -45,7 +55,7 @@ namespace GameUI.Scripts
             else
             {
                 noSavedGameDialog.SetActive(true);
-            }
+            }*/
         }
 
         /// <summary>

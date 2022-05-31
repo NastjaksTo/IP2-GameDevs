@@ -9697,6 +9697,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 2068947363}
   defaultVolume: 0.5
   newGameLevel: Level1
+  scenetransfer: {fileID: 0}
   noSavedGameDialog: {fileID: 0}
 --- !u!4 &1070468820
 Transform:
@@ -12717,6 +12718,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1364778335}
     - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: InventoryUI
+      value: 
+      objectReference: {fileID: 1755168004}
+    - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: playermodel
       value: 
       objectReference: {fileID: 1707960637}
@@ -12724,6 +12729,10 @@ PrefabInstance:
       propertyPath: skillsystem
       value: 
       objectReference: {fileID: 1707960640}
+    - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
+      propertyPath: pausemenucontainer
+      value: 
+      objectReference: {fileID: 2070436839}
     - target: {fileID: 209339780944188607, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_IsActive
       value: 1

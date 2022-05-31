@@ -104,7 +104,6 @@ namespace StarterAssets {
 
         private void Start()
         {
-            anim.enabled = !anim.enabled;
             anim.enabled = true; 
             
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
@@ -122,18 +121,17 @@ namespace StarterAssets {
             _hasAnimator = TryGetComponent(out _animator);
             AddGravity(); // Call the gravity function each update
             Move(); // Call the move function each update
-            
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                PlayerData data = SaveSystem.LoadPlayer();
+        }
 
-                Vector3 position;
-                position.x = data.position[0];
-                position.y = data.position[1];
-                position.z = data.position[2];
-                transform.position = position;
-            }
+        public void LoadPosition()
+        {
+            PlayerData data = SaveSystem.LoadPlayer();
 
+            Vector3 position;
+            position.x = data.position[0];
+            position.y = data.position[1];
+            position.z = data.position[2];
+            transform.position = position;
         }
 
         private void LateUpdate() {

@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 76330207}
   m_Layer: 0
   m_Name: MenuController
-  m_TagString: Untagged
+  m_TagString: MenuController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 1014498907}
   defaultVolume: 0.5
   newGameLevel: GameScene
-  continued: 0
+  loaded: 0
   noSavedGameDialog: {fileID: 842856279}
 --- !u!4 &76330208
 Transform:
@@ -5160,6 +5160,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5950951006601870847, guid: 7890e50b2929ed349b8ca7c2ffb5ed2f, type: 3}
   m_PrefabInstance: {fileID: 331450449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1421395026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1421395028}
+  - component: {fileID: 1421395027}
+  m_Layer: 0
+  m_Name: SceneTransfer
+  m_TagString: SceneTransfer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1421395027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421395026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37864dc898bba9b48bf323ef22468199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menucontrol: {fileID: 0}
+  loaded: 0
+--- !u!4 &1421395028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421395026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1442902280 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5950951006601870847, guid: 7890e50b2929ed349b8ca7c2ffb5ed2f, type: 3}
