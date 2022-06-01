@@ -28,16 +28,16 @@ public class Skill : MonoBehaviour
 
     public void UpdateUI() // Update the SkillUI with Text and Descriptions
     {
-        TitleText.text = $"{SkillTree.skillTree.skillNames[id]}\n{skillTree.skillLevels[id]}/{SkillTree.skillTree.skillCaps[id]}  {skillTree.skillPoints}/1 SP";
-        DescText.text = $"{skillTree.skillDescription[id]}";
+        TitleText.text = $"{skillTree.skillLevels[id]}/{skillTree.skillCaps[id]}";
+        //DescText.text = $"{skillTree.skillDescription[id]}";
 
         
         foreach (var connectedSkill in ConnectedSkills)
         {
             // SkillTree Skill Visuals
-            skillTree.skillList[connectedSkill].gameObject.SetActive(skillTree.skillLevels[id] > 0);
+            skillTree.skillList[connectedSkill].gameObject.SetActive(skillTree.skillLevels[id] > 4);
             // SkillTree Connection Visuals
-            //skillTree.ConnectorList[connectedSkill].SetActive(skillTree.SkillLevels[id] > 0);
+            //skillTree.connectorList[connectedSkill].SetActive(skillTree.skillLevels[id] > 0);
         }
 
     }

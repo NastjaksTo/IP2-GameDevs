@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static LevelSystem;
 
@@ -12,6 +13,8 @@ public class SkillTree : MonoBehaviour
     public int[] skillCaps;
     public string[] skillNames;
     public string[] skillDescription;
+    
+    public TMP_Text SPUi;
 
     public List<Skill> skillList;
     public GameObject skillHolder;
@@ -33,10 +36,10 @@ public class SkillTree : MonoBehaviour
         skillPoints = playerSP.ReturnSp(); // Get Player skillpoints
 
         skillLevels = new int[18]; // Array of Skills
-        skillCaps = new[] { 10, 10, 10, 10, 10, 10, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1 }; //Level Cap of each skill in order
+        skillCaps = new[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1 }; //Level Cap of each skill in order
 
         // Lists the Names of each Skill in order
-        skillNames = new[] { "Fire Spell 1", "Ice Spell 1", "Earth Spell 1", "Health 1", "Mana 1", "Stamina 1", 
+        skillNames = new[] { "Fire 1", "Ice Spell 1", "Earth Spell 1", "Health 1", "Mana 1", "Stamina 1", 
             "Fire Spell 2", "Ice Spell 2", "Earth Spell 2", "Health 2", "Mana 2", "Stamina 2", 
             "Fire Spell 3", "Ice Spell 3", "Earth Spell 3", "Health 3", "Mana 3", "Stamina 3",};
 
@@ -91,6 +94,8 @@ public class SkillTree : MonoBehaviour
     {
         skillPoints = playerSP.ReturnSp(); // Get Player skillpoints
 
+        SPUi.text = $"Remaining Skillpoints: {skillPoints}";
+        
         Debug.Log(playerSP.ReturnSp());
 
         foreach (var skill in skillList) skill.UpdateUI(); //Update UI for each skill

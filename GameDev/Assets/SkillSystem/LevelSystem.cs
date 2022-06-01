@@ -17,7 +17,7 @@ public class LevelSystem
     {
         _level = 1;
         _exp = 0;
-        skillpoints = 0;
+        skillpoints = 100;
         _expToLevelUp = 1;
     }
 
