@@ -51,7 +51,7 @@ public class FatDragonScript : MonoBehaviour
         timer = 0.0f;
         timeToChangeAttack = 2.5f;
         doDamage = false;
-        idle = false;
+        idle = true;
         attackRange = 6.0f;
         shotSpeed = 20.0f;
         fov.Radius = 50.0f;
@@ -84,6 +84,7 @@ public class FatDragonScript : MonoBehaviour
         {
             navMeshAgent.destination = movePositionTransform.position;
             navMeshAgent.speed = 5;
+            idle = false;
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
                 Attack();
@@ -256,7 +257,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void changeAttack()
     {
-        attackSwitch = Random.Range(1, 13);
+        attackSwitch = Random.Range(1, 12);
         animator.ResetTrigger("Basic Attack");
         animator.ResetTrigger("Tail Attack");
         animator.ResetTrigger("Scream");
