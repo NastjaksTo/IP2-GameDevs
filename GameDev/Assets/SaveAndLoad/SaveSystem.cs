@@ -5,13 +5,13 @@ using StarterAssets;
 
 public static class SaveSystem
 {
-    public static void SavePlayer(LevelSystem levelsystem, PlayerAttributes attributes, SaveData player)
+    public static void SavePlayer(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skills, SaveData player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(levelsystem, attributes, player);
+        PlayerData data = new PlayerData(levelsystem, attributes, skills, player);
 
         
         formatter.Serialize(stream, data);

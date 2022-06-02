@@ -68,9 +68,7 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         return playerlevel.getSP();
     }
-    
-    
-    
+
     public void PlayLvlUpEffect()
     {
         var newLvlUpEffect = Instantiate(lvlupeffect, transform.position + (Vector3.up * 0.35f), transform.rotation * Quaternion.Euler (-90f, 0f, 0f));
@@ -78,7 +76,6 @@ public class PlayerSkillsystem : MonoBehaviour
         Debug.Log("levelup effect");
     }
 
-    
     private void CooldownStart() // Starting the cooldown of spells
     {
         StartCoroutine(CooldownCoroutine());
@@ -91,7 +88,32 @@ public class PlayerSkillsystem : MonoBehaviour
         _cooldown = true;
     }
 
-    private void castfire() // Cast FireSpells
+    public void ManageHealth1()
+    {
+        playerattributes.playerAttributes[0].totalAttributValue.TotalAttributeValue += (20 * (skillTree.skillLevels[3] + 1));
+    }
+    
+    public void ManageMana1()
+    {
+        playerattributes.playerAttributes[2].totalAttributValue.TotalAttributeValue += (20 * (skillTree.skillLevels[4] + 1));
+    }
+    
+    public void ManageMana2()
+    {
+        playerattributes.manaRegenerationSpeed += 5;
+    }
+    
+    public void ManageStamina1()
+    {
+        playerattributes.playerAttributes[1].totalAttributValue.TotalAttributeValue += (20 * (skillTree.skillLevels[5] + 1));
+    }
+    
+    public void ManageStamina2()
+    {
+        playerattributes.staminaRegenerationSpeed += 5;
+    }
+
+    private void Castfire() // Cast FireSpells
     {
         if (skillTree.skillLevels[12] > 0)
         {
@@ -124,7 +146,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
     } 
     
-    private void castice() // Cast IceSpells
+    private void Castice() // Cast IceSpells
     {
         if (skillTree.skillLevels[13] > 0)
         {
@@ -156,7 +178,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
     }
 
-    private void castearth() // Cast EarthSpells
+    private void Castearth() // Cast EarthSpells
     {
         if (skillTree.skillLevels[14] > 0)
         {
@@ -196,15 +218,15 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (playerattributes.fireKnowladgeEquiped)
             {
-                castfire(); 
+                Castfire(); 
             }
             if (playerattributes.iceKnowladgeEquiped)
             {
-                castice();
+                Castice();
             }
             if (playerattributes.earthKnowladgeEquiped)
             {
-                castearth();
+                Castearth();
             }
         }
     }

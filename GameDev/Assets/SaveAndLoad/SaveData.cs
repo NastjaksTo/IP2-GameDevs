@@ -5,7 +5,7 @@ using GameUI;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using static SkillTree;
 
 public class SaveData : MonoBehaviour
 {
@@ -22,6 +22,8 @@ public class SaveData : MonoBehaviour
     public GameObject InventoryUI;
     public GameObject pausemenucontainer;
     public bool loaded;
+    
+    public int[] skilllevelsData;
 
     public void Awake()
     {
@@ -47,6 +49,14 @@ public class SaveData : MonoBehaviour
 
         skillsystem.playerlevel._level = data.level;
         attributes.currentHealth = data.health;
+        
+        for (int i = 0; i <= 17; i++)
+        {
+            skillTree.skillLevels[i] = data.skilllevels[i];
+        }
+        skillTree.UpdateAllSkillUI();
+
+        
         inf1.LoadInterface();
         inf2.LoadInterface();
 
@@ -59,18 +69,21 @@ public class SaveData : MonoBehaviour
         equipment.Load();
     }
 
-    private void RefreshUI()
-    {
-        pausemenucontainer.SetActive(true);
-        pausemenucontainer.SetActive(false);
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
             Debug.Log("Saving..");
-            SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, this);
+            SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, this);
+            
+            skilllevelsData = new int[18];
+            for (int i = 0; i <= 17; i++)
+            {
+                skilllevelsData[i] = skillTree.skillLevels[i];
+            }
+            SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree,this);
+
+            
             inventory.Save();
             equipment.Save();
         }

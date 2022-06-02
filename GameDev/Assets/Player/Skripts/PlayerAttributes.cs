@@ -222,7 +222,6 @@ public class PlayerAttributes : MonoBehaviour {
     /// </summary>
     private void SetMaxAttributValuesToPlayer() {
         for (int i = 0; i < playerAttributes.Length; i++) {
-
             if (playerAttributes[i].type == Attributes.HealthPoints)
                 maxHealth = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             if (playerAttributes[i].type == Attributes.ManaPoints)

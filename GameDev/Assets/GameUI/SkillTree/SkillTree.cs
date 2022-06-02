@@ -23,7 +23,7 @@ public class SkillTree : MonoBehaviour
     public GameObject connectorHolder;
 
     private GameObject _playerSp;
-    private PlayerSkillsystem playerSP;
+    private PlayerSkillsystem playerskillsystem;
 
     public int skillPoints;
 
@@ -31,9 +31,9 @@ public class SkillTree : MonoBehaviour
     {
         
         _playerSp = GameObject.Find("PlayerArmature"); // Get Player reference
-        playerSP = _playerSp.GetComponent<PlayerSkillsystem>(); // Get Player Skillsystem reference
+        playerskillsystem = _playerSp.GetComponent<PlayerSkillsystem>(); // Get Player Skillsystem reference
 
-        skillPoints = playerSP.ReturnSp(); // Get Player skillpoints
+        skillPoints = playerskillsystem.ReturnSp(); // Get Player skillpoints
 
         skillLevels = new int[18]; // Array of Skills
         skillCaps = new[] { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1 }; //Level Cap of each skill in order
@@ -92,12 +92,8 @@ public class SkillTree : MonoBehaviour
 
     public void UpdateAllSkillUI()
     {
-        skillPoints = playerSP.ReturnSp(); // Get Player skillpoints
-
+        skillPoints = playerskillsystem.ReturnSp(); // Get Player skillpoints
         SPUi.text = $"Remaining Skillpoints: {skillPoints}";
-        
-        Debug.Log(playerSP.ReturnSp());
-
         foreach (var skill in skillList) skill.UpdateUI(); //Update UI for each skill
     }
 

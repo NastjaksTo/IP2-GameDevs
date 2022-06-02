@@ -12,7 +12,6 @@ public class HoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         StopAllCoroutines();
         StartCoroutine(StartTimer());
-        Debug.Log(descToShow);
     }
 
     public void OnPointerExit(PointerEventData eventData)
