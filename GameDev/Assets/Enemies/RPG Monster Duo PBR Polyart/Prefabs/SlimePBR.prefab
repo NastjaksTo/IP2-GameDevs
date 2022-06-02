@@ -539,7 +539,6 @@ GameObject:
   - component: {fileID: 8557866691797178404}
   - component: {fileID: 1841495797}
   - component: {fileID: 1709793502}
-  - component: {fileID: 1357055363}
   m_Layer: 30
   m_Name: SlimePBR
   m_TagString: Untagged
@@ -684,22 +683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb1fcbebca3972439592916e13069d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCollider: {fileID: 2559667382719427753}
+  characterCollider: {fileID: 8557866691797178404}
   characterBlockerCollider: {fileID: 1140011181}
---- !u!114 &1357055363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919012471076396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fb1fcbebca3972439592916e13069d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCollider: {fileID: 2559667382719427753}
-  characterBlockerCollider: {fileID: 1897244668}
 --- !u!1 &1989916952965676
 GameObject:
   m_ObjectHideFlags: 0

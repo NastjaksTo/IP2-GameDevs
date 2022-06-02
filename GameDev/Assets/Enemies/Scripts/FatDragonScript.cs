@@ -49,7 +49,7 @@ public class FatDragonScript : MonoBehaviour
         attackSwitch = 11;
         attackSwitchRange = 8;
         timer = 0.0f;
-        timeToChangeAttack = 2.5f;
+        timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
         attackRange = 6.0f;
@@ -244,10 +244,17 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject);
         if (other.gameObject.tag == "Player")
         {
             doDamage = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            doDamage = false;
         }
     }
 

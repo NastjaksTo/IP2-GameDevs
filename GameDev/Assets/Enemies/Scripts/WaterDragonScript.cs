@@ -13,8 +13,6 @@ public class WaterDragonScript : MonoBehaviour
     private ParticleSystem ps;
     private FoVScript fov;
     private Vector3 spawnpoint;
-    //private Quaternion rotationStand;
-    //private Quaternion rotationFly;
     private bool doDamage;
     private int attackSwitch;
     private int attackSwitchRange;
@@ -25,12 +23,10 @@ public class WaterDragonScript : MonoBehaviour
 
     private int health;
     private int damage;
+    private int waterDamage;
 
-    [SerializeField]
-    GameObject projectileSpawnpoint;
-
-    [SerializeField]
-    GameObject waterspray;
+    public PlayerAttributes Player { get => player; set => player = value; }
+    public int WaterDamage { get => waterDamage; set => waterDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
@@ -48,7 +44,7 @@ public class WaterDragonScript : MonoBehaviour
         attackSwitch = 11;
         attackSwitchRange = 8;
         timer = 0.0f;
-        timeToChangeAttack = 2.5f;
+        timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
         attackRange = 8.0f;
@@ -59,6 +55,7 @@ public class WaterDragonScript : MonoBehaviour
        // rotationFly = Quaternion.Euler(new Vector3(0, -90, 0));
 
         damage = 20;
+        waterDamage = 1;
         health = 100;
     }
     private void Update()
@@ -79,6 +76,8 @@ public class WaterDragonScript : MonoBehaviour
             navMeshAgent.destination = movePositionTransform.position;
             navMeshAgent.speed = 5;
             idle = false;
+            animator.SetBool("Walk", true);
+
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
                 Attack();
@@ -107,7 +106,6 @@ public class WaterDragonScript : MonoBehaviour
                     navMeshAgent.speed = 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Water");
-                    
                 }
             }
         }
@@ -118,7 +116,7 @@ public class WaterDragonScript : MonoBehaviour
             animator.ResetTrigger("Basic Attack");
             animator.ResetTrigger("Claw Attack");
             animator.ResetTrigger("Water Attack");
-            animator.ResetTrigger("Fly and WaterS");
+            animator.ResetTrigger("Fly and Water");
             animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
@@ -132,7 +130,7 @@ public class WaterDragonScript : MonoBehaviour
     private void Attack()
     {
         navMeshAgent.speed = 0;
-        animator.SetBool("Walk", true);
+        animator.SetBool("Walk", false);
         if (timer > timeToChangeAttack)
         {
             changeAttack();
@@ -195,12 +193,20 @@ public class WaterDragonScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject);
         if (other.gameObject.tag == "Player")
         {
             doDamage = true;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            doDamage = false;
+        }
+    }
+
 
     private void changeAttack()
     {
