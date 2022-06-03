@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using static SkillTree;
 
 
 /// <summary>
@@ -71,6 +72,8 @@ public class PlayerAttributes : MonoBehaviour {
         currentMana = maxMana;
         currentStamina = maxStamina;
 
+
+
         manaRegenerationSpeed = 1;
         staminaRegenerationSpeed = 5;
     }
@@ -133,6 +136,8 @@ public class PlayerAttributes : MonoBehaviour {
             default:
                 break;
         }
+
+        AttributeModified();
     }
 
     /// <summary>
@@ -155,6 +160,7 @@ public class PlayerAttributes : MonoBehaviour {
                     for (int j = 0; j < playerAttributes.Length; j++) {
                         if (playerAttributes[j].type == _slot.itemInInventorySlot.buffs[i].attribute) {
                             playerAttributes[j].totalAttributValue.AddModifier(_slot.itemInInventorySlot.buffs[i]);
+
                         }
                     }
                 }
@@ -192,6 +198,8 @@ public class PlayerAttributes : MonoBehaviour {
             default:
                 break;
         }
+
+        AttributeModified();
     }
 
 
@@ -199,8 +207,8 @@ public class PlayerAttributes : MonoBehaviour {
     /// Updates the player values and the display of the values.
     /// </summary>
     public void AttributeModified() {
-        SetUiAttributValues();
         SetMaxAttributValuesToPlayer();
+        SetUiAttributValues();
     }
 
     /// <summary>
@@ -222,10 +230,17 @@ public class PlayerAttributes : MonoBehaviour {
     /// Set the max attribute values on the player
     /// </summary>
     private void SetMaxAttributValuesToPlayer() {
-        for (int i = 0; i < playerAttributes.Length; i++)
-        {
-            if (playerAttributes[i].type == Attributes.HealthPoints)
-                maxHealth = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+        for (int i = 0; i < playerAttributes.Length; i++) {
+            if (playerAttributes[i].type == Attributes.HealthPoints) {
+                //maxHealth = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+
+                var neu = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+                Debug.Log(skillTree.healthSkillvalue);
+                maxHealth = neu + skillTree.healthSkillvalue;
+
+                Debug.Log(maxHealth);
+            }
+
             if (playerAttributes[i].type == Attributes.ManaPoints)
                 maxMana = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             if (playerAttributes[i].type == Attributes.Stamina)
@@ -265,7 +280,7 @@ public class PlayerAttributes : MonoBehaviour {
         for (int i = 0; i < playerAttributes.Length; i++) {
 
             if (playerAttributes[i].type == Attributes.HealthPoints)
-                textHealthPoints.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+                textHealthPoints.text = maxHealth.ToString();
             if (playerAttributes[i].type == Attributes.PhysicalDamage)
                 textPhysicalDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
             if (playerAttributes[i].type == Attributes.Armor)
@@ -280,7 +295,7 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     private void Update() {
-        AttributeModified();
+        //AttributeModified();
         if (currentMana < maxMana) {
             currentMana += manaRegenerationSpeed * Time.deltaTime;
         }
