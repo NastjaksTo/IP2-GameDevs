@@ -1221,6 +1221,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+      propertyPath: m_Lens.Dutch
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070925441746177913, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_Lens.FieldOfView
       value: 70
       objectReference: {fileID: 0}
@@ -5979,6 +5983,9 @@ MonoBehaviour:
   connectorList: []
   connectorHolder: {fileID: 1085142881}
   skillPoints: 0
+  healthSkillvalue: 0
+  manaSkillvalue: 0
+  staminaSkillvalue: 0
 --- !u!4 &527354810
 Transform:
   m_ObjectHideFlags: 0
@@ -15153,7 +15160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1334308662
 RectTransform:
   m_ObjectHideFlags: 0

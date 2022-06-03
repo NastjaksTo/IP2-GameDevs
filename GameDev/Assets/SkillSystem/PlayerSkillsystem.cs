@@ -73,7 +73,6 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         var newLvlUpEffect = Instantiate(lvlupeffect, transform.position + (Vector3.up * 0.35f), transform.rotation * Quaternion.Euler (-90f, 0f, 0f));
         newLvlUpEffect.transform.parent = gameObject.transform;
-        Debug.Log("levelup effect");
     }
 
     private void CooldownStart() // Starting the cooldown of spells

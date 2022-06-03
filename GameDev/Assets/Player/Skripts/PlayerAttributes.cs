@@ -232,20 +232,23 @@ public class PlayerAttributes : MonoBehaviour {
     private void SetMaxAttributValuesToPlayer() {
         for (int i = 0; i < playerAttributes.Length; i++) {
             if (playerAttributes[i].type == Attributes.HealthPoints) {
-                //maxHealth = playerAttributes[i].totalAttributValue.TotalAttributeValue;
-
-                var neu = playerAttributes[i].totalAttributValue.TotalAttributeValue;
-                Debug.Log(skillTree.healthSkillvalue);
-                maxHealth = neu + skillTree.healthSkillvalue;
-
-                Debug.Log(maxHealth);
+                var equippedHealthValue = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+                maxHealth = equippedHealthValue + skillTree.healthSkillvalue;
             }
 
-            if (playerAttributes[i].type == Attributes.ManaPoints)
-                maxMana = playerAttributes[i].totalAttributValue.TotalAttributeValue;
-            if (playerAttributes[i].type == Attributes.Stamina)
-                maxStamina = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+            if (playerAttributes[i].type == Attributes.ManaPoints) {
+                var equippedManaValue = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+                maxMana = equippedManaValue + skillTree.manaSkillvalue;
+                Debug.Log("manavalue: "+skillTree.manaSkillvalue);
+                Debug.Log("maxmana: " + maxMana);
+            }
 
+            if (playerAttributes[i].type == Attributes.Stamina) {
+                var equippedStaminaValue = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+                maxStamina = equippedStaminaValue + skillTree.staminaSkillvalue;
+                Debug.Log("stamina: "+skillTree.staminaSkillvalue);
+                Debug.Log("maxstamina: " + maxStamina);
+            }
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
@@ -286,9 +289,9 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.Armor)
                 textArmor.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
             if (playerAttributes[i].type == Attributes.ManaPoints)
-                textMaxMana.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+                textMaxMana.text = maxMana.ToString();
             if (playerAttributes[i].type == Attributes.Stamina)
-                textMaxStamina.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+                textMaxStamina.text = maxStamina.ToString();
         }
 
 

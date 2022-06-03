@@ -49,16 +49,15 @@ public class Skill : MonoBehaviour
         if (skillTree.skillPoints < 1 || skillTree.skillLevels[id] >= skillTree.skillCaps[id]) return; // Check if skill is buyable
         playerskillsystem.playerlevel.skillpoints -= 1; // Reduce skillpoints by 1 (Price of upgrading a skill)
 
-
-        //if (id == 4 & skillTree.skillLevels[4] <= 4) playerskillsystem.ManageMana1();
-        //if (id == 10 & skillTree.skillLevels[10] <= 4) playerskillsystem.ManageMana2();
-        //if (id == 5 & skillTree.skillLevels[5] <= 4) playerskillsystem.ManageStamina1();
-        //if (id == 11 & skillTree.skillLevels[11] <= 4) playerskillsystem.ManageStamina2();
+        
+        if (id == 10 & skillTree.skillLevels[10] <= 4) playerskillsystem.ManageMana2();
+        if (id == 11 & skillTree.skillLevels[11] <= 4) playerskillsystem.ManageStamina2();
 
 
         skillTree.skillLevels[id]++; // Upgrade the SkillLevel
-
-        if (id == 3 & skillTree.skillLevels[3] <= 4) skillTree.healthSkillvalue += 10 * skillTree.skillLevels[3];
+        if (id == 3 & skillTree.skillLevels[3] <= skillTree.skillCaps[3]) skillTree.healthSkillvalue += 10 * skillTree.skillLevels[3];
+        if (id == 4 & skillTree.skillLevels[4] <= skillTree.skillCaps[4]) skillTree.manaSkillvalue += 10 * skillTree.skillLevels[4];
+        if (id == 5 & skillTree.skillLevels[5] <= skillTree.skillCaps[5]) skillTree.staminaSkillvalue += 10 * skillTree.skillLevels[5];
         skillTree.UpdateAllSkillUI(); // Update the SkillUI
 
         playerAttribute.AttributeModified(); ;

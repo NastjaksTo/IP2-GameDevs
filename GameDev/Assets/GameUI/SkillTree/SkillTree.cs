@@ -27,7 +27,10 @@ public class SkillTree : MonoBehaviour
 
     public int skillPoints;
     public int healthSkillvalue;
-
+    public int manaSkillvalue;
+    public int staminaSkillvalue;
+    
+    
     private void Start()
     {
         

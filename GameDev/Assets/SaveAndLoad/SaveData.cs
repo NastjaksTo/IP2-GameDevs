@@ -49,6 +49,8 @@ public class SaveData : MonoBehaviour
 
         skillsystem.playerlevel._level = data.level;
         attributes.currentHealth = data.health;
+        attributes.staminaRegenerationSpeed = data.staminaregenValue;
+        attributes.manaRegenerationSpeed = data.manaregenValue;
         
         for (int i = 0; i <= 17; i++)
         {
@@ -56,7 +58,11 @@ public class SaveData : MonoBehaviour
         }
         skillTree.UpdateAllSkillUI();
 
+        skillTree.healthSkillvalue = data.healthSkillvalue;
+        skillTree.manaSkillvalue = data.manaSkillvalue;
+        skillTree.staminaSkillvalue = data.staminaSkillvalue;
         
+
         inf1.LoadInterface();
         inf2.LoadInterface();
 
