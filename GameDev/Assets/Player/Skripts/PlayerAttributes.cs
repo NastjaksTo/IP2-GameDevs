@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 
+
 /// <summary>
 /// Hold all player attributes. Set, change and show them. And puts the armor on the player.
 /// </summary>
@@ -221,7 +222,8 @@ public class PlayerAttributes : MonoBehaviour {
     /// Set the max attribute values on the player
     /// </summary>
     private void SetMaxAttributValuesToPlayer() {
-        for (int i = 0; i < playerAttributes.Length; i++) {
+        for (int i = 0; i < playerAttributes.Length; i++)
+        {
             if (playerAttributes[i].type == Attributes.HealthPoints)
                 maxHealth = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             if (playerAttributes[i].type == Attributes.ManaPoints)
