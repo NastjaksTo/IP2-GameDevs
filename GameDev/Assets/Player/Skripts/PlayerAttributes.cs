@@ -37,9 +37,9 @@ public class PlayerAttributes : MonoBehaviour {
     public float currentMana;
     public float manaRegenerationSpeed;
 
-    public bool fireKnowladgeEquiped;
-    public bool iceKnowladgeEquiped;
-    public bool earthKnowladgeEquiped;
+    [HideInInspector] public bool fireKnowladgeEquiped;
+    [HideInInspector] public bool iceKnowladgeEquiped;
+    [HideInInspector] public bool earthKnowladgeEquiped;
 
     public TextMeshProUGUI textHealthPoints;         //reference set in editor
     public TextMeshProUGUI textMaxMana;              //reference set in editor
@@ -72,8 +72,6 @@ public class PlayerAttributes : MonoBehaviour {
         currentMana = maxMana;
         currentStamina = maxStamina;
 
-
-
         manaRegenerationSpeed = 1;
         staminaRegenerationSpeed = 5;
     }
@@ -103,7 +101,6 @@ public class PlayerAttributes : MonoBehaviour {
 
                 if (_slot.ItemObject.characterDisplay != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
-
                         case ItemType.Armor:
                             //Destroy(chestOnPlayer.gameObject);
                             break;
@@ -118,8 +115,6 @@ public class PlayerAttributes : MonoBehaviour {
                             break;
                         case ItemType.Weapon:
                             Destroy(weaponOnPlayer?.gameObject);
-
-
                             break;
                         default:
                             break;
@@ -127,8 +122,51 @@ public class PlayerAttributes : MonoBehaviour {
                 }
 
 
-                break;
+                if (_slot.ItemObject.characterDisplayName != null) { 
+                    switch (_slot.AllowedItems[0]) {
+                        case ItemType.Armor:
+                            var bodyName = _slot.ItemObject.characterDisplayName.ToString();                        
+                            var bodyObj = GameObject.Find(bodyName);
+                            bodyObj.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
+                            var objDefBody = GameObject.Find("Naked_Armor_body");
+                            objDefBody.GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+                            break;
+                        case ItemType.Boots:
+                            var bootsName = _slot.ItemObject.characterDisplayName.ToString();
+                            var bootsObj = GameObject.Find(bootsName);
+                            bootsObj.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+                            var objDefBoots = GameObject.Find("Naked_Armor_boots");
+                            objDefBoots.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+                            break;
+                        case ItemType.Glove:
+                            var GloveName = _slot.ItemObject.characterDisplayName.ToString();
+                            var GloveObj = GameObject.Find(GloveName);
+                            GloveObj.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+                            var objDefGloves = GameObject.Find("Naked_Armor_gauntlets");
+                            objDefGloves.GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+                            break;
+                        case ItemType.Trousers:
+                            var trousersName = _slot.ItemObject.characterDisplayName.ToString();
+                            var trousersObj = GameObject.Find(trousersName);
+                            trousersObj.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+                            var objDefTrousers = GameObject.Find("Naked_Armor_legs");
+                            objDefTrousers.GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+                            break;
+                       
+                        default:
+                            break;
+                    }
+                }
+
+                break;
             case InterfaceType.Dealer:
                 break;
             case InterfaceType.Chest:
@@ -154,8 +192,7 @@ public class PlayerAttributes : MonoBehaviour {
             case InterfaceType.Inventory:
                 break;
             case InterfaceType.Equipment:
-                //print(string.Concat("Placed ", _slot.ItemObject, " on ", _slot.parentUserInterface.inventory.type));
-
+                
                 for (int i = 0; i < _slot.itemInInventorySlot.buffs.Length; i++) {
                     for (int j = 0; j < playerAttributes.Length; j++) {
                         if (playerAttributes[j].type == _slot.itemInInventorySlot.buffs[i].attribute) {
@@ -169,21 +206,64 @@ public class PlayerAttributes : MonoBehaviour {
                 if (_slot.ItemObject.characterDisplay != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
 
-                        case ItemType.Armor:
-                            //chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay, _slot.ItemObject.boneName);
-                            //chestOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                        case ItemType.Armor:                            
                             break;
                         case ItemType.Boots:
-                            //bootsOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                           
                             break;
                         case ItemType.Glove:
-                            //glovesOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
+                           
                             break;
                         case ItemType.Trousers:
                             //trousersOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
                             break;
                         case ItemType.Weapon:
                             weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+                if (_slot.ItemObject.characterDisplayName != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
+                    switch (_slot.AllowedItems[0]) {
+
+                        case ItemType.Armor:
+                            var bodyName = _slot.ItemObject.characterDisplayName.ToString();
+                            var bodyObj = GameObject.Find(bodyName);
+                            bodyObj.GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+                            var objDefBody = GameObject.Find("Naked_Armor_body");
+                            objDefBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+                            break;
+                        case ItemType.Boots:
+                            var bootsName = _slot.ItemObject.characterDisplayName.ToString();
+                            var bootsObj = GameObject.Find(bootsName);
+                            bootsObj.GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+                            var objDefBoots = GameObject.Find("Naked_Armor_boots");
+                            objDefBoots.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+
+                            break;
+                        case ItemType.Glove:
+                            var GloveName = _slot.ItemObject.characterDisplayName.ToString();
+                            var GloveObj = GameObject.Find(GloveName);
+                            GloveObj.GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+                            var objDefGloves = GameObject.Find("Naked_Armor_gauntlets");
+                            objDefGloves.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+                            break;
+                        case ItemType.Trousers:
+                            var trousersName = _slot.ItemObject.characterDisplayName.ToString();
+                            var trousersObj = GameObject.Find(trousersName);
+                            trousersObj.GetComponent<SkinnedMeshRenderer>().enabled = true;
+
+                            var objDefTrousers = GameObject.Find("Naked_Armor_legs");
+                            objDefTrousers.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
                             break;
                         default:
                             break;
@@ -202,6 +282,7 @@ public class PlayerAttributes : MonoBehaviour {
         AttributeModified();
     }
 
+  
 
     /// <summary>
     /// Updates the player values and the display of the values.
@@ -239,15 +320,11 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.ManaPoints) {
                 var equippedManaValue = playerAttributes[i].totalAttributValue.TotalAttributeValue;
                 maxMana = equippedManaValue + skillTree.manaSkillvalue;
-                Debug.Log("manavalue: "+skillTree.manaSkillvalue);
-                Debug.Log("maxmana: " + maxMana);
             }
 
             if (playerAttributes[i].type == Attributes.Stamina) {
                 var equippedStaminaValue = playerAttributes[i].totalAttributValue.TotalAttributeValue;
                 maxStamina = equippedStaminaValue + skillTree.staminaSkillvalue;
-                Debug.Log("stamina: "+skillTree.staminaSkillvalue);
-                Debug.Log("maxstamina: " + maxStamina);
             }
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {

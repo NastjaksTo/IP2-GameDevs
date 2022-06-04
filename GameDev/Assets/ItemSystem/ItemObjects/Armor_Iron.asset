@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Armor_Iron
   m_EditorClassIdentifier: 
   itemName: Dragon Scale Armor
-  characterDisplay: {fileID: 6589241664368204793, guid: c5276804ad17aa9428cd9c8325248d0b, type: 3}
+  characterDisplayName: Iron_Armor_body
+  characterDisplay: {fileID: 0}
   uiDisplayImage: {fileID: 21300000, guid: 3df2227429ddb404ab172fbb7713d0f5, type: 3}
   istStackable: 0
   itemType: 1
