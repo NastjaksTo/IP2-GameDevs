@@ -121,6 +121,15 @@ namespace StarterAssets {
             _hasAnimator = TryGetComponent(out _animator);
             AddGravity(); // Call the gravity function each update
             Move(); // Call the move function each update
+            if (Input.GetKeyDown(KeyCode.Space) && playerattributes.currentStamina >= 25)
+            {
+                _animator.SetBool("dodging", true);
+                playerattributes.currentStamina -= 25;
+            }
+            else
+            {
+                _animator.SetBool("dodging", false);
+            }
         }
 
         public void LoadPosition()
