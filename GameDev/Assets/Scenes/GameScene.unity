@@ -8302,7 +8302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -20846,7 +20846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -36916,7 +36916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -45640,6 +45640,7 @@ MonoBehaviour:
   playerObject: {fileID: 1364778345}
   anim: {fileID: 5968324751602960724}
   combatsystem: {fileID: 1431297683}
+  playerattributes: {fileID: 1364778335}
   health: 1000
 --- !u!54 &7432252235829961840
 Rigidbody:
@@ -50925,6 +50926,7 @@ MonoBehaviour:
   playerObject: {fileID: 1364778345}
   anim: {fileID: 8903957217500765149}
   combatsystem: {fileID: 0}
+  playerattributes: {fileID: 0}
   health: 1000
 --- !u!1 &8911285891725256209
 GameObject:

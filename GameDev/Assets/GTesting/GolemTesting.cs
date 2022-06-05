@@ -8,6 +8,7 @@ public class GolemTesting : MonoBehaviour
     public Transform playerObject;
     public Animator anim;
     public CombatSystem combatsystem;
+    public PlayerAttributes playerattributes;
 
     public float health = 1000;
     private bool hitting = false;
@@ -18,8 +19,7 @@ public class GolemTesting : MonoBehaviour
         if (other.CompareTag("Weapon") && combatsystem._anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !hitting)
         {
             hitting = true;
-            health -= 50;
-            Debug.Log("AAAAAAAAAAAAAAA");
+            health -= playerattributes.physicalDamage;
             Invoke("hitcooldown", 0.85f);
         }
     }

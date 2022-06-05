@@ -35,6 +35,8 @@ public class PlayerAttributes : MonoBehaviour {
     public float currentMana;
     public float manaRegenerationSpeed;
 
+    public float physicalDamage;
+
     [HideInInspector] public bool fireKnowladgeEquiped;
     [HideInInspector] public bool iceKnowladgeEquiped;
     [HideInInspector] public bool earthKnowladgeEquiped;
@@ -200,7 +202,7 @@ public class PlayerAttributes : MonoBehaviour {
                     }
                 }
 
-                if (_slot.ItemObject.characterDisplayName != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
+                if (_slot.ItemObject.characterDisplayName != null) { //wenn das ausgeruestete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
 
                         case ItemType.Armor:
@@ -300,6 +302,10 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.Stamina) {
                 var equippedStaminaValue = playerAttributes[i].totalAttributValue.TotalAttributeValue;
                 maxStamina = equippedStaminaValue + skillTree.staminaSkillvalue;
+            }
+
+            if (playerAttributes[i].type == Attributes.PhysicalDamage) {
+                physicalDamage = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             }
 
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
