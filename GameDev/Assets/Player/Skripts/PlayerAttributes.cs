@@ -24,9 +24,6 @@ public class PlayerAttributes : MonoBehaviour {
     public Transform weaponTransform;
     public bool hasWeaponEquiped;
 
-
-    private BoneCombiner boneCombiner;
-
     public int maxHealth;
     public int currentHealth;
 
@@ -54,8 +51,6 @@ public class PlayerAttributes : MonoBehaviour {
     /// set the default player values, attribute values and set the disyplay of the attributes
     /// </summary>
     private void Start() {
-
-        boneCombiner = new BoneCombiner(gameObject);
 
         for (int i = 0; i < playerAttributes.Length; i++) {
             playerAttributes[i].SetParent(this);
@@ -92,7 +87,6 @@ public class PlayerAttributes : MonoBehaviour {
             case InterfaceType.Inventory:
                 break;
             case InterfaceType.Equipment:
-                //print(string.Concat("Removed ", _slot.ItemObject, " from ", _slot.parentUserInterface.inventory.type));
 
                 for (int i = 0; i < _slot.itemInInventorySlot.buffs.Length; i++) {
                     for (int j = 0; j < playerAttributes.Length; j++) {
@@ -104,18 +98,6 @@ public class PlayerAttributes : MonoBehaviour {
 
                 if (_slot.ItemObject.characterDisplay != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
-                        case ItemType.Armor:
-                            //Destroy(chestOnPlayer.gameObject);
-                            break;
-                        case ItemType.Boots:
-                            //Destroy(bootsOnPlayer.gameObject);
-                            break;
-                        case ItemType.Glove:
-                            //Destroy(glovesOnPlayer.gameObject);
-                            break;
-                        case ItemType.Trousers:
-                            //Destroy(trousersOnPlayer.gameObject);
-                            break;
                         case ItemType.Weapon:
                             Destroy(weaponOnPlayer?.gameObject);
                             hasWeaponEquiped = false;
@@ -143,7 +125,7 @@ public class PlayerAttributes : MonoBehaviour {
                             bootsObj.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
                             var objDefBoots = GameObject.Find("Naked_Armor_boots");
-                            objDefBoots.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                            objDefBoots.GetComponent<SkinnedMeshRenderer>().enabled = true;
 
                             break;
                         case ItemType.Glove:
@@ -209,18 +191,6 @@ public class PlayerAttributes : MonoBehaviour {
 
                 if (_slot.ItemObject.characterDisplay != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
                     switch (_slot.AllowedItems[0]) {
-
-                        case ItemType.Armor:                            
-                            break;
-                        case ItemType.Boots:
-                           
-                            break;
-                        case ItemType.Glove:
-                           
-                            break;
-                        case ItemType.Trousers:
-                            //trousersOnPlayer = boneCombiner.AddLimb(_slot.ItemObject.characterDisplay);
-                            break;
                         case ItemType.Weapon:
                             weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform);
                             hasWeaponEquiped = true;
@@ -331,6 +301,7 @@ public class PlayerAttributes : MonoBehaviour {
                 var equippedStaminaValue = playerAttributes[i].totalAttributValue.TotalAttributeValue;
                 maxStamina = equippedStaminaValue + skillTree.staminaSkillvalue;
             }
+
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
@@ -366,24 +337,31 @@ public class PlayerAttributes : MonoBehaviour {
 
             if (playerAttributes[i].type == Attributes.HealthPoints)
                 textHealthPoints.text = maxHealth.ToString();
-            if (playerAttributes[i].type == Attributes.PhysicalDamage)
-                textPhysicalDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
-            if (playerAttributes[i].type == Attributes.Armor)
-                textArmor.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+
             if (playerAttributes[i].type == Attributes.ManaPoints)
                 textMaxMana.text = maxMana.ToString();
+
             if (playerAttributes[i].type == Attributes.Stamina)
                 textMaxStamina.text = maxStamina.ToString();
+
+            if (playerAttributes[i].type == Attributes.PhysicalDamage)
+                textPhysicalDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+
+            if (playerAttributes[i].type == Attributes.Armor)
+                textArmor.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+
+           
         }
 
 
     }
 
     private void Update() {
-        //AttributeModified();
+ 
         if (currentMana < maxMana) {
             currentMana += manaRegenerationSpeed * Time.deltaTime;
         }
+
         if (currentStamina < maxStamina && !Input.GetKey(KeyCode.LeftShift)) {
             currentStamina += staminaRegenerationSpeed * Time.deltaTime;
         }

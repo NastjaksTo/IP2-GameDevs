@@ -6,12 +6,18 @@ public class GolemTesting : MonoBehaviour
 {
     public Transform playerObject;
     public Animator anim;
+
+    public float health = 1000;
+
     // Start is called before the first frame update
     void Start()
     { 
         
         
     }
+
+
+    
 
     // Update is called once per frame
     void Update()

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Life_potion_mini
   m_EditorClassIdentifier: 
   itemName: Smal life potion
+  characterDisplayName: 
   characterDisplay: {fileID: 0}
   uiDisplayImage: {fileID: 21300000, guid: 7f206e3a2b532dd4791a22fad3a7e899, type: 3}
   istStackable: 1
@@ -20,8 +21,8 @@ MonoBehaviour:
   itemDescription: 'Brewed from the most disgusting things.
 
 
-    It regenerates
-    20 life points.'
+    Regenerate 20 life
+    points.'
   data:
-    Id: 3
+    Id: 6
     buffs: []

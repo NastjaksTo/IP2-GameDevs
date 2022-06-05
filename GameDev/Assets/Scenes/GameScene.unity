@@ -8302,7 +8302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -16499,7 +16499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 1431297682}
-  movement: {fileID: 1431297679}
+  playerMovement: {fileID: 1431297679}
   playerattributes: {fileID: 1364778335}
 --- !u!1 &1436753927
 GameObject:
@@ -18342,7 +18342,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: b3315c8e20e8d1441a4a2c8d4c94834e, type: 2}
     - target: {fileID: 2931074951484146830, guid: 3fe8630fb7107d14b9d5817b0d95e8fc, type: 3}
       propertyPath: itemInBag.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2931074951484146830, guid: 3fe8630fb7107d14b9d5817b0d95e8fc, type: 3}
       propertyPath: itemInBag.Array.data[0]
@@ -18368,6 +18368,10 @@ PrefabInstance:
       propertyPath: itemInBag.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: 9ae31e9cad355fb46874a689d3f79686, type: 2}
+    - target: {fileID: 2931074951484146830, guid: 3fe8630fb7107d14b9d5817b0d95e8fc, type: 3}
+      propertyPath: itemInBag.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: f8b7599ec8f3c344fbb9c2cf202f02a6, type: 2}
     - target: {fileID: 3397961928034922923, guid: 3fe8630fb7107d14b9d5817b0d95e8fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.43
@@ -20842,7 +20846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -36911,7 +36915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -45634,6 +45638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1364778345}
   anim: {fileID: 5968324751602960724}
+  health: 1000
 --- !u!1 &7463713201275932743
 GameObject:
   m_ObjectHideFlags: 0
@@ -50901,6 +50906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1364778345}
   anim: {fileID: 8903957217500765149}
+  health: 1000
 --- !u!1 &8911285891725256209
 GameObject:
   m_ObjectHideFlags: 0
