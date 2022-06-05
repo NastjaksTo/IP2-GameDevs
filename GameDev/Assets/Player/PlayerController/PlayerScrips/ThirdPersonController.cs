@@ -61,6 +61,8 @@ namespace StarterAssets {
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
 
+        public bool _canMove;
+
 
         // animation IDs
         private int _animIDSpeed;
@@ -81,6 +83,8 @@ namespace StarterAssets {
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        
+        
 
         private bool IsCurrentDeviceMouse {
             get {
@@ -99,12 +103,13 @@ namespace StarterAssets {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
                 
             }
-
+            _canMove = true;
         }
 
         private void Start()
         {
-            anim.enabled = true; 
+            anim.enabled = true;
+           
             
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
                 
@@ -120,15 +125,9 @@ namespace StarterAssets {
         private void Update() {
             _hasAnimator = TryGetComponent(out _animator);
             AddGravity(); // Call the gravity function each update
-            Move(); // Call the move function each update
-            if (Input.GetKeyDown(KeyCode.Space) && playerattributes.currentStamina >= 25)
+            if (_canMove)
             {
-                _animator.SetBool("dodging", true);
-                playerattributes.currentStamina -= 25;
-            }
-            else
-            {
-                _animator.SetBool("dodging", false);
+                Move(); // Call the move function each update
             }
         }
 
@@ -189,9 +188,6 @@ namespace StarterAssets {
                     playerattributes.currentStamina -= 5 * Time.deltaTime;
                 }
             }
-
-
-
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

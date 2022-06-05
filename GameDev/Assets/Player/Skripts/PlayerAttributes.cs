@@ -22,6 +22,7 @@ public class PlayerAttributes : MonoBehaviour {
 
     private GameObject weaponOnPlayer;
     public Transform weaponTransform;
+    public bool hasWeaponEquiped;
 
 
     private BoneCombiner boneCombiner;
@@ -74,6 +75,8 @@ public class PlayerAttributes : MonoBehaviour {
 
         manaRegenerationSpeed = 1;
         staminaRegenerationSpeed = 5;
+
+        hasWeaponEquiped = false;
     }
 
     /// <summary>
@@ -115,6 +118,7 @@ public class PlayerAttributes : MonoBehaviour {
                             break;
                         case ItemType.Weapon:
                             Destroy(weaponOnPlayer?.gameObject);
+                            hasWeaponEquiped = false;
                             break;
                         default:
                             break;
@@ -219,6 +223,7 @@ public class PlayerAttributes : MonoBehaviour {
                             break;
                         case ItemType.Weapon:
                             weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform);
+                            hasWeaponEquiped = true;
                             break;
                         default:
                             break;
