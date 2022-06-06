@@ -21,6 +21,7 @@ public class SaveData : MonoBehaviour
     public GameObject scenetransfer;
     public GameObject InventoryUI;
     public GameObject pausemenucontainer;
+    public UiScreenManager uimanager;
     public bool loaded;
     
     public int[] skilllevelsData;
@@ -42,7 +43,9 @@ public class SaveData : MonoBehaviour
         }
     }
 
-    private void Loadgame()
+
+
+    public void Loadgame()
     {
         Debug.Log("Loading..");
         PlayerData data = SaveSystem.LoadPlayer();
@@ -77,7 +80,9 @@ public class SaveData : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        Debug.Log("CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        Debug.Log(CheckpointSystem.checkpointactive);
+        if (Input.GetKeyDown(KeyCode.E) && CheckpointSystem.checkpointactive)
         {
             Debug.Log("Saving..");
             SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, this);
