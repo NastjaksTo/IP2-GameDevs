@@ -17,10 +17,14 @@ public class PlayerData
     public float manaregenValue;
     public float staminaregenValue;
     public int maxpotions;
-    
+    public float currentExp;
+    public float EXPtoLvlUP;
+
     public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, SaveData player)
     {
         level = PlayerSkillsystem.playerskillsystem.playerlevel.getLevel();
+        currentExp = PlayerSkillsystem.playerskillsystem.playerlevel.getExp();
+        EXPtoLvlUP = PlayerSkillsystem.playerskillsystem.playerlevel.getExpToLevelUp();
         health = attributes.currentHealth;
         healthSkillvalue = skillTree.healthSkillvalue;
         manaSkillvalue = skillTree.manaSkillvalue;
@@ -28,6 +32,7 @@ public class PlayerData
         manaregenValue = attributes.manaRegenerationSpeed;
         staminaregenValue = attributes.staminaRegenerationSpeed;
         maxpotions = combatSystem.maxpotions;
+        
         
         skilllevels = new int[18];
         for (int i = 0; i <= 17; i++)

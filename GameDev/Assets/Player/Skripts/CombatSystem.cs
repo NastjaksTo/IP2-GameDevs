@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static SkillTree;
@@ -19,21 +20,17 @@ public class CombatSystem : MonoBehaviour {
     public float regenerationTimer;
     public GameObject potioneffect;
     private bool canusepotion;
+    public TextMeshProUGUI potionsUI;
     
     public List<int> potionTickTimer = new List<int>();
     
     private void Start()
     {
-        refillPotions();
         canusepotion = true;
         maxpotions = 3;
-        resetPotions();
+        refillPotions();
     }
-
-    public void resetPotions()
-    {
-        potions = maxpotions;
-    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -58,6 +55,7 @@ public class CombatSystem : MonoBehaviour {
     public void refillPotions()
     {
         potions = maxpotions;
+        potionsUI.text = $"{potions}/{maxpotions}";
     }
     
     
@@ -120,6 +118,7 @@ public class CombatSystem : MonoBehaviour {
         {
             Destroy(currentPotion);
             maxpotions++;
+            potionsUI.text = $"{potions}/{maxpotions}";
             currentPotion = null;
             potionUI.SetActive(false);
             potionlootable = false;
@@ -136,6 +135,7 @@ public class CombatSystem : MonoBehaviour {
         {
             PlayPotionEffect();
             potions--;
+            potionsUI.text = $"{potions}/{maxpotions}";
             applypotion(100 * (1 + skillTree.skillLevels[9]));
             canusepotion = false;
             StartCoroutine(potionCooldown());

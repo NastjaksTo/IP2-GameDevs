@@ -287,7 +287,6 @@ public class UiScreenManager : MonoBehaviour {
                 }
 
                 if (_skillUiOpen) {
-                    savedata.saveGame();
                     CloseSkillUi();
                 }
 

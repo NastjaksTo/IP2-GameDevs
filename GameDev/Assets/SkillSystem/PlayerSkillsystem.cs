@@ -53,6 +53,12 @@ public class PlayerSkillsystem : MonoBehaviour
         //textneededXP.text = playerlevel.getExpToLevelUp().ToString();
     }
 
+    public void updateLevelUI()
+    {
+        textCurrentXP.text = playerlevel.getExp().ToString();
+        textCurrentLevel.text = playerlevel.getLevel().ToString();
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         // EXP Tiktak VORÜBERGEHENDER PLATZHALTER

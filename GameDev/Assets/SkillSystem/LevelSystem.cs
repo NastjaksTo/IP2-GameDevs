@@ -9,8 +9,8 @@ using static PlayerSkillsystem;
 public class LevelSystem
 {
     public int _level;
-    private float _exp;
-    private float _expToLevelUp;
+    public float _exp;
+    public float _expToLevelUp;
     public int skillpoints;
 
     public LevelSystem() // Setting standard variables to LevelSystem
