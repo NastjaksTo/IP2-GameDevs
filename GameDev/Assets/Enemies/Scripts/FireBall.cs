@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
+    private PlayerAttributes player;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            //make Damage to Player
+            player.currentHealth = player.currentHealth - 20;
             Destroy(gameObject);
         }
         Destroy(gameObject, 5);

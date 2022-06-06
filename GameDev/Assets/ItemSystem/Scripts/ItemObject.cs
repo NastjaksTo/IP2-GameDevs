@@ -13,6 +13,7 @@ public class ItemObject : ScriptableObject {
     public string itemName;
     public string characterDisplayName;
     public GameObject characterDisplay;
+    public string ItemNameToDisplay;
     public Sprite uiDisplayImage;               // inventory image
     public bool istStackable;
     public ItemType itemType;

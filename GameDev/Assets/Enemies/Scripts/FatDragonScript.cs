@@ -7,6 +7,8 @@ using UnityEngine.AI;
 public class FatDragonScript : MonoBehaviour
 {
     private Transform movePositionTransform;
+    private PlayerAttributes player;
+    private GameObject playerModel;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
@@ -16,10 +18,12 @@ public class FatDragonScript : MonoBehaviour
     private int attackSwitchRange;
     private float timer;
     private float timeToChangeAttack;
-    private int health;
     private bool idle;
     private float shotSpeed;
     private float attackRange;
+    
+    private int health;
+    private int damage;
 
     [SerializeField]
     GameObject standProjectileSpawnpoint;
@@ -35,7 +39,9 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerModel = GameObject.FindGameObjectWithTag("Player");
+        movePositionTransform = playerModel.GetComponent<Transform>();
+        player = playerModel.GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
@@ -43,14 +49,16 @@ public class FatDragonScript : MonoBehaviour
         attackSwitch = 11;
         attackSwitchRange = 8;
         timer = 0.0f;
-        timeToChangeAttack = 2.5f;
-        health = 100;
+        timeToChangeAttack = 1.5f;
         doDamage = false;
-        idle = false;
-        attackRange = 8.5f;
+        idle = true;
+        attackRange = 6.0f;
         shotSpeed = 20.0f;
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
+
+        damage = 20;
+        health = 100;
     }
 
     /// <summary>
@@ -76,6 +84,7 @@ public class FatDragonScript : MonoBehaviour
         {
             navMeshAgent.destination = movePositionTransform.position;
             navMeshAgent.speed = 5;
+            idle = false;
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
                 Attack();
@@ -171,6 +180,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
+        //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (health > 0)
@@ -194,8 +204,8 @@ public class FatDragonScript : MonoBehaviour
     {
         if (doDamage)
         {
-            //Make Damage to Player
-            Debug.Log("Damage to Player from Crab");
+            player.currentHealth = (int)(player.currentHealth - damage);
+            doDamage = false;
         }
     }
 
@@ -208,7 +218,7 @@ public class FatDragonScript : MonoBehaviour
         {
             GameObject fireball = Instantiate(fireBall, standProjectileSpawnpoint.transform.position, Quaternion.identity);
             fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            Vector3 direction = movePositionTransform.position - standProjectileSpawnpoint.transform.position;
+            Vector3 direction = movePositionTransform.position - (standProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
         }
@@ -223,20 +233,28 @@ public class FatDragonScript : MonoBehaviour
         {
             GameObject fireball = Instantiate(fireBall, flyProjectileSpawnpoint.transform.position, Quaternion.identity);
             fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            Vector3 direction = movePositionTransform.position - flyProjectileSpawnpoint.transform.position;
+            Vector3 direction = movePositionTransform.position - (flyProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
         }
     }
 
     /// <summary>
-    /// If the Collider of the Red Boss will collide with the Player, the bool to deal Damage is set to true;
+    /// If the Collider of the Red Boss will Triggercollide with the Player, the bool to deal Damage is set to true;
     /// </summary>
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             doDamage = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            doDamage = false;
         }
     }
 
@@ -246,7 +264,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void changeAttack()
     {
-        attackSwitch = Random.Range(1, 13);
+        attackSwitch = Random.Range(1, 12);
         animator.ResetTrigger("Basic Attack");
         animator.ResetTrigger("Tail Attack");
         animator.ResetTrigger("Scream");

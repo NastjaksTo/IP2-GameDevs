@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class CrabAgent : MonoBehaviour
 {
+    private PlayerAttributes player;
     private Transform movePositionTransform;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
@@ -16,7 +17,12 @@ public class CrabAgent : MonoBehaviour
     private float timer;
     private float timeToChangeAttack;
     private float endDefend;
-    private int health;
+
+    private float damage;
+    private float health;
+
+    [SerializeField]
+    private float level = 1;
 
     /// <summary>
     /// References set to all necessary Context
@@ -24,6 +30,7 @@ public class CrabAgent : MonoBehaviour
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
@@ -33,10 +40,12 @@ public class CrabAgent : MonoBehaviour
         timer = 0.0f;
         timeToChangeAttack = 0.8f;
         endDefend = 2.0f;
-        health = 100;
         doDamage = false;
         fov.Radius = 15.0f;
         fov.Angle = 180.0f;
+
+        health = level * 50;
+        damage = level * 10;
     }
 
     /// <summary>
@@ -63,7 +72,7 @@ public class CrabAgent : MonoBehaviour
         {
             navMeshAgent.destination = movePositionTransform.position;
             animator.SetBool("Run Forward", true);
-            if(Vector3.Distance(this.transform.position, movePositionTransform.position) < 5.0f)
+            if(Vector3.Distance(this.transform.position, movePositionTransform.position) < 4.0f)
             {
                 Attack();
             }
@@ -139,13 +148,21 @@ public class CrabAgent : MonoBehaviour
         {
             if (health > 0)
             {
-                health = health - 20;
-                animator.SetTrigger("Take Damage");
+                if (defend)
+                {
+                    health = health - 10;
+                }
+                else
+                {
+                    health = health - 20;
+                    animator.SetTrigger("Take Damage");
+                }
             }
 
             if (health <= 0)
             {
                 animator.SetTrigger("Die");
+                navMeshAgent.enabled = false;
                 Destroy(gameObject, 5.0f);
             }
         }
@@ -158,8 +175,16 @@ public class CrabAgent : MonoBehaviour
     {
         if (doDamage)
         {
-            //Make Damage to Player
-            Debug.Log("Damage to Player from Crab");
+            player.currentHealth = (int)(player.currentHealth - damage);
+            doDamage = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            doDamage = true;
         }
     }
 

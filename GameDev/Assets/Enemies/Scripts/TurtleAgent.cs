@@ -6,18 +6,21 @@ using UnityEngine.AI;
 public class TurtleAgent : MonoBehaviour
 {
     private Transform movePositionTransform;
+    private PlayerAttributes player;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
     private Vector3 spawnpoint;
     private float timer;
     private float timeToChangeAttack;
-    private int health;
     private int wichAttack;
     private float attackRange;
     private float endDefend;
     private bool defend;
     private bool doDamage;
+
+    private int damage;
+    private int health;
 
     /// <summary>
     /// References set to all necessary Context
@@ -25,6 +28,7 @@ public class TurtleAgent : MonoBehaviour
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
@@ -32,13 +36,15 @@ public class TurtleAgent : MonoBehaviour
         timer = 0.0f;
         timeToChangeAttack = 0.8f;
         wichAttack = Random.Range(1, 4);
-        health = 100;
         endDefend = 2.0f;
         defend = false;
         attackRange = 2.0f;
         doDamage = false;
         fov.Radius = 6.0f;
         fov.Angle = 100.0f;
+
+        health = 100;
+        damage = 10;
     }
 
     /// <summary>
@@ -158,8 +164,8 @@ public class TurtleAgent : MonoBehaviour
     {
         if (doDamage)
         {
-            //Make Damage to Player
-            Debug.Log("Damage to Player from Turtle");
+            player.currentHealth = (int)(player.currentHealth - damage);
+            doDamage = false;
         }
     }
 
