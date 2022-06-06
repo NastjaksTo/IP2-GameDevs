@@ -12,6 +12,7 @@ public class GolemTesting : MonoBehaviour
 
     public float health = 1000;
     private bool hitting = false;
+    public GameObject spell;
 
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
@@ -22,8 +23,69 @@ public class GolemTesting : MonoBehaviour
             health -= playerattributes.physicalDamage;
             Invoke("hitcooldown", 0.85f);
         }
+        if (other.CompareTag("Fire1"))
+        {
+            spell = other.gameObject;
+            var damage = spell.GetComponent<Fire1>().damage;
+            health -= damage;
+            Destroy(other.gameObject, 0.25f);
+        }
+        if (other.CompareTag("Fire2"))
+        {
+            spell = other.gameObject;
+            var damage = spell.GetComponent<Fire2>().damage;
+            health -= damage;
+            Destroy(other.gameObject, 2.55f);
+        }
+        if (other.CompareTag("Fire3"))
+        {
+            spell = other.gameObject;
+            var damage = spell.GetComponent<Fire3>().damage;
+            health -= damage;
+            Destroy(other.gameObject, 5.55f);
+        }
+        if (other.CompareTag("Ice1"))
+        {
+            spell = other.gameObject;
+            var damage = spell.GetComponent<Ice1>().damage;
+            health -= damage;
+            anim.SetBool("stunned", true);
+            StartCoroutine(ice1stunned());
+            Destroy(other.gameObject, 5.25f);
+        }
+        if (other.CompareTag("Ice2"))
+        {
+            spell = other.gameObject;
+            var damage = spell.GetComponent<Ice2>().damage;
+            health -= damage;
+            anim.SetBool("stunned", true);
+            StartCoroutine(ice1stunned());
+            Destroy(other.gameObject, 5.25f);
+        }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Ice3"))
+        {
+            spell = other.gameObject;
+            var damage = spell.GetComponent<Ice3>().damage;
+            health -= damage;
+            anim.SetBool("stunned", true);
+            StartCoroutine(ice3stunned());
+            Destroy(other.gameObject, 15.25f);
+        }
+    }
+
+    IEnumerator ice1stunned() {
+        yield return new WaitForSecondsRealtime(5.650f);
+        anim.SetBool("stunned", false);
+    }
+    IEnumerator ice3stunned() {
+        yield return new WaitForSecondsRealtime(15.650f);
+        anim.SetBool("stunned", false);
+    }
+    
     private void hitcooldown()
     {
         hitting = false;
