@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
-  m_Name: Life_potion_mini
+  m_Name: Leather_Body
   m_EditorClassIdentifier: 
-  itemName: Smal life potion
-  characterDisplayName: 
+  itemName: Lether Armor
+  characterDisplayName: Cloth_Armor_body
   characterDisplay: {fileID: 0}
-  uiDisplayImage: {fileID: 21300000, guid: 7f206e3a2b532dd4791a22fad3a7e899, type: 3}
-  istStackable: 1
-  itemType: 5
-  itemDescription: 'Brewed from the most disgusting things.
+  uiDisplayImage: {fileID: 21300000, guid: 69ab6e44d5b3db5468fdab7ce7573dfc, type: 3}
+  istStackable: 0
+  itemType: 1
+  itemDescription: 'Leather Armor, they are made of leather... of a drunken troll.
 
 
-    Regenerate 20 life
-    points.'
+    +
+    20 Armor'
   data:
-    Id: 6
-    buffs: []
+    Id: 1
+    buffs:
+    - attribute: 0
+      buffValue: 20

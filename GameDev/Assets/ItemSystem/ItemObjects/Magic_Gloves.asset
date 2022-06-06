@@ -10,21 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
-  m_Name: Armor_Lether
+  m_Name: Magic_Gloves
   m_EditorClassIdentifier: 
-  itemName: Lether Armor
-  characterDisplayName: Magic_Armor_body
+  itemName: Magic Gloves
+  characterDisplayName: Magic_Armor_gauntlets
   characterDisplay: {fileID: 0}
-  uiDisplayImage: {fileID: 21300000, guid: bdee396dc2c134c44be139536c58c88d, type: 3}
+  uiDisplayImage: {fileID: 21300000, guid: 548b5463966d4ad46ba13e2249c4a1f8, type: 3}
   istStackable: 0
-  itemType: 1
-  itemDescription: 'Leather Armor, they are made of leather... of a drunken troll.
+  itemType: 6
+  itemDescription: 'Gloves made with Magic.
 
 
-    +
-    20 Armor'
+    + 20 Armor
+
+    + 25 Mana'
   data:
-    Id: 1
+    Id: 11
     buffs:
     - attribute: 0
       buffValue: 20
+    - attribute: 5
+      buffValue: 25

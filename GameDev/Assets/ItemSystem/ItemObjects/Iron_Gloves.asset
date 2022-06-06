@@ -10,29 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
-  m_Name: Magic_Boots
+  m_Name: Iron_Gloves
   m_EditorClassIdentifier: 
-  itemName: Magic Boots
-  characterDisplayName: Magic_Armor_boots
+  itemName: Iron Gloves
+  characterDisplayName: Iron_Armor_gauntlets
   characterDisplay: {fileID: 0}
-  uiDisplayImage: {fileID: 21300000, guid: 4e71ff0faa302cb4991603a4ad9b38fd, type: 3}
+  uiDisplayImage: {fileID: 21300000, guid: e0d519aec4ba21640aa947cee4b4b978, type: 3}
   istStackable: 0
-  itemType: 3
-  itemDescription: 'Boots made with magic.
+  itemType: 6
+  itemDescription: 'Gloves made of iron.
 
 
-    + 10 Armor
-
-    + 20 Stamina
-
-    +
-    30 Mana'
+    + 20 Armor'
   data:
-    Id: 10
+    Id: 6
     buffs:
     - attribute: 0
-      buffValue: 10
-    - attribute: 7
       buffValue: 20
-    - attribute: 5
-      buffValue: 30

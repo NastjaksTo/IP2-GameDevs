@@ -13,7 +13,7 @@ public class UiScreenManager : MonoBehaviour {
     private static bool _inventoryUiOpen = false;
     public GameObject inventoryUI;                          //reference set in editor
 
-    private static bool _skillUiOpen = false;
+    public static bool _skillUiOpen = false;
     public GameObject skillUi;                              //reference set in editor
 
     private static bool _questUiOpen = false;
@@ -103,7 +103,7 @@ public class UiScreenManager : MonoBehaviour {
     /// <summary>
     /// Opens the skill UI. Makes the mouse pointer visible and freezes the game time. 
     /// </summary>
-    private void OpenSkillUi() {
+    public void OpenSkillUi() {
         ClosePlayerStatsUi();
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
@@ -115,7 +115,7 @@ public class UiScreenManager : MonoBehaviour {
     /// <summary>
     /// Close the skill UI. Locked the Cursor and lets the game time continue.
     /// </summary>
-    private void CloseSkillUi() {
+    public void CloseSkillUi() {
         ShowPlayerStatsUi();
         Cursor.lockState = CursorLockMode.Locked;
         skillUi.SetActive(false);
@@ -248,14 +248,6 @@ public class UiScreenManager : MonoBehaviour {
     /// On Esc and if the DeathUi is closed: close the menuUI when its open, or open it if its closed.
     /// </summary>
     public void Update() {
-        if (Input.GetKeyDown(KeyCode.Z)) {
-            Debug.Log("death: " + _deathUiOpen);
-            Debug.Log("pausecontainer: " + _pauseMenuContainerUiOpen);
-            Debug.Log("isOneIngameUIOpen: " + _isOneIngameUiOpen);
-            Debug.Log("quest: " + _questUiOpen);
-            Debug.Log("inv: " + _inventoryUiOpen);
-            Debug.Log("Skill: " + _skillUiOpen);
-        }
 
         if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen) {
             if (_inventoryUiOpen) {
@@ -265,13 +257,13 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && !_deathUiOpen) {
-            if (_skillUiOpen) {
-                CloseSkillUi();
-            } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
-                OpenSkillUi();
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.K) && !_deathUiOpen) {
+        //    if (_skillUiOpen) {
+        //        CloseSkillUi();
+        //    } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
+        //        OpenSkillUi();
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen) {
             if (_questUiOpen) {
@@ -295,6 +287,7 @@ public class UiScreenManager : MonoBehaviour {
                 }
 
                 if (_skillUiOpen) {
+                    //Speichern und Laden
                     CloseSkillUi();
                 }
 
@@ -304,13 +297,10 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab) && (_inventoryUiOpen || _skillUiOpen || _questUiOpen)) {
+        if (Input.GetKeyDown(KeyCode.Tab) && (_inventoryUiOpen || _questUiOpen)) {
 
             if (_inventoryUiOpen) { // wenn dass inventar auf ist
                 CloseInventoryUi();
-                OpenSkillUi();
-            } else if (_skillUiOpen) { // wenn dar skill baum auf ist
-                CloseSkillUi();
                 OpenQuestUi();
             } else if (_questUiOpen) { // wenn dar skill baum auf ist
                 CloseQuestUi();

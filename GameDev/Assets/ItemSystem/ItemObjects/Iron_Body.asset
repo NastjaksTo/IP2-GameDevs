@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
-  m_Name: Armor_Iron
+  m_Name: Iron_Body
   m_EditorClassIdentifier: 
-  itemName: Dragon Scale Armor
+  itemName: Iron Armor
   characterDisplayName: Iron_Armor_body
   characterDisplay: {fileID: 0}
-  uiDisplayImage: {fileID: 21300000, guid: 1bc04c2db7e432246b6d8a30c0c6e23b, type: 3}
+  uiDisplayImage: {fileID: 21300000, guid: aaadf1a99b864dd4b895b7bbdc871303, type: 3}
   istStackable: 0
   itemType: 1
-  itemDescription: 'Armor made from the scales of the first slain dragon.
+  itemDescription: 'Armor made from Iron.
 
 
-    +
-    300 Armor'
+    + 120 Armor'
   data:
     Id: 0
     buffs:
     - attribute: 0
-      buffValue: 300
+      buffValue: 120
