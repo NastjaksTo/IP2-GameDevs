@@ -25,7 +25,7 @@ public class PlayerAttributes : MonoBehaviour {
     public bool hasWeaponEquiped;
 
     public int maxHealth;
-    public int currentHealth;
+    public float currentHealth;
 
     public int maxStamina;
     public float currentStamina;

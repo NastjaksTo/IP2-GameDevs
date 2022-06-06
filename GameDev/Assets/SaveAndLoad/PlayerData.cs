@@ -8,7 +8,7 @@ using static SkillTree;
 public class PlayerData
 {
     public int level;
-    public int health;
+    public float health;
     public float[] position;
     public int[] skilllevels;
     public int healthSkillvalue;
@@ -16,8 +16,9 @@ public class PlayerData
     public int staminaSkillvalue;
     public float manaregenValue;
     public float staminaregenValue;
-
-    public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, SaveData player)
+    public int maxpotions;
+    
+    public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, SaveData player)
     {
         level = PlayerSkillsystem.playerskillsystem.playerlevel.getLevel();
         health = attributes.currentHealth;
@@ -26,6 +27,7 @@ public class PlayerData
         staminaSkillvalue = skillTree.staminaSkillvalue;
         manaregenValue = attributes.manaRegenerationSpeed;
         staminaregenValue = attributes.staminaRegenerationSpeed;
+        maxpotions = combatSystem.maxpotions;
         
         skilllevels = new int[18];
         for (int i = 0; i <= 17; i++)

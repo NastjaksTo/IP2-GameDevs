@@ -13,6 +13,7 @@ public class SaveData : MonoBehaviour
     public PlayerAttributes attributes;
     public ThirdPersonController player;
     public SkillTree skilltree;
+    public CombatSystem combatsystem;
     public GameObject playermodel;
     public InventoryObject inventory;
     public InventoryObject equipment;
@@ -20,10 +21,9 @@ public class SaveData : MonoBehaviour
     public InventoryInterface inf2;
     public GameObject scenetransfer;
     public GameObject InventoryUI;
-    public GameObject pausemenucontainer;
     public UiScreenManager uimanager;
     public bool loaded;
-    
+
     public int[] skilllevelsData;
 
     public void Awake()
@@ -54,6 +54,9 @@ public class SaveData : MonoBehaviour
         attributes.currentHealth = data.health;
         attributes.staminaRegenerationSpeed = data.staminaregenValue;
         attributes.manaRegenerationSpeed = data.manaregenValue;
+
+        combatsystem.maxpotions = data.maxpotions;
+        combatsystem.potions = combatsystem.maxpotions;
         
         for (int i = 0; i <= 17; i++)
         {
@@ -80,19 +83,18 @@ public class SaveData : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        Debug.Log(CheckpointSystem.checkpointactive);
         if (Input.GetKeyDown(KeyCode.E) && CheckpointSystem.checkpointactive)
         {
             Debug.Log("Saving..");
-            SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, this);
+            //SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, this);
             
             skilllevelsData = new int[18];
             for (int i = 0; i <= 17; i++)
             {
                 skilllevelsData[i] = skillTree.skillLevels[i];
             }
-            SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree,this);
+
+            SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, this);
 
             
             inventory.Save();
