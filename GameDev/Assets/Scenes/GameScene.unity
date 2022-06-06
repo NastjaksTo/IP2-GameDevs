@@ -3467,6 +3467,7 @@ MonoBehaviour:
   pauseMenuConteinerUi: {fileID: 2070436839}
   optionsMenuUI: {fileID: 1263847943}
   controlMenuUI: {fileID: 1208031007}
+  savedata: {fileID: 0}
 --- !u!4 &253168032 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
@@ -11298,7 +11299,7 @@ PrefabInstance:
     - target: {fileID: 5950951006601870846, guid: 7890e50b2929ed349b8ca7c2ffb5ed2f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 8535484949888158914}
+      objectReference: {fileID: 0}
     - target: {fileID: 5950951006601870846, guid: 7890e50b2929ed349b8ca7c2ffb5ed2f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -50621,6 +50622,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1624170920}
     - target: {fileID: 8610260360845128631, guid: 3f27081f98228d8448eb11f33c2fb728, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610260360845128631, guid: 3f27081f98228d8448eb11f33c2fb728, type: 3}
       propertyPath: skilltree
       value: 
       objectReference: {fileID: 527354809}
@@ -50706,17 +50711,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f27081f98228d8448eb11f33c2fb728, type: 3}
---- !u!114 &8535484949888158914 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8610260360845128631, guid: 3f27081f98228d8448eb11f33c2fb728, type: 3}
-  m_PrefabInstance: {fileID: 8535484949888158913}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431297673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b02c6bf40f2ef145a697a20488fcb40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &8554429673635188775
 Transform:
   m_ObjectHideFlags: 0

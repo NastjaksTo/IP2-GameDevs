@@ -42,9 +42,7 @@ public class SaveData : MonoBehaviour
             equipment.Clear();
         }
     }
-
-
-
+    
     public void Loadgame()
     {
         Debug.Log("Loading..");
@@ -79,9 +77,10 @@ public class SaveData : MonoBehaviour
         
         inventory.Load();
         equipment.Load();
+
     }
 
-    private void saveGame() {
+    public void saveGame() {
         Debug.Log("Saving..");
 
         skilllevelsData = new int[18];
@@ -99,8 +98,10 @@ public class SaveData : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && CheckpointSystem.checkpointactive) {
             if (UiScreenManager._skillUiOpen) {
+                saveGame();
                 uimanager.CloseSkillUi();
             } else {
+                saveGame();
                 uimanager.OpenSkillUi();
             }
         }

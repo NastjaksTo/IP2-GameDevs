@@ -34,6 +34,7 @@ public class UiScreenManager : MonoBehaviour {
     public static bool _isOneIngameUiOpen = false;
     private static bool _isOneInMenueUiOpen = false;
 
+    public SaveData savedata;
 
     private void Awake() {
         ClosePauseContainerUi();
@@ -236,8 +237,7 @@ public class UiScreenManager : MonoBehaviour {
     /// Load the last saved game state 
     /// </summary>
     public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
-        Debug.Log("TODO: LOAD LAST SAVED GAME STATE");
-        Time.timeScale = 1f;
+        savedata.Loadgame();
     }
 
 
@@ -287,7 +287,7 @@ public class UiScreenManager : MonoBehaviour {
                 }
 
                 if (_skillUiOpen) {
-                    //Speichern und Laden
+                    savedata.saveGame();
                     CloseSkillUi();
                 }
 
