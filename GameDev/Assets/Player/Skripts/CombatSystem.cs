@@ -21,6 +21,7 @@ public class CombatSystem : MonoBehaviour {
     public GameObject potioneffect;
     private bool canusepotion;
     public TextMeshProUGUI potionsUI;
+    private bool invincible = false;
     
     public List<int> potionTickTimer = new List<int>();
     
@@ -69,6 +70,13 @@ public class CombatSystem : MonoBehaviour {
         canusepotion = true;
     }
     
+    private IEnumerator BecomeTemporarilyInvincible()
+    {
+        Debug.Log("Player turned invincible!");
+        yield return new WaitForSeconds(1f);
+        invincible = true;
+    }
+    
     IEnumerator regeneratingHealth()
     {
         if (skillTree.skillLevels[9] == 0) regenerationTimer = 0.4f;
@@ -104,8 +112,18 @@ public class CombatSystem : MonoBehaviour {
         Destroy(newPotionEffect, 5f);
     }
     
+    public void LoseHealth(int amount)
+    {
+        if (invincible) return;
 
-    private void Update() {
+        playerattributes.currentHealth -= amount; //ARMOR DMG REDUCTION HERE
+
+        // DIE FUNCTION HERE
+    }
+    
+
+    private void Update() 
+    {
         if (Input.GetButtonDown("Fire1") && playerattributes.currentStamina >= 8 && playerattributes.hasWeaponEquiped && !_anim.GetCurrentAnimatorStateInfo(0).IsName("dodge") && !UiScreenManager._isOneIngameUiOpen) 
         {
             playerMovement._canMove = false;
@@ -124,9 +142,12 @@ public class CombatSystem : MonoBehaviour {
             potionlootable = false;
         }
 
-
         if (Input.GetKeyDown(KeyCode.Space) && playerattributes.currentStamina >= 25 && !_anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !UiScreenManager._isOneIngameUiOpen) 
         {
+            if (!invincible)
+            {
+                StartCoroutine(BecomeTemporarilyInvincible());
+            }
             _anim.Play("dodge");
             playerattributes.currentStamina -= 20;
         }
