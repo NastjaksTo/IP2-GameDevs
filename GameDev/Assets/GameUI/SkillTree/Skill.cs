@@ -7,59 +7,56 @@ using static SkillTree;
 
 public class Skill : MonoBehaviour
 {
-    public int id; // Integer for the ID each Skill gets
+    public int id;                                      // Integer for the ID each Skill gets.
 
-    private GameObject PlayerSP; //Reference of Player Skillpoints (SP)
-    private PlayerSkillsystem playerskillsystem; //Reference of Player Skillpoints (SP)
+    private GameObject playerSp;                        // Reference of players skillpoints.
+    
+    private PlayerSkillsystem playerskillsystem;        // Reference of the PlayerSkillsystem script.
+    public PlayerAttributes playerAttribute;            // Reference of the PlayerAttributes script.
 
-    public PlayerAttributes playerAttribute;
+    public TMP_Text titleText;                          // Reference of UI text element where the title gets stored.
 
-    public TMP_Text TitleText; //Reference of Skill Title
-    public TMP_Text DescText; //Reference of Skill Description
+    public int[] connectedSkills;                       // Integer list of skills, which are conntected to eachother.
 
-    public int[] ConnectedSkills; //Reference List of Skills, which are conntected to eachother
-
-
-
+    /// <summary>
+    /// Gets the player reference and the skillsystem reference at the start.
+    /// </summary>
     private void Start()
     {
-        PlayerSP = GameObject.Find("PlayerArmature"); // Get Player reference
-        playerskillsystem = PlayerSP.GetComponent<PlayerSkillsystem>(); // Get Player reference
+        playerSp = GameObject.Find("PlayerArmature");
+        playerskillsystem = playerSp.GetComponent<PlayerSkillsystem>();
     }
 
-
-    public void UpdateUI() // Update the SkillUI with Text and Descriptions
+    /// <summary>
+    /// Updates the SkillUI with skill level/skill cap and connections.
+    /// </summary>
+    public void UpdateUI() 
     {
-        TitleText.text = $"{skillTree.skillLevels[id]}/{skillTree.skillCaps[id]}";
-        //DescText.text = $"{skillTree.skillDescription[id]}";
-
-        
-        foreach (var connectedSkill in ConnectedSkills)
+        titleText.text = $"{skillTree.skillLevels[id]}/{skillTree.skillCaps[id]}";
+        foreach (var connectedSkill in connectedSkills)
         {
-            // SkillTree Skill Visuals
             skillTree.skillList[connectedSkill].gameObject.SetActive(skillTree.skillLevels[id] > 4);
-            // SkillTree Connection Visuals
-            //skillTree.connectorList[connectedSkill].SetActive(skillTree.skillLevels[id] > 0);
         }
-
     }
 
+    /// <summary>
+    /// Upgrades the skills.
+    /// Unlocks next skills.
+    /// Activates certain skill features.
+    /// </summary>
     public void Buy() // Buying / Unlocking Skills
     {
-        if (skillTree.skillPoints < 1 || skillTree.skillLevels[id] >= skillTree.skillCaps[id]) return; // Check if skill is buyable
-        playerskillsystem.playerlevel.skillpoints -= 1; // Reduce skillpoints by 1 (Price of upgrading a skill)
+        if (skillTree.skillPoints < 1 || skillTree.skillLevels[id] >= skillTree.skillCaps[id]) return; 
+        playerskillsystem.playerlevel.skillpoints -= 1; 
 
-        
         if (id == 10 & skillTree.skillLevels[10] <= 4) playerskillsystem.ManageMana2();
         if (id == 11 & skillTree.skillLevels[11] <= 4) playerskillsystem.ManageStamina2();
 
-
-        skillTree.skillLevels[id]++; // Upgrade the SkillLevel
+        skillTree.skillLevels[id]++; 
         if (id == 3 & skillTree.skillLevels[3] <= skillTree.skillCaps[3]) skillTree.healthSkillvalue += 10 * skillTree.skillLevels[3];
         if (id == 4 & skillTree.skillLevels[4] <= skillTree.skillCaps[4]) skillTree.manaSkillvalue += 10 * skillTree.skillLevels[4];
         if (id == 5 & skillTree.skillLevels[5] <= skillTree.skillCaps[5]) skillTree.staminaSkillvalue += 10 * skillTree.skillLevels[5];
-        skillTree.UpdateAllSkillUI(); // Update the SkillUI
-
+        skillTree.UpdateAllSkillUI(); 
         playerAttribute.AttributeModified(); ;
     }
 

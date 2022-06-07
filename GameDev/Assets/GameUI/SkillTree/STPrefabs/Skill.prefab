@@ -441,9 +441,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
-  TitleText: {fileID: 6561132610081969284}
-  DescText: {fileID: 6561132610990852312}
-  ConnectedSkills: 
+  playerAttribute: {fileID: 0}
+  titleText: {fileID: 6561132610081969284}
+  descText: {fileID: 6561132610990852312}
+  connectedSkills: 
 --- !u!114 &6011192433890033662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60eb9e9033b4da47a5fa82f4289d2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descToShow: 
 --- !u!114 &2164888144311626932
 MonoBehaviour:
   m_ObjectHideFlags: 0

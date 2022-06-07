@@ -6561,13 +6561,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillLevels: 
   skillCaps: 
-  skillNames: []
-  skillDescription: []
-  SPUi: {fileID: 445913192}
+  spUI: {fileID: 445913192}
   skillList: []
   skillHolder: {fileID: 1445745678}
-  connectorList: []
-  connectorHolder: {fileID: 1085142881}
   skillPoints: 0
   healthSkillvalue: 0
   manaSkillvalue: 0
