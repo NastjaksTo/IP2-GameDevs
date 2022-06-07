@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class GolemTesting : MonoBehaviour
 {
@@ -10,7 +12,12 @@ public class GolemTesting : MonoBehaviour
     public CombatSystem combatsystem;
     public PlayerAttributes playerattributes;
 
-    public float health = 1000;
+    public Image healthBar;
+    public TextMeshProUGUI textHealthPoints;         
+
+    private float maxHealth = 3000;
+    public float currentHealth = 3000;
+
     private bool hitting = false;
     public GameObject spell;
 
@@ -20,35 +27,35 @@ public class GolemTesting : MonoBehaviour
         if (other.CompareTag("Weapon") && combatsystem._anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !hitting)
         {
             hitting = true;
-            health -= playerattributes.physicalDamage;
+            currentHealth -= playerattributes.physicalDamage;
             Invoke("hitcooldown", 0.85f);
         }
         if (other.CompareTag("Fire1"))
         {
             spell = other.gameObject;
             var damage = spell.GetComponent<Fire1>().damage;
-            health -= damage;
+            currentHealth -= damage;
             Destroy(other.gameObject, 0.25f);
         }
         if (other.CompareTag("Fire2"))
         {
             spell = other.gameObject;
             var damage = spell.GetComponent<Fire2>().damage;
-            health -= damage;
+            currentHealth -= damage;
             Destroy(other.gameObject, 2.55f);
         }
         if (other.CompareTag("Fire3"))
         {
             spell = other.gameObject;
             var damage = spell.GetComponent<Fire3>().damage;
-            health -= damage;
+            currentHealth -= damage;
             Destroy(other.gameObject, 5.55f);
         }
         if (other.CompareTag("Ice1"))
         {
             spell = other.gameObject;
             var damage = spell.GetComponent<Ice1>().damage;
-            health -= damage;
+            currentHealth -= damage;
             anim.SetBool("stunned", true);
             StartCoroutine(ice1stunned());
             Destroy(other.gameObject, 5.25f);
@@ -57,7 +64,7 @@ public class GolemTesting : MonoBehaviour
         {
             spell = other.gameObject;
             var damage = spell.GetComponent<Ice2>().damage;
-            health -= damage;
+            currentHealth -= damage;
             anim.SetBool("stunned", true);
             StartCoroutine(ice1stunned());
             Destroy(other.gameObject, 5.25f);
@@ -70,7 +77,7 @@ public class GolemTesting : MonoBehaviour
         {
             spell = other.gameObject;
             var damage = spell.GetComponent<Ice3>().damage;
-            health -= damage;
+            currentHealth -= damage;
             anim.SetBool("stunned", true);
             StartCoroutine(ice3stunned());
             Destroy(other.gameObject, 15.25f);
@@ -92,14 +99,19 @@ public class GolemTesting : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (health <= 0)
+    void Update() {
+
+        healthBar.fillAmount = currentHealth / maxHealth;
+        textHealthPoints.text = currentHealth.ToString();
+
+        if (currentHealth <= 0)
         {
             anim.SetBool("death", true);
             Destroy(gameObject, 10);
         }
+
         transform.LookAt(playerObject);
+
         if (Input.GetKeyDown(KeyCode.U))
         {
             anim.SetBool("golemtesting", true);
