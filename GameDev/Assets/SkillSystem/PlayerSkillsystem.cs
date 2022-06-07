@@ -9,120 +9,135 @@ using static SkillTree;
 
 public class PlayerSkillsystem : MonoBehaviour
 {
-    public LevelSystem playerlevel; // Get LevelSystem reference
-
-    public static PlayerSkillsystem playerskillsystem;
+    public LevelSystem playerlevel;                         // Reference to the LevelSystem script.
+    public static PlayerSkillsystem playerskillsystem;      // Making static reference of the class.
+    public PlayerAttributes playerattributes;               // Reference to the PlayerAttributes script.
     
-    public GameObject fire1; // FireSpell 1 reference
-    public GameObject fire2; // FireSpell 2 reference
-    public GameObject fire3; // FireSpell 3 reference
+    public GameObject fire1;                                // Reference of first firespell.
+    public GameObject fire2;                                // Reference of second firespell.
+    public GameObject fire3;                                // Reference of third firespell.
     
-    public GameObject ice1; // IceSpell 1 reference
-    public GameObject ice2; // IceSpell 2 reference
-    public GameObject ice3; // IceSpell 3 reference
+    public GameObject ice1;                                 // Reference of first icespell.
+    public GameObject ice2;                                 // Reference of second icespell.
+    public GameObject ice3;                                 // Reference of third icespell.
     
-    public GameObject earth1; // EarthSpell 1 reference
-    public GameObject earth2; // EarthSpell 2 reference
-    public GameObject earth3; // EarthSpell 3 reference
+    public GameObject earth1;                               // Reference of first earthspell.
+    public GameObject earth2;                               // Reference of second earthspell.
+    public GameObject earth3;                               // Reference of third earthspell.
     
-    public Transform spawner; // SpellSpawner reference
+    public Transform spawner;                               // Reference to the position where spells spawn.
     
-    private float spellCooldown = 1f; // Cooldown for spells
-    private bool _cooldown = true; // Cooldown Boolean for spells
+    private float spellCooldown = 1f;                       // Float to save the time for the spell cooldown.
+    private bool cooldown = true;                           // Boolean to save the status of the current cooldown.
 
-    public PlayerAttributes playerattributes;
-    public ThirdPersonController player;
+    public GameObject lvlupeffect;                          // Reference to the level up visual effect.
     
-    public GameObject lvlupeffect;
+    public TextMeshProUGUI textCurrentXP;                   // Reference to the UI text element for the current experience.
+    public TextMeshProUGUI textCurrentLevel;                // Reference to the UI text element for the current level.
 
-    public TextMeshProUGUI textCurrentXP;           //reference set in editor
-    public TextMeshProUGUI textCurrentLevel;        //reference set in editor
-    // public TextMeshProUGUI textneededXP;            //reference set in editor
-
-
-
+    /// <summary>
+    /// When the script instance is loaded, create a new levelsystem from the LevelSystem script.
+    /// Assign the static playerskillsystem this instance.
+    /// </summary>
     private void Awake()
     {
         playerlevel = new LevelSystem(); // Create new LevelSystem for the player
         playerskillsystem = this;
     }
 
+    /// <summary>
+    /// At the start set the LevelUI and the ExperienceUI to its correct values.
+    /// </summary>
     private void Start() {
-        textCurrentXP.text = playerlevel.getExp().ToString();
-        textCurrentLevel.text = playerlevel.getLevel().ToString();
-        //textneededXP.text = playerlevel.getExpToLevelUp().ToString();
+        textCurrentXP.text = playerlevel.GetExp().ToString();
+        textCurrentLevel.text = playerlevel.GetLevel().ToString();
     }
 
+    /// <summary>
+    /// Updates the LevelUI and the ExperienceUI.
+    /// </summary>
     public void updateLevelUI()
     {
-        textCurrentXP.text = playerlevel.getExp().ToString();
-        textCurrentLevel.text = playerlevel.getLevel().ToString();
+        textCurrentXP.text = playerlevel.GetExp().ToString();
+        textCurrentLevel.text = playerlevel.GetLevel().ToString();
     }
     
+    /// <summary>
+    /// To be deleted. ONLY FOR TESTING PURPOSES.
+    /// </summary>
+    /// <param name="other">Gets the colliding gameobject.</param>
     private void OnTriggerEnter(Collider other)
     {
         // EXP Tiktak VORÜBERGEHENDER PLATZHALTER
         if (other.gameObject.tag == "exp") 
         {
             playerlevel.AddExp(150);
-            textCurrentXP.text = playerlevel.getExp().ToString();
-            textCurrentLevel.text = playerlevel.getLevel().ToString();
+            textCurrentXP.text = playerlevel.GetExp().ToString();
+            textCurrentLevel.text = playerlevel.GetLevel().ToString();
         }
     }
 
+    /// <summary>
+    /// Returns the current amount of skillpoints.
+    /// </summary>
+    /// <returns>The current amount of skillpoints.</returns>
     public int ReturnSp() // Return Skillpoints
     {
-        return playerlevel.getSP();
+        return playerlevel.GetSp();
     }
 
+    /// <summary>
+    /// Plays the visual effect for level up at the players position.
+    /// </summary>
     public void PlayLvlUpEffect()
     {
         var newLvlUpEffect = Instantiate(lvlupeffect, transform.position + (Vector3.up * 0.35f), transform.rotation * Quaternion.Euler (-90f, 0f, 0f));
         newLvlUpEffect.transform.parent = gameObject.transform;
     }
 
+    /// <summary>
+    /// Starts the cooldown for spells.
+    /// </summary>
     private void CooldownStart() // Starting the cooldown of spells
     {
         StartCoroutine(CooldownCoroutine());
     }
 
+    /// <summary>
+    /// Sets the boolean "cooldown" to its correct status after a certain time has passed.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CooldownCoroutine() // Cooldown of spells
     {
-        _cooldown = false;
+        cooldown = false;
         yield return new WaitForSeconds(spellCooldown);
-        _cooldown = true;
+        cooldown = true;
     }
 
-    public void ManageHealth1()
-    {
-        playerattributes.playerAttributes[0].totalAttributValue.TotalAttributeValue += (20 * (skillTree.skillLevels[3] + 1));
-    }
-    
-    public void ManageMana1()
-    {
-        playerattributes.playerAttributes[2].totalAttributValue.TotalAttributeValue += (20 * (skillTree.skillLevels[4] + 1));
-    }
-    
+    /// <summary>
+    /// Increases the mana regeneration speed when called.
+    /// </summary>
     public void ManageMana2()
     {
         playerattributes.manaRegenerationSpeed += 5;
     }
-    
-    public void ManageStamina1()
-    {
-        playerattributes.playerAttributes[1].totalAttributValue.TotalAttributeValue += (20 * (skillTree.skillLevels[5] + 1));
-    }
-    
+
+    /// <summary>
+    /// Increases the stamina regeneration speed when called.
+    /// </summary>
     public void ManageStamina2()
     {
         playerattributes.staminaRegenerationSpeed += 5;
     }
 
-    private void Castfire() // Cast FireSpells
+    /// <summary>
+    /// Checks what level the fire skills currently have and instantiates the according fire spell.
+    /// </summary>
+    private void CastFire()
     {
         if (skillTree.skillLevels[12] > 0)
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 25)) return;
             playerattributes.currentMana -= 25;
             var newfireball3 = Instantiate(fire3, transform.position + (transform.forward * 10),
@@ -132,7 +147,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else if (skillTree.skillLevels[6] > 0)
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 20)) return;
             playerattributes.currentMana -= 20;
             var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
@@ -141,7 +156,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 15)) return;
             playerattributes.currentMana -= 15;
             var newfireball1 = Instantiate(fire1, spawner.position, transform.rotation);
@@ -151,11 +166,14 @@ public class PlayerSkillsystem : MonoBehaviour
         }
     } 
     
-    private void Castice() // Cast IceSpells
+    /// <summary>
+    /// Checks what level the ice skills currently have and instantiates the according ice spell.
+    /// </summary>
+    private void CastIce() // Cast IceSpells
     {
         if (skillTree.skillLevels[13] > 0)
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 25)) return;
             playerattributes.currentMana -= 25;
             var newice3 = Instantiate(ice3, transform.position+(transform.forward*10)+(Vector3.up*10f), transform.rotation * Quaternion.Euler (90f, 0f, 0f));
@@ -164,7 +182,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else if (skillTree.skillLevels[7] > 0)
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 20)) return;
             playerattributes.currentMana -= 20;
             var newice2 = Instantiate(ice2, transform.position + (transform.forward * 2), transform.rotation);
@@ -173,7 +191,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 15)) return;
             playerattributes.currentMana -= 15;
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
@@ -183,11 +201,14 @@ public class PlayerSkillsystem : MonoBehaviour
         }
     }
 
-    private void Castearth() // Cast EarthSpells
+    /// <summary>
+    /// Checks what level the earth skills currently have and instantiates the according earth spell.
+    /// </summary>
+    private void CastEarth() // Cast EarthSpells
     {
         if (skillTree.skillLevels[14] > 0)
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 25)) return;
             playerattributes.currentMana -= 25;
             var newearth3 = Instantiate(earth3, transform.position, transform.rotation);
@@ -199,7 +220,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else if (skillTree.skillLevels[8] > 0)
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 20)) return;
             playerattributes.currentMana -= 20;
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
@@ -208,7 +229,7 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else
         {
-            if (!_cooldown) return;
+            if (!cooldown) return;
             if (!(playerattributes.currentMana >= 15)) return;
             playerattributes.currentMana -= 15;
             var newearth1 = Instantiate(earth1, transform.position, transform.rotation);
@@ -217,21 +238,24 @@ public class PlayerSkillsystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Whenever RMB (Right Mouse Button // Fire2) is pressed check which spellbook is equiped and cast the according spell.
+    /// </summary>
     private void Update()
     {
-        if (Input.GetButtonDown("Fire2")) // Casting FireSpell when pressing RMB
+        if (Input.GetButtonDown("Fire2")) 
         {
             if (playerattributes.fireKnowladgeEquiped)
             {
-                Castfire(); 
+                CastFire(); 
             }
             if (playerattributes.iceKnowladgeEquiped)
             {
-                Castice();
+                CastIce();
             }
             if (playerattributes.earthKnowladgeEquiped)
             {
-                Castearth();
+                CastEarth();
             }
         }
     }

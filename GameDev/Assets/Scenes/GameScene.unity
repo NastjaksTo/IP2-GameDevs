@@ -52166,6 +52166,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1755168004}
     - target: {fileID: 8610260360845128631, guid: 3f27081f98228d8448eb11f33c2fb728, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 1755168004}
+    - target: {fileID: 8610260360845128631, guid: 3f27081f98228d8448eb11f33c2fb728, type: 3}
       propertyPath: combatsystem
       value: 
       objectReference: {fileID: 1431297683}
@@ -53562,15 +53566,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2540153280477709492}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1001fe40a30bf640943edfd69869d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 1364778345}
   anim: {fileID: 8903957217500765149}
-  combatsystem: {fileID: 0}
-  playerattributes: {fileID: 0}
+  combatsystem: {fileID: 1431297683}
+  playerattributes: {fileID: 1364778335}
   healthBar: {fileID: 0}
   textHealthPoints: {fileID: 0}
   currentHealth: 1000
