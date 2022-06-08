@@ -5,7 +5,7 @@ using StarterAssets;
 using UnityEngine;
 using TMPro;
 using static SkillTree;
-
+using static SpellCooldown;
 
 public class PlayerSkillsystem : MonoBehaviour
 {
@@ -27,7 +27,7 @@ public class PlayerSkillsystem : MonoBehaviour
     
     public Transform spawner;                               // Reference to the position where spells spawn.
     
-    private float spellCooldown = 1f;                       // Float to save the time for the spell cooldown.
+    private int spellCooldown = 5;                       // Float to save the time for the spell cooldown.
     private bool cooldown = true;                           // Boolean to save the status of the current cooldown.
 
     public GameObject lvlupeffect;                          // Reference to the level up visual effect.
@@ -143,6 +143,7 @@ public class PlayerSkillsystem : MonoBehaviour
             var newfireball3 = Instantiate(fire3, transform.position + (transform.forward * 10),
                 transform.rotation * Quaternion.Euler(0f, 180f, 0f));
             Destroy(newfireball3, 2);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
         else if (skillTree.skillLevels[6] > 0)
@@ -152,6 +153,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerattributes.currentMana -= 20;
             var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
             Destroy(newfireball2, 2);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
         else
@@ -162,6 +164,7 @@ public class PlayerSkillsystem : MonoBehaviour
             var newfireball1 = Instantiate(fire1, spawner.position, transform.rotation);
             newfireball1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 20f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newfireball1, 2);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
     } 
@@ -178,6 +181,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerattributes.currentMana -= 25;
             var newice3 = Instantiate(ice3, transform.position+(transform.forward*10)+(Vector3.up*10f), transform.rotation * Quaternion.Euler (90f, 0f, 0f));
             Destroy(newice3, 6);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
         else if (skillTree.skillLevels[7] > 0)
@@ -187,6 +191,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerattributes.currentMana -= 20;
             var newice2 = Instantiate(ice2, transform.position + (transform.forward * 2), transform.rotation);
             Destroy(newice2, 3);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
         else
@@ -197,6 +202,7 @@ public class PlayerSkillsystem : MonoBehaviour
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
             newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 40f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newice1, 2);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
     }
@@ -216,6 +222,7 @@ public class PlayerSkillsystem : MonoBehaviour
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth3, 10);
             Destroy(newearth2, 20);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
         else if (skillTree.skillLevels[8] > 0)
@@ -225,6 +232,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerattributes.currentMana -= 20;
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth2, 20);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
         else
@@ -234,6 +242,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerattributes.currentMana -= 15;
             var newearth1 = Instantiate(earth1, transform.position, transform.rotation);
             Destroy(newearth1, 20);
+            spellcooldown.UseSpell(spellCooldown);
             CooldownStart();
         }
     }
@@ -247,7 +256,7 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (playerattributes.fireKnowladgeEquiped)
             {
-                CastFire(); 
+                CastFire();
             }
             if (playerattributes.iceKnowladgeEquiped)
             {

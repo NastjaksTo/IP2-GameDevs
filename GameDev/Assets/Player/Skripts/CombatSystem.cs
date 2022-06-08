@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static SkillTree;
+using static PotionCooldown;
 
 public class CombatSystem : MonoBehaviour {
     public Animator _anim;
@@ -159,6 +160,7 @@ public class CombatSystem : MonoBehaviour {
             potionsUI.text = $"{potions}/{maxpotions}";
             applypotion(100 * (1 + skillTree.skillLevels[9]));
             canusepotion = false;
+            potioncooldown.UsePotion(5);
             StartCoroutine(potionCooldown());
         }
 
