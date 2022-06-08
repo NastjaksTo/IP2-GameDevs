@@ -212,7 +212,6 @@ public class PlayerSkillsystem : MonoBehaviour
             if (!(playerattributes.currentMana >= 25)) return;
             playerattributes.currentMana -= 25;
             var newearth3 = Instantiate(earth3, transform.position, transform.rotation);
-            newearth3.transform.parent = gameObject.transform;
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth3, 10);
             Destroy(newearth2, 20);
