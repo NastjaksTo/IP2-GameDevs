@@ -66,11 +66,6 @@ public class CombatSystem : MonoBehaviour {
         playerMovement._canMove = true;
     }
     
-    IEnumerator potionCooldown() {
-        yield return new WaitForSeconds(5f);
-        canusepotion = true;
-    }
-    
     private IEnumerator BecomeTemporarilyInvincible()
     {
         Debug.Log("Player turned invincible!");
@@ -153,15 +148,13 @@ public class CombatSystem : MonoBehaviour {
             playerattributes.currentStamina -= 20;
         }
 
-        if (Input.GetKeyDown(KeyCode.G) && potions > 0 && canusepotion)
+        if (Input.GetKeyDown(KeyCode.G) && potions > 0 && !potioncooldown.isCooldown)
         {
             PlayPotionEffect();
             potions--;
             potionsUI.text = $"{potions}/{maxpotions}";
             applypotion(100 * (1 + skillTree.skillLevels[9]));
-            canusepotion = false;
             potioncooldown.UsePotion(5);
-            StartCoroutine(potionCooldown());
         }
 
     }

@@ -9,7 +9,7 @@ public class PotionCooldown : MonoBehaviour
     [SerializeField] private Image imageCooldown;
     [SerializeField] private TMP_Text textCooldown;
 
-    [SerializeField] private bool isCooldown = false;
+    public bool isCooldown;
     [SerializeField] private float cooldownTime = 10f;
     [SerializeField] private float cooldownTimer = 5f;
 
@@ -17,6 +17,7 @@ public class PotionCooldown : MonoBehaviour
 
     private void Awake()
     {
+        isCooldown = false;
         potioncooldown = this;
     }
 
