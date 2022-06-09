@@ -96,25 +96,6 @@ public class PlayerSkillsystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts the cooldown for spells.
-    /// </summary>
-    /*private void CooldownStart() // Starting the cooldown of spells
-    {
-        StartCoroutine(CooldownCoroutine());
-    }*/
-
-    /// <summary>
-    /// Sets the boolean "cooldown" to its correct status after a certain time has passed.
-    /// </summary>
-    /// <returns></returns>
-    /*private IEnumerator CooldownCoroutine() // Cooldown of spells
-    {
-        cooldown = false;
-        yield return new WaitForSeconds(spellCooldown);
-        cooldown = true;
-    }*/
-
-    /// <summary>
     /// Increases the mana regeneration speed when called.
     /// </summary>
     public void ManageMana2()
