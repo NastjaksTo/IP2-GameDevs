@@ -41,7 +41,7 @@ public class BossGolemFire : MonoBehaviour
         ps = GetComponentInChildren<ParticleSystem>();
         spawnpoint = this.transform.position;
         attackSwitch = 11;
-        attackSwitchRange = 8;
+        attackSwitchRange = 1;
         timer = 0.0f;
         timeToChangeAttack = 1.5f;
         doDamage = false;
@@ -82,22 +82,23 @@ public class BossGolemFire : MonoBehaviour
                     timer = 0;
                 }
 
-                if (attackSwitchRange < 5)
-                {
-                    navMeshAgent.speed = 0;
-                    animator.SetBool("Walk", false);
-                    animator.SetTrigger("Water Attack");
-                }
-                if (attackSwitchRange > 5 && attackSwitchRange <= 10)
+                if (attackSwitchRange <= 5)
                 {
                     navMeshAgent.speed = 5;
                     animator.SetBool("Walk", true);
                 }
-                if (attackSwitchRange > 10)
+
+                if (attackSwitchRange == 6)
                 {
-                    navMeshAgent.speed = 2;
+                    navMeshAgent.speed = 0;
                     animator.SetBool("Walk", false);
-                    animator.SetTrigger("Fly and Water");
+                    animator.SetTrigger("rangedSlash");
+                }
+
+                if (attackSwitchRange == 7)
+                {
+                    navMeshAgent.speed = 5;
+                    animator.SetBool("Magic", true);
                 }
             }
         }
@@ -105,11 +106,6 @@ public class BossGolemFire : MonoBehaviour
         {
             navMeshAgent.speed = 5;
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Basic Attack");
-            animator.ResetTrigger("Claw Attack");
-            animator.ResetTrigger("Water Attack");
-            animator.ResetTrigger("Fly and Water");
-            animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
@@ -137,19 +133,19 @@ public class BossGolemFire : MonoBehaviour
 
             if (attackSwitch < 5)
             {
-                animator.SetTrigger("Basic Attack");
+                animator.SetTrigger("BottomSlash");
                 idle = true;
             }
 
             if (attackSwitch >= 5 && attackSwitch <= 10)
             {
-                animator.SetTrigger("Claw Attack");
+                animator.SetTrigger("SlashHit");
                 idle = true;
             }
 
             if (attackSwitch > 10)
             {
-                animator.SetTrigger("Scream");
+                animator.SetTrigger("Stomp");
                 idle = true;
             }
         }
@@ -160,12 +156,6 @@ public class BossGolemFire : MonoBehaviour
         //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
-            {
-                health = health - 20;
-                animator.SetTrigger("Get Hit");
-            }
-
             if (health <= 0)
             {
                 animator.SetTrigger("Die");
@@ -202,25 +192,20 @@ public class BossGolemFire : MonoBehaviour
 
     private void changeAttack()
     {
-        attackSwitch = Random.Range(1, 12);
-        animator.ResetTrigger("Basic Attack");
-        animator.ResetTrigger("Claw Attack");
-        animator.ResetTrigger("Scream");
+        attackSwitch = Random.Range(1, 8);
     }
 
     private void changeAttackRange()
     {
         attackSwitchRange = Random.Range(1, 13);
-        animator.ResetTrigger("Water Attack");
-        animator.ResetTrigger("Fly and Water");
     }
 
-    private void startEarthAttack()
+    private void startFireAttack()
     {
         ps.Play();
     }
 
-    private void stopEarthAttack()
+    private void stopFireAttack()
     {
         ps.Stop();
     }
