@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3102722136559894041}
   - component: {fileID: 2062876010884084156}
   - component: {fileID: 4270601588142982518}
+  - component: {fileID: -4491261465123888747}
   m_Layer: 0
   m_Name: A_Swamp_Clif_01a_PRE
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-4491261465123888747
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325200962493670563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8145490856058209323, guid: c1d6d47705dcb6b418de57f21229ce1d, type: 3}
