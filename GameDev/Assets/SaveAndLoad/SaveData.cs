@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using static SkillTree;
+using Cursor = UnityEngine.Cursor;
 
 
 public class SaveData : MonoBehaviour
@@ -27,6 +28,10 @@ public class SaveData : MonoBehaviour
     public bool loaded;                             // Boolean which decides whether or not to load the game.
     public int[] skilllevelsData;                   // Integer array which holds the skill levels.
 
+    private bool saving;                            // Boolean for SaveUI to operate when saving.
+    public GameObject savingUI;                     // Reference to the SaveUI Icon.
+    public GameObject savingText;                   // Reference to the SaveUI Text.
+    
     /// <summary>
     /// When the script instance is loaded, get the scenetransfer gameobject, assign the loaded boolean and load the game if loaded is true.
     /// Otherwise clear the inventory and the equipment.
@@ -46,6 +51,8 @@ public class SaveData : MonoBehaviour
             inventory.Clear();
             equipment.Clear();
         }
+
+        
     }
 
     /// <summary>
@@ -101,6 +108,7 @@ public class SaveData : MonoBehaviour
     /// </summary>
     public void SaveGame() {
         Debug.Log("Saving..");
+        StartCoroutine(Saving());
         skilllevelsData = new int[18];
         for (int i = 0; i <= 17; i++) {
             skilllevelsData[i] = skillTree.skillLevels[i];
@@ -111,7 +119,25 @@ public class SaveData : MonoBehaviour
     }
 
     /// <summary>
+    /// Manages the SaveUI the bools to tell wheter or not the SaveUI should be rotating.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Saving()
+    {
+        saving = true;
+        savingUI.transform.eulerAngles = new Vector3(0, 0, 0);
+        savingUI.SetActive(true);
+        savingText.SetActive(true);
+        yield return new WaitForSecondsRealtime(5f);
+        saving = false;
+        savingUI.SetActive(false);
+        savingText.SetActive(false);
+    }
+
+    /// <summary>
     /// Whenever the player reaches an checkpoint and presses "E" the SkillTree interface opens and the game is saved.
+    ///
+    /// Manges the SaveUI to rotate while saving.
     /// </summary>
     private void Update() 
     {
@@ -128,6 +154,10 @@ public class SaveData : MonoBehaviour
                 combatsystem.refillPotions();
                 uimanager.OpenSkillUi();
             }
+        }
+        if (saving)
+        {
+            savingUI.transform.eulerAngles -= new Vector3(0, 0, (Time.deltaTime * 40));
         }
     }
 }

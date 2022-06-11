@@ -25,6 +25,7 @@ namespace GameUI.Scripts
         public void Start()
         {
             scenetransfer = GameObject.FindGameObjectWithTag("SceneTransfer");
+            Cursor.lockState = CursorLockMode.None;
         }
 
         /// <summary>
