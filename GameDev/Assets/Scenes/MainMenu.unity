@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7038,6 +7038,14 @@ PrefabInstance:
       propertyPath: m_text
       value: new Game
       objectReference: {fileID: 0}
+    - target: {fileID: 5950951006601870845, guid: 7890e50b2929ed349b8ca7c2ffb5ed2f, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
+    - target: {fileID: 5950951006601870845, guid: 7890e50b2929ed349b8ca7c2ffb5ed2f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 460195167016757540, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
     - target: {fileID: 5950951006601870845, guid: 7890e50b2929ed349b8ca7c2ffb5ed2f, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
