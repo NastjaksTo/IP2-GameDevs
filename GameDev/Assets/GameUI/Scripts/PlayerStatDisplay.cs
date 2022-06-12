@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using GameUI;
 using GameUI.Scripts;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
+using System;
 
 /// <summary>
 /// Display the playerstats
@@ -14,40 +16,34 @@ public class PlayerStatDisplay : MonoBehaviour
     public UiScreenManager screenManager;
 
     public Image healthBar;
-    private float maxHealth;
-    private float currentHealth;
-    
-    public Image staminaBar;
-    private float maxStamina;
-    private float currentStamina;
+    public TextMeshProUGUI HealthText;
 
+    public Image staminaBar;
+    public TextMeshProUGUI StaminaText;
 
     public Image manaBar;
-    private float maxMana;
-    private float currentMana;
+    public TextMeshProUGUI ManaText;
+
 
 
     /// <summary>
     /// Update each frame the values to display it. Open the Death screen when the player have no healthpoint.
     /// </summary>
-    void Update()
-    {
-        maxHealth = player.maxHealth;
-        currentHealth = player.currentHealth;
-        healthBar.fillAmount = currentHealth / maxHealth;
+    void Update() {
+    
+        healthBar.fillAmount = player.currentHealth / player.maxHealth;
+        HealthText.text = ManaText.text = Math.Round((Decimal)player.currentHealth, 0, MidpointRounding.AwayFromZero).ToString();
 
-        if (currentHealth == 0) {
+        if (player.currentHealth == 0) {
             Debug.Log("tot");
             screenManager.OpenDeathUi();
         }
+       
+        staminaBar.fillAmount = player.currentStamina / player.maxStamina;
+        StaminaText.text = Math.Round((Decimal)player.currentStamina, 0, MidpointRounding.AwayFromZero).ToString();
 
-        maxStamina = player.maxStamina;
-        currentStamina = player.currentStamina;
-        staminaBar.fillAmount = currentStamina / maxStamina;
-
-        maxMana = player.maxMana;
-        currentMana = player.currentMana;
-        manaBar.fillAmount = currentMana / maxMana;
+        manaBar.fillAmount = player.currentMana / player.maxMana;
+        ManaText.text = Math.Round((Decimal)player.currentMana, 0, MidpointRounding.AwayFromZero).ToString();
 
     }
 }
