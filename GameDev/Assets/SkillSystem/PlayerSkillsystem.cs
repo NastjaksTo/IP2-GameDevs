@@ -60,6 +60,7 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         textCurrentXP.text = playerlevel.GetExp().ToString();
         textCurrentLevel.text = playerlevel.GetLevel().ToString();
+
     }
     
     /// <summary>

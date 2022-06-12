@@ -21,7 +21,7 @@ public class LevelSystem
         level = 1;
         exp = 0;
         skillpoints = 100;
-        expToLevelUp = 1;
+        expToLevelUp = 500;
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public class LevelSystem
             level++;
             skillpoints++;
             exp -= expToLevelUp;
-            expToLevelUp += expToLevelUp;
+            expToLevelUp += expToLevelUp * 0.5f;
             playerskillsystem.PlayLvlUpEffect();
             skillTree.UpdateAllSkillUI();
         }
@@ -67,7 +67,7 @@ public class LevelSystem
     /// <returns>The current experience of the player needed to level up.</returns>
     public float GetExpToLevelUp() // Return currently needed expierence in order to level up
     {
-        return expToLevelUp-exp;
+        return expToLevelUp;
     }
     
     /// <summary>

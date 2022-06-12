@@ -6,9 +6,10 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 using System;
+using static PlayerSkillsystem; 
 
 /// <summary>
-/// Display the playerstats
+/// Display the playerstats (nur Balken)
 /// </summary>
 public class PlayerStatDisplay : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class PlayerStatDisplay : MonoBehaviour
     public Image staminaBar;
     public TextMeshProUGUI StaminaText;
 
+    public Image XPBar;
+    public TextMeshProUGUI XPBarText;
+
     public Image manaBar;
     public TextMeshProUGUI ManaText;
 
@@ -32,7 +36,12 @@ public class PlayerStatDisplay : MonoBehaviour
     void Update() {
     
         healthBar.fillAmount = player.currentHealth / player.maxHealth;
-        HealthText.text = ManaText.text = Math.Round((Decimal)player.currentHealth, 0, MidpointRounding.AwayFromZero).ToString();
+        HealthText.text = Math.Round((Decimal)player.currentHealth, 0, MidpointRounding.AwayFromZero).ToString();
+
+
+        XPBar.fillAmount = playerskillsystem.playerlevel.GetExp() / playerskillsystem.playerlevel.GetExpToLevelUp();
+        XPBarText.text = Math.Round((Decimal)playerskillsystem.playerlevel.GetExp(), 0, MidpointRounding.AwayFromZero).ToString();
+
 
         if (player.currentHealth == 0) {
             Debug.Log("tot");
