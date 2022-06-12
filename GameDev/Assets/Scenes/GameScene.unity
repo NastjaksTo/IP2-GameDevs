@@ -11571,7 +11571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 082a61bfa83ce694f8fcca35a3da7a67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9e1d5f0e1af03e448a9dd6f8bddc250, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -80872,6 +80872,23 @@ MonoBehaviour:
   npcTalkUI: {fileID: 1791133729}
   questCompleteUI: {fileID: 1573045758}
   completionText: {fileID: 686245082}
+--- !u!114 &8535484949888158923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431297673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1070becf38d2188468d596c4a0d5bf90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellUI: {fileID: 426502308}
+  fire: {fileID: 21300000, guid: 082a61bfa83ce694f8fcca35a3da7a67, type: 3}
+  ice: {fileID: 21300000, guid: 65e5840a1e452c54eae3c45c82e8b385, type: 3}
+  earth: {fileID: 21300000, guid: 68354baf52ddcaf4092a8e789f6a31f7, type: 3}
+  empty: {fileID: 21300000, guid: a9e1d5f0e1af03e448a9dd6f8bddc250, type: 3}
 --- !u!4 &8554429673635188775
 Transform:
   m_ObjectHideFlags: 0

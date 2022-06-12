@@ -6,6 +6,7 @@ using StarterAssets;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static SkillTree;
 using static PotionCooldown;
 
@@ -115,7 +116,10 @@ public class CombatSystem : MonoBehaviour {
 
         playerattributes.currentHealth -= amount; //ARMOR DMG REDUCTION HERE
 
-        // DIE FUNCTION HERE
+        if (playerattributes.currentHealth <= 0)
+        {
+            
+        }
     }
     
 

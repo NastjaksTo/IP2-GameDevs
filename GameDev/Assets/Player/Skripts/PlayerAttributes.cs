@@ -5,13 +5,17 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 using static SkillTree;
+using static PlayerDisplay;
 
 
 /// <summary>
 /// Hold all player attributes. Set, change and show them. And puts the armor on the player.
 /// </summary>
-public class PlayerAttributes : MonoBehaviour {
+public class PlayerAttributes : MonoBehaviour
+{
 
+    public static PlayerAttributes playerAttributesScript;
+    
     public InventoryObject playerEquipment;     //reference to the EquipObject from the player. Referenz set in editor
     public Attribute[] playerAttributes;        //array of the attributes that the player have. Attributes set in editor
 
@@ -47,6 +51,8 @@ public class PlayerAttributes : MonoBehaviour {
     public TextMeshProUGUI textArmor;                //reference set in editor
     public TextMeshProUGUI textPhysicalDamage;       //reference set in editor
 
+    private void Awake() => playerAttributesScript = this;  
+    
     /// <summary>
     /// loob through all attributes of the player and set the parent.
     /// loop  through the equipment and set the funktioncs
@@ -311,6 +317,7 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
+                    playerDisplay.UpdateSpellUI();
                 } else {
                     fireKnowladgeEquiped = false;
                 }
@@ -319,6 +326,7 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.IceKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     iceKnowladgeEquiped = true;
+                    playerDisplay.UpdateSpellUI();
                 } else {
                     iceKnowladgeEquiped = false;
                 }
@@ -327,10 +335,11 @@ public class PlayerAttributes : MonoBehaviour {
             if (playerAttributes[i].type == Attributes.EarthKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     earthKnowladgeEquiped = true;
+                    playerDisplay.UpdateSpellUI();
                 } else {
                     earthKnowladgeEquiped = false;
+                    playerDisplay.UpdateSpellUI();
                 }
-
             }
         }
     }
