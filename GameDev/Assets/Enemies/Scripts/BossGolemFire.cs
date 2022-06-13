@@ -179,15 +179,19 @@ public class BossGolemFire : MonoBehaviour
 
     private void getDamage()
     {
+        if (health.Hit)
+        {
             if (health.Health <= health.Health / 2)
             {
                 phase2 = true;
             }
-            if (health.Health <= 0)
+            if (health.Dead)
             {
                 animator.SetTrigger("Die");
+                navMeshAgent.enabled = false;
                 Destroy(gameObject, 5.0f);
             }
+        }
     }
 
     private void DoDamage()
