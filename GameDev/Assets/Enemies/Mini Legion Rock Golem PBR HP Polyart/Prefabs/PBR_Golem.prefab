@@ -500,10 +500,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 100
-  m_Height: 500
+  m_Radius: 99.99999
+  m_Height: 410.2749
   m_Direction: 0
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -44.862526, y: 0.0000012423471, z: -0.000006869411}
 --- !u!1 &1333540776615942
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +993,6 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1
-  m_Height: 4
+  m_Height: 3.882244
   m_Direction: 1
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Center: {x: 0, y: 2.058878, z: 0}

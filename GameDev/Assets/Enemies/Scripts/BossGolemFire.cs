@@ -24,6 +24,7 @@ public class BossGolemFire : MonoBehaviour
     private int damage;
     private int fireDamage;
     private int shotSpeed;
+    private bool phase2;
 
 
     [SerializeField]
@@ -63,6 +64,7 @@ public class BossGolemFire : MonoBehaviour
         fireDamage = 1;
         health = 500;
         shotSpeed = 20;
+        phase2 = false;
     }
     private void Update()
     {
@@ -178,6 +180,10 @@ public class BossGolemFire : MonoBehaviour
         //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (health <= health / 2)
+            {
+                phase2 = true;
+            }
             if (health <= 0)
             {
                 animator.SetTrigger("Die");
@@ -190,7 +196,14 @@ public class BossGolemFire : MonoBehaviour
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            if (!phase2)
+            {
+                player.currentHealth = (int)(player.currentHealth - damage);
+            }
+            if (phase2)
+            {
+                player.currentHealth = (int)(player.currentHealth - (damage * 2));
+            }
             doDamage = false;
         }
     }

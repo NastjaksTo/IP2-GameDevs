@@ -23,6 +23,7 @@ public class BossGolemSand : MonoBehaviour
     private int health;
     private int damage;
     private int earthDamage;
+    private bool phase2;
 
     public PlayerAttributes Player { get => player; set => player = value; }
     public int EarthDamage { get => earthDamage; set => earthDamage = value; }
@@ -53,6 +54,7 @@ public class BossGolemSand : MonoBehaviour
         damage = 20;
         earthDamage = 1;
         health = 500;
+        phase2 = false;
     }
     private void Update()
     {
@@ -169,6 +171,10 @@ public class BossGolemSand : MonoBehaviour
         //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (health <= health / 2)
+            {
+                phase2 = true;
+            }
             if (health <= 0)
             {
                 animator.SetTrigger("Die");
@@ -181,7 +187,14 @@ public class BossGolemSand : MonoBehaviour
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            if (!phase2)
+            {
+                player.currentHealth = (int)(player.currentHealth - damage);
+            }
+            if (phase2)
+            {
+                player.currentHealth = (int)(player.currentHealth - (damage * 2));
+            }
             doDamage = false;
         }
     }

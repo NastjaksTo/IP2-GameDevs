@@ -23,6 +23,7 @@ public class BossGolemIce : MonoBehaviour
     private int health;
     private int damage;
     private int iceDamage;
+    private bool phase2;
 
     public PlayerAttributes Player { get => player; set => player = value; }
     public int IceDamage { get => iceDamage; set => iceDamage = value; }
@@ -53,6 +54,7 @@ public class BossGolemIce : MonoBehaviour
         damage = 20;
         iceDamage = 1;
         health = 500;
+        phase2 = false;
     }
     private void Update()
     {
@@ -168,6 +170,10 @@ public class BossGolemIce : MonoBehaviour
         //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if(health <= health/2)
+            {
+                phase2 = true;
+            }
             if (health <= 0)
             {
                 animator.SetTrigger("Die");
@@ -180,7 +186,14 @@ public class BossGolemIce : MonoBehaviour
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            if (!phase2)
+            {
+                player.currentHealth = (int)(player.currentHealth - damage);
+            }
+            if (phase2)
+            {
+                player.currentHealth = (int)(player.currentHealth - (damage * 2));
+            }
             doDamage = false;
         }
     }

@@ -33,17 +33,17 @@ public class SaveData : MonoBehaviour
     public void Awake()
     {
         scenetransfer = GameObject.FindGameObjectWithTag("SceneTransfer");
-        //loaded = scenetransfer.GetComponent<SceneTransfer>().loaded;
+        loaded = scenetransfer.GetComponent<SceneTransfer>().loaded;
         if (loaded)
         {
             Invoke("Loadgame", 1f);
         }
         else
         {
-            //inf1.LoadInterface();
-            //inf2.LoadInterface();
-            //inventory.Clear();
-            //equipment.Clear();
+            inf1.LoadInterface();
+            inf2.LoadInterface();
+            inventory.Clear();
+            equipment.Clear();
         }
     }
 
