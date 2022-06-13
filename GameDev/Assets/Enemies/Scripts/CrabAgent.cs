@@ -18,6 +18,7 @@ public class CrabAgent : MonoBehaviour
     private float timer;
     private float timeToChangeAttack;
     private float endDefend;
+    private bool isdead;
 
     private float damage;
 
@@ -159,8 +160,9 @@ public class CrabAgent : MonoBehaviour
             }
 
 
-            if (health.Dead)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);

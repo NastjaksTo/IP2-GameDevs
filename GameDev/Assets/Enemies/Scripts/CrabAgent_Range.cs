@@ -15,6 +15,7 @@ public class CrabAgent_Range : MonoBehaviour
     private float shotSpeed;
     private float fireRate;
     private float damage;
+    private bool isdead;
 
     [SerializeField]
     private float level = 1;
@@ -120,8 +121,9 @@ public class CrabAgent_Range : MonoBehaviour
             }
         
 
-        if (health.Dead)
+        if (health.Dead && !isdead)
         {
+                isdead = true;
             animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);

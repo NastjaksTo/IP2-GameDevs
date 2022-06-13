@@ -17,6 +17,7 @@ public class GruntAgent : MonoBehaviour
     private float timer;
     private float timeToChangeAttack;
     private int attackRange;
+    private bool isdead;
 
     private float damage;
 
@@ -136,8 +137,9 @@ public class GruntAgent : MonoBehaviour
             }
 
 
-            if (health.Dead)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);

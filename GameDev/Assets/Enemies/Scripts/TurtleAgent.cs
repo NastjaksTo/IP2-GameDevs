@@ -19,6 +19,7 @@ public class TurtleAgent : MonoBehaviour
     private float endDefend;
     private bool defend;
     private bool doDamage;
+    private bool isdead;
 
     private int damage;
 
@@ -153,8 +154,9 @@ public class TurtleAgent : MonoBehaviour
             }
 
 
-            if (health.Dead)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);

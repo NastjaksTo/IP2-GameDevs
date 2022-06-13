@@ -21,6 +21,7 @@ public class BossGolemIce : MonoBehaviour
     private float timeToChangeAttack;
     private bool idle;
     private float attackRange;
+    private bool isdead;
 
     private int damage;
     private int iceDamage;
@@ -175,8 +176,9 @@ public class BossGolemIce : MonoBehaviour
             {
                 phase2 = true;
             }
-            if (health.Dead)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);

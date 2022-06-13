@@ -21,6 +21,7 @@ public class WaterDragonScript : MonoBehaviour
     private float timeToChangeAttack;
     private bool idle;
     private float attackRange;
+    private bool isdead;
 
     private int damage;
     private int waterDamage;
@@ -177,8 +178,9 @@ public class WaterDragonScript : MonoBehaviour
             }
 
 
-            if (health.Dead)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);

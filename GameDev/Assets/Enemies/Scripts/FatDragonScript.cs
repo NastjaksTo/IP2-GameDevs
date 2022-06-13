@@ -22,7 +22,8 @@ public class FatDragonScript : MonoBehaviour
     private bool idle;
     private float shotSpeed;
     private float attackRange;
-    
+    private bool isdead;
+
     private int damage;
 
     [SerializeField]
@@ -191,8 +192,9 @@ public class FatDragonScript : MonoBehaviour
             }
 
 
-            if (health.Dead)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
