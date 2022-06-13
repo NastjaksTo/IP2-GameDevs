@@ -8,7 +8,7 @@ public class EnemyHealthHandler : MonoBehaviour
 
     public int Health { get => health; set => health = value; }
 
-    private void getDamage(int damage)
+    public void getDamage(int damage)
     {
         health -= damage;
     }
