@@ -2720,7 +2720,7 @@ MonoBehaviour:
   questUi: {fileID: 1436753927}
   deathUi: {fileID: 1752935099}
   pauseMenuUi: {fileID: 1865817007}
-  pauseMenuConteinerUi: {fileID: 2070436839}
+  pauseMenuContainerUi: {fileID: 0}
   optionsMenuUI: {fileID: 1263847943}
   controlMenuUI: {fileID: 1208031007}
   savedata: {fileID: 0}
@@ -10552,8 +10552,13 @@ MonoBehaviour:
   player: {fileID: 1364778335}
   screenManager: {fileID: 228920681}
   healthBar: {fileID: 1635052077}
+  HealthText: {fileID: 0}
   staminaBar: {fileID: 104938808}
+  StaminaText: {fileID: 0}
+  XPBar: {fileID: 0}
+  XPBarText: {fileID: 0}
   manaBar: {fileID: 666750027}
+  ManaText: {fileID: 0}
 --- !u!114 &1045509359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10714,9 +10719,8 @@ MonoBehaviour:
   volumeTextValue: {fileID: 1287716919}
   volumeSlider: {fileID: 2068947363}
   defaultVolume: 0.5
-  newGameLevel: Level1
+  introGame: 
   scenetransfer: {fileID: 0}
-  noSavedGameDialog: {fileID: 0}
 --- !u!4 &1070468820
 Transform:
   m_ObjectHideFlags: 0
