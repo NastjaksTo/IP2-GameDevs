@@ -27,6 +27,7 @@ public class Weapon : MonoBehaviour
         {
             currentGo = other.gameObject;
             Debug.Log("hitting");
+            currentGo.GetComponent<EnemyHealthHandler>().getDamage(50);
         }
     }
 }
