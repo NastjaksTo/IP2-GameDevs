@@ -12,6 +12,7 @@ public class WaterDragonScript : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private ParticleSystem ps;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private bool doDamage;
     private int attackSwitch;
@@ -21,7 +22,6 @@ public class WaterDragonScript : MonoBehaviour
     private bool idle;
     private float attackRange;
 
-    private int health;
     private int damage;
     private int waterDamage;
 
@@ -40,6 +40,7 @@ public class WaterDragonScript : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
         ps = GetComponentInChildren<ParticleSystem>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         attackSwitch = 11;
         attackSwitchRange = 8;
@@ -51,12 +52,13 @@ public class WaterDragonScript : MonoBehaviour
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-       // rotationStand = Quaternion.Euler(new Vector3(70, -90, 0));
-       // rotationFly = Quaternion.Euler(new Vector3(0, -90, 0));
+        // rotationStand = Quaternion.Euler(new Vector3(70, -90, 0));
+        // rotationFly = Quaternion.Euler(new Vector3(0, -90, 0));
 
+        health.Health = 100;
         damage = 20;
         waterDamage = 1;
-        health = 100;
+
     }
     private void Update()
     {
@@ -168,13 +170,12 @@ public class WaterDragonScript : MonoBehaviour
         //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-                health = health - 20;
                 animator.SetTrigger("Get Hit");
             }
 
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);

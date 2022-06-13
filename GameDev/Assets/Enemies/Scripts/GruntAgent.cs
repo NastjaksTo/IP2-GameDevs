@@ -10,6 +10,7 @@ public class GruntAgent : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private bool doDamage;
     private int attackOrRoll;
@@ -18,7 +19,6 @@ public class GruntAgent : MonoBehaviour
     private int attackRange;
 
     private float damage;
-    private float health;
 
     [SerializeField]
     private float level = 1;
@@ -33,6 +33,7 @@ public class GruntAgent : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         attackOrRoll = Random.Range(1, 3);
         timer = 0.0f;
@@ -41,7 +42,7 @@ public class GruntAgent : MonoBehaviour
         fov.Radius = 15.0f;
         fov.Angle = 180.0f;
 
-        health = level * 50;
+        health.Health = 100;
         damage = level * 10;
         attackRange = 4;
     }
@@ -127,14 +128,12 @@ public class GruntAgent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-               
-                health = health - 20;
                 animator.SetTrigger("Take Damage");
             }
 
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 navMeshAgent.enabled = false;

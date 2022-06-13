@@ -10,6 +10,7 @@ public class TurtleAgent : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private float timer;
     private float timeToChangeAttack;
@@ -20,7 +21,7 @@ public class TurtleAgent : MonoBehaviour
     private bool doDamage;
 
     private int damage;
-    private int health;
+
 
     /// <summary>
     /// References set to all necessary Context
@@ -32,6 +33,7 @@ public class TurtleAgent : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         timer = 0.0f;
         timeToChangeAttack = 0.8f;
@@ -43,7 +45,7 @@ public class TurtleAgent : MonoBehaviour
         fov.Radius = 6.0f;
         fov.Angle = 100.0f;
 
-        health = 100;
+        health.Health = 100;
         damage = 10;
     }
 
@@ -143,13 +145,12 @@ public class TurtleAgent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-                health = health - 20;
                 animator.SetTrigger("GetHit");
             }
 
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);

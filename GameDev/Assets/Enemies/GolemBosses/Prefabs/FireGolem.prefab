@@ -4100,6 +4100,7 @@ GameObject:
   - component: {fileID: 4146515640862407743}
   - component: {fileID: 6462380630652344401}
   - component: {fileID: 838248441}
+  - component: {fileID: 9002795947467656539}
   m_Layer: 30
   m_Name: Golem_Redrock_S6
   m_TagString: Untagged
@@ -4315,6 +4316,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9002795947467656539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2498550777443170130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2537337438746771002
 GameObject:
   m_ObjectHideFlags: 0

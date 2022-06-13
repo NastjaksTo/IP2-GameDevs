@@ -12,6 +12,7 @@ public class FatDragonScript : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private bool doDamage;
     private int attackSwitch;
@@ -22,7 +23,6 @@ public class FatDragonScript : MonoBehaviour
     private float shotSpeed;
     private float attackRange;
     
-    private int health;
     private int damage;
 
     [SerializeField]
@@ -45,6 +45,7 @@ public class FatDragonScript : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         attackSwitch = 11;
         attackSwitchRange = 8;
@@ -57,8 +58,8 @@ public class FatDragonScript : MonoBehaviour
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
+        health.Health = 100;
         damage = 20;
-        health = 100;
     }
 
     /// <summary>
@@ -183,13 +184,12 @@ public class FatDragonScript : MonoBehaviour
         //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-                health = health - 20;
                 animator.SetTrigger("Get Hit");
             }
 
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);

@@ -10,6 +10,7 @@ public class CrabAgent : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private bool doDamage;
     private int attackOrRoll;
@@ -19,7 +20,6 @@ public class CrabAgent : MonoBehaviour
     private float endDefend;
 
     private float damage;
-    private float health;
 
     [SerializeField]
     private float level = 1;
@@ -33,6 +33,7 @@ public class CrabAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealthHandler>();
         fov = GetComponent<FoVScript>();
         spawnpoint = this.transform.position;
         attackOrRoll = Random.Range(1, 4);
@@ -44,8 +45,8 @@ public class CrabAgent : MonoBehaviour
         fov.Radius = 15.0f;
         fov.Angle = 180.0f;
 
-        health = level * 50;
         damage = level * 10;
+        health.Health = 100;
     }
 
     /// <summary>
@@ -146,20 +147,19 @@ public class CrabAgent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
                 if (defend)
                 {
-                    health = health - 10;
+                    health.Health += 5;
                 }
                 else
                 {
-                    health = health - 20;
                     animator.SetTrigger("Take Damage");
                 }
             }
 
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 navMeshAgent.enabled = false;

@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 1386743816}
   - component: {fileID: 1928561542}
   - component: {fileID: 450374088}
+  - component: {fileID: 2135279004467307564}
   m_Layer: 30
   m_Name: Polygonal Metalon Red
   m_TagString: Untagged
@@ -322,6 +323,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCollider: {fileID: 1386421592}
   characterBlockerCollider: {fileID: 739495817}
+--- !u!114 &2135279004467307564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128758269040250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130806907750044
 GameObject:
   m_ObjectHideFlags: 0

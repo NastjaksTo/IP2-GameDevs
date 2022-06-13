@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BossGolemFire : MonoBehaviour
 {
@@ -8,9 +9,10 @@ public class BossGolemFire : MonoBehaviour
     private PlayerAttributes player;
     private GameObject playerModel;
     private Animator animator;
-    private UnityEngine.AI.NavMeshAgent navMeshAgent;
+    private NavMeshAgent navMeshAgent;
     private ParticleSystem ps;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private bool doDamage;
     private int attackSwitch;
@@ -20,7 +22,6 @@ public class BossGolemFire : MonoBehaviour
     private bool idle;
     private float attackRange;
 
-    private int health;
     private int damage;
     private int fireDamage;
     private int shotSpeed;
@@ -49,6 +50,7 @@ public class BossGolemFire : MonoBehaviour
         navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         fov = GetComponent<FoVScript>();
         ps = GetComponentInChildren<ParticleSystem>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         attackSwitch = 11;
         attackSwitchRange = 1;
@@ -60,9 +62,9 @@ public class BossGolemFire : MonoBehaviour
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
+        health.Health = 500;
         damage = 20;
         fireDamage = 1;
-        health = 500;
         shotSpeed = 20;
         phase2 = false;
     }
@@ -180,11 +182,11 @@ public class BossGolemFire : MonoBehaviour
         //OnCollisionEnter -- if Player => getDamage
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health <= health / 2)
+            if (health.Health <= health.Health / 2)
             {
                 phase2 = true;
             }
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);

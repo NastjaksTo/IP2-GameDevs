@@ -9,8 +9,8 @@ public class CrabAgent_Range : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
-    private int health;
     private GameObject projectileSpawnpoint;
     private float shotSpeed;
     private float fireRate;
@@ -32,10 +32,12 @@ public class CrabAgent_Range : MonoBehaviour
         fov = GetComponent<FoVScript>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
-        health = 100;
         shotSpeed = 20.0f;
         fireRate = 5.0f;
+
+        health.Health = 100;
         damage = level * 10;
         fov.Radius = 25.0f;
         fov.Angle = 180.0f;
@@ -110,13 +112,12 @@ public class CrabAgent_Range : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-                health = health - 20;
                 animator.SetTrigger("Take Damage");
             }
 
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 navMeshAgent.enabled = false;

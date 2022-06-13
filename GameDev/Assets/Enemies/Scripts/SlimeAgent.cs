@@ -10,6 +10,7 @@ public class SlimeAgent : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private float timer;
     private float timeToChangeAttack;
@@ -19,7 +20,6 @@ public class SlimeAgent : MonoBehaviour
     private int ID;
     private bool doDamage;
 
-    private int health;
     private int damage;
 
     [SerializeField]
@@ -35,6 +35,7 @@ public class SlimeAgent : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         timer = 0.0f;
         timeToChangeAttack = 0.8f;
@@ -45,8 +46,8 @@ public class SlimeAgent : MonoBehaviour
         fov.Radius = 6.0f;
         fov.Angle = 100.0f;
 
-        health = fullHealth;
-        fullHealth = 100;
+        health.Health = 100;
+        fullHealth = health.Health;
         damage = 10;
 
     }
@@ -130,13 +131,12 @@ public class SlimeAgent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-                health = health - 20;
                 animator.SetTrigger("GetHit");
             }
 
-            if (health <= 0)
+            if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);
@@ -193,7 +193,7 @@ public class SlimeAgent : MonoBehaviour
             Destroy(gameObject);
             O.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
             fullHealth = 150;
-            health = fullHealth;
+            health.Health = fullHealth;
         }
     }
 }
