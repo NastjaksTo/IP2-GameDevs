@@ -98,7 +98,7 @@ public class TurtleAgent : MonoBehaviour
     private void Attack()
     {
         animator.SetBool("Walk", false);
-        if (wichAttack == 1)
+        if (wichAttack <= 4)
         {
             animator.SetTrigger("Attack1");
             if (timer > timeToChangeAttack)
@@ -108,7 +108,7 @@ public class TurtleAgent : MonoBehaviour
             }
         }
 
-        if (wichAttack == 2)
+        if (wichAttack > 4)
         {
             animator.SetTrigger("Attack2");
             if (timer > timeToChangeAttack)
@@ -118,7 +118,7 @@ public class TurtleAgent : MonoBehaviour
             }
         }
 
-        if (wichAttack == 3)
+        if (wichAttack == 9)
         {
             defend = true;
             animator.SetBool("Defend", true);
@@ -185,7 +185,7 @@ public class TurtleAgent : MonoBehaviour
     /// </summary>
     private void changeAttack()
     {
-        wichAttack = Random.Range(1, 4);
+        wichAttack = Random.Range(1, 10);
         Debug.Log(wichAttack);
         animator.ResetTrigger("Attack1");
         animator.ResetTrigger("Attack2");

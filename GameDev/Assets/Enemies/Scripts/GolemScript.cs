@@ -40,7 +40,7 @@ public class GolemScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 5.0f;
+        attackRange = 8.0f;
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
