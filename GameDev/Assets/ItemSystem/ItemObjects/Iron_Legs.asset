@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
+  m_Name: Iron_Legs
+  m_EditorClassIdentifier: 
+  itemName: Iron Trousers
+  characterDisplayName: Iron_Armor_legs
+  characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
+  uiDisplayImage: {fileID: 21300000, guid: 9b183b631392a2d41abd14c6dae584e5, type: 3}
+  istStackable: 0
+  itemType: 8
+  itemDescription: 'Trousers made of iron.
+
+
+    + 20 Armor'
+  data:
+    Id: 6
+    buffs:
+    - attribute: 0
+      buffValue: 20

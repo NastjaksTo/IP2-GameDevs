@@ -32,7 +32,7 @@ public class InventorySlot {
         UpdateSlot(_itemInInventorySlot, _amountOfItemInInventorySlot);
     }
 
-    public ItemObject ItemObject {
+   public ItemObject ItemObject {
         get {
             if (itemInInventorySlot.Id >= 0) { //wenn dass Item exestiert
                 return parentUserInterface.inventory.database.ItemObjects[itemInInventorySlot.Id];

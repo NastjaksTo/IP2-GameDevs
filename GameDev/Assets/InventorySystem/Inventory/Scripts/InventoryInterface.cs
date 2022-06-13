@@ -29,6 +29,7 @@ public class InventoryInterface : MonoBehaviour {
     public TextMeshProUGUI itemTitelUI;
     public TextMeshProUGUI itemDescriptionUI;
     public Image itemImageUI;
+    public bool inventoryIsLoadet = false;
 
 
     /// <summary>
@@ -39,17 +40,23 @@ public class InventoryInterface : MonoBehaviour {
     /// </summary>
     void Start() {
 
-        for (int i = 0; i < inventory.Container.Slots.Length; i++) {
-            inventory.Container.Slots[i].parentUserInterface = this;
-            inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
-        }
-
-        CreateSlots();
-        AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnPointerEnterInterface(gameObject); });
-        AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnPointerExitInterface(gameObject); });
-        UpdateAllSlotDisplay();
+            LoadInterface();
+ 
     }
 
+    public void LoadInterface() {
+        if (!inventoryIsLoadet) {
+            for (int i = 0; i < inventory.Container.Slots.Length; i++) {
+                inventory.Container.Slots[i].parentUserInterface = this;
+                inventory.GetSlots[i].OnAfterUpdate += OnSlotUpdate;
+            }
+            CreateSlots();
+            AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnPointerEnterInterface(gameObject); });
+            AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnPointerExitInterface(gameObject); });
+            UpdateAllSlotDisplay();
+            inventoryIsLoadet =  true;
+        }
+    }
 
     /// <summary>
     /// Set up the slot on the Interface. Creates a new dictionary with slotsOnInterface to prevent data problems.
@@ -72,6 +79,7 @@ public class InventoryInterface : MonoBehaviour {
             slotsOnInterface.Add(currentSlot, inventory.Container.Slots[i]);
         }
     }
+
 
 
     /// <summary>
@@ -121,7 +129,7 @@ public class InventoryInterface : MonoBehaviour {
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.ItemObject.uiDisplayImage;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amountOfItemInInventorySlot == 1 ? "" : _slot.amountOfItemInInventorySlot.ToString("n0");
-        } else { //wenn ichts im slot drin ist muss die UI an der stelle für den slot geclerat werden
+        } else { //wenn ichts im slot drin ist muss die UI an der stelle fï¿½r den slot geclerat werden
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
@@ -204,7 +212,7 @@ public class InventoryInterface : MonoBehaviour {
         if (slotsOnInterface[obj].itemInInventorySlot.Id >= 0) {                //If the object exists in the inventory
             tempItem = new GameObject();                                        //Create object that store the visual representation
             var rt = tempItem.AddComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(100, 100);                               //set the size of the temporary Item
+            rt.sizeDelta = new Vector2(110, 110);                               //set the size of the temporary Item
             tempItem.transform.SetParent(transform.parent);                     //Set the parent of the mouseobject to be the canvers that our inventory is displaying
 
             var img = tempItem.AddComponent<Image>();                           //add a Image component
@@ -235,6 +243,7 @@ public class InventoryInterface : MonoBehaviour {
     public void OnEndDrag(GameObject obj) {
 
         Destroy(MouseData.tempItemBeingDragged);
+
         if (slotsOnInterface[obj].itemInInventorySlot.Id >= 0) {
             if (MouseData.slotHoverdOver) {
                 InventorySlot mouseHoverSlotData = MouseData.interfaceMouseIsOver.slotsOnInterface[MouseData.slotHoverdOver];

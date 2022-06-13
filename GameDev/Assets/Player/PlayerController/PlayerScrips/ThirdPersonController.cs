@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Data.Common;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -46,6 +47,8 @@ namespace StarterAssets {
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        public Animator anim;
+        
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -57,6 +60,8 @@ namespace StarterAssets {
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+
+        public bool _canMove;
 
 
         // animation IDs
@@ -72,10 +77,14 @@ namespace StarterAssets {
         private GameObject _mainCamera;
 
         public PlayerAttributes playerattributes;
+        public PlayerSkillsystem playerskillsystem;
+        public LevelSystem levelSystem;
         
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
+        
+        
 
         private bool IsCurrentDeviceMouse {
             get {
@@ -92,12 +101,19 @@ namespace StarterAssets {
             // get a reference to our main camera
             if (_mainCamera == null) {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                
             }
+            _canMove = true;
         }
 
-        private void Start() {
-            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+        private void Start()
+        {
+            anim.enabled = true;
+            
+            Cursor.lockState = CursorLockMode.Locked;
 
+            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+                
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -110,7 +126,10 @@ namespace StarterAssets {
         private void Update() {
             _hasAnimator = TryGetComponent(out _animator);
             AddGravity(); // Call the gravity function each update
-            Move(); // Call the move function each update
+            if (_canMove)
+            {
+                Move(); // Call the move function each update
+            }
         }
 
         private void LateUpdate() {
@@ -159,9 +178,6 @@ namespace StarterAssets {
                     playerattributes.currentStamina -= 5 * Time.deltaTime;
                 }
             }
-
-
-
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 

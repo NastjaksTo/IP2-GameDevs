@@ -61,7 +61,7 @@ public class PlayerInventory : MonoBehaviour {
     /// Then close the collect alert and destroy the collected bag on the map.
     /// </summary>
     /// <param name="_itemBag">The bag with items to be collected.</param>
-    public void ClollectItems(GroundItemBag _itemBag) { //TODO: wenn das inventar voll ist werden alle nicht hinzugefügten Items auch zerstört!!!
+    public void ClollectItems(GroundItemBag _itemBag) { //TODO: wenn das inventar voll ist werden alle nicht hinzugefï¿½gten Items auch zerstï¿½rt!!!
         
         for (int i = 0; i < _itemBag.itemInBag.Length; i++) {
             Item _item = new Item(_itemBag.itemInBag[i]);
@@ -80,17 +80,7 @@ public class PlayerInventory : MonoBehaviour {
     /// On E: Collect an item or bag of items if one is available.
     /// </summary>
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {          //TODO speichern und laden nicht über tasten!!
-            Debug.Log("Save");
-            playerInventory.Save();
-            playerEquipment.Save();
-        }
 
-        if (Input.GetKeyDown(KeyCode.L)) {          //TODO speichern und laden nicht über tasten!!
-            Debug.Log("Load");
-            playerInventory.Load();
-            playerEquipment.Load();
-        }
 
         if (Input.GetKeyDown(KeyCode.E)) {
 

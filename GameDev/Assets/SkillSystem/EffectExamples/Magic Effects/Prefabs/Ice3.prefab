@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 4572393023880310}
   - component: {fileID: 198549077654335888}
   - component: {fileID: 199141469417565000}
+  - component: {fileID: 5123057061097378987}
+  - component: {fileID: 3656612519855431160}
   m_Layer: 0
   m_Name: TinyShards
-  m_TagString: Untagged
+  m_TagString: Ice3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3517,7 +3519,7 @@ ParticleSystem:
     multiplyColliderForceByParticleSpeed: 0
     multiplyColliderForceByCollisionAngle: 1
     m_Planes:
-    - {fileID: 0}
+    - {fileID: 4572393023880310}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -4720,6 +4722,32 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!65 &5123057061097378987
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292229952534652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.00002002716, y: 0.000022888184, z: 0.000019073486}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3656612519855431160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292229952534652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b1dc80bf503494caaff3ac2c93df0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &1820680284854294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4731,9 +4759,11 @@ GameObject:
   - component: {fileID: 4897860267909952}
   - component: {fileID: 198433943929519872}
   - component: {fileID: 199651061282982800}
+  - component: {fileID: 7938077243310795545}
+  - component: {fileID: 5821653300730103114}
   m_Layer: 0
   m_Name: Ice3
-  m_TagString: Untagged
+  m_TagString: Ice3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9558,6 +9588,32 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!65 &7938077243310795545
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820680284854294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.776257, y: 10.119534, z: 26.33292}
+  m_Center: {x: -0.08885765, y: -0.48490334, z: 12.40646}
+--- !u!114 &5821653300730103114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820680284854294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20b1dc80bf503494caaff3ac2c93df0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
 --- !u!1 &1877868098342330
 GameObject:
   m_ObjectHideFlags: 0

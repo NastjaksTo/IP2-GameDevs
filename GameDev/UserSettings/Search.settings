@@ -1,16 +1,13 @@
-<<<<<<< HEAD
-{}
-=======
 trackSelection = true
 fetchPreview = true
 wantsMore = false
 keepOpen = false
 queryFolder = "Assets"
-onBoardingDoNotAskAgain = true
+onBoardingDoNotAskAgain = false
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.8040E7BB" = "Worker1"
+	"last_search.8040E7BB" = "prof"
 	"OpenInspectorPreview.8040E7BB" = "0"
 	"currentGroup.8040E7BB" = "all"
 }
@@ -68,4 +65,3 @@ queryBuilder = false
 ignoredProperties = "id;name;classname;imagecontentshash"
 helperWidgetCurrentArea = "all"
 disabledIndexers = ""
->>>>>>> 6bdd7817e1ef1b19b24e46640e6d3a34b111294b

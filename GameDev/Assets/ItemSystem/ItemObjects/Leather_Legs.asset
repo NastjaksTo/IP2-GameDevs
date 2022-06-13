@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
+  m_Name: Leather_Legs
+  m_EditorClassIdentifier: 
+  itemName: Leather Trouesers
+  characterDisplayName: Cloth_Armor_legs
+  characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
+  uiDisplayImage: {fileID: 21300000, guid: 174ec6e358a2cfa4183e3b79be64fcd3, type: 3}
+  istStackable: 0
+  itemType: 8
+  itemDescription: 'Leather Trousers, they are made of leather... of a drunken troll.
+
+
+    +
+    10 Armor'
+  data:
+    Id: 4
+    buffs:
+    - attribute: 0
+      buffValue: 10

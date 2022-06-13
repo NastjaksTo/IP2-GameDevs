@@ -7,18 +7,24 @@ using UnityEngine.AI;
 public class FatDragonScript : MonoBehaviour
 {
     private Transform movePositionTransform;
+    private PlayerAttributes player;
+    private GameObject playerModel;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
-    private bool isInRange;
     private bool doDamage;
     private int attackSwitch;
     private int attackSwitchRange;
     private float timer;
     private float timeToChangeAttack;
-    private int health;
     private bool idle;
     private float shotSpeed;
+    private float attackRange;
+    private bool isdead;
+
+    private int damage;
 
     [SerializeField]
     GameObject standProjectileSpawnpoint;
@@ -29,24 +35,39 @@ public class FatDragonScript : MonoBehaviour
     [SerializeField]
     GameObject fireBall;
 
-
+    /// <summary>
+    /// References set to all necessary Context
+    /// </summary>
     private void Awake()
     {
-        movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerModel = GameObject.FindGameObjectWithTag("Player");
+        movePositionTransform = playerModel.GetComponent<Transform>();
+        player = playerModel.GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        fov = GetComponent<FoVScript>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
-        isInRange = false;
         attackSwitch = 11;
         attackSwitchRange = 8;
         timer = 0.0f;
-        timeToChangeAttack = 2.5f;
-        health = 100;
+        timeToChangeAttack = 1.5f;
         doDamage = false;
-        idle = false;
+        idle = true;
+        attackRange = 6.0f;
         shotSpeed = 20.0f;
+        fov.Radius = 50.0f;
+        fov.Angle = 120.0f;
+
+        health.Health = 100;
+        damage = 20;
     }
 
+    /// <summary>
+    /// timer counting while Update
+    /// checking for Target
+    /// checking for incoming Damage
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
@@ -54,16 +75,22 @@ public class FatDragonScript : MonoBehaviour
         getDamage();
     }
 
+    /// <summary>
+    /// if the Player is in Range, the Enemy will Run, Shoot or Fly and Shoot towards the Target (Same functionality as Attack()). Once it is in Range it will perform a Meele attack.
+    /// 
+    /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
+    /// </summary>
     private void WalkOrAttack()
     {
-        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 50.0f)
+        if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
             navMeshAgent.speed = 5;
-            if (Vector3.Distance(this.transform.position, movePositionTransform.position) < 8.5f)
+            idle = false;
+            if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
                 Attack();
-            } else if (Vector3.Distance(this.transform.position, movePositionTransform.position) > 8.5f)
+            } else if (Vector3.Distance(this.transform.position, movePositionTransform.position) > attackRange)
             {
                 if (timer > timeToChangeAttack)
                 {
@@ -90,7 +117,7 @@ public class FatDragonScript : MonoBehaviour
                 }
             }
         }
-        if (Vector3.Distance(movePositionTransform.position, transform.position) > 50.0f)
+        if (!fov.CanSeePlayer)
         {
             navMeshAgent.speed = 5;
             navMeshAgent.destination = spawnpoint;
@@ -100,7 +127,7 @@ public class FatDragonScript : MonoBehaviour
             animator.ResetTrigger("Fly and Shoot");
             animator.ResetTrigger("Scream");
 
-            if (Vector3.Distance(this.transform.position, spawnpoint) < 4.0f)
+            if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
 
                 animator.SetBool("Walk", false);
@@ -108,6 +135,10 @@ public class FatDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy is nearby the Target one of the Three Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move
+    /// while Attacking the Enemy ist not Walking
+    /// </summary>
     private void Attack()
     {
         navMeshAgent.speed = 0;
@@ -145,86 +176,110 @@ public class FatDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Target is doing Damage to the Enemy, the health is being lowered
+    /// if the health is equal or lower 0, the Enemy dies.
+    /// </summary>
     private void getDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (health.Hit)
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-                health = health - 20;
+
                 animator.SetTrigger("Get Hit");
+                health.Hit = false;
             }
 
-            if (health <= 0)
+
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
+                navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
             }
         }
     }
 
+    /// <summary>
+    /// if the Enemy is able to hit the Player, the Player is getting damaged.
+    /// </summary>
     private void DoDamage()
     {
         if (doDamage)
         {
-            //Make Damage to Player
-            Debug.Log("Damage to Player from Crab");
+            player.currentHealth = (int)(player.currentHealth - damage);
+            doDamage = false;
         }
     }
 
+    /// <summary>
+    /// if the Red Boss is shooting a Fireball while Standing the Fireball is spawned in the right Place
+    /// </summary>
     private void SpawnBulletStand()
     {
         if (movePositionTransform != null)
         {
             GameObject fireball = Instantiate(fireBall, standProjectileSpawnpoint.transform.position, Quaternion.identity);
-            Vector3 direction = movePositionTransform.position - standProjectileSpawnpoint.transform.position;
+            fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            Vector3 direction = movePositionTransform.position - (standProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
         }
     }
+
+    /// <summary>
+    /// if the Red Boss is shooting a Fireball while Flying the Fireball is spawned in the right Place
+    /// </summary>
     private void SpawnBulletFly()
     {
         if (movePositionTransform != null)
         {
             GameObject fireball = Instantiate(fireBall, flyProjectileSpawnpoint.transform.position, Quaternion.identity);
-            Vector3 direction = movePositionTransform.position - flyProjectileSpawnpoint.transform.position;
+            fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            Vector3 direction = movePositionTransform.position - (flyProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /// <summary>
+    /// If the Collider of the Red Boss will Triggercollide with the Player, the bool to deal Damage is set to true;
+    /// </summary>
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             doDamage = true;
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            isInRange = true;
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
-            isInRange = false;
+            doDamage = false;
         }
     }
 
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 12 is picked to choose the next Attackpattern. All Triggers are resetted. 
+    /// There is a bigger chance to hit Basic Attack and Tail Attack than Scream.
+    /// </summary>
     private void changeAttack()
     {
-        attackSwitch = Random.Range(1, 13);
+        attackSwitch = Random.Range(1, 12);
         animator.ResetTrigger("Basic Attack");
         animator.ResetTrigger("Tail Attack");
         animator.ResetTrigger("Scream");
     }
 
+
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 12 is picked to choose the next Attackpattern. All Triggers are resetted.
+    /// There is a bigger chance to hit no Attack and Shoot than Fly and Shoot.
+    /// </summary>
     private void changeAttackRange()
     {
         attackSwitchRange = Random.Range(1, 13);

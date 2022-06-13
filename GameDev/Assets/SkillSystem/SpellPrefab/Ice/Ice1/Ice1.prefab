@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 65159080253457748}
   m_Layer: 0
   m_Name: Ice1
-  m_TagString: Untagged
+  m_TagString: Ice1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5576160405666681077}
+  damage: 0
 --- !u!1 &7398019345778153451
 GameObject:
   m_ObjectHideFlags: 0

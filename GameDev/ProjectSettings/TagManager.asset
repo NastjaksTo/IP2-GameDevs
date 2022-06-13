@@ -5,6 +5,23 @@ TagManager:
   serializedVersion: 2
   tags:
   - Boss
+  - CinemachineTarget
+  - exp
+  - MenuController
+  - SceneTransfer
+  - Collide
+  - Weapon
+  - Fire1
+  - Ice1
+  - Fire2
+  - Fire3
+  - Ice3
+  - Ice2
+  - FxTemporaire
+  - Potion
+  - Enemy
+  - QuestGiver
+  - PleasureDoc
   layers:
   - Default
   - TransparentFX
@@ -35,9 +52,9 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - character Collision Blocker
   - Enemy
-  - 
+  - playerMask
   m_SortingLayers:
   - name: Default
     uniqueID: 0

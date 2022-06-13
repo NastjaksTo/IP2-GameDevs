@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Weapon_Sword_Gold
   m_EditorClassIdentifier: 
   itemName: Gold Sword
+  characterDisplayName: 
   characterDisplay: {fileID: 8449004803641222730, guid: 283dced21787f2549a3092b952a9fcfa, type: 3}
   uiDisplayImage: {fileID: 21300000, guid: 7ca0c8586e4adc746b065054556167cd, type: 3}
   istStackable: 0
@@ -20,10 +21,10 @@ MonoBehaviour:
   itemDescription: 'A sword made of pure gold. Very decadent.
 
 
-    + 11 Physical
+    + 150 Physical
     damage'
   data:
-    Id: 8
+    Id: 14
     buffs:
     - attribute: 6
-      buffValue: 11
+      buffValue: 150

@@ -14,54 +14,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savePath: /Equipment.Save
   database: {fileID: 11400000, guid: f364f7d917a818e4e8d2c9133a374dc9, type: 2}
+  type: 1
   Container:
     Slots:
     - AllowedItems: 01000000
       itemInInventorySlot:
-        Name: 
         Id: -1
         buffs: []
       amountOfItemInInventorySlot: 0
     - AllowedItems: 06000000
       itemInInventorySlot:
-        Name: 
         Id: -1
         buffs: []
       amountOfItemInInventorySlot: 0
     - AllowedItems: 08000000
       itemInInventorySlot:
-        Name: 
         Id: -1
         buffs: []
       amountOfItemInInventorySlot: 0
     - AllowedItems: 03000000
       itemInInventorySlot:
-        Name: 
         Id: -1
         buffs: []
       amountOfItemInInventorySlot: 0
     - AllowedItems: 00000000
       itemInInventorySlot:
-        Name: 
         Id: -1
         buffs: []
       amountOfItemInInventorySlot: 0
     - AllowedItems: 09000000
       itemInInventorySlot:
-        Name: 
         Id: -1
         buffs: []
       amountOfItemInInventorySlot: 0
     - AllowedItems: 0b000000
       itemInInventorySlot:
-        Name: 
-        Id: -1
-        buffs: []
-      amountOfItemInInventorySlot: 0
+        Id: 10
+        buffs:
+        - attribute: 6
+          buffValue: 300
+        - attribute: 7
+          buffValue: -30
+      amountOfItemInInventorySlot: 1
     - AllowedItems: 0a000000
       itemInInventorySlot:
-        Name: 
         Id: -1
         buffs: []
       amountOfItemInInventorySlot: 0
-  type: 1

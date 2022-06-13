@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 2496535390941249914}
   - component: {fileID: 2496535390941249917}
   - component: {fileID: 2496535390941249916}
+  - component: {fileID: 5934051245559444564}
+  - component: {fileID: 4165365826435504059}
+  - component: {fileID: 6962118906333147551}
   m_Layer: 0
   m_Name: Ice2
-  m_TagString: Untagged
+  m_TagString: Ice2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,3 +113,41 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5934051245559444564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496535390941249919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e42ca46703a8241a7a4fd43b38280a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4165365826435504059
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496535390941249919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.0315194, y: 2.8794148, z: 3.8387246}
+  m_Center: {x: 0.027228814, y: 0.86109465, z: 3.8985734}
+--- !u!65 &6962118906333147551
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496535390941249919}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0049982, y: 2.9104218, z: 3.5264063}
+  m_Center: {x: -0.008661518, y: 0.8765993, z: 0.21435282}

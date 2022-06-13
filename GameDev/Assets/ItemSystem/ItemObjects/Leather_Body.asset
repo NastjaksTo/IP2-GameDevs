@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f3f6678f483cc418c2f242973ab4ff, type: 3}
+  m_Name: Leather_Body
+  m_EditorClassIdentifier: 
+  itemName: Lether Armor
+  characterDisplayName: Cloth_Armor_body
+  characterDisplay: {fileID: 0}
+  uiDisplayImage: {fileID: 21300000, guid: 69ab6e44d5b3db5468fdab7ce7573dfc, type: 3}
+  istStackable: 0
+  itemType: 1
+  itemDescription: 'Leather Armor, they are made of leather... of a drunken troll.
+
+
+    +
+    20 Armor'
+  data:
+    Id: 1
+    buffs:
+    - attribute: 0
+      buffValue: 20

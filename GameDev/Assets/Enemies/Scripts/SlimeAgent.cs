@@ -6,39 +6,58 @@ using UnityEngine.AI;
 public class SlimeAgent : MonoBehaviour
 {
     private Transform movePositionTransform;
+    private PlayerAttributes player;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
+    private FoVScript fov;
+    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
-    private bool isInRange;
     private float timer;
     private float timeToChangeAttack;
     private int fullHealth;
-    private int health;
     private int wichAttack;
     private float attackRange;
     private int ID;
     private bool doDamage;
 
+    private int damage;
+    private bool isdead;
+
     [SerializeField]
     GameObject BigSlime;
 
+    /// <summary>
+    /// References set to all necessary Context
+    /// </summary>
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        fov = GetComponent<FoVScript>();
+        health = GetComponent<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
-        isInRange = false;
         timer = 0.0f;
         timeToChangeAttack = 0.8f;
         wichAttack = Random.Range(1, 3);
-        fullHealth = 100;
-        health = fullHealth;
         attackRange = 2.0f;
         ID = GetInstanceID();
         doDamage = false;
+        fov.Radius = 6.0f;
+        fov.Angle = 100.0f;
+
+        health.Health = 100;
+        fullHealth = health.Health;
+        damage = 10;
+
     }
 
+    /// <summary>
+    /// timer counting while Update
+    /// checking for Target
+    /// checking for incoming Damage
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
@@ -46,9 +65,14 @@ public class SlimeAgent : MonoBehaviour
         getDamage();
     }
 
+    /// <summary>
+    /// if the Player is in Range, the Enemy will Walk towards the Target. Once it is in Range it will attack.
+    /// 
+    /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
+    /// </summary>
     private void WalkOrAttack()
     {
-        if (Vector3.Distance(movePositionTransform.position, transform.position) <= 6.0f)
+        if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
             animator.SetBool("isFighting", true);
@@ -58,20 +82,24 @@ public class SlimeAgent : MonoBehaviour
                 Attack();
             }
         }
-        if (Vector3.Distance(movePositionTransform.position, transform.position) > 6.0f)
+        if (!fov.CanSeePlayer)
         {
             navMeshAgent.destination = spawnpoint;
             animator.SetBool("isFighting", false);
             animator.ResetTrigger("Attack1");
             animator.ResetTrigger("Attack2");
 
-            if (Vector3.Distance(this.transform.position, spawnpoint) < 2.0f)
+            if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
                 animator.SetBool("Walk", false);
             }
         }
     }
 
+    /// <summary>
+    /// if the Enemy is nearby the Target one of the Two Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move
+    /// while Attacking the Enemy ist not Walking
+    /// </summary>
     private void Attack()
     {
         animator.SetBool("Walk", false);
@@ -96,49 +124,58 @@ public class SlimeAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Target is doing Damage to the Enemy, the health is being lowered
+    /// if the health is equal or lower 0, the Enemy dies.
+    /// </summary>
     private void getDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (health.Hit)
         {
-            if (health > 0)
+            if (health.Health > 0)
             {
-                health = health - 20;
-                animator.SetTrigger("GetHit");
+                
+                    animator.SetTrigger("GetHit");
+                    health.Hit = false;
+               
             }
 
-            if (health <= 0)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
+                navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
             }
         }
     }
 
+    /// <summary>
+    /// if the Enemy is able to hit the Player, the Player is getting damaged.
+    /// </summary>
     private void DoDamage()
     {
         if(doDamage)
         {
-            //Make Damage to Player
-            Debug.Log("Damage to Player from Slime");
+            player.currentHealth = (int)(player.currentHealth - damage);
+            doDamage = false;
         }
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    /// <summary>
+    /// If the Trigger Collider of the Slime will collide with the Player, the bool to deal Damage is set to true;
+    /// </summary>
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.GetComponent<PlayerAttributes>())
         {
-            isInRange = true;
+            doDamage = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            isInRange = false;
-        }
-    }*/
-
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 2 is picked to choose the next Attackpattern. All Triggers are resetted.
+    /// </summary>
     private void changeAttack()
     {
         wichAttack = Random.Range(1, 3);
@@ -146,12 +183,11 @@ public class SlimeAgent : MonoBehaviour
         animator.ResetTrigger("Attack2");
     }
 
+    /// <summary>
+    /// if the Slime Collides with another Slime, they merge to a bigger, stronger slime.
+    /// </summary>
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            doDamage = true;
-        }
         if (collision.gameObject.GetComponent<SlimeAgent>())
         {
             if (ID <= collision.gameObject.GetComponent<SlimeAgent>().ID)
@@ -163,7 +199,7 @@ public class SlimeAgent : MonoBehaviour
             Destroy(gameObject);
             O.transform.localScale += new Vector3(0.5f, 0.5f, 0.5f);
             fullHealth = 150;
-            health = fullHealth;
+            health.Health = fullHealth;
         }
     }
 }
