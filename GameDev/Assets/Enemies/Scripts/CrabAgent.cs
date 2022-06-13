@@ -145,8 +145,6 @@ public class CrabAgent : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             if (health.Health > 0)
             {
                 if (defend)
@@ -164,7 +162,6 @@ public class CrabAgent : MonoBehaviour
                 animator.SetTrigger("Die");
                 navMeshAgent.enabled = false;
                 Destroy(gameObject, 5.0f);
-            }
         }
     }
 

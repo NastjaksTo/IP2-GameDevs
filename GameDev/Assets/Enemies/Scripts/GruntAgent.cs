@@ -126,8 +126,6 @@ public class GruntAgent : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             if (health.Health > 0)
             {
                 animator.SetTrigger("Take Damage");
@@ -138,7 +136,6 @@ public class GruntAgent : MonoBehaviour
                 animator.SetTrigger("Die");
                 navMeshAgent.enabled = false;
                 Destroy(gameObject, 5.0f);
-            }
         }
     }
 

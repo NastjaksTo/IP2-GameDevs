@@ -170,9 +170,6 @@ public class BossGolemSand : MonoBehaviour
 
     private void getDamage()
     {
-        //OnCollisionEnter -- if Player => getDamage
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             if (health.Health <= health.Health / 2)
             {
                 phase2 = true;
@@ -182,7 +179,6 @@ public class BossGolemSand : MonoBehaviour
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);
             }
-        }
     }
 
     private void DoDamage()

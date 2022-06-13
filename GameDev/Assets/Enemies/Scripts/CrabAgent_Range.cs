@@ -110,8 +110,6 @@ public class CrabAgent_Range : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             if (health.Health > 0)
             {
                 animator.SetTrigger("Take Damage");
@@ -123,6 +121,5 @@ public class CrabAgent_Range : MonoBehaviour
                 navMeshAgent.enabled = false;
                 Destroy(gameObject, 5.0f);
             }
-        }
     }
 }

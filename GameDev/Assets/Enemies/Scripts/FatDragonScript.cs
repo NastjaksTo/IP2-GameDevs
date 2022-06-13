@@ -181,9 +181,6 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        //OnCollisionEnter -- if Player => getDamage
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             if (health.Health > 0)
             {
                 animator.SetTrigger("Get Hit");
@@ -193,7 +190,6 @@ public class FatDragonScript : MonoBehaviour
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);
-            }
         }
     }
 

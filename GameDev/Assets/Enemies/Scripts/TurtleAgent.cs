@@ -143,8 +143,6 @@ public class TurtleAgent : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             if (health.Health > 0)
             {
                 animator.SetTrigger("GetHit");
@@ -154,7 +152,6 @@ public class TurtleAgent : MonoBehaviour
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);
-            }
         }
     }
 

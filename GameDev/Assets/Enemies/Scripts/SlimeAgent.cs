@@ -129,18 +129,15 @@ public class SlimeAgent : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
             if (health.Health > 0)
             {
                 animator.SetTrigger("GetHit");
             }
 
-            if (health.Health <= 0)
-            {
-                animator.SetTrigger("Die");
-                Destroy(gameObject, 5.0f);
-            }
+        if (health.Health <= 0)
+        {
+            animator.SetTrigger("Die");
+            Destroy(gameObject, 5.0f);
         }
     }
 
