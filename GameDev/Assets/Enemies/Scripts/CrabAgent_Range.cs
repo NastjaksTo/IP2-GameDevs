@@ -110,20 +110,22 @@ public class CrabAgent_Range : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        if (health.Health > 0)
+        if (health.Hit)
         {
-            if (health.Hit)
-            {
+            if (health.Health > 0)
+        {
+           
                 animator.SetTrigger("Take Damage");
                 health.Hit = false;
             }
-        }
+        
 
-        if (health.Health <= 0)
-            {
-                animator.SetTrigger("Die");
-                navMeshAgent.enabled = false;
-                Destroy(gameObject, 5.0f);
-            }
+        if (health.Dead)
+        {
+            animator.SetTrigger("Die");
+            navMeshAgent.enabled = false;
+            Destroy(gameObject, 5.0f);
+        }
     }
+        }
 }

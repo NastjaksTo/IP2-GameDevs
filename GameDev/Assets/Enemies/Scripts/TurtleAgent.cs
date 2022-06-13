@@ -143,19 +143,22 @@ public class TurtleAgent : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-        if (health.Health > 0)
+        if (health.Hit)
         {
-            if (health.Hit)
+            if (health.Health > 0)
             {
+
                 animator.SetTrigger("GetHit");
                 health.Hit = false;
             }
-        }
 
-        if (health.Health <= 0)
+
+            if (health.Dead)
             {
                 animator.SetTrigger("Die");
+                navMeshAgent.enabled = false;
                 Destroy(gameObject, 5.0f);
+            }
         }
     }
 
