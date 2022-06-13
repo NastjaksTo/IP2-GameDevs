@@ -35,6 +35,9 @@ public class FatDragonScript : MonoBehaviour
     [SerializeField]
     GameObject fireBall;
 
+    [SerializeField]
+    Collider collider;
+
     /// <summary>
     /// References set to all necessary Context
     /// </summary>
@@ -86,6 +89,7 @@ public class FatDragonScript : MonoBehaviour
         {
             navMeshAgent.destination = movePositionTransform.position;
             navMeshAgent.speed = 5;
+            collider.isTrigger = false;
             idle = false;
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
@@ -114,6 +118,7 @@ public class FatDragonScript : MonoBehaviour
                     navMeshAgent.speed = 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Shoot");
+                    collider.isTrigger = true;
                 }
             }
         }

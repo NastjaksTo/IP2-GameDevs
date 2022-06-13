@@ -130,13 +130,13 @@ public class BossGolemSand : MonoBehaviour
         if (!idle)
         {
 
-            if (attackSwitch < 5)
+            /*if (attackSwitch < 5)
             {
                 animator.SetTrigger("BottomSlash");
                 idle = true;
-            }
+            }*/
 
-            if (attackSwitch >= 5 && attackSwitch <= 10)
+            if (attackSwitch <= 10)
             {
                 animator.SetTrigger("SlashHit");
                 idle = true;
@@ -146,18 +146,14 @@ public class BossGolemSand : MonoBehaviour
             {
                 animator.SetTrigger("Stomp");
                 idle = true;
-                if (Vector3.Distance(this.transform.position, movePositionTransform.position) < 5.0f)
-                {
-                    doDamage = true;
-                }
             }
 
-            if (attackSwitchRange == 12)
+            /*if (attackSwitchRange == 12)
             {
                 navMeshAgent.speed = 0;
                 animator.SetBool("Walk", false);
                 animator.SetTrigger("rangedSlash");
-            }
+            }*/
         }
     }
 
@@ -200,6 +196,14 @@ public class BossGolemSand : MonoBehaviour
                 player.currentHealth = (int)(player.currentHealth - (damage * 2));
             }
             doDamage = false;
+        }
+    }
+
+    private void Stomp()
+    {
+        if(Vector3.Distance(this.transform.position, movePositionTransform.position) < 5)
+        {
+            doDamage = true;
         }
     }
 
