@@ -22,10 +22,10 @@ public class BossGolemIce : MonoBehaviour
 
     private int health;
     private int damage;
-    private int earthDamage;
+    private int iceDamage;
 
     public PlayerAttributes Player { get => player; set => player = value; }
-    public int EarthDamage { get => earthDamage; set => earthDamage = value; }
+    public int IceDamage { get => iceDamage; set => iceDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
@@ -46,12 +46,12 @@ public class BossGolemIce : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 8.0f;
+        attackRange = 10.0f;
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
         damage = 20;
-        earthDamage = 1;
+        iceDamage = 1;
         health = 500;
     }
     private void Update()
@@ -59,6 +59,7 @@ public class BossGolemIce : MonoBehaviour
         timer += Time.deltaTime;
         WalkOrAttack();
         getDamage();
+        DoDamage();
     }
 
     private void WalkOrAttack()
@@ -72,6 +73,7 @@ public class BossGolemIce : MonoBehaviour
 
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
+                FaceTarget(movePositionTransform.position);
                 Attack();
             }
             else if (Vector3.Distance(this.transform.position, movePositionTransform.position) > attackRange)
@@ -82,17 +84,10 @@ public class BossGolemIce : MonoBehaviour
                     timer = 0;
                 }
 
-                if (attackSwitchRange <= 5)
+                if (attackSwitchRange <= 6)
                 {
                     navMeshAgent.speed = 5;
                     animator.SetBool("Walk", true);
-                }
-
-                if (attackSwitchRange == 6)
-                {
-                    navMeshAgent.speed = 0;
-                    animator.SetBool("Walk", false);
-                    animator.SetTrigger("rangedSlash");
                 }
 
                 if (attackSwitchRange == 7)
@@ -115,6 +110,14 @@ public class BossGolemIce : MonoBehaviour
         }
     }
 
+    private void FaceTarget(Vector3 destination)
+    {
+        Vector3 lookPos = destination - transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5);
+    }
+
     private void Attack()
     {
         navMeshAgent.speed = 0;
@@ -129,7 +132,6 @@ public class BossGolemIce : MonoBehaviour
 
         if (!idle)
         {
-            animator.SetBool("Idle", false);
 
             if (attackSwitch < 5)
             {
@@ -143,9 +145,19 @@ public class BossGolemIce : MonoBehaviour
                 idle = true;
             }
 
-            if (attackSwitch > 10)
+            if (attackSwitch == 11)
             {
                 animator.SetTrigger("Stomp");
+                idle = true;
+                if(Vector3.Distance(this.transform.position, movePositionTransform.position) < 5.0f)
+                {
+                    doDamage = true;
+                }
+            }
+
+            if (attackSwitchRange == 12)
+            {
+                animator.SetTrigger("rangedSlash");
                 idle = true;
             }
         }
@@ -175,29 +187,22 @@ public class BossGolemIce : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("hit");
         if (other.gameObject.tag == "Player")
         {
             doDamage = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            doDamage = false;
-        }
-    }
-
 
     private void changeAttack()
     {
-        attackSwitch = Random.Range(1, 8);
+        attackSwitch = Random.Range(1, 13);
     }
 
     private void changeAttackRange()
     {
-        attackSwitchRange = Random.Range(1, 13);
+        attackSwitchRange = Random.Range(1, 8);
     }
 
     private void startIceAttack()
