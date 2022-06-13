@@ -179,7 +179,7 @@ public class BossGolemSand : MonoBehaviour
             if (health.Dead)
             {
                 animator.SetTrigger("Die");
-                navMeshAgent.enabled = false;
+                navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
             }
         }
