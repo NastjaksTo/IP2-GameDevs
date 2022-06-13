@@ -144,16 +144,17 @@ public class CrabAgent : MonoBehaviour
     /// if the health is equal or lower 0, the Enemy dies.
     /// </summary>
     private void getDamage()
-    {
+    { 
             if (health.Health > 0)
             {
-                if (defend)
+                if (health.Hit)
                 {
-                    health.Health += 5;
-                }
-                else
-                {
+                    if (defend)
+                    {
+                        health.Health += 5;
+                    }
                     animator.SetTrigger("Take Damage");
+                    health.Hit = false;
                 }
             }
 

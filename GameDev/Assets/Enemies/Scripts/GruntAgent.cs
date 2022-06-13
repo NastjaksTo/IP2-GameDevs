@@ -126,12 +126,16 @@ public class GruntAgent : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-            if (health.Health > 0)
+        if (health.Health > 0)
+        {
+            if (health.Hit)
             {
                 animator.SetTrigger("Take Damage");
+                health.Hit = false;
             }
+        }
 
-            if (health.Health <= 0)
+        if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 navMeshAgent.enabled = false;

@@ -150,12 +150,16 @@ public class GolemScript : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-            if (health.Health > 0)
+        if (health.Health > 0)
+        {
+            if (health.Hit)
             {
                 animator.SetTrigger("Get Hit");
+                health.Hit = false;
             }
+        }
 
-            if (health.Health <= 0)
+        if (health.Health <= 0)
             {
                 animator.SetTrigger("Die");
                 Destroy(gameObject, 5.0f);

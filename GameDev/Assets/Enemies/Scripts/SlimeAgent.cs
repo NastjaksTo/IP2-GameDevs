@@ -129,10 +129,14 @@ public class SlimeAgent : MonoBehaviour
     /// </summary>
     private void getDamage()
     {
-            if (health.Health > 0)
+        if (health.Health > 0)
+          {
+            if (health.Hit)
             {
                 animator.SetTrigger("GetHit");
+                health.Hit = false;
             }
+          }
 
         if (health.Health <= 0)
         {
