@@ -201,17 +201,10 @@ public class BossGolemSand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hit");
         if (other.gameObject.tag == "Player")
         {
             doDamage = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            doDamage = false;
         }
     }
 

@@ -885,7 +885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.24325
+      value: 116.94325
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -893,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.9
+      value: -38.8
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1358,7 +1358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.24325
+      value: 116.94325
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1366,7 +1366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.9
+      value: -38.8
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5080,6 +5080,52 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7244006047947219537, guid: de5e6821154cb484e845765506f1c560, type: 3}
   m_PrefabInstance: {fileID: 798963903}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &579658099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 579658101}
+  - component: {fileID: 579658100}
+  m_Layer: 0
+  m_Name: SceneTransfer
+  m_TagString: SceneTransfer
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &579658100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579658099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37864dc898bba9b48bf323ef22468199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menucontrol: {fileID: 0}
+  loaded: 0
+--- !u!4 &579658101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579658099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &583382083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6777,7 +6823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7343,7 +7389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4673369876368086, guid: e9a03d46b76afe246a9ffd58d255bb65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.651265
+      value: 8.8
       objectReference: {fileID: 0}
     - target: {fileID: 4673369876368086, guid: e9a03d46b76afe246a9ffd58d255bb65, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14000,7 +14046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 74846484923444678, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 126224535002140779, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14496,7 +14542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2729172093653292501, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.7
+      value: 117.4
       objectReference: {fileID: 0}
     - target: {fileID: 2729172093653292501, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14504,7 +14550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2729172093653292501, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.9
+      value: -33.8
       objectReference: {fileID: 0}
     - target: {fileID: 2729172093653292501, guid: fe0ee65f75d116145ab93afb66a30711, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20453,7 +20499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -25333,7 +25379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3757915445345282749, guid: 1c15a59cabb817f469d716623a5f8f06, type: 3}
       propertyPath: m_AnchoredPosition.y
