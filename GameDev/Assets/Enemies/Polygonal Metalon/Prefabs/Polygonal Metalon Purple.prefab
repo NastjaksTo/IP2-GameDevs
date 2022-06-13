@@ -172,6 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4544944143900212}
   - component: {fileID: 1156948356}
+  - component: {fileID: 2063813381736791321}
   m_Layer: 30
   m_Name: RigPelvis
   m_TagString: Untagged
@@ -212,6 +213,18 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 0
   m_Center: {x: -0.5, y: 1, z: 0}
+--- !u!114 &2063813381736791321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119960743151872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1131787584831718
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +868,6 @@ GameObject:
   - component: {fileID: 53053146397297493}
   - component: {fileID: 1272938467}
   - component: {fileID: 1272938472}
-  - component: {fileID: 3146008519250605052}
   m_Layer: 30
   m_Name: Polygonal Metalon Purple
   m_TagString: Enemy
@@ -1004,18 +1016,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCollider: {fileID: 1156948356}
   characterBlockerCollider: {fileID: 1130953405}
---- !u!114 &3146008519250605052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462720695320296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1486048802852170
 GameObject:
   m_ObjectHideFlags: 0

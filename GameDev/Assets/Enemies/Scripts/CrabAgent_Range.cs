@@ -33,7 +33,7 @@ public class CrabAgent_Range : MonoBehaviour
         fov = GetComponent<FoVScript>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        health = GetComponent<EnemyHealthHandler>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         shotSpeed = 20.0f;
         fireRate = 5.0f;
@@ -119,7 +119,6 @@ public class CrabAgent_Range : MonoBehaviour
                 animator.SetTrigger("Take Damage");
                 health.Hit = false;
             }
-        
 
         if (health.Dead && !isdead)
         {

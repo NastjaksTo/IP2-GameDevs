@@ -34,7 +34,7 @@ public class CrabAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
-        health = GetComponent<EnemyHealthHandler>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
         fov = GetComponent<FoVScript>();
         spawnpoint = this.transform.position;
         attackOrRoll = Random.Range(1, 4);
