@@ -146,10 +146,6 @@ public class BossGolemSand : MonoBehaviour
             {
                 animator.SetTrigger("Stomp");
                 idle = true;
-                if (Vector3.Distance(this.transform.position, movePositionTransform.position) < 10.0f)
-                {
-                    doDamage = true;
-                }
             }
 
             /*if (attackSwitchRange == 12)
@@ -200,6 +196,14 @@ public class BossGolemSand : MonoBehaviour
                 player.currentHealth = (int)(player.currentHealth - (damage * 2));
             }
             doDamage = false;
+        }
+    }
+
+    private void Stomp()
+    {
+        if(Vector3.Distance(this.transform.position, movePositionTransform.position) < 5)
+        {
+            doDamage = true;
         }
     }
 
