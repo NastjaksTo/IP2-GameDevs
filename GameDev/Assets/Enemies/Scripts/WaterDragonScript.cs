@@ -41,7 +41,7 @@ public class WaterDragonScript : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
         ps = GetComponentInChildren<ParticleSystem>();
-        health = GetComponent<EnemyHealthHandler>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         attackSwitch = 11;
         attackSwitchRange = 8;

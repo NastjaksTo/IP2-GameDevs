@@ -34,7 +34,7 @@ public class GruntAgent : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
-        health = GetComponent<EnemyHealthHandler>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         attackOrRoll = Random.Range(1, 3);
         timer = 0.0f;

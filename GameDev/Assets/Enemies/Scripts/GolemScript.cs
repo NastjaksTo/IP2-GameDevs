@@ -36,7 +36,7 @@ public class GolemScript : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
-        health = GetComponent<EnemyHealthHandler>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
         spawnpoint = this.transform.position;
         attackSwitch = 11;
         timer = 0.0f;
