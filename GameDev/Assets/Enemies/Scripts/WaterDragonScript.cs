@@ -26,6 +26,9 @@ public class WaterDragonScript : MonoBehaviour
     private int damage;
     private int waterDamage;
 
+    [SerializeField]
+    Collider collider;
+
     public PlayerAttributes Player { get => player; set => player = value; }
     public int WaterDamage { get => waterDamage; set => waterDamage = value; }
 
@@ -77,6 +80,7 @@ public class WaterDragonScript : MonoBehaviour
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
+            collider.isTrigger = false;
             navMeshAgent.speed = 5;
             idle = false;
             animator.SetBool("Walk", true);
@@ -109,6 +113,7 @@ public class WaterDragonScript : MonoBehaviour
                     navMeshAgent.speed = 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Water");
+                    collider.isTrigger = true;
                 }
             }
         }
