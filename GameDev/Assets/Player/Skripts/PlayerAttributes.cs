@@ -317,7 +317,7 @@ public class PlayerAttributes : MonoBehaviour
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
-                    playerDisplay.UpdateSpellUI();
+                    //playerDisplay.UpdateSpellUI();
                 } else {
                     fireKnowladgeEquiped = false;
                 }
@@ -326,7 +326,7 @@ public class PlayerAttributes : MonoBehaviour
             if (playerAttributes[i].type == Attributes.IceKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     iceKnowladgeEquiped = true;
-                    playerDisplay.UpdateSpellUI();
+                    //playerDisplay.UpdateSpellUI();
                 } else {
                     iceKnowladgeEquiped = false;
                 }
@@ -335,10 +335,10 @@ public class PlayerAttributes : MonoBehaviour
             if (playerAttributes[i].type == Attributes.EarthKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     earthKnowladgeEquiped = true;
-                    playerDisplay.UpdateSpellUI();
+                    //playerDisplay.UpdateSpellUI();
                 } else {
                     earthKnowladgeEquiped = false;
-                    playerDisplay.UpdateSpellUI();
+                    //playerDisplay.UpdateSpellUI();
                 }
             }
         }
