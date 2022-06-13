@@ -21,6 +21,7 @@ public class SlimeAgent : MonoBehaviour
     private bool doDamage;
 
     private int damage;
+    private bool isdead;
 
     [SerializeField]
     GameObject BigSlime;
@@ -139,8 +140,9 @@ public class SlimeAgent : MonoBehaviour
                
             }
 
-            if (health.Dead)
+            if (health.Dead && !isdead)
             {
+                isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
