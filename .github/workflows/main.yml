@@ -1,12 +1,184 @@
-name: GameDevs 🎮
+name: Actions 😎
 
-on: push
+on:
+  pull_request: {}
+  push: { branches: [master] }
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  testRunner:
+  readmeWorkflow:
+    name: Readme Workflow ✨
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        with:
+          path: GameDev/Library
+          key: Library-WebGL
+
+      # Test
+      - name: Run tests
+        uses: game-ci/unity-test-runner@v2
+        with:
+          projectPath: GameDev
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        with:
+          projectPath: GameDev
+          targetPlatform: WebGL
+
+      # Output
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
+
+  #
+  # End of readme workflow.
+  #
+  # Below is a test of most combinations, for testing integrity.
+  #
+
+  requestManualActivationFile:
+    name: Request manual activation file 🔑
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repository
+      - uses: actions/checkout@v2
+
+      # Request manual activation file
+      - uses: game-ci/unity-request-activation-file@v2
+        id: getManualLicenseFile
+
+      # Upload artifact (Unity_v20XX.X.XXXX.alf)
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Manual Activation File
+          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+
+#  requestActivation:
+#    name: Request activation ✔
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: game-ci/unity-activate@v2
+#
+#  activateAndThenReturnLicense:
+#    name: returnLicense 🎈
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: game-ci/unity-activate@v2
+#      - uses: game-ci/unity-return-license@v2
+
+  testRunnerInEditMode:
+    name: Test in editmode 📝
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        with:
+          path: GameDev/Library
+          key: Library
+          restore-keys: |
+            Library-test-
+      # Configure test runner
+      - uses: game-ci/unity-test-runner@v2
+        id: testRunner
+        with:
+          projectPath: GameDev
+          testMode: editmode
+
+      # Upload artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Test results (edit mode)
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
+
+  testRunnerInPlayMode:
+    name: Test in playmode 📺
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        with:
+          path: GameDev/Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library
+            Library-
+      # Configure test runner
+      - uses: game-ci/unity-test-runner@v2
+        id: testRunner
+        with:
+          projectPath: GameDev
+          testMode: playmode
+
+      # Upload artifact
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Test results (play mode)
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
+
+  testRunnerInAllModes:
     name: Test in ${{ matrix.testMode }} ✨
     runs-on: ubuntu-latest
     strategy:
@@ -16,9 +188,107 @@ jobs:
           - EditMode
           - PlayMode
     steps:
-		- uses: game-ci/unity-test-runner@v2
-  	env:
-    	UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-  	with:
-    	projectPath: GameDev/**
-    	githubToken: ${{ secrets.GITHUB_TOKEN }}
+      # Checkout repository (required to test local actions)
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        with:
+          path: GameDev/Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-
+            Library-
+      # Configure test runner
+      - uses: game-ci/unity-test-runner@v2.0-alpha-5
+        id: testRunner
+        with:
+          projectPath: GameDev
+          testMode: ${{ matrix.testMode }}
+          checkName: ${{ matrix.testMode }} test results
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Upload artifacts
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Test results (${{ matrix.testMode }})
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
+
+  #
+  # Complete advanced workflow
+  #
+
+  buildAndTestForSomePlatforms:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - GameDev
+        targetPlatform:
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          - iOS # Build an iOS player.
+          - WebGL # WebGL.
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create LFS file list
+        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+      - name: Restore LFS cache
+        uses: actions/cache@v2
+        id: lfs-cache
+        with:
+          path: .git/lfs
+          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+      - name: Git LFS Pull
+        run: |
+          git lfs pull
+          git add .
+          git reset --hard
+      - name: Restore Library cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ matrix.projectPath }}/Library
+          key: Library-buildAndTest-${{ matrix.projectPath }}-buildAndTest-${{ matrix.targetPlatform }}
+          restore-keys: |
+            Library-${{ matrix.projectPath }}-buildAndTest-
+            Library-${{ matrix.projectPath }}-
+      - uses: game-ci/unity-test-runner@v2
+        id: testRunner
+        with:
+          projectPath: ${{ matrix.projectPath }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Test results (all modes)
+          path: ${{ steps.testRunner.outputs.artifactsPath }}
+      - uses: game-ci/unity-builder@v2
+        with:
+          projectPath: ${{ matrix.projectPath }}
+          targetPlatform: ${{ matrix.targetPlatform }}
+          customParameters: "-myParameter myValue -myBoolean -ThirdParameter andItsValue"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build (${{ matrix.targetPlatform }})
+          path: build/${{ matrix.targetPlatform }}
