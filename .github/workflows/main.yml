@@ -1,0 +1,24 @@
+name: GameDevs 🎮
+
+on: push
+
+env:
+  UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+
+jobs:
+  testRunner:
+    name: Test in ${{ matrix.testMode }} ✨
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        testMode:
+          - EditMode
+          - PlayMode
+    steps:
+		- uses: game-ci/unity-test-runner@v2
+  	env:
+    	UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+  	with:
+    	projectPath: GameDev/**
+    	githubToken: ${{ secrets.GITHUB_TOKEN }}
