@@ -49,13 +49,9 @@ MonoBehaviour:
       amountOfItemInInventorySlot: 0
     - AllowedItems: 0b000000
       itemInInventorySlot:
-        Id: 10
-        buffs:
-        - attribute: 6
-          buffValue: 300
-        - attribute: 7
-          buffValue: -30
-      amountOfItemInInventorySlot: 1
+        Id: -1
+        buffs: []
+      amountOfItemInInventorySlot: 0
     - AllowedItems: 0a000000
       itemInInventorySlot:
         Id: -1

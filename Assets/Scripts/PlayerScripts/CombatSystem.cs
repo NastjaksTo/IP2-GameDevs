@@ -24,7 +24,7 @@ public class CombatSystem : MonoBehaviour {
     public GameObject potioneffect;
     private bool canusepotion;
     public TextMeshProUGUI potionsUI;
-    private bool invincible = false;
+    public bool invincible = false;
     
     public List<int> potionTickTimer = new List<int>();
     
@@ -68,14 +68,15 @@ public class CombatSystem : MonoBehaviour {
         playerMovement._canMove = true;
     }
     
-    private IEnumerator BecomeTemporarilyInvincible()
+    public IEnumerator BecomeTemporarilyInvincible()
     {
-        Debug.Log("Player turned invincible!");
-        yield return new WaitForSeconds(1f);
         invincible = true;
+        Debug.Log("Player turned invincible!");
+        yield return new WaitForSeconds(1);
+        invincible = false;
     }
     
-    IEnumerator regeneratingHealth()
+    public IEnumerator regeneratingHealth()
     {
         if (skillTree.skillLevels[9] == 0) regenerationTimer = 0.4f;
         else regenerationTimer = 0.5f - skillTree.skillLevels[9] * 0.19f;

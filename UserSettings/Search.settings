@@ -3,13 +3,16 @@ fetchPreview = true
 wantsMore = false
 keepOpen = false
 queryFolder = "Assets"
-onBoardingDoNotAskAgain = false
+onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
 	"last_search.8040E7BB" = "prof"
 	"OpenInspectorPreview.8040E7BB" = "0"
 	"currentGroup.8040E7BB" = "all"
+	"last_search.6CCDBE3C" = ""
+	"OpenInspectorPreview.6CCDBE3C" = "0"
+	"currentGroup.6CCDBE3C" = "all"
 }
 providers = {
 	adb = {
