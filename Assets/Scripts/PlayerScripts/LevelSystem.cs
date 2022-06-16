@@ -32,7 +32,7 @@ public class LevelSystem
     public void AddExp(int amount) // Gain experience and level up
     {
         exp += amount;
-        if (exp > expToLevelUp)
+        if (exp >= expToLevelUp)
         {
             level++;
             skillpoints++;

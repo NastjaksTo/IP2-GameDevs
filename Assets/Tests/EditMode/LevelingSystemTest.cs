@@ -1,20 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 
-namespace Tests
+namespace Tests.EditMode
 {
-    public class Test2
+    public class LevelingSystemTest
     {
         [Test]
-        public void TestIncrement()
+        public void TestingAddingExperience()
         {
             var addexp = new LevelSystem();
-        
+    
             addexp.AddExp(150);
-
+    
             Assert.AreEqual(150, addexp.GetExp());
         }
     }
