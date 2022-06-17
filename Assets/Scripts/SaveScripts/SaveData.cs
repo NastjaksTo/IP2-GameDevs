@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using GameUI;
 using GameUI.Scripts;
-using PlasticGui.Configuration.CloudEdition.Welcome;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
