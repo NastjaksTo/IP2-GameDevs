@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using GameUI;
 using GameUI.Scripts;
+using PlasticGui.Configuration.CloudEdition.Welcome;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,7 @@ public class SaveData : MonoBehaviour
 {
     public PlayerSkillsystem skillsystem;               // Reference to the PlayerSkillsystem script.
     public PlayerAttributes attributes;                 // Reference to the PlayerAttributes script.
+    public PlayerInventory playerInventory;
     public CombatSystem combatsystem;                   // Reference to the CombatSystem script.
     public InventoryObject inventory;                   // Reference to the InventoryObject script attached to the inventory.
     public InventoryObject equipment;                   // Reference to the InventoryObject script attached to the equipment.
@@ -31,6 +33,7 @@ public class SaveData : MonoBehaviour
     public GameObject savingUI;                         // Reference to the SaveUI Icon.
     public GameObject savingText;                       // Reference to the SaveUI Text.
     
+
     /// <summary>
     /// When the script instance is loaded, get the scenetransfer gameobject, assign the loaded boolean and load the game if loaded is true.
     /// Otherwise clear the inventory and the equipment.
@@ -71,12 +74,20 @@ public class SaveData : MonoBehaviour
 
         combatsystem.maxpotions = data.maxpotions;
         combatsystem.potions = combatsystem.maxpotions;
+
+        playerInventory.collectedLootbags.AddRange(data.savedcollectedLootbags);
+        
+        for (int j = 0; j < data.savedcollectedLootbags.Count; j++)
+        {
+            Destroy(GameObject.Find("LootBagPrefab_"+ data.savedcollectedLootbags[j]));
+        }
+        
         
         for (int i = 0; i <= 17; i++)
         {
             skillTree.skillLevels[i] = data.skilllevels[i];
         }
-        
+
         skillTree.healthSkillvalue = data.healthSkillvalue;
         skillTree.manaSkillvalue = data.manaSkillvalue;
         skillTree.staminaSkillvalue = data.staminaSkillvalue;
@@ -112,7 +123,7 @@ public class SaveData : MonoBehaviour
         for (int i = 0; i <= 17; i++) {
             skilllevelsData[i] = skillTree.skillLevels[i];
         }
-        SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, this);
+        SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, playerInventory, this);
         inventory.Save();
         equipment.Save();
     }
@@ -154,6 +165,7 @@ public class SaveData : MonoBehaviour
                 uimanager.OpenSkillUi();
             }
         }
+        
         if (saving)
         {
             savingUI.transform.eulerAngles -= new Vector3(0, 0, (Time.deltaTime * 40));

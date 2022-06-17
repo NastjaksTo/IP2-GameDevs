@@ -13,13 +13,13 @@ public static class SaveSystem
     /// <param name="skills">Gets data from SkillTree.</param>
     /// <param name="combatSystem">Gets data from CombatSystem.</param>
     /// <param name="player">Gets data from SaveData.</param>
-    public static void SavePlayer(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skills, CombatSystem combatSystem, SaveData player)
+    public static void SavePlayer(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skills, CombatSystem combatSystem, PlayerInventory playerInventory, SaveData player)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/player.save";
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(levelsystem, attributes, skills, combatSystem, player);
+        PlayerData data = new PlayerData(levelsystem, attributes, skills, combatSystem, playerInventory, player);
 
         
         formatter.Serialize(stream, data);

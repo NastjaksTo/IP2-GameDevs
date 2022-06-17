@@ -15,6 +15,8 @@ public class PlayerInventory : MonoBehaviour {
 
     private GroundItem item;
     private GroundItemBag itemBag;
+    
+    public List<int> collectedLootbags = new List<int>();
 
     /// <summary>
     /// When the player collides with something, it is checked whether it is an item or a itemBag.
@@ -62,7 +64,7 @@ public class PlayerInventory : MonoBehaviour {
     /// </summary>
     /// <param name="_itemBag">The bag with items to be collected.</param>
     public void ClollectItems(GroundItemBag _itemBag) { //TODO: wenn das inventar voll ist werden alle nicht hinzugef�gten Items auch zerst�rt!!!
-        
+        collectedLootbags.Add(_itemBag.id);
         for (int i = 0; i < _itemBag.itemInBag.Length; i++) {
             Item _item = new Item(_itemBag.itemInBag[i]);
             playerInventory.AddItem(_item, 1);
@@ -80,10 +82,8 @@ public class PlayerInventory : MonoBehaviour {
     /// On E: Collect an item or bag of items if one is available.
     /// </summary>
     private void Update() {
-
-
-        if (Input.GetKeyDown(KeyCode.E)) {
-
+        if (Input.GetKeyDown(KeyCode.E)) 
+        {
             if (itemBag) {
                 ClollectItems(itemBag);
             }
