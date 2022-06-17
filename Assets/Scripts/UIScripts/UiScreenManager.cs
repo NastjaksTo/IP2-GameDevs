@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameUI.Scripts
+namespace UIScripts
 {
     /// <summary>
     /// Manage the in game Uis. Open and close them and defines the functions of the buttons in the menus.
@@ -48,7 +48,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close  the playerstats UI.
+        /// Closes the playerstats UI.
         /// </summary>
         private void ClosePlayerStatsUi() {
             playerStatsUI.SetActive(false);
@@ -68,7 +68,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close the inventory UI. Locked the Cursor and lets the game time continue.
+        /// Closes the inventory UI. Locks the Cursor and let the game time continue.
         /// </summary>
         private void CloseInventoryUi() {
             ShowPlayerStatsUi();
@@ -114,7 +114,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close the skill UI. Locked the Cursor and lets the game time continue.
+        /// Closes the skill UI. Locks the Cursor and let the game time continue.
         /// </summary>
         public void CloseSkillUi() {
             ShowPlayerStatsUi();
@@ -137,7 +137,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close the death UI. Locked the Cursor and lets the game time continue.
+        /// Closes the death UI. Locks the Cursor and let the game time continue.
         /// </summary>
         public void CloseDeathUi() {
             Cursor.lockState = CursorLockMode.Locked;
@@ -147,7 +147,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Opens the in game menu UI. Makes the mouse pointer visible and freezes the game time. 
+        /// Opens the in pause menu UI. Makes the mouse pointer visible and freezes the game time. 
         /// </summary>
         private void OpenPauseContainerMenuUi() {
             ClosePlayerStatsUi();
@@ -160,7 +160,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close the in game menu UI. Locked the Cursor and lets the game time continue if no other ui ist open.
+        /// Closes the in pause menu UI. Locks the Cursor and let the game time continue if no other ui ist open.
         /// </summary>
         public void ClosePauseContainerUi() {
 
@@ -184,7 +184,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close the options UI
+        /// Closes the options UI
         /// </summary>
         public void CloseMenuUi() {
             pauseMenuUi.SetActive(false);
@@ -199,7 +199,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close the options UI
+        /// Closes the options UI
         /// </summary>
         public void CloseOptionsUi() {
             optionsMenuUI.SetActive(false);
@@ -215,7 +215,7 @@ namespace GameUI.Scripts
         }
 
         /// <summary>
-        /// Close the control UI
+        /// Closes the control UI
         /// </summary>
         public void CloseControlUi() {
             controlMenuUI.SetActive(false);
@@ -226,15 +226,15 @@ namespace GameUI.Scripts
         //------------- UI Button functions -------------
 
         /// <summary>
-        /// Load the main menu of the game -> Scene change
+        /// Loads the main menu of the game -> Scene change
         /// </summary>
         public void LoadMenu() {
             CloseDeathUi();
-            SceneManager.LoadScene("MainMenu"); //load Menu Scene 
+            SceneManager.LoadScene("MainMenu");
         }
 
         /// <summary>
-        /// Load the last saved game state 
+        /// Loads the last saved game state 
         /// </summary>
         public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
             savedata.Loadgame();
@@ -298,10 +298,10 @@ namespace GameUI.Scripts
 
             if (Input.GetKeyDown(KeyCode.Tab) && (_inventoryUiOpen || _questUiOpen)) {
 
-                if (_inventoryUiOpen) { // wenn dass inventar auf ist
+                if (_inventoryUiOpen) { // if the inventory is opem
                     CloseInventoryUi();
                     OpenQuestUi();
-                } else if (_questUiOpen) { // wenn dar skill baum auf ist
+                } else if (_questUiOpen) { // if the skilltree is open
                     CloseQuestUi();
                     OpenInventoryUi();
                 }
