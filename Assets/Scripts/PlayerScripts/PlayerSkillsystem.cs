@@ -62,21 +62,6 @@ public class PlayerSkillsystem : MonoBehaviour
         textCurrentLevel.text = playerlevel.GetLevel().ToString();
 
     }
-    
-    /// <summary>
-    /// To be deleted. ONLY FOR TESTING PURPOSES.
-    /// </summary>
-    /// <param name="other">Gets the colliding gameobject.</param>
-    private void OnTriggerEnter(Collider other)
-    {
-        // EXP Tiktak VORÜBERGEHENDER PLATZHALTER
-        if (other.gameObject.tag == "exp") 
-        {
-            playerlevel.AddExp(150);
-            textCurrentXP.text = playerlevel.GetExp().ToString();
-            textCurrentLevel.text = playerlevel.GetLevel().ToString();
-        }
-    }
 
     /// <summary>
     /// Returns the current amount of skillpoints.

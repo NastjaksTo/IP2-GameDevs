@@ -7,7 +7,8 @@ using static SkillTree;
 public class Ice1 : MonoBehaviour
 {
     public Rigidbody rb;
-    public float damage;
+    public int damage;
+    private GameObject enemy;
 
     private void Awake()
     {
@@ -16,6 +17,18 @@ public class Ice1 : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         rb.velocity = Vector3.zero;
+        if (other.CompareTag("Enemy"))
+        {
+            enemy = other.gameObject;
+            enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
+            //anim.SetBool("stunned", true);
+            //StartCoroutine(ice1stunned());
+            Destroy(other.gameObject, 5.25f);
+        }
     }
-    
+    /*
+    IEnumerator ice1stunned() {
+        yield return new WaitForSecondsRealtime(5.650f);
+        anim.SetBool("stunned", false);
+    }*/
 }

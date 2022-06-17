@@ -7500,11 +7500,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 439438, guid: bba9610331c8e5040a9ed5720d33f7c5, type: 3}
   m_PrefabInstance: {fileID: 251550964}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &253168032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-  m_PrefabInstance: {fileID: 1428561587}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &257751381
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20617,7 +20612,6 @@ Transform:
   - {fileID: 2104120526}
   - {fileID: 2108174672}
   - {fileID: 828454681}
-  - {fileID: 253168032}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46485,75 +46479,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4835789832631930, guid: bdf8e7438a7816543998181bd3067573, type: 3}
   m_PrefabInstance: {fileID: 1526116064}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1428561587
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 682887442}
-    m_Modifications:
-    - target: {fileID: 1279439106687564754, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_Name
-      value: expTiktak
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 11.69
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1279439106687564766, guid: 9c93d95975044574181e5c74815e953e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9c93d95975044574181e5c74815e953e, type: 3}
 --- !u!4 &1428663909 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 475872118457758263, guid: d9f58151106807d458457ae6c77b6e21, type: 3}

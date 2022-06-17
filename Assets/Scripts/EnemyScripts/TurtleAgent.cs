@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static PlayerSkillsystem;
 
 public class TurtleAgent : MonoBehaviour
 {
@@ -160,6 +161,7 @@ public class TurtleAgent : MonoBehaviour
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
+                playerskillsystem.playerlevel.AddExp(100);
             }
         }
     }
