@@ -144,7 +144,7 @@ public class CombatSystem : MonoBehaviour {
             potionlootable = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && playerattributes.currentStamina >= 25 && !_anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !UiScreenManager._isOneIngameUiOpen) 
+        if (Input.GetKeyDown(KeyCode.C) && playerattributes.currentStamina >= 25 && !_anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !UiScreenManager._isOneIngameUiOpen) 
         {
             if (!invincible)
             {
