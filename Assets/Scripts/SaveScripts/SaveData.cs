@@ -1,14 +1,8 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using GameUI;
-using GameUI.Scripts;
-using StarterAssets;
+using SaveScripts;
+using UIScripts;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using static SkillTree;
-using Cursor = UnityEngine.Cursor;
 
 public class SaveData : MonoBehaviour
 {
