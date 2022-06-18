@@ -36,16 +36,9 @@ namespace UIScripts
             healthBar.fillAmount = player.currentHealth / player.maxHealth;
             HealthText.text = Math.Round((Decimal)player.currentHealth, 0, MidpointRounding.AwayFromZero).ToString();
 
-
             XPBar.fillAmount = playerskillsystem.playerlevel.GetExp() / playerskillsystem.playerlevel.GetExpToLevelUp();
             XPBarText.text = Math.Round((Decimal)playerskillsystem.playerlevel.GetExp(), 0, MidpointRounding.AwayFromZero).ToString();
 
-
-            if (player.currentHealth == 0) {
-                Debug.Log("tot");
-                screenManager.OpenDeathUi();
-            }
-       
             staminaBar.fillAmount = player.currentStamina / player.maxStamina;
             StaminaText.text = Math.Round((Decimal)player.currentStamina, 0, MidpointRounding.AwayFromZero).ToString();
 

@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using static SkillTree;
 using static PlayerDisplay;
+using static UiScreenManager;
 
 
 /// <summary>
@@ -379,6 +380,11 @@ public class PlayerAttributes : MonoBehaviour
 
         if (currentStamina < maxStamina && !Input.GetKey(KeyCode.LeftShift)) {
             currentStamina += staminaRegenerationSpeed * Time.deltaTime;
+        }
+
+        if (currentHealth <= 0) {
+            Debug.Log("tot");
+            uiScreenManager.OpenDeathUi();
         }
     }
 }
