@@ -24,14 +24,14 @@ For more detailed information about the code have a look at the [Code dokumentat
 
 
 ## Branches
-- **development**: choose the development branche if you develop. When you are done and you have no errors, you can merge it into the testing branch.
+- **development**: choose the development branch if you develop. When you are done and have no errors, you can merge it into the testing branch.
 - **testing**: the testing branch is there to test your code with the rest of the game. Additionally GitHub will automatically run tests.
-- **main**: If everything works in the testing branch, you can merge the tesing branch into the main branch. The main branch is only for finished code. GitHub will automatically run tests and build the game. 
+- **main**: If everything works in the testing branch, you can merge the testing branch into the main branch. The main branch is only for finished code. GitHub will automatically run tests and build the game. 
 
 
 ## Testing
 ### via GitHub
-Tests are run after each push into the testing and main branche. 
+Tests are run after each push into the testing. 
 Under the tab Actions you can see the workflow and the test results for editmode and playmode.
 The tests are defined in the project under IP2-GameDevs/Assets/Tests/EditMode or IP2-GameDevs/Assets/Tests/Playmode.
 In IP2-GameDevs/.github/workflows/main.yml you will find the settings to run the tests and the build process automatically in GitHub.
@@ -46,8 +46,8 @@ The tests are defined in the project under IP2-GameDevs/Assets/Tests/EditMode or
 
 ## Build and play
 ### via GitHub
-Buildprocess are run after each push into the main branche automatically (it may take long). 
-If the build process has been completed successfully, you can click on the Actions tab and select the appropriate workfolw.
+Buildprocess are run after each push into the main branch automatically (it may take a long time).
+If the build process has been completed successfully, you can click on the Actions tab and select the appropriate workflow.
 Scroll down to the artifacts and download the build folder.
 Open the folder and run the exe to start the game.
 
