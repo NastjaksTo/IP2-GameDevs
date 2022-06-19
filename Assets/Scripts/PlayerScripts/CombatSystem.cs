@@ -25,6 +25,7 @@ public class CombatSystem : MonoBehaviour {
     private bool canusepotion;
     public TextMeshProUGUI potionsUI;
     public bool invincible = false;
+    public bool justrevived;
     
     public List<int> potionTickTimer = new List<int>();
     
@@ -76,6 +77,13 @@ public class CombatSystem : MonoBehaviour {
         invincible = false;
     }
     
+    public IEnumerator ReviveCooldown()
+    {
+        justrevived = true;
+        yield return new WaitForSeconds(10);
+        justrevived = false;
+    }
+    
     public IEnumerator regeneratingHealth()
     {
         if (skillTree.skillLevels[9] == 0) regenerationTimer = 0.4f;
@@ -111,14 +119,31 @@ public class CombatSystem : MonoBehaviour {
         Destroy(newPotionEffect, 5f);
     }
     
-    public void LoseHealth(int amount)
+    public void LoseHealth(float amount)
     {
         if (invincible) return;
+        
+        var spellreduction = 1f;
+        bool playerhasrevive = skillTree.skillLevels[15] == 1;
+        
+        if (Earth1.earth1IsActive) spellreduction = Earth1.dmgredcution;
 
-        playerattributes.currentHealth -= amount; //ARMOR DMG REDUCTION HERE
+        if (Earth2.earth2IsActive)
+        {
+            spellreduction = Earth2.dmgredcution;
+            applypotion(100 * (1 + skillTree.skillLevels[8]));
+        }
+
+        playerattributes.currentHealth -= amount * spellreduction; //ARMOR DMG REDUCTION HERE
 
         if (playerattributes.currentHealth <= 0)
         {
+            if (playerhasrevive && !justrevived)
+            {
+                playerattributes.currentHealth = playerattributes.maxHealth;
+                StartCoroutine(ReviveCooldown());
+            }
+            // ELSE DIE
             
         }
     }

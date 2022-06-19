@@ -56,7 +56,7 @@ public class SpellCooldown : MonoBehaviour
         
     }
     
-    public void UseSpell(int cooldown)
+    public void UseSpell(float cooldown)
     {
         cooldownTime = cooldown;
         isCooldown = true;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static PlayerDisplay;
 
 
     /// <summary>
@@ -253,8 +254,10 @@ public class UiScreenManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen) {
             if (_inventoryUiOpen) {
                 CloseInventoryUi();
+                playerDisplay.UpdateSpellUI();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
                 OpenInventoryUi();
+                playerDisplay.UpdateSpellUI();
             }
         }
 
