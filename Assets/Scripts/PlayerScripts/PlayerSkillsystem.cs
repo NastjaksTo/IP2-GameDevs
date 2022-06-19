@@ -173,7 +173,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// <summary>
     /// Checks what level the earth skills currently have and instantiates the according earth spell.
     /// </summary>
-    private void CastEarth() // Cast EarthSpells
+    public void CastEarth() // Cast EarthSpells
     {
         if (skillTree.skillLevels[14] > 0)
         {

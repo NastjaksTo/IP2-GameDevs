@@ -20,7 +20,7 @@ public class UiScreenManager : MonoBehaviour {
     private static bool _questUiOpen = false;
     public GameObject questUi;                              //reference set in editor
 
-    private static bool _deathUiOpen = false;
+    public static bool _deathUiOpen = false;
     public GameObject deathUi;                              //reference set in editor
 
     public GameObject pauseMenuUi;                          //reference set in editor

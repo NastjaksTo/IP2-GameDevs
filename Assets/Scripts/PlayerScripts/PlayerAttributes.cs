@@ -41,6 +41,7 @@ public class PlayerAttributes : MonoBehaviour
     public float manaRegenerationSpeed;
 
     public float physicalDamage;
+    public float currentArmor;
 
     [HideInInspector] public bool fireKnowladgeEquiped;
     [HideInInspector] public bool iceKnowladgeEquiped;
@@ -365,7 +366,11 @@ public class PlayerAttributes : MonoBehaviour
                 textPhysicalDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
 
             if (playerAttributes[i].type == Attributes.Armor)
+            {
                 textArmor.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+                currentArmor = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+            }
+               
 
            
         }
@@ -381,11 +386,6 @@ public class PlayerAttributes : MonoBehaviour
 
         if (currentStamina < maxStamina && !Input.GetKey(KeyCode.LeftShift)) {
             currentStamina += staminaRegenerationSpeed * Time.deltaTime;
-        }
-
-        if (currentHealth <= 0) {
-            Debug.Log("tot");
-            uiScreenManager.OpenDeathUi();
         }
     }
 }

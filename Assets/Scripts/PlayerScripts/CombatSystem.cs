@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static SkillTree;
 using static PotionCooldown;
+using static UiScreenManager;
 
 public class CombatSystem : MonoBehaviour {
     public Animator _anim;
@@ -122,8 +123,9 @@ public class CombatSystem : MonoBehaviour {
     public void LoseHealth(float amount)
     {
         if (invincible) return;
-        
-        var spellreduction = 1f;
+
+        float damage;
+        float spellreduction = 1f;
         bool playerhasrevive = skillTree.skillLevels[15] == 1;
         
         if (Earth1.earth1IsActive) spellreduction = Earth1.dmgredcution;
@@ -134,7 +136,12 @@ public class CombatSystem : MonoBehaviour {
             applypotion(100 * (1 + skillTree.skillLevels[8]));
         }
 
-        playerattributes.currentHealth -= amount * spellreduction; //ARMOR DMG REDUCTION HERE
+        damage = (amount - playerattributes.currentArmor) * spellreduction;
+        if (damage > 0)
+        {
+            playerattributes.currentHealth -= damage;
+        }
+        else return;
 
         if (playerattributes.currentHealth <= 0)
         {
@@ -142,9 +149,7 @@ public class CombatSystem : MonoBehaviour {
             {
                 playerattributes.currentHealth = playerattributes.maxHealth;
                 StartCoroutine(ReviveCooldown());
-            }
-            // ELSE DIE
-            
+            } else uiScreenManager.OpenDeathUi();
         }
     }
     
