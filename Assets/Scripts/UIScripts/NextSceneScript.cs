@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameUI.Scripts
+namespace UIScripts
 {
     /// <summary>
     /// for loading the game-scene after the game into is been played
@@ -13,9 +13,9 @@ namespace GameUI.Scripts
         /// </summary>
         void OnEnable()
         {
+            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
-            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         }
 
         /// <summary>
@@ -23,9 +23,9 @@ namespace GameUI.Scripts
         /// </summary>
         public void NextScene()
         {
+            SceneManager.LoadScene("GameScene");
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
-            SceneManager.LoadScene("GameScene");
         }
     }
 }

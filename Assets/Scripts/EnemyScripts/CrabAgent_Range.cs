@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static PlayerSkillsystem;
 
 public class CrabAgent_Range : MonoBehaviour
 {
@@ -126,6 +127,7 @@ public class CrabAgent_Range : MonoBehaviour
             animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
+                playerskillsystem.playerlevel.AddExp(300);
         }
     }
         }

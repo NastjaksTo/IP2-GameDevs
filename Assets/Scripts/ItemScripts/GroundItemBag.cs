@@ -8,4 +8,5 @@ using UnityEngine;
 /// </summary>
 public class GroundItemBag : MonoBehaviour {
     public ItemObject[] itemInBag;
+    public int id;
 }

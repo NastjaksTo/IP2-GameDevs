@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using static SkillTree;
 using static PlayerDisplay;
+using static UiScreenManager;
 
 
 /// <summary>
@@ -40,6 +41,7 @@ public class PlayerAttributes : MonoBehaviour
     public float manaRegenerationSpeed;
 
     public float physicalDamage;
+    public float currentArmor;
 
     [HideInInspector] public bool fireKnowladgeEquiped;
     [HideInInspector] public bool iceKnowladgeEquiped;
@@ -80,6 +82,8 @@ public class PlayerAttributes : MonoBehaviour
         staminaRegenerationSpeed = 5;
 
         hasWeaponEquiped = false;
+        
+        playerDisplay.UpdateSpellUI();
     }
 
     /// <summary>
@@ -317,7 +321,7 @@ public class PlayerAttributes : MonoBehaviour
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
-                    //playerDisplay.UpdateSpellUI();
+                    playerDisplay.UpdateSpellUI();
                 } else {
                     fireKnowladgeEquiped = false;
                 }
@@ -326,7 +330,7 @@ public class PlayerAttributes : MonoBehaviour
             if (playerAttributes[i].type == Attributes.IceKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     iceKnowladgeEquiped = true;
-                    //playerDisplay.UpdateSpellUI();
+                    playerDisplay.UpdateSpellUI();
                 } else {
                     iceKnowladgeEquiped = false;
                 }
@@ -335,10 +339,9 @@ public class PlayerAttributes : MonoBehaviour
             if (playerAttributes[i].type == Attributes.EarthKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     earthKnowladgeEquiped = true;
-                    //playerDisplay.UpdateSpellUI();
+                    playerDisplay.UpdateSpellUI();
                 } else {
                     earthKnowladgeEquiped = false;
-                    //playerDisplay.UpdateSpellUI();
                 }
             }
         }
@@ -363,7 +366,11 @@ public class PlayerAttributes : MonoBehaviour
                 textPhysicalDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
 
             if (playerAttributes[i].type == Attributes.Armor)
+            {
                 textArmor.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+                currentArmor = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+            }
+               
 
            
         }

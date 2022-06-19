@@ -1,14 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using GameUI.Scripts;
 using StarterAssets;
 using TMPro;
+using UIScripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static SkillTree;
 using static PotionCooldown;
+using static UiScreenManager;
 
 public class CombatSystem : MonoBehaviour {
     public Animator _anim;
@@ -25,6 +26,7 @@ public class CombatSystem : MonoBehaviour {
     private bool canusepotion;
     public TextMeshProUGUI potionsUI;
     public bool invincible = false;
+    public bool justrevived;
     
     public List<int> potionTickTimer = new List<int>();
     
@@ -76,6 +78,13 @@ public class CombatSystem : MonoBehaviour {
         invincible = false;
     }
     
+    public IEnumerator ReviveCooldown()
+    {
+        justrevived = true;
+        yield return new WaitForSeconds(10);
+        justrevived = false;
+    }
+    
     public IEnumerator regeneratingHealth()
     {
         if (skillTree.skillLevels[9] == 0) regenerationTimer = 0.4f;
@@ -111,15 +120,36 @@ public class CombatSystem : MonoBehaviour {
         Destroy(newPotionEffect, 5f);
     }
     
-    public void LoseHealth(int amount)
+    public void LoseHealth(float amount)
     {
         if (invincible) return;
 
-        playerattributes.currentHealth -= amount; //ARMOR DMG REDUCTION HERE
+        float damage;
+        float spellreduction = 1f;
+        bool playerhasrevive = skillTree.skillLevels[15] == 1;
+        
+        if (Earth1.earth1IsActive) spellreduction = Earth1.dmgredcution;
+
+        if (Earth2.earth2IsActive)
+        {
+            spellreduction = Earth2.dmgredcution;
+            applypotion(100 * (1 + skillTree.skillLevels[8]));
+        }
+
+        damage = (amount - playerattributes.currentArmor) * spellreduction;
+        if (damage > 0)
+        {
+            playerattributes.currentHealth -= damage;
+        }
+        else return;
 
         if (playerattributes.currentHealth <= 0)
         {
-            
+            if (playerhasrevive && !justrevived)
+            {
+                playerattributes.currentHealth = playerattributes.maxHealth;
+                StartCoroutine(ReviveCooldown());
+            } else uiScreenManager.OpenDeathUi();
         }
     }
     
@@ -144,7 +174,7 @@ public class CombatSystem : MonoBehaviour {
             potionlootable = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && playerattributes.currentStamina >= 25 && !_anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !UiScreenManager._isOneIngameUiOpen) 
+        if (Input.GetKeyDown(KeyCode.C) && playerattributes.currentStamina >= 25 && !_anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !UiScreenManager._isOneIngameUiOpen) 
         {
             if (!invincible)
             {

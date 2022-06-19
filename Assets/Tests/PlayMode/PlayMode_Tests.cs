@@ -9,6 +9,8 @@ public class PlayMode_Tests {
     private GameObject player;
     private PlayerAttributes playerAtr;
     private CombatSystem playerComb;
+    private PlayerSkillsystem playerSkillsystem;
+    private SkillTree skillTree;
 
     [OneTimeSetUp]
     public void LoadScene() {
@@ -38,18 +40,50 @@ public class PlayMode_Tests {
     }
 
     [UnityTest]
-    public IEnumerator PlayerLoosHealth_Test() {
+    public IEnumerator PlayerLoseHealth_Test() {
         playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
         playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
 
         var StartHealth = playerAtr.currentHealth;
         playerComb.LoseHealth(10);
-        var NewCurrentHealth = playerAtr.currentHealth;
+        var CurrentHealth = playerAtr.currentHealth;
 
         yield return null;
-        Assert.IsTrue(StartHealth > NewCurrentHealth);
+        Assert.IsTrue(StartHealth > CurrentHealth);
     }
+    
+    [UnityTest]
+    public IEnumerator PlayerLoseHealthWithArmor_Test() {
+        playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
+        playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
 
+        playerAtr.currentArmor = 50;
+        var StartHealth = playerAtr.currentHealth;
+        playerComb.LoseHealth(50);
+        var CurrentHealth = playerAtr.currentHealth;
+        playerAtr.currentArmor = 0;
+        
+        yield return null;
+        Assert.AreEqual(StartHealth, CurrentHealth);
+    }
+    
+    [UnityTest]
+    public IEnumerator PlayerLoseHealthWithEarthSpell_Test() {
+        playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
+        playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
+        playerSkillsystem = GameObject.Find("PlayerArmature").GetComponent<PlayerSkillsystem>();
+        
+        playerSkillsystem.CastEarth();
+        yield return null;
+        var StartHealth = playerAtr.currentHealth;
+        playerComb.LoseHealth(10);
+        var CurrentHealth = playerAtr.currentHealth;
+        float dmgredcution = Earth1.dmgredcution;
+
+        yield return null;
+        Assert.AreEqual(StartHealth-(10*dmgredcution), CurrentHealth);
+    }
+    
     [UnityTest]
     public IEnumerator PlayerUsePoison_Test() {
         playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
@@ -85,5 +119,42 @@ public class PlayMode_Tests {
 
         yield return null;
         Assert.IsTrue(StartHealth == NewCurrentHealth);
+    }
+    
+    [UnityTest]
+    public IEnumerator PlayerRevive_Test() {
+        playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
+        playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
+        playerSkillsystem = GameObject.Find("PlayerArmature").GetComponent<PlayerSkillsystem>();
+        skillTree = GameObject.Find("SkillTree").GetComponent<SkillTree>();
+
+        Debug.Log(playerAtr.currentHealth);
+        skillTree.skillLevels[15] = 1;
+        Debug.Log(skillTree.skillLevels[15]);
+
+        yield return null;
+
+        playerComb.LoseHealth(99);
+        Debug.Log(playerAtr.currentHealth);
+
+        yield return null;
+        Assert.AreEqual(playerAtr.currentHealth, playerAtr.maxHealth);
+    }
+    
+    [UnityTest]
+    public IEnumerator zPlayerCanDie_Test() {
+        playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
+        playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
+        
+        Debug.Log(playerAtr.currentHealth);
+        playerComb.justrevived = true;
+        playerAtr.currentHealth = 100;
+        Debug.Log(playerAtr.currentHealth);
+        playerComb.LoseHealth(200);
+        playerComb.justrevived = false;
+        Debug.Log(playerAtr.currentHealth);
+        
+        yield return null;
+        Assert.IsTrue(UiScreenManager._deathUiOpen);
     }
 }

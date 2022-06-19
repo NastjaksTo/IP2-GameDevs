@@ -4202,6 +4202,7 @@ GameObject:
   - component: {fileID: 8540202164764208075}
   - component: {fileID: 6420210873631754601}
   - component: {fileID: 3889215201061381010}
+  - component: {fileID: 3193225262567043312}
   - component: {fileID: 7329455470492325150}
   - component: {fileID: 1508436443467881738}
   - component: {fileID: 6420210873631754606}
@@ -4288,6 +4289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillsystem: {fileID: 1508436443467881738}
   attributes: {fileID: 3282722539791073068}
+  playerInventory: {fileID: 0}
   combatsystem: {fileID: 6889921541418571323}
   inventory: {fileID: 11400000, guid: 1a2729bdc4c4965489ae542be287f8a2, type: 2}
   equipment: {fileID: 11400000, guid: 161a06c40d35775418e16d6ca6da7c8c, type: 2}
@@ -4313,19 +4315,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  sprintSpeed: 11
-  rotationSmoothTime: 0.12
-  speedChangeRate: 10
-  footstepAudioClips: []
-  footstepAudioVolume: 0.5
-  gravity: -95
+  SprintSpeed: 5.335
+  RotationSmoothTime: 0.12
+  SpeedChangeRate: 10
+  LandingAudioClip: {fileID: 0}
+  FootstepAudioClips: []
+  FootstepAudioVolume: 0.5
+  JumpHeight: 1.2
+  Gravity: -15
+  JumpTimeout: 0.5
+  FallTimeout: 0.15
+  Grounded: 1
+  GroundedOffset: -0.14
+  GroundedRadius: 0.28
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 0
   CinemachineCameraTarget: {fileID: 1724651005944934457}
   TopClamp: 70
   BottomClamp: -30
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  anim: {fileID: 338570133153139106}
   _canMove: 0
+  anim: {fileID: 338570133153139106}
   playerattributes: {fileID: 3282722539791073068}
   playerskillsystem: {fileID: 1508436443467881738}
 --- !u!114 &3889215201061381010
@@ -4345,6 +4357,24 @@ MonoBehaviour:
     m_Bits: 0
   canPush: 0
   strength: 1.1
+--- !u!114 &3193225262567043312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6420210873631754594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e223ff4fca7a83845b52c8ab27e4a4f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startYPos: 0
+  endYPos: 0
+  damageThreshold: 0
+  damaged: 0
+  firstCall: 1
+  extraDamageMultiplier: 0
 --- !u!114 &7329455470492325150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4503,6 +4533,7 @@ MonoBehaviour:
   playerInventory: {fileID: 11400000, guid: 1a2729bdc4c4965489ae542be287f8a2, type: 2}
   playerEquipment: {fileID: 11400000, guid: 161a06c40d35775418e16d6ca6da7c8c, type: 2}
   collectAlert: {fileID: 0}
+  collectedLootbags: 
 --- !u!114 &3282722539791073068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4591,6 +4622,7 @@ MonoBehaviour:
   regenerationTimer: 0
   potioneffect: {fileID: 456768341000717931, guid: 2e2ac8fa38213974c83563a27ea5ed46, type: 3}
   potionsUI: {fileID: 0}
+  invincible: 0
   potionTickTimer: 
 --- !u!114 &3020166532230136929
 MonoBehaviour:
