@@ -3,9 +3,9 @@ using UnityEngine.SceneManagement;
 using static PlayerDisplay;
 
 
-    /// <summary>
-    /// Manage the in game Uis. Open and close them and defines the functions of the buttons in the menus.
-    /// </summary>
+/// <summary>
+/// Manage the in game Uis. Open and close them and defines the functions of the buttons in the menus.
+/// </summary>
 public class UiScreenManager : MonoBehaviour {
 
     public static UiScreenManager uiScreenManager;
@@ -26,7 +26,7 @@ public class UiScreenManager : MonoBehaviour {
     public GameObject pauseMenuUi;                          //reference set in editor
 
     private static bool _pauseMenuContainerUiOpen = false;
-    public GameObject pauseMenuContainerUi;                  //reference set in editor
+    public GameObject pauseMenuContainerUi;                 //reference set in editor
 
 
     public GameObject optionsMenuUI;                        //reference set in editor
@@ -261,14 +261,6 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        //if (Input.GetKeyDown(KeyCode.K) && !_deathUiOpen) {
-        //    if (_skillUiOpen) {
-        //        CloseSkillUi();
-        //    } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
-        //        OpenSkillUi();
-        //    }
-        //}
-
         if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen) {
             if (_questUiOpen) {
                 CloseQuestUi();
@@ -302,10 +294,10 @@ public class UiScreenManager : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab) && (_inventoryUiOpen || _questUiOpen)) {
 
-            if (_inventoryUiOpen) { // if the inventory is opem
+            if (_inventoryUiOpen) {
                 CloseInventoryUi();
                 OpenQuestUi();
-            } else if (_questUiOpen) { // if the skilltree is open
+            } else if (_questUiOpen) {
                 CloseQuestUi();
                 OpenInventoryUi();
             }

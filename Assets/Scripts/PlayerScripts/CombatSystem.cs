@@ -1,12 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
 using TMPro;
-using UIScripts;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using static SkillTree;
 using static PotionCooldown;
 using static UiScreenManager;
@@ -192,6 +188,5 @@ public class CombatSystem : MonoBehaviour {
             applypotion(100 * (1 + skillTree.skillLevels[9]));
             potioncooldown.UsePotion(5);
         }
-
     }
 }
