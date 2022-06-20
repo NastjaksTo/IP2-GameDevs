@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
@@ -7,7 +8,9 @@ using static SkillTree;
 using static PotionCooldown;
 using static UiScreenManager;
 
-public class CombatSystem : MonoBehaviour {
+public class CombatSystem : MonoBehaviour
+{
+    public static CombatSystem combatSystem;
     public Animator _anim;
     public ThirdPersonController playerMovement;
     public PlayerAttributes playerattributes;
@@ -25,7 +28,12 @@ public class CombatSystem : MonoBehaviour {
     public bool justrevived;
     
     public List<int> potionTickTimer = new List<int>();
-    
+
+    private void Awake()
+    {
+        combatSystem = this;
+    }
+
     private void Start()
     {
         canusepotion = true;

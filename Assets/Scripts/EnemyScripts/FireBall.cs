@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static CombatSystem;
 
 public class FireBall : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class FireBall : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            player.currentHealth = player.currentHealth - 20;
+            combatSystem.LoseHealth(25);
             Destroy(gameObject);
         }
         Destroy(gameObject, 5);

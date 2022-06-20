@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static CombatSystem;
+using static PlayerSkillsystem;
 
 public class BossGolemFire : MonoBehaviour
 {
@@ -191,6 +193,7 @@ public class BossGolemFire : MonoBehaviour
                 isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
+                playerskillsystem.playerlevel.AddExp(5000);
                 Destroy(gameObject, 5.0f);
             }
         }
@@ -202,11 +205,11 @@ public class BossGolemFire : MonoBehaviour
         {
             if (!phase2)
             {
-                player.currentHealth = (int)(player.currentHealth - damage);
+                combatSystem.LoseHealth(damage);
             }
             if (phase2)
             {
-                player.currentHealth = (int)(player.currentHealth - (damage * 2));
+                combatSystem.LoseHealth(damage*2);
             }
             doDamage = false;
         }

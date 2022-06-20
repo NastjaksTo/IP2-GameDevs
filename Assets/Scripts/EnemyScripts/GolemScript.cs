@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static CombatSystem;
 
 public class GolemScript : MonoBehaviour
 {
@@ -180,7 +181,7 @@ public class GolemScript : MonoBehaviour
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            combatSystem.LoseHealth(damage);
             doDamage = false;
         }
     }
