@@ -50,7 +50,7 @@ public class BossGolemIce : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 10.0f;
+        attackRange = navMeshAgent.stoppingDistance;
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
@@ -154,7 +154,7 @@ public class BossGolemIce : MonoBehaviour
             {
                 animator.SetTrigger("Stomp");
                 idle = true;
-                if(Vector3.Distance(this.transform.position, movePositionTransform.position) < 5.0f)
+                if(Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
                 {
                     doDamage = true;
                 }
@@ -222,12 +222,12 @@ public class BossGolemIce : MonoBehaviour
         attackSwitchRange = Random.Range(1, 8);
     }
 
-    private void startIceAttack()
+    private void startMagicAttack()
     {
         ps.Play();
     }
 
-    private void stopIceAttack()
+    private void stopMagicAttack()
     {
         ps.Stop();
     }

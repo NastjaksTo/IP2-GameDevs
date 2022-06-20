@@ -1272,6 +1272,7 @@ GameObject:
   - component: {fileID: 798298602}
   - component: {fileID: 903926968}
   - component: {fileID: 559798037}
+  - component: {fileID: 4525738253874444072}
   m_Layer: 30
   m_Name: Polygonal Metalon Green
   m_TagString: Enemy
@@ -1347,7 +1348,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &798298598
 MonoBehaviour:
@@ -1372,11 +1373,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 2
+  m_Acceleration: 4
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 4
+  m_AngularSpeed: 180
+  m_StoppingDistance: 3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1396,8 +1397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22c7f6b8cc190243a8492f1c6e97979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  angle: 0
+  radius: 15
+  angle: 90
   playerRef: {fileID: 0}
   canSeePlayer: 0
   targetMask:
@@ -1420,6 +1421,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterCollider: {fileID: 219246226}
   characterBlockerCollider: {fileID: 1885707272}
+--- !u!114 &4525738253874444072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783563462218004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1804318802084684
 GameObject:
   m_ObjectHideFlags: 0

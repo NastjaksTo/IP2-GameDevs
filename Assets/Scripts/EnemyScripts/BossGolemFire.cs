@@ -59,7 +59,7 @@ public class BossGolemFire : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 10.0f;
+        attackRange = navMeshAgent.stoppingDistance;
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
@@ -250,12 +250,12 @@ public class BossGolemFire : MonoBehaviour
         attackSwitchRange = Random.Range(1, 8);
     }
 
-    private void startFireAttack()
+    private void startMagicAttack()
     {
         ps.Play();
     }
 
-    private void stopFireAttack()
+    private void stopMagicAttack()
     {
         ps.Stop();
     }

@@ -50,7 +50,7 @@ public class BossGolemSand : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 10.0f;
+        attackRange = navMeshAgent.stoppingDistance;
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
@@ -64,7 +64,9 @@ public class BossGolemSand : MonoBehaviour
         timer += Time.deltaTime;
         WalkOrAttack();
         getDamage();
-        DoDamage();
+
+        screamAt();
+        lookAt();
     }
 
     private void WalkOrAttack()
@@ -78,7 +80,6 @@ public class BossGolemSand : MonoBehaviour
 
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
-                FaceTarget(movePositionTransform.position);
                 Attack();
             }
             else if (Vector3.Distance(this.transform.position, movePositionTransform.position) > attackRange)
@@ -130,12 +131,6 @@ public class BossGolemSand : MonoBehaviour
         if (!idle)
         {
 
-            /*if (attackSwitch < 5)
-            {
-                animator.SetTrigger("BottomSlash");
-                idle = true;
-            }*/
-
             if (attackSwitch <= 10)
             {
                 animator.SetTrigger("SlashHit");
@@ -145,24 +140,30 @@ public class BossGolemSand : MonoBehaviour
             if (attackSwitch == 11)
             {
                 animator.SetTrigger("Stomp");
+                if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
+                {
+                    doDamage = true;
+                }
                 idle = true;
             }
-
-            /*if (attackSwitchRange == 12)
-            {
-                navMeshAgent.speed = 0;
-                animator.SetBool("Walk", false);
-                animator.SetTrigger("rangedSlash");
-            }*/
         }
     }
 
-    private void FaceTarget(Vector3 destination)
+    private void lookAt()
     {
-        Vector3 lookPos = destination - transform.position;
-        lookPos.y = 0;
-        Quaternion rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 5);
+        if (fov.CanSeePlayer)
+        {
+            Vector3 relativePos = movePositionTransform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            this.transform.rotation = rotation;
+        }
+    }
+
+    private void screamAt()
+    {
+        Vector3 relativePos = (movePositionTransform.position - new Vector3(0, 5, 0)) - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        ps.transform.rotation = rotation;
     }
 
     private void getDamage()
@@ -190,20 +191,14 @@ public class BossGolemSand : MonoBehaviour
             if (!phase2)
             {
                 player.currentHealth = (int)(player.currentHealth - damage);
+                doDamage = false;
             }
             if (phase2)
             {
                 player.currentHealth = (int)(player.currentHealth - (damage * 2));
+                doDamage = false;
             }
-            doDamage = false;
-        }
-    }
-
-    private void Stomp()
-    {
-        if(Vector3.Distance(this.transform.position, movePositionTransform.position) < 5)
-        {
-            doDamage = true;
+            
         }
     }
 
@@ -227,12 +222,12 @@ public class BossGolemSand : MonoBehaviour
         attackSwitchRange = Random.Range(1, 8);
     }
 
-    private void startEarthAttack()
+    private void startMagicAttack()
     {
         ps.Play();
     }
 
-    private void stopEarthAttack()
+    private void stopMagicAttack()
     {
         ps.Stop();
     }
