@@ -20,7 +20,6 @@ public class Ice3 : MonoBehaviour
             enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
             //anim.SetBool("stunned", true);
             //StartCoroutine(ice3stunned());
-            Destroy(other.gameObject, 15.25f);
         }
     }
 /*
