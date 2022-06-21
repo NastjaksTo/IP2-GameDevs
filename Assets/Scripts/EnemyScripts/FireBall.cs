@@ -5,20 +5,20 @@ using static CombatSystem;
 
 public class FireBall : MonoBehaviour
 {
-    private PlayerAttributes player;
+    private float damage;
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
+        damage = 20;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            combatSystem.LoseHealth(25);
+            combatSystem.LoseHealth(damage);
             Destroy(gameObject);
         }
         Destroy(gameObject, 5);
     }
-
 }
