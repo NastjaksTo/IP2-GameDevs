@@ -217,23 +217,20 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (playerattributes.fireKnowladgeEquiped)
             {
-                if (spellcooldown.isCooldown) return;
-                if (!controller.isGrounded) return;
-                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                if (spellcooldown.isCooldown || !controller.isGrounded) return;
+                //transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastFire();
             }
             if (playerattributes.iceKnowladgeEquiped)
             {
-                if (spellcooldown.isCooldown) return;
-                if (!controller.isGrounded) return;
-                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                if (spellcooldown.isCooldown || !controller.isGrounded) return;
+                //transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastIce();
             }
             if (playerattributes.earthKnowladgeEquiped)
             {
-                if (spellcooldown.isCooldown) return;
-                if (!controller.isGrounded) return;
-                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                if (spellcooldown.isCooldown || !controller.isGrounded) return;
+                //transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastEarth();
             }
         }

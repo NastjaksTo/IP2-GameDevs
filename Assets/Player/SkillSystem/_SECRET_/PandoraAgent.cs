@@ -161,17 +161,12 @@ public class PandoraAgent : MonoBehaviour
                 int chooseAttack = randomNumber.Next(0, 5);
                 if (chooseAttack < 4)
                 {
-                    Debug.Log("attackOne");
-                    Debug.Log(chooseAttack);
                     if (alreadyAttacked) return;
                     anim.SetBool("attackOne", true);
                 }
                 else if (chooseAttack == 4 && !usedDebuff)
                 {
-                    Debug.Log("DebuffOne");
-                    Debug.Log(chooseAttack);
-                    if (alreadyAttacked) return;
-                    if (usedDebuff) return;
+                    if (alreadyAttacked || usedDebuff) return;
                     usedDebuff = true;
                     anim.SetBool("debuffOne", true);
                 }
@@ -179,28 +174,20 @@ public class PandoraAgent : MonoBehaviour
 
             if (isPhaseTwo && !isPhaseThree && !alreadyAttacked)
             {
-                Debug.Log("phaseTwo");
                 int chooseAttack = randomNumber.Next(0, 9);
                 if (chooseAttack > 1 && chooseAttack < 5)
                 {
-                    Debug.Log("attackOne");
-                    Debug.Log(chooseAttack);
                     if (alreadyAttacked) return;
                     anim.SetBool("attackOne", true);
                 }
                 else if (chooseAttack == 1 && !usedDebuff)
                 {
-                    Debug.Log("DebuffOne");
-                    Debug.Log(chooseAttack);
-                    if (alreadyAttacked) return;
-                    if (usedDebuff) return;
+                    if (alreadyAttacked || usedDebuff) return;
                     usedDebuff = true;
                     anim.SetBool("debuffOne", true);
                 }
                 else if (chooseAttack > 4)
                 {
-                    Debug.Log("attackTwo");
-                    Debug.Log(chooseAttack);
                     if (alreadyAttacked) return;
                     anim.SetBool("attackTwo", true);
                 }
@@ -208,36 +195,26 @@ public class PandoraAgent : MonoBehaviour
             
             if (isPhaseThree)
             {
-                Debug.Log("phaseThree");
                 int chooseAttack = randomNumber.Next(0, 12);
                 if (chooseAttack > 1 && chooseAttack < 5)
                 {
-                    Debug.Log("attackOne");
-                    Debug.Log(chooseAttack);
                     if (alreadyAttacked) return;
                     anim.SetBool("attackOne", true);
                 }
                 else if (chooseAttack == 1 && !usedDebuff)
                 {
-                    Debug.Log("DebuffOne");
-                    Debug.Log(chooseAttack);
-                    if (alreadyAttacked) return;
-                    if (usedDebuff) return;
+                    if (alreadyAttacked || usedDebuff) return;
                     usedDebuff = true;
                     anim.SetBool("debuffOne", true);
                 }
                 else if(chooseAttack > 4 && chooseAttack < 9)
                 {
-                    Debug.Log("attackTwo");
-                    Debug.Log(chooseAttack);
                     if (alreadyAttacked) return;
                     anim.SetBool("attackTwo", true);
 
                 }
                 else if(chooseAttack > 9)
                 {
-                    Debug.Log("attackThree");
-                    Debug.Log(chooseAttack);
                     if (alreadyAttacked) return;
                     anim.SetBool("attackThree", true);
                 }
@@ -363,7 +340,7 @@ public class PandoraAgent : MonoBehaviour
                 Destroy(healthBar, 0.25f);
                 Destroy(textHealthPoints, 0.25f);
                 playerskillsystem.playerlevel.AddExp(Exp);
-                Destroy(GameObject.Find("ChainEffect(Clone)"), 0.25f);
+                Destroy(GameObject.Find("PandoraAoETwo(Clone)"), 0.25f);
                 Destroy(gameObject, 2.0f);
             }
         }
@@ -379,7 +356,6 @@ public class PandoraAgent : MonoBehaviour
             {
                 potionTickTimer[i]--;
             }
-
             if (healthHandler.Health < maxHealth) healthHandler.Health += 2;
             else potionTickTimer.Clear();
             potionTickTimer.RemoveAll(i => i == 0);

@@ -26,6 +26,7 @@ public class CombatSystem : MonoBehaviour
     public TextMeshProUGUI potionsUI;
     public bool invincible = false;
     public bool justrevived;
+    public bool isAttacking;
     
     public List<int> potionTickTimer = new List<int>();
 
@@ -157,6 +158,18 @@ public class CombatSystem : MonoBehaviour
         }
     }
     
+    public void LightAttack()
+    {
+        Debug.Log("Lightattack");
+        isAttacking = true;
+        Invoke(nameof(StopAttack), 0.025f);
+    }
+
+    public void StopAttack()
+    {
+        Debug.Log("Stopattack");
+        isAttacking = false;
+    }
 
     private void Update() 
     {
