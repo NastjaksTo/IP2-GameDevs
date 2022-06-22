@@ -17,14 +17,15 @@ public class CrabAgent_Range : MonoBehaviour
     private GameObject projectileSpawnpoint;
     private float shotSpeed;
     private float fireRate;
-    private float damage;
-    private bool isdead;
+    private float fireBallDamage;
 
     [SerializeField]
     private float level = 1;
 
     [SerializeField] 
     GameObject fireball;
+
+    public float FireBallDamage { get => fireBallDamage; set => fireBallDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
@@ -45,7 +46,7 @@ public class CrabAgent_Range : MonoBehaviour
         shotSpeed = 20.0f;
 
         health.Health = 100;
-        damage = 10;
+        fireBallDamage = 10;
     }
 
     /// <summary>

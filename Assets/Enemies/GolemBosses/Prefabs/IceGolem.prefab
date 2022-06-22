@@ -7614,7 +7614,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641126150877544316}
   m_LocalRotation: {x: 0.69531685, y: -0.008916113, z: 0.024389403, w: 0.7182341}
-  m_LocalPosition: {x: 0.000055720007, y: 0.0006361444, z: 0.009580515}
+  m_LocalPosition: {x: 0.000055720007, y: 0.0006361381, z: 0.009580515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9345,6 +9345,7 @@ GameObject:
   - component: {fileID: 2749159292822970849}
   - component: {fileID: 8693332281853862340}
   - component: {fileID: 5213600525919724960}
+  - component: {fileID: 6904357266933817107}
   - component: {fileID: 5402426483419857109}
   - component: {fileID: 1700277675}
   - component: {fileID: 5183398603658272095}
@@ -9531,6 +9532,18 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &6904357266933817107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057379341362171759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21d00f61c24bb44c974be7c633e7caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5402426483419857109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9559,7 +9572,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &5183398603658272095
 MonoBehaviour:

@@ -25,6 +25,7 @@ public class FatDragonScript : MonoBehaviour
     private float shotSpeed;
     private float attackRange;
     private bool isdead;
+    private float fireBallDamage;
 
     private int damage;
 
@@ -39,6 +40,8 @@ public class FatDragonScript : MonoBehaviour
 
     [SerializeField]
     Collider collider;
+
+    public float FireBallDamage { get => fireBallDamage; set => fireBallDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
@@ -63,6 +66,8 @@ public class FatDragonScript : MonoBehaviour
         shotSpeed = 20.0f;
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
+
+        fireBallDamage = 20;
 
         health.Health = 100;
         damage = 20;
@@ -128,11 +133,6 @@ public class FatDragonScript : MonoBehaviour
         {
             navMeshAgent.speed = 5;
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Basic Attack");
-            animator.ResetTrigger("Tail Attack");
-            animator.ResetTrigger("Shoot");
-            animator.ResetTrigger("Fly and Shoot");
-            animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
@@ -230,7 +230,6 @@ public class FatDragonScript : MonoBehaviour
         if (movePositionTransform != null)
         {
             GameObject fireball = Instantiate(fireBall, standProjectileSpawnpoint.transform.position, Quaternion.identity);
-            fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             Vector3 direction = movePositionTransform.position - (standProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
@@ -245,7 +244,6 @@ public class FatDragonScript : MonoBehaviour
         if (movePositionTransform != null)
         {
             GameObject fireball = Instantiate(fireBall, flyProjectileSpawnpoint.transform.position, Quaternion.identity);
-            fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             Vector3 direction = movePositionTransform.position - (flyProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);

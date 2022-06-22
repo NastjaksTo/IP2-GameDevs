@@ -95,9 +95,6 @@ public class GolemScript : MonoBehaviour
             navMeshAgent.speed = 5;
             navMeshAgent.acceleration = 8;
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Attack1");
-            animator.ResetTrigger("Attack2");
-            animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {

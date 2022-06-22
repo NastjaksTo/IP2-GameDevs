@@ -123,10 +123,6 @@ public class WaterDragonScript : MonoBehaviour
         {
             navMeshAgent.speed = 5;
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Basic Attack");
-            animator.ResetTrigger("Claw Attack");
-            animator.ResetTrigger("Water Attack");
-            animator.ResetTrigger("Fly and Water");
             animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)

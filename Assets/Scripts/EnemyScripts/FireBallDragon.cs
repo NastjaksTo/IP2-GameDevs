@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using static CombatSystem;
 
-public class FireBall : MonoBehaviour
+public class FireBallDragon : MonoBehaviour
 {
+    private FatDragonScript parent;
     private float damage;
 
     private void Awake()
     {
-        damage = 20;
+        damage = 40;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static CombatSystem;
 
 public class detectIceBossMagicCollision : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class detectIceBossMagicCollision : MonoBehaviour
         Debug.Log(other);
         if (other.tag == "Player")
         {
-            enemy.Player.currentHealth = (int)(enemy.Player.currentHealth - enemy.IceDamage);
+            combatSystem.LoseHealth(enemy.IceDamage);
         }
     }
 }
