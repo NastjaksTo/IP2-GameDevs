@@ -27,5 +27,6 @@ public class PandoraAttack1 : MonoBehaviour
             combatSystem.LoseHealth(10);
             Destroy(gameObject, .5f);
         }
+        if(other.gameObject.layer == 3 || other.gameObject.layer == 8) Destroy(gameObject);
     }
 }

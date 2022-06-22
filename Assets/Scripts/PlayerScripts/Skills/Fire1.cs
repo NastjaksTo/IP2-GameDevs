@@ -22,5 +22,6 @@ public class Fire1 : MonoBehaviour
             enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
             Debug.Log("hitting" + other.gameObject.name);
         }
+        if(other.gameObject.layer == 3 || other.gameObject.layer == 8) Destroy(gameObject);
     }
 }

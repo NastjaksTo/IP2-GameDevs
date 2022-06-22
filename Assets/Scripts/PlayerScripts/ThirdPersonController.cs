@@ -106,7 +106,7 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
-        private const float _threshold = 0.01f;
+        private const float _threshold = 0.000001f;
 
         private bool _hasAnimator;
 

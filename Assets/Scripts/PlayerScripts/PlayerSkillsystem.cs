@@ -36,6 +36,7 @@ public class PlayerSkillsystem : MonoBehaviour
     public TextMeshProUGUI textCurrentLevel;                // Reference to the UI text element for the current level.
 
     private Animator anim;
+    private CharacterController controller;
 
     public AudioClip[] spellsounds;
     [Range(0, 1)] public float SpellAudioVolume = 0.5f;
@@ -48,6 +49,7 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         playerlevel = new LevelSystem(); // Create new LevelSystem for the player
         playerskillsystem = this;
+        controller = transform.GetComponent<CharacterController>();
     }
 
     /// <summary>
@@ -216,16 +218,22 @@ public class PlayerSkillsystem : MonoBehaviour
             if (playerattributes.fireKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown) return;
+                if (!controller.isGrounded) return;
+                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastFire();
             }
             if (playerattributes.iceKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown) return;
+                if (!controller.isGrounded) return;
+                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastIce();
             }
             if (playerattributes.earthKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown) return;
+                if (!controller.isGrounded) return;
+                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastEarth();
             }
         }
