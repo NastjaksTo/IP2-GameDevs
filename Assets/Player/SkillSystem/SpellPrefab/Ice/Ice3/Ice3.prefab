@@ -4795,7 +4795,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820680284854294}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 14
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -19370,7 +19370,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.22852045, y: 5.18693, z: 4.090838, w: 0.18936725}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

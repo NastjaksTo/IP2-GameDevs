@@ -149,14 +149,16 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (!(playerattributes.currentMana >= 25)) return;
             playerattributes.currentMana -= 25;
+            AudioSource.PlayClipAtPoint(spellsounds[5],transform.position+(transform.forward*10), SpellAudioVolume);
             var newice3 = Instantiate(ice3, transform.position+(transform.forward*10)+(Vector3.up*10f), transform.rotation * Quaternion.Euler (90f, 0f, 0f));
-            Destroy(newice3, 6);
+            Destroy(newice3, 15);
             spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else if (skillTree.skillLevels[7] > 0)
         {
             if (!(playerattributes.currentMana >= 20)) return;
             playerattributes.currentMana -= 20;
+            AudioSource.PlayClipAtPoint(spellsounds[4],transform.position+(transform.forward*2), SpellAudioVolume);
             var newice2 = Instantiate(ice2, transform.position + (transform.forward * 2), transform.rotation);
             Destroy(newice2, 3);
             spellcooldown.UseSpell(5f * (1f - 0.5f * skillTree.skillLevels[16]));

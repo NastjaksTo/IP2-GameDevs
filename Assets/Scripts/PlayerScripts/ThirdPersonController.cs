@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using static PlayerAttributes;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -106,16 +107,13 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
-        private const float _threshold = 0.000001f;
+        private const float _threshold = 0.00001f;
 
         private bool _hasAnimator;
 
         public bool _canMove;
         public Animator anim;
-        public PlayerAttributes playerattributes;
-        public PlayerSkillsystem playerskillsystem;
-        public LevelSystem levelSystem;
-        
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -230,13 +228,13 @@ namespace StarterAssets
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = moveSpeed;
-            if (playerattributes.currentStamina > 0)
+            if (playerAttributesScript.currentStamina > 0)
             {
                 // set target speed based on move speed, sprint speed and if sprint is pressed
                 targetSpeed = _input.sprint ? SprintSpeed : moveSpeed;
                 if (_input.sprint)
                 {
-                    playerattributes.currentStamina -= 5 * Time.deltaTime;
+                    playerAttributesScript.currentStamina -= 5 * Time.deltaTime;
                 }
             }
 
@@ -306,7 +304,7 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
-            if (playerattributes.currentStamina <= 20) _input.jump = false;
+            if (playerAttributesScript.currentStamina <= 10) _input.jump = false;
             if (Grounded)
             {
                 // reset the fall timeout timer
@@ -413,6 +411,11 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        public void Jumping(AnimationEvent animationEvent)
+        {
+            playerAttributesScript.currentStamina -= 10f;
         }
     }
 }
