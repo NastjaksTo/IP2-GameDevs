@@ -118,7 +118,7 @@ public class PandoraAgent : MonoBehaviour
     {
         hasPatrollingCooldown = true;
         yield return new WaitForSeconds(.66f);
-        anim.Play("standingStill");
+        anim.SetBool("walking", false);
         yield return new WaitForSecondsRealtime(3f);
         hasPatrollingCooldown = false;
     }

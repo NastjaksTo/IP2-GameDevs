@@ -4,36 +4,16 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: PT_Medieval_Shield_01_a_body
-    100004: PT_Medieval_Shield_01_a_handle
     400000: //RootNode
-    400002: PT_Medieval_Shield_01_a_body
-    400004: PT_Medieval_Shield_01_a_handle
     2300000: //RootNode
-    2300002: PT_Medieval_Shield_01_a_body
-    2300004: PT_Medieval_Shield_01_a_handle
     3300000: //RootNode
-    3300002: PT_Medieval_Shield_01_a_body
-    3300004: PT_Medieval_Shield_01_a_handle
     4300000: PT_Medieval_Shield_01_a
-    4300002: PT_Medieval_Shield_01_a_handle
-    4300004: PT_Medieval_Shield_01_a_body
   externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: PT_Medieval_Weapons_Material
-    second: {fileID: 2100000, guid: d20ab871c62edf04facff84d4ce183b5, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: PT_Medieval_mat
     second: {fileID: 2100000, guid: 741114174bb42e0458ead3dc0d64ab38, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: phong1
-    second: {fileID: 2100000, guid: 5f6472cb938b1b745899da3b942752df, type: 2}
   materials:
     importMaterials: 1
     materialName: 1

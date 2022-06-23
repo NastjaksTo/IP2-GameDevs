@@ -18,6 +18,7 @@ public class PandoraAttack1 : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position + transform.up * 1.5f, 10 * Time.deltaTime);
+        transform.LookAt(player.position);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +26,7 @@ public class PandoraAttack1 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             combatSystem.LoseHealth(10);
-            Destroy(gameObject, .5f);
+            Destroy(gameObject, .25f);
         }
         if(other.gameObject.layer == 3 || other.gameObject.layer == 8) Destroy(gameObject);
     }
