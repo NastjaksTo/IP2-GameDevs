@@ -9,65 +9,110 @@ using static PlayerSkillsystem;
 public class PlayerQuests : MonoBehaviour
 {
     public static PlayerQuests playerQuests;
-    public bool isQuestGiver;
     public QuestSystem quest;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descText;
     public TextMeshProUGUI rewardText;
-    public GameObject npcTalkUI;
-    public GameObject questCompleteUI;
-    public TextMeshProUGUI completionText;
 
     private void Awake()
     {
         playerQuests = this;
     }
-
-    private IEnumerator DisableQuestCompletionUI()
-    {
-        yield return new WaitForSeconds(3f);
-        questCompleteUI.SetActive(false);
-    }
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("QuestGiver"))
+        if (other.name == "Quest1")
         {
-            isQuestGiver = true;
-            npcTalkUI.SetActive(true);
+            Debug.Log(other.gameObject.ToString());
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
         }
-        
-        if (other.CompareTag("PleasureDoc"))
+        if (other.name == "Quest2")
         {
-            quest.goal.ObjectFound();
-            if (quest.goal.IsReached())
-            {
-                completionText.text = quest.title + " COMPLETED!";
-                playerskillsystem.playerlevel.exp += quest.expReward;
-                quest.Complete();
-                questCompleteUI.SetActive(true);
-                StartCoroutine(DisableQuestCompletionUI());
-            }
+            if (quest.title != "Find information.") return;
+            quest.Complete();
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("QuestGiver"))
+        if (other.name == "Quest3")
         {
-            isQuestGiver = false;
-            questgiver.CloseQuestWindow();
-            Cursor.lockState = CursorLockMode.Locked;
-            npcTalkUI.SetActive(false);
+            if (quest.title != "Speak to the priest.") return;
+            quest.Complete();
+            Debug.Log(other.gameObject.ToString());
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && isQuestGiver)
+        if (other.name == "Quest4")
         {
-            questgiver.OpenQuestWindow();
-            Cursor.lockState = CursorLockMode.None;
+            if (quest.title != "Pray to the gods.") return;
+            quest.Complete();
+            Debug.Log(other.gameObject.ToString());
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+        }
+        if (other.name == "Quest5")
+        {
+            if (quest.title != "Speak to the priest again.") return;
+            quest.Complete();
+            Debug.Log(other.gameObject.ToString());
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+        }
+        if (other.name == "Quest6")
+        {
+            if (quest.title != "Get your sword.") return;
+            quest.Complete();
+            Debug.Log(other.gameObject.ToString());
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+        }
+        if (other.name == "Quest7")
+        {
+            if (quest.title != "Pick up the sword.") return;
+            quest.Complete();
+            Debug.Log(other.gameObject.ToString());
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+        }
+        if (other.name == "Quest8")
+        {
+            if (quest.title != "Visit the doctor.") return;
+            quest.Complete();
+            Debug.Log(other.gameObject.ToString());
+            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+            currentQuest.AcceptQuest();
+            Destroy(other.gameObject);
+            playerQuests.titleText.text = currentQuest.quest.title;
+            playerQuests.descText.text = currentQuest.quest.descrption;
+            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
         }
     }
 }
