@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using static PlayerAttributes;
+using static UiScreenManager;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -186,6 +189,15 @@ namespace StarterAssets
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
+        
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (hit.gameObject.layer == 9)
+            {
+                playerAttributesScript.currentHealth -= 0.1f;
+                if(playerAttributesScript.currentHealth <= 0) uiScreenManager.OpenDeathUi();
+            }
+        }
 
         private void GroundedCheck()
         {
@@ -194,8 +206,7 @@ namespace StarterAssets
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
-
-
+            
             // update animator if using character
             if (_hasAnimator)
             {
