@@ -3,18 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
 using TMPro;
-using UIScripts;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using static SkillTree;
 using static PotionCooldown;
 using static UiScreenManager;
+using static PlayerAttributes;
 
-public class CombatSystem : MonoBehaviour {
+public class CombatSystem : MonoBehaviour
+{
+    public static CombatSystem combatSystem;
     public Animator _anim;
     public ThirdPersonController playerMovement;
-    public PlayerAttributes playerattributes;
+    private CharacterController controller;
 
     public GameObject potionUI;
     public int maxpotions;
@@ -27,9 +27,19 @@ public class CombatSystem : MonoBehaviour {
     public TextMeshProUGUI potionsUI;
     public bool invincible = false;
     public bool justrevived;
+    public bool isAttacking;
+
+    private bool inAnimation;
+    private bool canDodge = true;
     
     public List<int> potionTickTimer = new List<int>();
-    
+
+    private void Awake()
+    {
+        combatSystem = this;
+        controller = transform.GetComponent<CharacterController>();
+    }
+
     private void Start()
     {
         canusepotion = true;
@@ -37,7 +47,6 @@ public class CombatSystem : MonoBehaviour {
         refillPotions();
     }
     
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Potion"))
@@ -63,19 +72,12 @@ public class CombatSystem : MonoBehaviour {
         potions = maxpotions;
         potionsUI.text = $"{potions}/{maxpotions}";
     }
-    
-    
-    IEnumerator movementCooldown() {
-        yield return new WaitForSecondsRealtime(0.650f);
-        playerMovement._canMove = true;
-    }
-    
-    public IEnumerator BecomeTemporarilyInvincible()
+
+    IEnumerator dodgeCooldown()
     {
-        invincible = true;
-        Debug.Log("Player turned invincible!");
-        yield return new WaitForSeconds(1);
-        invincible = false;
+        canDodge = false;
+        yield return new WaitForSecondsRealtime(3);
+        canDodge = true;
     }
     
     public IEnumerator ReviveCooldown()
@@ -96,7 +98,7 @@ public class CombatSystem : MonoBehaviour {
                 potionTickTimer[i]--;
             }
 
-            if (playerattributes.currentHealth < playerattributes.maxHealth) playerattributes.currentHealth += 0.20f;
+            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.20f;
             else potionTickTimer.Clear();
             potionTickTimer.RemoveAll(i => i == 0);
             yield return new WaitForSeconds(regenerationTimer);
@@ -136,32 +138,73 @@ public class CombatSystem : MonoBehaviour {
             applypotion(100 * (1 + skillTree.skillLevels[8]));
         }
 
-        damage = (amount - playerattributes.currentArmor) * spellreduction;
+        damage = (amount - playerAttributesScript.currentArmor) * spellreduction;
         if (damage > 0)
         {
-            playerattributes.currentHealth -= damage;
+            playerAttributesScript.currentHealth -= damage;
         }
         else return;
 
-        if (playerattributes.currentHealth <= 0)
+        if (playerAttributesScript.currentHealth <= 0)
         {
             if (playerhasrevive && !justrevived)
             {
-                playerattributes.currentHealth = playerattributes.maxHealth;
+                playerAttributesScript.currentHealth = playerAttributesScript.maxHealth;
                 StartCoroutine(ReviveCooldown());
             } else uiScreenManager.OpenDeathUi();
         }
     }
+
+    public void LightAttack(AnimationEvent animationEvent)
+    {
+        Debug.Log("Lightattack");
+        isAttacking = true;
+        Invoke(nameof(StopAttack), 0.025f);
+    }
+
+    public void StartAttack(AnimationEvent animationEvent)
+    {
+        Debug.Log("Startattack");
+        playerAttributesScript.currentStamina -= 8;
+        inAnimation = true;
+    }
     
+    public void StopAttack()
+    {
+        Debug.Log("Stopattack");
+        isAttacking = false;
+        playerMovement._canMove = true;
+        inAnimation = false;
+    }
+
+    public void Dodging()
+    {
+        Debug.Log("Startdodging");
+        if (!invincible)
+        {
+            invincible = true;
+        }
+        StartCoroutine(dodgeCooldown());
+        playerAttributesScript.currentStamina -= 20;
+        inAnimation = true;
+    }
+
+    public void StopDodging(AnimationEvent animationEvent)
+    {
+        Debug.Log("Stopdodging");
+        if (invincible)
+        {
+            invincible = false;
+        }
+        inAnimation = false;
+    }
 
     private void Update() 
     {
-        if (Input.GetButtonDown("Fire1") && playerattributes.currentStamina >= 8 && playerattributes.hasWeaponEquiped && !_anim.GetCurrentAnimatorStateInfo(0).IsName("dodge") && !UiScreenManager._isOneIngameUiOpen) 
+        if (Input.GetButtonDown("Fire1") && controller.isGrounded && playerAttributesScript.currentStamina >= 8 && playerAttributesScript.hasWeaponEquiped && !_anim.GetCurrentAnimatorStateInfo(0).IsName("dodge") && !_isOneIngameUiOpen && !inAnimation) 
         {
             playerMovement._canMove = false;
             _anim.Play("lightattack");
-            playerattributes.currentStamina -= 8;
-            StartCoroutine(movementCooldown());
         }
 
         if (Input.GetKeyDown(KeyCode.E) && potionlootable && currentPotion != null)
@@ -174,14 +217,9 @@ public class CombatSystem : MonoBehaviour {
             potionlootable = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.C) && playerattributes.currentStamina >= 25 && !_anim.GetCurrentAnimatorStateInfo(0).IsName("lightattack") && !UiScreenManager._isOneIngameUiOpen) 
+        if (Input.GetKeyDown(KeyCode.C) && canDodge && !inAnimation && controller.isGrounded && playerAttributesScript.currentStamina >= 25 && !_isOneIngameUiOpen) 
         {
-            if (!invincible)
-            {
-                StartCoroutine(BecomeTemporarilyInvincible());
-            }
             _anim.Play("dodge");
-            playerattributes.currentStamina -= 20;
         }
 
         if (Input.GetKeyDown(KeyCode.G) && potions > 0 && !potioncooldown.isCooldown)
@@ -192,6 +230,5 @@ public class CombatSystem : MonoBehaviour {
             applypotion(100 * (1 + skillTree.skillLevels[9]));
             potioncooldown.UsePotion(5);
         }
-
     }
 }

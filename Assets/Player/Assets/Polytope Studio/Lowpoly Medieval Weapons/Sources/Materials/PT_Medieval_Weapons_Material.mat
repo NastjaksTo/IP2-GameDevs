@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _COATOFARMSMASK:
-        m_Texture: {fileID: 2800000, guid: 9e05572353416ab449d9532718c065eb, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample2:
@@ -40,17 +40,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _CEL1POWER: 0.15
-    - _CEL1SIZE: 0.1
-    - _CEL2POWER: 0.15
-    - _CEL2SIZE: 0.4
-    - _CEL3POWER: 0.15
-    - _CEL3SIZE: 0.8
+    - _AlphaCutoff: 0.5
     - _GEMS1SMOOTHNESS: 0.5
     - _GEMS2SMOOTHNESS: 0.4
     - _GEMS3SMOOTHNESS: 0.3
     - _LEATHER1SMOOTHNESS: 0.3
-    - _LEATHER2SMOOTHNESS: 0.577
+    - _LEATHER2SMOOTHNESS: 0.3
     - _LEATHER3SMOOTHNESS: 0.3
     - _METAL1METALLIC: 0.65
     - _METAL1SMOOTHNESS: 0.7
@@ -66,15 +61,12 @@ Material:
     - _PAINT2SMOOTHNESS: 0
     - _PAINT3SMOOTHNESS: 0
     - _SmoothnessOn: 1
-    - _WOOD1SMOOTHNESS: 0.432
-    - _WOOD2SMOOTHNESS: 0.309
-    - _WOOD3SMOOTHNESS: 0.377
-    - __dirty: 0
+    - _WOOD1SMOOTHNESS: 0.3
+    - _WOOD2SMOOTHNESS: 0.3
+    - _WOOD3SMOOTHNESS: 0.3
     m_Colors:
-    - _CEL1COLOR: {r: 1, g: 1, b: 1, a: 0}
-    - _CEL2COLOR: {r: 1, g: 1, b: 1, a: 0}
-    - _CEL3COLOR: {r: 1, g: 1, b: 1, a: 0}
     - _COATOFARMSCOLOR: {r: 1, g: 0, b: 0, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FEATHERS1COLOR: {r: 0.3301887, g: 0.1241556, b: 0.04516733, a: 0}
     - _FEATHERS2COLOR: {r: 0.509434, g: 0.4260285, b: 0.1802243, a: 0}
     - _FEATHERS3COLOR: {r: 0.509434, g: 0.25712, b: 0.25712, a: 0}
@@ -97,3 +89,4 @@ Material:
     - _WOOD1COLOR: {r: 0.1981132, g: 0.08345769, b: 0.06261124, a: 0}
     - _WOOD2COLOR: {r: 0.1320755, g: 0.06452555, b: 0.05420079, a: 0}
     - _WOOD3COLOR: {r: 0.1037736, g: 0.07509367, b: 0.04650232, a: 0}
+  m_BuildTextureStacks: []

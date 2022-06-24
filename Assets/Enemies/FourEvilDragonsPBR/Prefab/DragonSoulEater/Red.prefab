@@ -562,7 +562,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standProjectileSpawnpoint: {fileID: 1929360775}
   flyProjectileSpawnpoint: {fileID: 1415263038}
-  fireBall: {fileID: 4594118557517671250, guid: cac5290706ed512429ac3e10084aab64, type: 3}
+  fireBall: {fileID: 4594118557517671250, guid: 8651b04f8bfd5e04685e83e7fc47c972, type: 3}
+  collider: {fileID: 0}
 --- !u!195 &408332486
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -635,7 +636,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &133440
 GameObject:

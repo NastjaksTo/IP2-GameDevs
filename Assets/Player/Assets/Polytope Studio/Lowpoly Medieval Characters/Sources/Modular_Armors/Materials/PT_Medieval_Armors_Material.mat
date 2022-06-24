@@ -2,27 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PT_Medieval_Armors_Material
   m_Shader: {fileID: 4800000, guid: 66cf399cd52203c4685e11681d535f09, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - BOOLEAN_DB96F4EA_ON
-  - _CAPE_KEY1
-  - _FLATCOLORS_ON
-  - _GLOSSYREFLECTIONS_OFF
-  - _KEYWORD0_ON
-  - _METALICOFF_ON
-  - _METALICON_ON
-  - _SMOOTHNESSOFF_ON
-  - _SMOOTHNESSON_ON
-  - _SPECULARHIGHLIGHTS_OFF
-  - _TOGGLESWITCH0_ON
-  - _TOGGLESWITCH1_ON
+  m_ShaderKeywords: BOOLEAN_DB96F4EA_ON _CAPE_KEY1 _FLATCOLORS_ON _GLOSSYREFLECTIONS_OFF
+    _KEYWORD0_ON _METALICOFF_ON _METALICON_ON _SMOOTHNESSOFF_ON _SMOOTHNESSON_ON
+    _SPECULARHIGHLIGHTS_OFF _TOGGLESWITCH0_ON _TOGGLESWITCH1_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -76,7 +65,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
     - _CEL1POWER: 0.126
@@ -89,7 +77,7 @@ Material:
     - _GEMS1SMOOTHNESS: 1
     - _GEMS2SMOOTHNESS: 0
     - _GEMS3SMOOTHNESS: 0
-    - _HAIRSMOOTHNESS: 0.25
+    - _HAIRSMOOTHNESS: 0.61
     - _LEATHER1SMOOTHNESS: 0.3
     - _LEATHER2SMOOTHNESS: 0.3
     - _LEATHER3SMOOTHNESS: 0.3
@@ -134,4 +122,3 @@ Material:
     - _SCARSCOLOR: {r: 0.8490566, g: 0.5037117, b: 0.3884835, a: 0}
     - _SCLERACOLOR: {r: 0.9056604, g: 0.8159487, b: 0.8159487, a: 0}
     - _SKINCOLOR: {r: 1.5025159, g: 0.64096355, b: 0.36145425, a: 0}
-  m_BuildTextureStacks: []

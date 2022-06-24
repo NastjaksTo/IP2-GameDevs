@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static CombatSystem;
 
 public class GolemScript : MonoBehaviour
 {
@@ -94,9 +95,6 @@ public class GolemScript : MonoBehaviour
             navMeshAgent.speed = 5;
             navMeshAgent.acceleration = 8;
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Attack1");
-            animator.ResetTrigger("Attack2");
-            animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
@@ -180,7 +178,7 @@ public class GolemScript : MonoBehaviour
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            combatSystem.LoseHealth(damage);
             doDamage = false;
         }
     }

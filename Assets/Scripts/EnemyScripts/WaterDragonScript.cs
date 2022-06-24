@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static CombatSystem;
 
 public class WaterDragonScript : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class WaterDragonScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 8.0f;
+        attackRange = navMeshAgent.stoppingDistance;
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
@@ -122,10 +123,6 @@ public class WaterDragonScript : MonoBehaviour
         {
             navMeshAgent.speed = 5;
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Basic Attack");
-            animator.ResetTrigger("Claw Attack");
-            animator.ResetTrigger("Water Attack");
-            animator.ResetTrigger("Fly and Water");
             animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
@@ -199,7 +196,7 @@ public class WaterDragonScript : MonoBehaviour
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            combatSystem.LoseHealth(damage);
             doDamage = false;
         }
     }

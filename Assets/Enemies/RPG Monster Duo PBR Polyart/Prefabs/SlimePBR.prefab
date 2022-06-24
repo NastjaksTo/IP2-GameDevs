@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: 1841495797}
   - component: {fileID: 1709793502}
   - component: {fileID: 7153099030307398537}
+  - component: {fileID: 1059267405}
   m_Layer: 30
   m_Name: SlimePBR
   m_TagString: Enemy
@@ -558,7 +559,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &8557866691797178403
 MonoBehaviour:
@@ -598,8 +599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c22c7f6b8cc190243a8492f1c6e97979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  angle: 0
+  radius: 10
+  angle: 70
   playerRef: {fileID: 0}
   canSeePlayer: 0
   targetMask:
@@ -632,6 +633,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1059267405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919012471076396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1989916952965676

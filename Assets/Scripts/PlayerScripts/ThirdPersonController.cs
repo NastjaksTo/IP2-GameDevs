@@ -1,6 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using static PlayerAttributes;
+using static UiScreenManager;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -106,15 +110,14 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
-        private const float _threshold = 0.01f;
+        private const float _threshold = 0.00001f;
 
         private bool _hasAnimator;
 
         public bool _canMove;
         public Animator anim;
-        public PlayerAttributes playerattributes;
-        public PlayerSkillsystem playerskillsystem;
-        public LevelSystem levelSystem;
+
+        public static ThirdPersonController thirdPersonController;
         
         private bool IsCurrentDeviceMouse
         {
@@ -131,6 +134,7 @@ namespace StarterAssets
 
         private void Awake()
         {
+            thirdPersonController = this;
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -188,6 +192,15 @@ namespace StarterAssets
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
+        
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (hit.gameObject.layer == 9)
+            {
+                playerAttributesScript.currentHealth -= 0.1f;
+                if(playerAttributesScript.currentHealth <= 0) uiScreenManager.OpenDeathUi();
+            }
+        }
 
         private void GroundedCheck()
         {
@@ -196,8 +209,7 @@ namespace StarterAssets
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
-
-
+            
             // update animator if using character
             if (_hasAnimator)
             {
@@ -230,13 +242,13 @@ namespace StarterAssets
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = moveSpeed;
-            if (playerattributes.currentStamina > 0)
+            if (playerAttributesScript.currentStamina > 0)
             {
                 // set target speed based on move speed, sprint speed and if sprint is pressed
                 targetSpeed = _input.sprint ? SprintSpeed : moveSpeed;
                 if (_input.sprint)
                 {
-                    playerattributes.currentStamina -= 5 * Time.deltaTime;
+                    playerAttributesScript.currentStamina -= 5 * Time.deltaTime;
                 }
             }
 
@@ -306,7 +318,7 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
-            if (playerattributes.currentStamina <= 20) _input.jump = false;
+            if (playerAttributesScript.currentStamina <= 10) _input.jump = false;
             if (Grounded)
             {
                 // reset the fall timeout timer
@@ -413,6 +425,11 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        public void Jumping(AnimationEvent animationEvent)
+        {
+            playerAttributesScript.currentStamina -= 10f;
         }
     }
 }

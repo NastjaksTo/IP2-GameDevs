@@ -109,11 +109,11 @@ public class PlayMode_Tests {
         playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
 
         var StartHealth = playerAtr.currentHealth;
-        playerComb.StartCoroutine(playerComb.BecomeTemporarilyInvincible());
+        playerComb.Dodging();
 
         playerComb.LoseHealth(10);
         var NewCurrentHealth = playerAtr.currentHealth;
-
+        
         playerComb.invincible = false;
         Debug.Log(StartHealth + " " + NewCurrentHealth);
 

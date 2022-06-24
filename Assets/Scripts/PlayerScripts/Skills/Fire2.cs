@@ -20,7 +20,6 @@ public class Fire2 : MonoBehaviour
         {
             enemy = other.gameObject;
             enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
-            Destroy(other.gameObject, 2.55f);
         }
     }
 }
