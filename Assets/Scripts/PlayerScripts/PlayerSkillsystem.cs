@@ -243,13 +243,13 @@ public class PlayerSkillsystem : MonoBehaviour
             if (playerAttributesScript.iceKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown || !controller.isGrounded) return;
-                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                transform.rotation = Quaternion.Euler( 0, Camera.main.transform.eulerAngles.y, 0);
                 CastIce();
             }
             if (playerAttributesScript.earthKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown || !controller.isGrounded) return;
-                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                transform.rotation = Quaternion.Euler( 0, Camera.main.transform.eulerAngles.y, 0);
                 CastEarth();
             }
         }
