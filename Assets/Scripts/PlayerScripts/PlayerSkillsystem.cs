@@ -6,13 +6,14 @@ using UnityEngine;
 using TMPro;
 using static SkillTree;
 using static SpellCooldown;
+using static PlayerAttributes;
+
 
 public class PlayerSkillsystem : MonoBehaviour
 {
     public LevelSystem playerlevel;                         // Reference to the LevelSystem script.
     public static PlayerSkillsystem playerskillsystem;      // Making static reference of the class.
-    public PlayerAttributes playerattributes;               // Reference to the PlayerAttributes script.
-    
+
     public GameObject fire1;                                // Reference of first firespell.
     public GameObject fire2;                                // Reference of second firespell.
     public GameObject fire3;                                // Reference of third firespell.
@@ -94,7 +95,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageMana2()
     {
-        playerattributes.manaRegenerationSpeed += 5;
+        playerAttributesScript.manaRegenerationSpeed += 5;
     }
 
     /// <summary>
@@ -102,7 +103,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageStamina2()
     {
-        playerattributes.staminaRegenerationSpeed += 5;
+        playerAttributesScript.staminaRegenerationSpeed += 5;
     }
     
     /// <summary>
@@ -112,9 +113,10 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         if (skillTree.skillLevels[12] > 0)
         {
-            if (!(playerattributes.currentMana >= 25)) return;
-            playerattributes.currentMana -= 25;
+            if (!(playerAttributesScript.currentMana >= 25)) return;
+            playerAttributesScript.currentMana -= 25;
             AudioSource.PlayClipAtPoint(spellsounds[2],transform.position + (transform.forward * 10), SpellAudioVolume);
+            anim.SetTrigger("castGroundSpell");
             var newfireball3 = Instantiate(fire3, transform.position + (transform.forward * 10),
                 transform.rotation * Quaternion.Euler(0f, 180f, 0f));
             Destroy(newfireball3, 10);
@@ -122,17 +124,19 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else if (skillTree.skillLevels[6] > 0)
         {
-            if (!(playerattributes.currentMana >= 20)) return;
-            playerattributes.currentMana -= 20;
+            if (!(playerAttributesScript.currentMana >= 20)) return;
+            playerAttributesScript.currentMana -= 20;
+            anim.SetTrigger("castGroundSpell");
             var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
             Destroy(newfireball2, 2);
             spellcooldown.UseSpell(5f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else
         {
-            if (!(playerattributes.currentMana >= 15)) return;
-            playerattributes.currentMana -= 15;
+            if (!(playerAttributesScript.currentMana >= 15)) return;
+            playerAttributesScript.currentMana -= 15;
             AudioSource.PlayClipAtPoint(spellsounds[0],spawner.position, SpellAudioVolume);
+            anim.SetTrigger("castTargetSpell");
             var newfireball1 = Instantiate(fire1, spawner.position, transform.rotation);
             newfireball1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 20f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newfireball1, 2);
@@ -147,8 +151,9 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         if (skillTree.skillLevels[13] > 0)
         {
-            if (!(playerattributes.currentMana >= 25)) return;
-            playerattributes.currentMana -= 25;
+            if (!(playerAttributesScript.currentMana >= 25)) return;
+            playerAttributesScript.currentMana -= 25;
+            anim.SetTrigger("castGroundSpell");
             AudioSource.PlayClipAtPoint(spellsounds[5],transform.position+(transform.forward*10), SpellAudioVolume);
             var newice3 = Instantiate(ice3, transform.position+(transform.forward*10)+(Vector3.up*10f), transform.rotation * Quaternion.Euler (90f, 0f, 0f));
             Destroy(newice3, 15);
@@ -156,8 +161,9 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else if (skillTree.skillLevels[7] > 0)
         {
-            if (!(playerattributes.currentMana >= 20)) return;
-            playerattributes.currentMana -= 20;
+            if (!(playerAttributesScript.currentMana >= 20)) return;
+            playerAttributesScript.currentMana -= 20;
+            anim.SetTrigger("castGroundSpell");
             AudioSource.PlayClipAtPoint(spellsounds[4],transform.position+(transform.forward*2), SpellAudioVolume);
             var newice2 = Instantiate(ice2, transform.position + (transform.forward * 2), transform.rotation);
             Destroy(newice2, 3);
@@ -165,8 +171,9 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else
         {
-            if (!(playerattributes.currentMana >= 15)) return;
-            playerattributes.currentMana -= 15;
+            if (!(playerAttributesScript.currentMana >= 15)) return;
+            playerAttributesScript.currentMana -= 15;
+            anim.SetTrigger("castTargetSpell");
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
             newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 40f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newice1, 2);
@@ -181,9 +188,9 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         if (skillTree.skillLevels[14] > 0)
         {
-            if (!(playerattributes.currentMana >= 25)) return;
-            playerattributes.currentMana -= 25;
-            anim.Play("castearthspell");
+            if (!(playerAttributesScript.currentMana >= 25)) return;
+            playerAttributesScript.currentMana -= 25;
+            anim.SetTrigger("castEarthSpell");
             var newearth3 = Instantiate(earth3, transform.position, transform.rotation);
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth3, 10);
@@ -192,22 +199,32 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else if (skillTree.skillLevels[8] > 0)
         {
-            if (!(playerattributes.currentMana >= 20)) return;
-            playerattributes.currentMana -= 20;
-            anim.Play("castearthspell");
+            if (!(playerAttributesScript.currentMana >= 20)) return;
+            playerAttributesScript.currentMana -= 20;
+            anim.SetTrigger("castEarthSpell");
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth2, 20);
             spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else
         {
-            if (!(playerattributes.currentMana >= 15)) return;
-            playerattributes.currentMana -= 15;
-            anim.Play("castearthspell");
+            if (!(playerAttributesScript.currentMana >= 15)) return;
+            playerAttributesScript.currentMana -= 15;
+            anim.SetTrigger("castEarthSpell");
             var newearth1 = Instantiate(earth1, transform.position, transform.rotation);
             Destroy(newearth1, 20);
             spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
+    }
+
+    public void StartCasting()
+    {
+        ThirdPersonController.thirdPersonController._canMove = false;
+    }
+
+    public void StopCasting()
+    {
+        ThirdPersonController.thirdPersonController._canMove = true;
     }
 
     /// <summary>
@@ -217,22 +234,22 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire2")) 
         {
-            if (playerattributes.fireKnowladgeEquiped)
+            if (playerAttributesScript.fireKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown || !controller.isGrounded) return;
-                //transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                transform.rotation = Quaternion.Euler( 0, Camera.main.transform.eulerAngles.y, 0);
                 CastFire();
             }
-            if (playerattributes.iceKnowladgeEquiped)
+            if (playerAttributesScript.iceKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown || !controller.isGrounded) return;
-                //transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastIce();
             }
-            if (playerattributes.earthKnowladgeEquiped)
+            if (playerAttributesScript.earthKnowladgeEquiped)
             {
                 if (spellcooldown.isCooldown || !controller.isGrounded) return;
-                //transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
                 CastEarth();
             }
         }

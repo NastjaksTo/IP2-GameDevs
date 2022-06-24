@@ -117,6 +117,8 @@ namespace StarterAssets
         public bool _canMove;
         public Animator anim;
 
+        public static ThirdPersonController thirdPersonController;
+        
         private bool IsCurrentDeviceMouse
         {
             get
@@ -132,6 +134,7 @@ namespace StarterAssets
 
         private void Awake()
         {
+            thirdPersonController = this;
             // get a reference to our main camera
             if (_mainCamera == null)
             {
