@@ -118,7 +118,7 @@ public class PlayerSkillsystem : MonoBehaviour
             AudioSource.PlayClipAtPoint(spellsounds[2],transform.position + (transform.forward * 10), SpellAudioVolume);
             anim.SetTrigger("castGroundSpell");
             var newfireball3 = Instantiate(fire3, transform.position + (transform.forward * 10),
-                transform.rotation * Quaternion.Euler(0f, 180f, 0f));
+                transform.rotation * Quaternion.Euler(0f, 0f, 0f));
             Destroy(newfireball3, 10);
             spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
