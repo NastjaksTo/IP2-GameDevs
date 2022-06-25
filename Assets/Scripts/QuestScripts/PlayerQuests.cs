@@ -6,6 +6,7 @@ using UnityEngine;
 using static QuestGiver;
 using static PlayerSkillsystem;
 using static PlayerInventory;
+using static CombatSystem;
 
 public class PlayerQuests : MonoBehaviour
 {
@@ -113,6 +114,8 @@ public class PlayerQuests : MonoBehaviour
             SetQuestGiverUI("Doctor", "Hey traveler the priest told me you want to kill the titans. Take these, they will help you. <br> <br>" +
                 "You can use potions by pressing G. They will heal you over time. <br> You can find new potions around the world and they reset if you pray at a runestone.");
             SetQuest(other.gameObject);
+            combatSystem.maxpotions = 3;
+            combatSystem.refillPotions();
         }
     }
 

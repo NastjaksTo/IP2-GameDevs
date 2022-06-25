@@ -43,7 +43,7 @@ public class CombatSystem : MonoBehaviour
     private void Start()
     {
         canusepotion = true;
-        maxpotions = 3;
+        maxpotions = 0;
         refillPotions();
     }
     

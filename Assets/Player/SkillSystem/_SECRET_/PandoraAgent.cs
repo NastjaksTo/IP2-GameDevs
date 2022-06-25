@@ -57,8 +57,8 @@ public class PandoraAgent : MonoBehaviour
     private bool isPhaseThree;
     private rRandom randomNumber = new rRandom();
     
-    public Image healthBar;
-    public TextMeshProUGUI textHealthPoints;     
+    private Image healthBar;
+    private TextMeshProUGUI textHealthPoints;     
     
     
 
@@ -69,6 +69,8 @@ public class PandoraAgent : MonoBehaviour
 
     private void Awake()
     {
+        healthBar = GameObject.Find("HealthRepresentation").GetComponent<Image>();
+        textHealthPoints = GameObject.Find("healthValue").GetComponent<TextMeshProUGUI>();
         maxHealth = health;
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
@@ -87,7 +89,7 @@ public class PandoraAgent : MonoBehaviour
         textHealthPoints.text = healthHandler.Health.ToString();
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        if(!playerInSightRange && !playerInAttackRange) Patrolling();
+        //if(!playerInSightRange && !playerInAttackRange) Patrolling();
         if(playerInSightRange) anim.SetBool("inBattle", true); else anim.SetBool("inBattle", false);
         if(playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
