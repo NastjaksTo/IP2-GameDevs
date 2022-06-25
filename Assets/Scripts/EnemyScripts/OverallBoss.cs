@@ -59,7 +59,7 @@ public class OverallBoss : MonoBehaviour
 
     private int RandomNumber(int begin, int end)
     {
-        Debug.Log(timer);
+        Debug.Log("[OverallBoss]" + timer);
         timer = 0.0f;
         return Random.Range(begin, end);
     }

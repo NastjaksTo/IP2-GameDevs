@@ -12,14 +12,16 @@ public enum CheckMethod {
 }
 
 /// <summary>
-/// check the Distence or the trigge to a scene an loade id (async)
+/// check the Distence or the trigge to a scene an loade/deload it.
 /// </summary>
 public class ScenePartLoader : MonoBehaviour {
 
     public Transform playerPosition;
     public CheckMethod checkMethod;
     public float loadRange;
+
     private bool isLoaded;
+    private bool shouldLoad;
 
     // Start is called before the first frame update
     void Start() {
@@ -39,7 +41,13 @@ public class ScenePartLoader : MonoBehaviour {
     /// call the distance check once per frame
     /// </summary>
     void Update() {
-        DistanceCheck();
+        if(checkMethod == CheckMethod.Distince) {
+            DistanceCheck();
+        }
+        else if (checkMethod == CheckMethod.Trigger) {
+            TriggerCheck();
+        }
+
     }
 
     /// <summary>
@@ -51,6 +59,28 @@ public class ScenePartLoader : MonoBehaviour {
             LoadScene();
         } else {
             UnloadScene();
+        }
+    }
+
+    private void TriggerCheck() {
+        if (shouldLoad) {
+            LoadScene();
+        }
+        else {
+            UnloadScene();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Player")) {
+            shouldLoad = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")) {
+            shouldLoad = false;
         }
     }
 
