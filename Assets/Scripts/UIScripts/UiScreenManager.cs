@@ -22,6 +22,7 @@ public class UiScreenManager : MonoBehaviour {
 
     public static bool _deathUiOpen = false;
     public GameObject deathUi;                              //reference set in editor
+    public AudioClip deathSound;
 
     public GameObject pauseMenuUi;                          //reference set in editor
 
@@ -136,6 +137,7 @@ public class UiScreenManager : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Confined;
         deathUi.SetActive(true);
         _deathUiOpen = true;
+        AudioSource.PlayClipAtPoint(deathSound, transform.position, 1);
     }
 
     /// <summary>

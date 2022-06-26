@@ -15,7 +15,9 @@ public class PlayerInventory : MonoBehaviour {
 
     private GroundItem item;
     private GroundItemBag itemBag;
+
     public GameObject addItemAlert;
+    public AudioClip addItemSound;
 
     public List<int> collectedLootbags = new List<int>();
     public static PlayerInventory p_Inventory;
@@ -61,8 +63,8 @@ public class PlayerInventory : MonoBehaviour {
             collectAlert.CloseCollectAlertUi();
             Destroy(item.gameObject);
             addItemAlert.SetActive(true);
+            AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
             StartCoroutine(closeAddItemAlert());
-           
         }
     }
 
@@ -81,6 +83,7 @@ public class PlayerInventory : MonoBehaviour {
         collectAlert.CloseCollectAlertUi();
         Destroy(_itemBag.gameObject);
         addItemAlert.SetActive(true);
+        AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
         StartCoroutine(closeAddItemAlert());
     }
 

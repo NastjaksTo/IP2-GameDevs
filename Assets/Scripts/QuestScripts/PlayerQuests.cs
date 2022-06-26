@@ -30,6 +30,8 @@ public class PlayerQuests : MonoBehaviour
     public GroundItem[] books;
     public int currentQuestID = 1;
 
+    public AudioClip questDone;
+
     private void Awake()
     {
         playerQuests = this;
@@ -41,8 +43,6 @@ public class PlayerQuests : MonoBehaviour
         if (other.CompareTag("QuestGiver"))
         {
             QuestGiver currentQuestGiver = other.gameObject.GetComponent<QuestGiver>();
-            Debug.Log(currentQuestID);
-            Debug.Log(currentQuestGiver.quest.questID);
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
             {
                 SetQuestGiverUI("YOU", "What just happend? What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this. " +
@@ -53,6 +53,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest2")
             {
                 quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
                 completionText.text = "Quest complete: Find the librarian";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
@@ -66,6 +67,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest3")
             {
                 quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
                 completionText.text = "Quest complete: Find the priest";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
@@ -76,6 +78,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest4")
             {
                 quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
                 completionText.text = "Quest complete: Prayed to the gods.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
@@ -87,6 +90,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest5")
             {
                 quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
                 completionText.text = "Quest complete: Spoken to the priest.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
@@ -98,6 +102,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest6")
             {
                 quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
                 completionText.text = "Quest complete: Find the smith.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
@@ -109,6 +114,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest7")
             {
                 quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
                 completionText.text = "Quest complete: Find a sword.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
@@ -120,6 +126,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest8")
             {
                 quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
                 completionText.text = "Quest complete: Find the doctor.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
