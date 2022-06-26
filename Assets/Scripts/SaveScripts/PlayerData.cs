@@ -17,6 +17,10 @@ namespace SaveScripts
         public int maxpotions;                  // Integer to save the maximum amount of potions carryable by the player.
         public float currentExp;                // Float to save the current experience.
         public float expToLvlUp;                // Float to save the experience needed to level up.
+        public int currentQuestID;
+        public string playerQuestTitle;
+        public string playerQuestDesc;
+        public string playerQuestReward;
     
         public List<int> savedcollectedLootbags = new List<int>();
 
@@ -28,7 +32,7 @@ namespace SaveScripts
         /// <param name="skillTree">Gets data from SkillTree</param>
         /// <param name="combatSystem">Gets data from CombatSystem</param>
         /// <param name="player">Gets data from SaveData</param>
-        public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, PlayerInventory playerInventory, SaveData player)
+        public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, PlayerInventory playerInventory, SaveData player, PlayerQuests playerQuests)
         {
             level = PlayerSkillsystem.playerskillsystem.playerlevel.GetLevel();
             currentExp = PlayerSkillsystem.playerskillsystem.playerlevel.GetExp();
@@ -42,6 +46,11 @@ namespace SaveScripts
             maxpotions = combatSystem.maxpotions;
             savedcollectedLootbags.AddRange(playerInventory.collectedLootbags);
             skilllevels = new int[18];
+            currentQuestID = playerQuests.currentQuestID;
+            playerQuestTitle = playerQuests.titleText.text;
+            playerQuestDesc = playerQuests.descText.text;
+            playerQuestReward = playerQuests.rewardText.text;
+            
             for (int i = 0; i <= 17; i++)
             {
                 skilllevels[i] = skillTree.skillLevels[i];

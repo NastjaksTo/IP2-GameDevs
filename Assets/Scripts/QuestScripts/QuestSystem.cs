@@ -10,6 +10,7 @@ public class QuestSystem
     public string title;
     [TextArea(5, 20)]public string descrption;
     public int expReward;
+    public int questID;
 
     public void Complete()
     {

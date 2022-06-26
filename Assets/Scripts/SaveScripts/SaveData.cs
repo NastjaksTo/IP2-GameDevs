@@ -1,8 +1,10 @@
 using System.Collections;
+using Invector.CharacterController;
 using SaveScripts;
 using UIScripts;
 using UnityEngine;
 using static SkillTree;
+using static PlayerQuests;
 
 public class SaveData : MonoBehaviour
 {
@@ -98,12 +100,24 @@ public class SaveData : MonoBehaviour
         skillTree.UpdateAllSkillUI();
         
         gameObject.GetComponent<CharacterController>().enabled = false;
+        gameObject.GetComponent<FallDamage>().enabled = false;
         Vector3 position;
         position.x = data.position[0];
         position.y = data.position[1];
         position.z = data.position[2];
         transform.position = position;
         gameObject.GetComponent<CharacterController>().enabled = true;
+        gameObject.GetComponent<FallDamage>().enabled = true;
+
+        playerQuests.currentQuestID = data.currentQuestID;
+        playerQuests.titleText.text = data.playerQuestTitle;
+        playerQuests.descText.text = data.playerQuestDesc;
+        playerQuests.rewardText.text = data.playerQuestReward;
+        for (int i = 1; i < playerQuests.currentQuestID; i++)
+        {
+            Destroy(GameObject.Find("Quest" + i));
+        }
+
     }
 
     /// <summary>
@@ -116,7 +130,7 @@ public class SaveData : MonoBehaviour
         for (int i = 0; i <= 17; i++) {
             skilllevelsData[i] = skillTree.skillLevels[i];
         }
-        SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, playerInventory, this);
+        SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, playerInventory, this, playerQuests);
         inventory.Save();
         equipment.Save();
     }
