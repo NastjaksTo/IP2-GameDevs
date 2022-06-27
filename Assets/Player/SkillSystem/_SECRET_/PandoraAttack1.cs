@@ -7,12 +7,14 @@ public class PandoraAttack1 : MonoBehaviour
 {
     private Transform player;
     private CombatSystem combatSystem;
+    public AudioClip sounds;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         combatSystem = player.GetComponent<CombatSystem>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -25,8 +27,9 @@ public class PandoraAttack1 : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            AudioSource.PlayClipAtPoint(sounds, transform.position, 1);
             combatSystem.LoseHealth(10);
-            Destroy(gameObject, .25f);
+            Destroy(gameObject, 2f);
         }
         if(other.gameObject.layer == 3 || other.gameObject.layer == 8) Destroy(gameObject);
     }

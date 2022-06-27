@@ -60,7 +60,8 @@ public class PandoraAgent : MonoBehaviour
     private Image healthBar;
     private TextMeshProUGUI textHealthPoints;     
     
-    
+    public AudioClip[] spellsounds;
+    [Range(0, 1)] public float SpellAudioVolume = 0.5f;
 
     public float regenerationTimer;
     public GameObject potioneffect;
@@ -89,7 +90,6 @@ public class PandoraAgent : MonoBehaviour
         textHealthPoints.text = healthHandler.Health.ToString();
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        //if(!playerInSightRange && !playerInAttackRange) Patrolling();
         if(playerInSightRange) anim.SetBool("inBattle", true); else anim.SetBool("inBattle", false);
         if(playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
@@ -253,6 +253,7 @@ public class PandoraAgent : MonoBehaviour
     public void AttackOne()
     {
         alreadyAttacked = true;
+        AudioSource.PlayClipAtPoint(spellsounds[0],spawner.position, SpellAudioVolume);
         var attackOne = Instantiate(projectile, spawner.position, Quaternion.identity);
         attackOne.GetComponent<Rigidbody>().velocity = (player.position - attackOne.transform.position).normalized * shootingPower;
         anim.SetBool("attackOne", false);
@@ -263,6 +264,7 @@ public class PandoraAgent : MonoBehaviour
     public void AttackTwo()
     {
         alreadyAttacked = true;
+        AudioSource.PlayClipAtPoint(spellsounds[1],spawner.position, SpellAudioVolume);
         var attackTwo = Instantiate(beam, spawner.position, Quaternion.identity);
         Vector3 playerpos = player.position + transform.up*3f;
         attackTwo.transform.LookAt(playerpos);
@@ -286,6 +288,8 @@ public class PandoraAgent : MonoBehaviour
         agent.speed += 5;
         agent.SetDestination(transform.position);
         alreadyAttacked = true;
+        AudioSource.PlayClipAtPoint(spellsounds[2],transform.position, SpellAudioVolume);
+        AudioSource.PlayClipAtPoint(spellsounds[3],transform.position, SpellAudioVolume);
         var aoEOne = Instantiate(aoeOne, transform.position + transform.up * 2f, Quaternion.identity);
         Destroy(aoEOne, 3);
         anim.SetBool("screamingOne", false);
@@ -299,6 +303,7 @@ public class PandoraAgent : MonoBehaviour
         alreadyAttacked = true;
         applypotion(100);
         PlayPotionEffect();
+        AudioSource.PlayClipAtPoint(spellsounds[3],transform.position, SpellAudioVolume);
         Instantiate(aoeTwo, transform.position + transform.up * 3.5f, Quaternion.identity);
         anim.SetBool("screamingTwo", false);
     }
