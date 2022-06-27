@@ -7,20 +7,17 @@ using static PlayerSkillsystem;
 
 public class CrabAgent_Range : MonoBehaviour
 {
+    public static CrabAgent_Range rangedCrab;
     private OverallEnemy enemy;
     private Transform movePositionTransform;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
-    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private GameObject projectileSpawnpoint;
     private float shotSpeed;
     private float fireRate;
     private float fireBallDamage;
-
-    [SerializeField]
-    private float level = 1;
 
     [SerializeField] 
     GameObject fireball;
@@ -32,8 +29,8 @@ public class CrabAgent_Range : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        rangedCrab = this;
         enemy = GetComponent<OverallEnemy>();
-        health = GetComponentInChildren<EnemyHealthHandler>();
         fov = GetComponent<FoVScript>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -45,8 +42,7 @@ public class CrabAgent_Range : MonoBehaviour
         fireRate = 5.0f;
         shotSpeed = 20.0f;
 
-        health.Health = 100;
-        fireBallDamage = 10;
+        fireBallDamage = 10 + enemy.Playerlevel * 2 ;
     }
 
     /// <summary>

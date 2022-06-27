@@ -1,18 +1,16 @@
 using UnityEngine;
 using static CombatSystem;
-using static PlayerSkillsystem;
 
 public class BossGolemSand : MonoBehaviour
 {
     private OverallBoss boss;
     private FoVScript fov;
-    private EnemyHealthHandler health;
     private bool doDamage;
 
-    private int damage;
-    private int earthDamage;
+    private float damage;
+    private float earthDamage;
 
-    public int EarthDamage { get => earthDamage; set => earthDamage = value; }
+    public float EarthDamage { get => earthDamage; set => earthDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
@@ -21,16 +19,13 @@ public class BossGolemSand : MonoBehaviour
     {
         boss = GetComponent<OverallBoss>();
         fov = GetComponent<FoVScript>();
-        health = GetComponent<EnemyHealthHandler>();
         doDamage = false;
-
-        health.Health = 500;
-        damage = 20;
 
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
-        earthDamage = 1;
+        damage = boss.Damage;
+        earthDamage = boss.ElementalDamage;
     }
     private void Update()
     {

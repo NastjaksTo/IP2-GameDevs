@@ -19,6 +19,8 @@ public class OverallBoss : MonoBehaviour
     private float timeToChangeAttack;
     private float speed;
     private float magicDirection;
+    private float damage;
+    private float elementalDamage;
 
     private int switchRange;
     private int switchMelee;
@@ -32,6 +34,8 @@ public class OverallBoss : MonoBehaviour
     public bool DoDamage { get => doDamage; set => doDamage = value; }
     public PlayerAttributes Player { get => player; set => player = value; }
     public bool Able { get => able; set => able = value; }
+    public float Damage { get => damage; set => damage = value; }
+    public float ElementalDamage { get => elementalDamage; set => elementalDamage = value; }
 
     private void Awake()
     {
@@ -57,6 +61,9 @@ public class OverallBoss : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+        health.Health = playerskillsystem.playerlevel.GetLevel() * 200;
+        damage = playerskillsystem.playerlevel.GetLevel() * 5;
+        elementalDamage = playerskillsystem.playerlevel.GetLevel() / 10;
     }
 
     private int RandomNumber(int begin, int end)

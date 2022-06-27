@@ -1,18 +1,16 @@
 using UnityEngine;
-using static PlayerSkillsystem;
 using static CombatSystem;
 
 public class BossGolemIce : MonoBehaviour
 {
     private OverallBoss boss;
     private FoVScript fov;
-    private EnemyHealthHandler health;
     private bool doDamage;
 
-    private int damage;
-    private int iceDamage;
+    private float damage;
+    private float iceDamage;
 
-    public int IceDamage { get => iceDamage; set => iceDamage = value; }
+    public float IceDamage { get => iceDamage; set => iceDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
@@ -21,16 +19,13 @@ public class BossGolemIce : MonoBehaviour
     {
         boss = GetComponent<OverallBoss>();
         fov = GetComponent<FoVScript>();
-        health = GetComponent<EnemyHealthHandler>();
         doDamage = false;
-
-        health.Health = 500;
-        damage = 20;
 
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
-        iceDamage = 1;
+        iceDamage = boss.ElementalDamage;
+        damage = boss.Damage;
     }
     private void Update()
     {

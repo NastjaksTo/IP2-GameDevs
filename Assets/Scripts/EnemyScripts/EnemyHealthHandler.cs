@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyHealthHandler : MonoBehaviour
 {
-    private int health;
+    private float health;
     private bool hit;
     private bool dead;
 
-    public int Health { get => health; set => health = value; }
     public bool Hit { get => hit; set => hit = value; }
     public bool Dead { get => dead; set => dead = value; }
+    public float Health { get => health; set => health = value; }
 
     public void getDamage(int damage)
     {

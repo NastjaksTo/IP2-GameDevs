@@ -1,20 +1,19 @@
 using UnityEngine;
 using static CombatSystem;
-using static PlayerSkillsystem;
 
 public class BossGolemFire : MonoBehaviour
 {
+    public static BossGolemFire fireTitan;
     private Transform movePositionTransform;
     private GameObject playerModel;
     private OverallBoss boss;
     private FoVScript fov;
-    private EnemyHealthHandler health;
 
     private bool able;
     private bool doDamage;
 
-    private int damage;
-    private int fireDamage;
+    private float damage;
+    private float fireDamage;
     private int shotSpeed;
 
 
@@ -24,27 +23,25 @@ public class BossGolemFire : MonoBehaviour
     [SerializeField]
     GameObject fireBall;
 
-    public int FireDamage { get => fireDamage; set => fireDamage = value; }
+    public float FireDamage { get => fireDamage; set => fireDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
     /// </summary>
     private void Awake()
     {
+        fireTitan = this;
         playerModel = GameObject.FindGameObjectWithTag("Player");
         movePositionTransform = playerModel.GetComponent<Transform>();
         boss = GetComponent<OverallBoss>();
         fov = GetComponent<FoVScript>();
-        health = GetComponent<EnemyHealthHandler>();
         doDamage = false;
-
-        health.Health = 500;
-        damage = 20;
 
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
-        fireDamage = 1;
+        damage = boss.Damage;
+        fireDamage = boss.ElementalDamage * 40;
     }
     private void Update()
     {

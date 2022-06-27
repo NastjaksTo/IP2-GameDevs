@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static BossGolemFire;
 using static CombatSystem;
-using static FatDragonScript;
 
-public class FireBallDragon : MonoBehaviour
+public class FireBallTitan : MonoBehaviour
 {
     private float damage;
 
     private void Awake()
     {
-        damage = dragonBoss.FireBallDamage;
+        damage = fireTitan.FireDamage;
     }
 
     private void OnTriggerEnter(Collider other)

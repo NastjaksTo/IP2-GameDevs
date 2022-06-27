@@ -45,13 +45,13 @@ public class GolemScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 8.0f;
+        attackRange = navMeshAgent.stoppingDistance;
+
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-        health.Health = 100;
-        damage = 20;
-
+        damage = 40 + playerskillsystem.playerlevel.GetLevel() * 3;
+        health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 
     /// <summary>

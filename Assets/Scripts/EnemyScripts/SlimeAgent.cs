@@ -14,7 +14,7 @@ public class SlimeAgent : MonoBehaviour
     private int ID;
     private bool doDamage;
 
-    private int damage;
+    private float damage;
 
     [SerializeField]
     GameObject BigSlime;
@@ -28,9 +28,9 @@ public class SlimeAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         health = GetComponent<EnemyHealthHandler>();
 
-        health.Health = 100;
-        fullHealth = health.Health;
-        damage = 10;
+        health.Health = 100 + enemy.Playerlevel * 5;
+        fullHealth = (int)health.Health;
+        damage = 10 + enemy.Playerlevel * 2;
 
     }
 

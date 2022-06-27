@@ -14,9 +14,6 @@ public class CrabAgent : MonoBehaviour
 
     private float damage;
 
-    [SerializeField]
-    private float level = 1;
-
     /// <summary>
     /// References set to all necessary Context
     /// </summary>
@@ -26,8 +23,8 @@ public class CrabAgent : MonoBehaviour
         health = GetComponentInChildren<EnemyHealthHandler>();
         enemy = GetComponent<OverallEnemy>();
 
-        damage = level * 10;
-        health.Health = 100;
+        damage = 15 + enemy.Playerlevel * 3;
+        health.Health = 160 + enemy.Playerlevel * 5;
     }
 
     /// <summary>

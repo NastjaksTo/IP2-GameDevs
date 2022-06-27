@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static CombatSystem;
+using static CrabAgent_Range;
 
 public class FireBall : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class FireBall : MonoBehaviour
 
     private void Awake()
     {
-        damage = 20;
+        damage = rangedCrab.FireBallDamage;
     }
 
     private void OnTriggerEnter(Collider other)

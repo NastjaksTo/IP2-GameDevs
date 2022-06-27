@@ -8,6 +8,7 @@ using static CombatSystem;
 
 public class FatDragonScript : MonoBehaviour
 {
+    public static FatDragonScript dragonBoss;
     private Transform movePositionTransform;
     private PlayerAttributes player;
     private GameObject playerModel;
@@ -39,7 +40,7 @@ public class FatDragonScript : MonoBehaviour
     GameObject fireBall;
 
     [SerializeField]
-    Collider collider;
+    private Collider collider;
 
     public float FireBallDamage { get => fireBallDamage; set => fireBallDamage = value; }
 
@@ -48,6 +49,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        dragonBoss = this;
         playerModel = GameObject.FindGameObjectWithTag("Player");
         movePositionTransform = playerModel.GetComponent<Transform>();
         player = playerModel.GetComponent<PlayerAttributes>();
@@ -62,15 +64,16 @@ public class FatDragonScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 6.0f;
+        attackRange = navMeshAgent.stoppingDistance;
         shotSpeed = 20.0f;
+
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-        fireBallDamage = 20;
 
-        health.Health = 100;
-        damage = 20;
+        fireBallDamage = 20 + playerskillsystem.playerlevel.GetLevel() * 2;
+        damage = 40 + playerskillsystem.playerlevel.GetLevel() * 3;
+        health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 
     /// <summary>

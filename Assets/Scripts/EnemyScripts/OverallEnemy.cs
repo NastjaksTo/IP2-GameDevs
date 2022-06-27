@@ -9,7 +9,7 @@ public class OverallEnemy : MonoBehaviour
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
-    private EnemyHealthHandler Health;
+    private EnemyHealthHandler health;
 
     private Vector3 spawnpoint;
 
@@ -20,9 +20,11 @@ public class OverallEnemy : MonoBehaviour
     private float endDefend;
     private float attackRange;
     private float speed;
+    private float playerlevel;
 
     private bool isdead;
     private bool defend;
+    public float Playerlevel { get => playerlevel; set => playerlevel = value; }
 
     private void Awake()
     {
@@ -30,7 +32,7 @@ public class OverallEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         fov = GetComponent<FoVScript>();
-        Health = GetComponentInChildren<EnemyHealthHandler>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
 
         spawnpoint = this.transform.position;
 
@@ -49,6 +51,7 @@ public class OverallEnemy : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+        playerlevel = playerskillsystem.playerlevel.GetLevel();
     }
 
     public void RandomRange(int begin, int end)

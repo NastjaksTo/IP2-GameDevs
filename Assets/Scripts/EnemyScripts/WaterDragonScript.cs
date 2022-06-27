@@ -29,7 +29,7 @@ public class WaterDragonScript : MonoBehaviour
     private int waterDamage;
 
     [SerializeField]
-    Collider collider;
+    private Collider col;
 
     public PlayerAttributes Player { get => player; set => player = value; }
     public int WaterDamage { get => waterDamage; set => waterDamage = value; }
@@ -55,16 +55,13 @@ public class WaterDragonScript : MonoBehaviour
         doDamage = false;
         idle = true;
         attackRange = navMeshAgent.stoppingDistance;
+
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-        // rotationStand = Quaternion.Euler(new Vector3(70, -90, 0));
-        // rotationFly = Quaternion.Euler(new Vector3(0, -90, 0));
-
-        health.Health = 100;
-        damage = 20;
-        waterDamage = 1;
-
+        damage = 40 + playerskillsystem.playerlevel.GetLevel() * 3;
+        health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
+        waterDamage = 5 + playerskillsystem.playerlevel.GetLevel();
     }
     private void Update()
     {
@@ -82,7 +79,7 @@ public class WaterDragonScript : MonoBehaviour
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
-            collider.isTrigger = false;
+            col.isTrigger = false;
             navMeshAgent.speed = 5;
             idle = false;
             animator.SetBool("Walk", true);
@@ -115,7 +112,7 @@ public class WaterDragonScript : MonoBehaviour
                     navMeshAgent.speed = 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Water");
-                    collider.isTrigger = true;
+                    col.isTrigger = true;
                 }
             }
         }
