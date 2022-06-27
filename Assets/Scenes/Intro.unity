@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -261,7 +261,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: e257a089ed546654e889fa305d1b738b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: f62b9501dd0affd498e98de9469b37a3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4e70c2406a11fad49851a91e4b541530, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.284
   m_Pitch: 1
@@ -400,10 +400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Geus, the supreme Levan god, together with the other Levan gods, frees
-    the humans from the titans and imprisons them in a small magic box. He gives
-    this box, the trophy for the triumph, to Pandora, whom he had had his eye on
-    for a long time.
+  m_text: 'The gods defeated the Titans and locked them in a small magic box. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -437,7 +434,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 10
@@ -809,8 +806,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'One, only one, took pity on them, despite the pact, to help them and to
-    look for a loophole so that nobody would notice. '
+  m_text: 'Due to the fact, that he cant intervene in the current state of the world,
+    he splits his power in half and gifts it to an hunter from a small town called
+    Hedvik.
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -965,9 +966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Since he himself can no longer intervene in the human world, he secretly
-    splits off a part of his divine soul. He goes in search of a chosen one who is
-    able to save the world. '
+  m_text: "He appears in a dream of this particular hunter\u2026."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -1274,8 +1273,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Frustrated, the gods now turn away from the humans. And together they decide
-    to never interfere in the human world again.
+  m_text: "Anger and retribution took over Rayas heart as people stopped worshipping
+    them. \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -1514,7 +1513,9 @@ PlayableDirector:
     value: {fileID: 417684280}
   - key: {fileID: 8366975117053304401, guid: 721e7f8a14f5d6945b72606e4ee2b068, type: 2}
     value: {fileID: 1241206909}
-  - key: {fileID: 282522044583300745, guid: 721e7f8a14f5d6945b72606e4ee2b068, type: 2}
+  - key: {fileID: -6121479266141396105, guid: 721e7f8a14f5d6945b72606e4ee2b068, type: 2}
+    value: {fileID: 1279395328}
+  - key: {fileID: -179889133241218965, guid: 721e7f8a14f5d6945b72606e4ee2b068, type: 2}
     value: {fileID: 106770134}
   m_ExposedReferences:
     m_References: []
@@ -1828,8 +1829,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This, however, mocks Geus for his actions, "How can one deal with such
-    a lowly people as humans?", she wonders. However, she keeps the box.
+  m_text: 'The supreme lavanian god gave this box to his beloved, Raya, as a trophy.
+    She taunted him for helping those unworthy creatures but she keeps the box.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -2099,8 +2102,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Anger and revenge swept over Pandora''s heart, "let this lowly people
-    worship us," and she opens the magic box. '
+  m_text: "As a result she opens the box and unleashes the titans back on the world.
+    \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -2197,6 +2200,134 @@ RectTransform:
   m_AnchoredPosition: {x: -0.0000009536743, y: 0.00000166893}
   m_SizeDelta: {x: 950, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1279395327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279395329}
+  - component: {fileID: 1279395328}
+  m_Layer: 0
+  m_Name: EpicSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1279395328
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279395327}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8fd0cb16ec0908e4bbce8276a5da48b5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1279395329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279395327}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1803.7881, y: 989.4048, z: 21.274565}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1345100666
 GameObject:
   m_ObjectHideFlags: 0
@@ -2235,8 +2366,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Three titans emerge from the chest and they began to reclaim the human
-    world.
+  m_text: 'Only a single god decides to stop those titans from ending human life.
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -2302,7 +2434,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1345100668
@@ -2415,8 +2547,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This story begins so many years ago that it''s not even possible to tell
-    how long ago it was. '
+  m_text: This story begins so many years ago that it is not even possible to tell
+    how long ago it was.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -2540,7 +2672,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: e257a089ed546654e889fa305d1b738b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 47c69b38d62c57c4cade89fb910c1115, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a47de6c0f15317543b2617a5ee90edf9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2949,7 +3081,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The gods promised humans to protect them if they worship them.
+  m_text: The gods promised to protect the humans if they worship them.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -2983,7 +3115,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 10
@@ -3084,7 +3216,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Years pass and people's prayers grow quieter.
+  m_text: Years pass and the prayers of the people become quieter. The gods turn
+    their back on the humans and decide to never interfere in the human world again.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -3118,7 +3251,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 8
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 10
@@ -3239,9 +3372,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'He appears to this chosen one in a dream, gives him half the divine soul
-    and says: "You have been chosen to save the world. You now have the power to
-    do so. But that must remain our little secret".'
+  m_text: "\"You are the chosen one. I will lend you the power to defeat the titans.
+    So go ahead and save your world!\" \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
@@ -3356,9 +3488,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: It begins as the gods discover the human world, at a time when the human
-    world is threatened by titans and it is a struggle of life and death. Nobody
-    really knows how the titans ended up there, maybe they were always there.
+  m_text: 'It begins when the lavanian gods discover the human world, at a time when
+    the human world was threatened by Titans and it was a battle for life and death. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
   m_sharedMaterial: {fileID: 8624201197694353760, guid: 621cce59e80a2524186a9869f6f69a67, type: 2}
