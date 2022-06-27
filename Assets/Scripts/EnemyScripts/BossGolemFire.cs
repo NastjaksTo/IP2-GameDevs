@@ -37,8 +37,6 @@ public class BossGolemFire : MonoBehaviour
         fov = GetComponent<FoVScript>();
         health = GetComponent<EnemyHealthHandler>();
         doDamage = false;
-        fov.Radius = 100.0f;
-        fov.Angle = 180.0f;
 
         health.Health = 500;
         damage = 20;
