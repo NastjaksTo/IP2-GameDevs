@@ -70,8 +70,8 @@ public class PandoraAgent : MonoBehaviour
 
     private void Awake()
     {
-        healthBar = GameObject.Find("HealthRepresentation").GetComponent<Image>();
-        textHealthPoints = GameObject.Find("healthValue").GetComponent<TextMeshProUGUI>();
+        healthBar = GameObject.Find("RayaHealthRepresentation").GetComponent<Image>();
+        textHealthPoints = GameObject.Find("RayahealthValue").GetComponent<TextMeshProUGUI>();
         maxHealth = health;
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();

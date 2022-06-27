@@ -52,16 +52,32 @@ public class PlayerInventory : MonoBehaviour {
     }
 
 
-    /// <summary>
-    /// Collects a single item: 
-    /// If it was added to the inventory -> close the collect alert and destroy the collected item on the Map.
-    /// </summary>
-    /// <param name="item">The item to be collected.</param>
-    public void CollectItem(GroundItem item) {
-        Item _item = new Item(item.item);
-        if (playerInventory.AddItem(_item, 1)) { 
+    ///// <summary>
+    ///// Collects a single item from the ground: 
+    ///// If it was added to the inventory -> close the collect alert and destroy the collected item on the Map.
+    ///// </summary>
+    ///// <param name="item">The item to be collected.</param>
+    //public void CollectItem(GroundItem item) {
+    //    Item _item = new Item(item.item);
+    //    if (playerInventory.AddItem(_item, 1)) { 
+    //        collectAlert.CloseCollectAlertUi();
+    //        Destroy(item.gameObject);
+    //        addItemAlert.SetActive(true);
+    //        AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
+    //        StartCoroutine(closeAddItemAlert());
+    //    }
+    //}
+
+    ///// <summary>
+    ///// Collects a single item if someone give it to the player: 
+    ///// If it was added to the inventory -> close the collect alert and destroy the collected item on the Map.
+    ///// </summary>
+    ///// <param name="item">The item to be collected.</param>
+    public void CollectItem(ItemObject item) {
+        Item _item = new Item(item);
+        if (playerInventory.AddItem(_item, 1))
+        {
             collectAlert.CloseCollectAlertUi();
-            Destroy(item.gameObject);
             addItemAlert.SetActive(true);
             AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
             StartCoroutine(closeAddItemAlert());
@@ -101,9 +117,9 @@ public class PlayerInventory : MonoBehaviour {
                 CollectItems(itemBag);
             }
 
-            if (item) {
-                CollectItem(item);
-            }
+            //if (item) {
+            //    CollectItem(item);
+            //}
         }
     }
 
@@ -118,7 +134,7 @@ public class PlayerInventory : MonoBehaviour {
 
 
     private IEnumerator closeAddItemAlert() {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSecondsRealtime(3);
         addItemAlert.SetActive(false);
     }
 }

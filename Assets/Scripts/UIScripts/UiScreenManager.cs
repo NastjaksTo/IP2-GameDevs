@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static PlayerDisplay;
+using static PlayerQuests;
 
 
 /// <summary>
@@ -253,7 +254,7 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void Update() {
 
-        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_inventoryUiOpen) {
                 CloseInventoryUi();
                 playerDisplay.UpdateSpellUI();
@@ -263,7 +264,7 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_questUiOpen) {
                 CloseQuestUi();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
@@ -271,7 +272,7 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_pauseMenuContainerUiOpen) {
                 ClosePauseContainerUi();
             } else {

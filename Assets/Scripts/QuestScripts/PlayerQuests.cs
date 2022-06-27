@@ -27,10 +27,14 @@ public class PlayerQuests : MonoBehaviour
     public TextMeshProUGUI questGiverDescr;
     
     public GameObject lootbags;
-    public GroundItem[] books;
+    public ItemObject[] books;
     public int currentQuestID = 1;
 
     public AudioClip questDone;
+
+    public GameObject closeDialogBtn;
+
+    public bool dialogueIsOpen;
 
     private void Awake()
     {
@@ -45,11 +49,12 @@ public class PlayerQuests : MonoBehaviour
             QuestGiver currentQuestGiver = other.gameObject.GetComponent<QuestGiver>();
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
             {
-                SetQuestGiverUI("YOU", "What just happend? What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this. " +
+                SetQuestGiverUI("You", "What just happend? What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this. " +
                                        "<br> <br>" + "Move - W A S D <br>Jump - SPACE<br>Sprint - SHIFT<br>Dodge - C<br>Questlog - J");
+
                 SetQuest(other.gameObject);
                 currentQuestID++;
-            } 
+            }
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest2")
             {
                 quest.Complete();
@@ -58,9 +63,11 @@ public class PlayerQuests : MonoBehaviour
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
                 SetQuestGiverUI("Librarian", "Hey my friend. You want to know more about magic? Here you can have my spellbooks. You can use them to create magic. You will find the items in your inventory (I). <br><br>Drag a book in the book slot to equip. With right mouse button you can cast magic.");
+                
                 p_Inventory.CollectItem(books[0]);
                 p_Inventory.CollectItem(books[1]);
                 p_Inventory.CollectItem(books[2]);
+
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -144,13 +151,28 @@ public class PlayerQuests : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         questGiverUI.SetActive(true);
+        dialogueIsOpen = true;
+        questGiverTitel.text = "";
+        questGiverDescr.text = "";
         questGiverTitel.text = title;
-        questGiverDescr.text = descr;
+        StartCoroutine(TypeLine(descr));
     }
+
+    IEnumerator TypeLine(string text) {
+        foreach (char c in text.ToCharArray()) {
+            questGiverDescr.text += c;
+            yield return new WaitForSecondsRealtime(0.025f);
+        }
+        closeDialogBtn.SetActive(true);
+        newQuestAltertOpen();
+    }
+ 
 
     public void CloseQuestGiverUI() {
         Cursor.lockState = CursorLockMode.Locked;
+        closeDialogBtn.SetActive(false);
         questGiverUI.SetActive(false);
+        dialogueIsOpen = false;
         Time.timeScale = 1f;
     }
 
@@ -161,19 +183,23 @@ public class PlayerQuests : MonoBehaviour
         playerQuests.titleText.text = currentQuest.quest.title;
         playerQuests.descText.text = currentQuest.quest.descrption;
         playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+    }
+
+    private void newQuestAltertOpen(){
+        AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
         newQuestAlertText.text = "New Quest: " + playerQuests.titleText.text + " ( J )";
         newQuestAlert.SetActive(true);
         StartCoroutine(closeNewQuestAlert());
     }
 
     private IEnumerator closeCompletionUI() {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSecondsRealtime(3);
         completionUI.SetActive(false);
     }
 
     private IEnumerator closeNewQuestAlert()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSecondsRealtime(3);
         newQuestAlert.SetActive(false);
     }
 }
