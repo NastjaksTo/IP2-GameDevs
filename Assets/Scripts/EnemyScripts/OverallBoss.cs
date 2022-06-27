@@ -18,10 +18,10 @@ public class OverallBoss : MonoBehaviour
     private float timer;
     private float timeToChangeAttack;
     private float speed;
+    private float magicDirection;
 
     private int switchRange;
     private int switchMelee;
-    private int magicDirection;
 
     private bool isdead;
     private bool phase2;
@@ -51,7 +51,7 @@ public class OverallBoss : MonoBehaviour
         speed = navMeshAgent.speed;
 
         doDamage = false;
-        magicDirection = 1;
+        magicDirection = 0.5f;
     }
 
     private void Update()
@@ -178,13 +178,13 @@ public class OverallBoss : MonoBehaviour
 
     public void screamAt()
     {
-        if (ps.transform.eulerAngles.y >= 200)
+        if (ps.transform.eulerAngles.y >= 210)
         {
-            magicDirection = -1;
+            magicDirection =  -0.5f;
         }
-        if (ps.transform.eulerAngles.y <= 160)
+        if (ps.transform.eulerAngles.y <= 150)
         {
-            magicDirection = 1;
+            magicDirection = 0.5f;
         }
         ps.transform.Rotate(0, magicDirection, 0 * Time.deltaTime, Space.World);
     }
