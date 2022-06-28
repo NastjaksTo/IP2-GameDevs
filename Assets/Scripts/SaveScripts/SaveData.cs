@@ -3,8 +3,10 @@ using Invector.CharacterController;
 using SaveScripts;
 using UIScripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static SkillTree;
 using static PlayerQuests;
+
 
 public class SaveData : MonoBehaviour
 {
@@ -35,6 +37,7 @@ public class SaveData : MonoBehaviour
     /// </summary>
     public void Awake()
     {
+        SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
         scenetransfer = GameObject.FindGameObjectWithTag("SceneTransfer");
         loaded = scenetransfer.GetComponent<SceneTransfer>().loaded;
         if (loaded)
@@ -117,7 +120,6 @@ public class SaveData : MonoBehaviour
         {
             Destroy(GameObject.Find("Quest" + i));
         }
-
     }
 
     /// <summary>
@@ -165,11 +167,13 @@ public class SaveData : MonoBehaviour
                 SaveGame();
                 combatsystem.refillPotions();
                 uimanager.CloseSkillUi();
+                SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
             } else 
             {
                 SaveGame(); 
                 combatsystem.refillPotions();
                 uimanager.OpenSkillUi();
+                SceneManager.UnloadSceneAsync("EnemyScene");
             }
         }
         

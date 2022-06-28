@@ -25,7 +25,7 @@ public class OverallEnemy : MonoBehaviour
     private bool isdead;
     private bool defend;
     public float Playerlevel { get => playerlevel; set => playerlevel = value; }
-
+    
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();

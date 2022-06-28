@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using static PlayerSkillsystem;
 using static CombatSystem;
 
@@ -31,7 +34,6 @@ public class SlimeAgent : MonoBehaviour
         health.Health = 100 + enemy.Playerlevel * 5;
         fullHealth = (int)health.Health;
         damage = 10 + enemy.Playerlevel * 2;
-
     }
 
     /// <summary>
