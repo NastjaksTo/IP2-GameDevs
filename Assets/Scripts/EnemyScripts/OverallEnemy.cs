@@ -139,16 +139,16 @@ public class OverallEnemy : MonoBehaviour
 
     public void GetDamage(string Hit, string Die, int Exp)
     {
-        if (Health.Hit)
+        if (health.Hit)
         {
-            if (Health.Health > 0)
+            if (health.Health > 0)
             {
                 animator.SetTrigger(Hit);
-                Health.Hit = false;
+                health.Hit = false;
             }
 
 
-            if (Health.Dead && !isdead)
+            if (health.Dead && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger(Die);

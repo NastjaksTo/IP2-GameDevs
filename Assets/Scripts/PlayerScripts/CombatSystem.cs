@@ -28,6 +28,7 @@ public class CombatSystem : MonoBehaviour
     public bool invincible = false;
     public bool justrevived;
     public bool isAttacking;
+    public bool shouldPandoraBlock;
 
     private bool inAnimation;
     private bool canDodge = true;
@@ -157,21 +158,20 @@ public class CombatSystem : MonoBehaviour
 
     public void LightAttack(AnimationEvent animationEvent)
     {
-        Debug.Log("Lightattack");
         isAttacking = true;
         Invoke(nameof(StopAttack), 0.025f);
     }
 
     public void StartAttack(AnimationEvent animationEvent)
     {
-        Debug.Log("Startattack");
+        shouldPandoraBlock = true;
         playerAttributesScript.currentStamina -= 8;
         inAnimation = true;
     }
     
     public void StopAttack()
     {
-        Debug.Log("Stopattack");
+        shouldPandoraBlock = false;
         isAttacking = false;
         playerMovement._canMove = true;
         inAnimation = false;

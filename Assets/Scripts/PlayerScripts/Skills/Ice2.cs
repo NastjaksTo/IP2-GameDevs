@@ -19,6 +19,10 @@ public class Ice2 : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             enemy = other.gameObject;
+            if (enemy.name == "Pandora")
+            {
+                if (enemy.GetComponent<PandoraAgent>().isInvincible) return;
+            }
             enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
             //anim.SetBool("stunned", true);
             //StartCoroutine(ice2stunned());

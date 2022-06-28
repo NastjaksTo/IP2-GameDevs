@@ -16,10 +16,15 @@ public class Ice1 : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        rb.velocity = Vector3.zero;
+        if(other.gameObject.layer == 3 || other.gameObject.layer == 8) rb.velocity = Vector3.zero;
         if (other.CompareTag("Enemy"))
         {
+            rb.velocity = Vector3.zero;
             enemy = other.gameObject;
+            if (enemy.name == "Pandora")
+            {
+                if (enemy.GetComponent<PandoraAgent>().isInvincible) return;
+            }
             enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
             //anim.SetBool("stunned", true);
             //StartCoroutine(ice1stunned());
