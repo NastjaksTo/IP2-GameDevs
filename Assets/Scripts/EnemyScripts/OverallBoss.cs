@@ -186,7 +186,7 @@ public class OverallBoss : MonoBehaviour
     {
         if (ps.transform.eulerAngles.y >= 210)
         {
-            magicDirection =  -0.5f;
+            magicDirection = -0.5f;
         }
         if (ps.transform.eulerAngles.y <= 150)
         {

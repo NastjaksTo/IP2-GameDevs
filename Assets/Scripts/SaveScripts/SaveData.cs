@@ -42,7 +42,7 @@ public class SaveData : MonoBehaviour
         loaded = scenetransfer.GetComponent<SceneTransfer>().loaded;
         if (loaded)
         {
-            Invoke("Loadgame", 0.1f);
+            Invoke("Loadgame", 0.01f);
         }
         else
         {

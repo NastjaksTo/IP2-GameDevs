@@ -50,7 +50,7 @@ public class PlayerQuests : MonoBehaviour
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
             {
                 SetQuestGiverUI("You", "What just happend? What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this. " +
-                                       "<br> <br>" + "Move - W A S D <br>Jump - SPACE<br>Sprint - SHIFT<br>Dodge - C<br>Questlog - J");
+                                       "<br> <br>" + "Move - W A S D <br>Jump - SPACE<br>Sprint - SHIFT<br>Dodge - C");
 
                 SetQuest(other.gameObject);
                 currentQuestID++;
@@ -113,7 +113,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the smith.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Smith", "You need a sword? I have a old rusty one. It is in front of my house. You can take it.");
+                SetQuestGiverUI("Smith", "You need a sword? I have a old rusty one. It is in front of my house. You can take it. Unfortunately, I don't have any armour for you, but you'll find one.");
                 lootbags.SetActive(true);
                 SetQuest(other.gameObject);
                 currentQuestID++;
