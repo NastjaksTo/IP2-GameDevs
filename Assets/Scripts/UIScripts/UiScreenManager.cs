@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static PlayerDisplay;
 using static PlayerQuests;
+using static BossArena;
 
 
 /// <summary>
@@ -134,6 +135,7 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void OpenDeathUi() {
         //alert.CloseCollectAlertUi();
+        bossarenaScript.CloseAllArenas();
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         deathUi.SetActive(true);

@@ -21,6 +21,9 @@ namespace SaveScripts
         public string playerQuestTitle;
         public string playerQuestDesc;
         public string playerQuestReward;
+        public bool fireTitanDead;
+        public bool iceTitanDead;
+        public bool earthTitanDead;
     
         public List<int> savedcollectedLootbags = new List<int>();
 
@@ -32,7 +35,8 @@ namespace SaveScripts
         /// <param name="skillTree">Gets data from SkillTree</param>
         /// <param name="combatSystem">Gets data from CombatSystem</param>
         /// <param name="player">Gets data from SaveData</param>
-        public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, PlayerInventory playerInventory, SaveData player, PlayerQuests playerQuests)
+        public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, 
+            PlayerInventory playerInventory, SaveData player, PlayerQuests playerQuests, BossArena bossArena)
         {
             level = PlayerSkillsystem.playerskillsystem.playerlevel.GetLevel();
             currentExp = PlayerSkillsystem.playerskillsystem.playerlevel.GetExp();
@@ -50,6 +54,9 @@ namespace SaveScripts
             playerQuestTitle = playerQuests.titleText.text;
             playerQuestDesc = playerQuests.descText.text;
             playerQuestReward = playerQuests.rewardText.text;
+            iceTitanDead = bossArena.isIceTitanAlive;
+            earthTitanDead = bossArena.isEarthTitanAlive;
+            fireTitanDead = bossArena.isFireTitanAlive;
             
             for (int i = 0; i <= 17; i++)
             {

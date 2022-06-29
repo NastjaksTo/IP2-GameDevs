@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static SkillTree;
 using static PlayerQuests;
+using static BossArena;
 
 
 public class SaveData : MonoBehaviour
@@ -120,6 +121,11 @@ public class SaveData : MonoBehaviour
         {
             Destroy(GameObject.Find("Quest" + i));
         }
+        
+        bossarenaScript.CloseAllArenas();
+        bossarenaScript.isEarthTitanAlive = data.earthTitanDead;
+        bossarenaScript.isFireTitanAlive = data.fireTitanDead;
+        bossarenaScript.isIceTitanAlive = data.iceTitanDead;
     }
 
     /// <summary>
@@ -132,7 +138,7 @@ public class SaveData : MonoBehaviour
         for (int i = 0; i <= 17; i++) {
             skilllevelsData[i] = skillTree.skillLevels[i];
         }
-        SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, playerInventory, this, playerQuests);
+        SaveSystem.SavePlayer(skillsystem.playerlevel, attributes, skillTree, combatsystem, playerInventory, this, playerQuests, bossarenaScript);
         inventory.Save();
         equipment.Save();
     }
