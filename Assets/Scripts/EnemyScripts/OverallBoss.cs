@@ -27,7 +27,7 @@ public class OverallBoss : MonoBehaviour
     private int switchRange;
     private int switchMelee;
 
-    private bool isdead;
+    public bool isdead;
     private bool phase2;
     private bool doDamage;
     private bool able;

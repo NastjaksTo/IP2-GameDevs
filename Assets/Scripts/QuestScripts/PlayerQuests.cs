@@ -33,7 +33,8 @@ public class PlayerQuests : MonoBehaviour
     public AudioClip questDone;
 
     public GameObject closeDialogBtn;
-
+    public GameObject rayaEntrance;
+    
     public bool dialogueIsOpen;
 
     private void Awake()
@@ -144,6 +145,18 @@ public class PlayerQuests : MonoBehaviour
                 combatSystem.refillPotions();
                 currentQuestID++;
             }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest9")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Go back to the priest.";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("Priest", "brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                SetQuest(other.gameObject);
+                currentQuestID++;
+                rayaEntrance.SetActive(false);
+            }
         }
     }
 
@@ -166,7 +179,20 @@ public class PlayerQuests : MonoBehaviour
         closeDialogBtn.SetActive(true);
         newQuestAltertOpen();
     }
- 
+
+    public void TitanQuest()
+    {
+        quest.Complete();
+        AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+        completionText.text = "Quest complete: Find and defeat the titans.";
+        completionUI.SetActive(true);
+        StartCoroutine(closeCompletionUI());
+        SetQuestGiverUI("YOU", "grrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+        playerQuests.titleText.text = "Go back to the priest.";
+        playerQuests.descText.text = "BLABLABLABLA";
+        playerQuests.rewardText.text = "1000";
+        currentQuestID++;
+    }
 
     public void CloseQuestGiverUI() {
         Cursor.lockState = CursorLockMode.Locked;

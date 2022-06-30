@@ -1,5 +1,8 @@
 using UnityEngine;
 using static CombatSystem;
+using TMPro;
+using UnityEngine.UI;
+using static BossArena;
 
 public class BossGolemFire : MonoBehaviour
 {
@@ -14,8 +17,13 @@ public class BossGolemFire : MonoBehaviour
     private float damage;
     private float fireDamage;
     private float shotSpeed;
-
-
+    
+    private EnemyHealthHandler healthHandler;
+    private Image healthBar;
+    private TextMeshProUGUI textHealthPoints;
+    private float maxHealth;
+    private int health;
+    
     [SerializeField]
     GameObject projectileSpawnpoint;
 
@@ -29,6 +37,9 @@ public class BossGolemFire : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        healthBar = GameObject.Find("FireHealthRepresentation").GetComponent<Image>();
+        textHealthPoints = GameObject.Find("FireHealthValue").GetComponent<TextMeshProUGUI>();
+        healthHandler = GetComponent<EnemyHealthHandler>();
         fireTitan = this;
         playerModel = GameObject.FindGameObjectWithTag("Player");
         movePositionTransform = playerModel.GetComponent<Transform>();
@@ -41,8 +52,28 @@ public class BossGolemFire : MonoBehaviour
 
         fireDamage = boss.ElementalDamage * 40;
     }
+    
+    private void Start()
+    {
+        maxHealth = healthHandler.Health;
+    }
+    
+    private void CloseArena()
+    {
+        bossarenaScript.CloseAllArenas();
+    }
+
+
     private void Update()
     {
+        if (boss.isdead)
+        {
+            bossarenaScript.isFireTitanAlive = false;
+            Invoke(nameof(CloseArena), 2f);
+            bossarenaScript.QuestCompletion();
+        }
+        healthBar.fillAmount = healthHandler.Health / maxHealth;
+        textHealthPoints.text = healthHandler.Health.ToString();
         boss.WalkOrAttack("Walk", "Magic", "BottomSlash", "SlashHit", "Stomp");
         boss.getDamage(5000, "Die");
         boss.lookAt();

@@ -8,6 +8,7 @@ using static PlayerSkillsystem;
 using rRandom = System.Random;
 using Random = UnityEngine.Random;
 using TMPro;
+using UnityEngine.SceneManagement;
 using static CombatSystem;
 
 public class PandoraAgent : MonoBehaviour
@@ -371,9 +372,15 @@ public class PandoraAgent : MonoBehaviour
                 Destroy(textHealthPoints, 0.25f);
                 playerskillsystem.playerlevel.AddExp(Exp);
                 Destroy(GameObject.Find("PandoraAoETwo(Clone)"), 0.25f);
-                Destroy(gameObject, 2.0f);
+                Invoke(nameof(EndGame), 3.9f);
+                Destroy(gameObject, 4f);
             }
         }
+    }
+
+    private void EndGame()
+    {
+        SceneManager.LoadScene("ScrollingCredits");
     }
     
     // REGENERATION EFFECT

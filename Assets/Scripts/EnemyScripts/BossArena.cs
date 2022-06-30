@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerQuests;
 
 public class BossArena : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class BossArena : MonoBehaviour
     public GameObject earthTitanHealthBar;
     public GameObject earthTitan;
     public bool isEarthTitanAlive;
+    private bool isQuestCompleted;
 
     private void Awake()
     {
@@ -77,5 +79,14 @@ public class BossArena : MonoBehaviour
         iceTitanArenaWall.SetActive(false);
         iceTitanHealthBar.SetActive(false);
         iceTitan.SetActive(false);
+    }
+
+    public void QuestCompletion()
+    {
+        if (!isQuestCompleted && !isEarthTitanAlive && !isFireTitanAlive && !isIceTitanAlive)
+        {
+            isQuestCompleted = true;
+            playerQuests.TitanQuest();
+        }
     }
 }
