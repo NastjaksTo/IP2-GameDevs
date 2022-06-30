@@ -191,7 +191,6 @@ public class OverallBoss : MonoBehaviour
                 playerskillsystem.playerlevel.AddExp(Exp);
                 Destroy(gameObject, 5.0f);
             }
-            Debug.Log(health.Health);
         }
     }
     public void lookAt()

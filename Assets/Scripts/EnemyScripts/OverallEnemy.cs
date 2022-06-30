@@ -148,7 +148,6 @@ public class OverallEnemy : MonoBehaviour
                 health.Hit = false;
             }
 
-
             if (health.Health <= 0 && !isdead)
             {
                 isdead = true;

@@ -170,7 +170,6 @@ public class GolemScript : MonoBehaviour
                 Destroy(gameObject, 5.0f);
                 playerskillsystem.playerlevel.AddExp(1500);
             }
-            Debug.Log(health.Health);
         }
     }
 
