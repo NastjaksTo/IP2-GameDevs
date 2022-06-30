@@ -42,7 +42,7 @@ public class OverallBoss : MonoBehaviour
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        health = GetComponentInChildren<EnemyHealthHandler>();
+        health = GetComponent<EnemyHealthHandler>();
         animator = GetComponent<Animator>();
         ps = GetComponentInChildren<ParticleSystem>();
         player = GetComponent<PlayerAttributes>();
@@ -70,6 +70,8 @@ public class OverallBoss : MonoBehaviour
         timer += Time.deltaTime;
 
         playerlevel = playerskillsystem.playerlevel.GetLevel();
+
+        Debug.Log(health.Health);
 
         if (able)
         {
