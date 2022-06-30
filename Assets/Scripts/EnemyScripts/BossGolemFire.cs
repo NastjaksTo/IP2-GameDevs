@@ -10,11 +10,10 @@ public class BossGolemFire : MonoBehaviour
     private FoVScript fov;
 
     private bool able;
-    private bool doDamage;
 
     private float damage;
     private float fireDamage;
-    private int shotSpeed;
+    private float shotSpeed;
 
 
     [SerializeField]
@@ -35,52 +34,27 @@ public class BossGolemFire : MonoBehaviour
         movePositionTransform = playerModel.GetComponent<Transform>();
         boss = GetComponent<OverallBoss>();
         fov = GetComponent<FoVScript>();
-        doDamage = false;
+        shotSpeed = 20.0f;
 
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
-        damage = boss.Damage;
         fireDamage = boss.ElementalDamage * 40;
     }
     private void Update()
     {
         boss.WalkOrAttack("Walk", "Magic", "BottomSlash", "SlashHit", "Stomp");
         boss.getDamage(5000, "Die");
-        boss.screamAt();
         boss.lookAt();
-
-        doDamage = boss.DoDamage;
-
-        if (able)
-        {
-            DoDamage();
-        }
     }
 
-    private void DoDamage()
-    {
-        if (doDamage)
-        {
-            if (!boss.Phase2)
-            {
-                combatSystem.LoseHealth(damage);
-            }
-            if (boss.Phase2)
-            {
-                combatSystem.LoseHealth(damage * 2);
-            }
-            boss.DoDamage = false;
-        }
-    }
 
     private void spawnBullet()
     {
         if (movePositionTransform != null)
         {
             GameObject fireball = Instantiate(fireBall, projectileSpawnpoint.transform.position, Quaternion.identity);
-            fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            Vector3 direction = movePositionTransform.position - (projectileSpawnpoint.transform.position - new Vector3(0, 5, 0));
+            Vector3 direction = movePositionTransform.position - projectileSpawnpoint.transform.position;
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
         }

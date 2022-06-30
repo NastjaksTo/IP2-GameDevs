@@ -5,7 +5,6 @@ public class BossGolemIce : MonoBehaviour
 {
     private OverallBoss boss;
     private FoVScript fov;
-    private bool doDamage;
 
     private float damage;
     private float iceDamage;
@@ -19,7 +18,6 @@ public class BossGolemIce : MonoBehaviour
     {
         boss = GetComponent<OverallBoss>();
         fov = GetComponent<FoVScript>();
-        doDamage = false;
 
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
@@ -31,32 +29,6 @@ public class BossGolemIce : MonoBehaviour
     {
         boss.WalkOrAttack("Walk", "Magic", "BottomSlash", "SlashHit", "Stomp");
         boss.getDamage(5000, "Die");
-        boss.screamAt();
         boss.lookAt();
-
-        doDamage = boss.DoDamage;
-
-        if (boss.Able)
-        {
-            DoDamage();
-        }
     }
-
-    private void DoDamage()
-    {
-        if (doDamage)
-        {
-            if (!boss.Phase2)
-            {
-                combatSystem.LoseHealth(damage);
-            }
-            if (boss.Phase2)
-            {
-                combatSystem.LoseHealth(damage*2);
-            }
-            boss.DoDamage = false;
-        }
-    }
-
-
 }

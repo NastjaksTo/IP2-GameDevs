@@ -29,6 +29,7 @@ public class FatDragonScript : MonoBehaviour
     private float fireBallDamage;
 
     private int damage;
+    private float speed;
 
     [SerializeField]
     GameObject standProjectileSpawnpoint;
@@ -66,14 +67,16 @@ public class FatDragonScript : MonoBehaviour
         idle = true;
         attackRange = navMeshAgent.stoppingDistance;
         shotSpeed = 20.0f;
+        speed = navMeshAgent.speed;
 
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
 
         fireBallDamage = 20 + playerskillsystem.playerlevel.GetLevel() * 2;
-        damage = 40 + playerskillsystem.playerlevel.GetLevel() * 3;
+        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
+
     }
 
     /// <summary>
@@ -97,8 +100,8 @@ public class FatDragonScript : MonoBehaviour
     {
         if (fov.CanSeePlayer)
         {
+            animator.SetBool("Walk", true);
             navMeshAgent.destination = movePositionTransform.position;
-            navMeshAgent.speed = 5;
             collider.isTrigger = false;
             idle = false;
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
@@ -120,12 +123,12 @@ public class FatDragonScript : MonoBehaviour
                 }
                 if(attackSwitchRange > 5 && attackSwitchRange <= 10)
                 {
-                    navMeshAgent.speed = 5;
+                    navMeshAgent.speed = speed;
                     animator.SetBool("Walk", true);
                 }
                 if (attackSwitchRange > 10)
                 {
-                    navMeshAgent.speed = 2;
+                    navMeshAgent.speed = speed / 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Shoot");
                     collider.isTrigger = true;
@@ -134,7 +137,8 @@ public class FatDragonScript : MonoBehaviour
         }
         if (!fov.CanSeePlayer)
         {
-            navMeshAgent.speed = 5;
+            navMeshAgent.speed = speed;
+            animator.SetBool("Walk", true);
             navMeshAgent.destination = spawnpoint;
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)

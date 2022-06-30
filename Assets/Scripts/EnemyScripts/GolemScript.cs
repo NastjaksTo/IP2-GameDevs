@@ -23,6 +23,7 @@ public class GolemScript : MonoBehaviour
     private bool idle;
     private float attackRange;
     private bool isdead;
+    private float speed;
 
 
     private int damage;
@@ -46,16 +47,17 @@ public class GolemScript : MonoBehaviour
         doDamage = false;
         idle = true;
         attackRange = navMeshAgent.stoppingDistance;
+        speed = navMeshAgent.speed;
 
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-        damage = 40 + playerskillsystem.playerlevel.GetLevel() * 3;
+        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 
     /// <summary>
-    /// timer counting while Update
+    /// timer for Attackchange counting while Update
     /// checking for Target
     /// checking for incoming Damage
     /// </summary>
@@ -67,7 +69,7 @@ public class GolemScript : MonoBehaviour
     }
 
     /// <summary>
-    /// if the Player is in Range, the Enemy will Run, Shoot or Fly and Shoot towards the Target (Same functionality as Attack()). Once it is in Range it will perform a Meele attack.
+    /// if the Player is in Range, the Enemy will Run towards the Target. Once it is in Range it will perform a Meele attack.
     /// 
     /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
     /// </summary>
@@ -77,24 +79,23 @@ public class GolemScript : MonoBehaviour
         {
             navMeshAgent.destination = movePositionTransform.position;
             idle = false;
+            navMeshAgent.speed = speed;
+            animator.SetBool("Walk", true);
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
-            {
-                navMeshAgent.speed = 0;
-                navMeshAgent.acceleration = 0;
+            { 
                 Attack();
             }
             else if (Vector3.Distance(this.transform.position, movePositionTransform.position) > attackRange)
             {
-                navMeshAgent.speed = 5;
-                navMeshAgent.acceleration = 8;
+                navMeshAgent.speed = speed;
                 animator.SetBool("Walk", true);
             }
         }
         if (!fov.CanSeePlayer)
         {
-            navMeshAgent.speed = 5;
-            navMeshAgent.acceleration = 8;
+            navMeshAgent.speed = speed;
             navMeshAgent.destination = spawnpoint;
+            animator.SetBool("Walk", true);
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
@@ -105,8 +106,8 @@ public class GolemScript : MonoBehaviour
     }
 
     /// <summary>
-    /// if the Enemy is nearby the Target one of the Three Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move
-    /// while Attacking the Enemy ist not Walking
+    /// if the Enemy is nearby the Target one of the Three Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move.
+    /// While Attacking the Enemy ist not Walking
     /// </summary>
     private void Attack()
     {
@@ -184,8 +185,9 @@ public class GolemScript : MonoBehaviour
     }
 
     /// <summary>
-    /// If the Collider of the Red Boss will Triggercollide with the Player, the bool to deal Damage is set to true;
+    /// if the Collider is getting triggered by the Player the Enemy is able to do Damage
     /// </summary>
+    /// <param name="other">the Players Hitbox</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -194,6 +196,10 @@ public class GolemScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Collider exiting trigger state the Enemy is no longer able to deal Damage
+    /// </summary>
+    /// <param name="other">the Players Hitbox</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -204,7 +210,7 @@ public class GolemScript : MonoBehaviour
 
     /// <summary>
     /// Every time the timer runs down, a new Random Number between 1 and 12 is picked to choose the next Attackpattern. All Triggers are resetted. 
-    /// There is a bigger chance to hit Basic Attack and Tail Attack than Scream.
+    /// There is a bigger chance to hit Attack1 and Attack2 than Scream.
     /// </summary>
     private void changeAttack()
     {

@@ -27,6 +27,7 @@ public class WaterDragonScript : MonoBehaviour
 
     private int damage;
     private int waterDamage;
+    private float speed;
 
     [SerializeField]
     private Collider col;
@@ -55,11 +56,12 @@ public class WaterDragonScript : MonoBehaviour
         doDamage = false;
         idle = true;
         attackRange = navMeshAgent.stoppingDistance;
+        speed = navMeshAgent.speed;
 
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-        damage = 40 + playerskillsystem.playerlevel.GetLevel() * 3;
+        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
         waterDamage = 5 + playerskillsystem.playerlevel.GetLevel();
     }
@@ -79,8 +81,8 @@ public class WaterDragonScript : MonoBehaviour
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
+            navMeshAgent.speed = speed;
             col.isTrigger = false;
-            navMeshAgent.speed = 5;
             idle = false;
             animator.SetBool("Walk", true);
 
@@ -104,12 +106,12 @@ public class WaterDragonScript : MonoBehaviour
                 }
                 if (attackSwitchRange > 5 && attackSwitchRange <= 10)
                 {
-                    navMeshAgent.speed = 5;
+                    navMeshAgent.speed = speed;
                     animator.SetBool("Walk", true);
                 }
                 if (attackSwitchRange > 10)
                 {
-                    navMeshAgent.speed = 2;
+                    navMeshAgent.speed = speed / 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Water");
                     col.isTrigger = true;
@@ -118,9 +120,10 @@ public class WaterDragonScript : MonoBehaviour
         }
         if (!fov.CanSeePlayer)
         {
-            navMeshAgent.speed = 5;
+            navMeshAgent.speed = speed;
             navMeshAgent.destination = spawnpoint;
             animator.ResetTrigger("Scream");
+            animator.SetBool("Walk", true);
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {

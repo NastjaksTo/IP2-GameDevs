@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static CombatSystem;
 
 public class OverallBoss : MonoBehaviour
 {
@@ -31,7 +32,6 @@ public class OverallBoss : MonoBehaviour
     private bool able;
 
     public bool Phase2 { get => phase2; set => phase2 = value; }
-    public bool DoDamage { get => doDamage; set => doDamage = value; }
     public PlayerAttributes Player { get => player; set => player = value; }
     public bool Able { get => able; set => able = value; }
     public float Damage { get => damage; set => damage = value; }
@@ -50,20 +50,34 @@ public class OverallBoss : MonoBehaviour
         spawnpoint = this.transform.position;
 
         attackRange = navMeshAgent.stoppingDistance;
-        timeToChangeAttack = 3f;
+        timeToChangeAttack = 2f;
         timer = 0.0f;
         speed = navMeshAgent.speed;
 
         doDamage = false;
         magicDirection = 0.5f;
+        health.Health = 600 + playerskillsystem.playerlevel.GetLevel() * 100;
+        damage = 30 + playerskillsystem.playerlevel.GetLevel() * 5;
+        elementalDamage = 2 + playerskillsystem.playerlevel.GetLevel() / 4;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
-        health.Health = playerskillsystem.playerlevel.GetLevel() * 200;
-        damage = playerskillsystem.playerlevel.GetLevel() * 5;
-        elementalDamage = playerskillsystem.playerlevel.GetLevel() / 10;
+
+        if (able)
+        {
+            DoDamage();
+        }
+
+        if (!phase2)
+        {
+            timeToChangeAttack = 2.0f;
+        }
+        if (phase2)
+        {
+            timeToChangeAttack = 1.0f;
+        }
     }
 
     private int RandomNumber(int begin, int end)
@@ -142,6 +156,7 @@ public class OverallBoss : MonoBehaviour
                 if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
                 {
                     doDamage = true;
+                    DoDamage();
                 }
             }
 
@@ -193,6 +208,22 @@ public class OverallBoss : MonoBehaviour
             magicDirection = 0.5f;
         }
         ps.transform.Rotate(0, magicDirection, 0 * Time.deltaTime, Space.World);
+    }
+
+    private void DoDamage()
+    {
+        if (doDamage)
+        {
+            if (!phase2)
+            {
+                combatSystem.LoseHealth(damage);
+            }
+            if (phase2)
+            {
+                combatSystem.LoseHealth(damage * 2);
+            }
+            doDamage = false;
+        }
     }
 
     private void startMagicAttack()

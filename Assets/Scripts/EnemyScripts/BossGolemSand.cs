@@ -5,7 +5,6 @@ public class BossGolemSand : MonoBehaviour
 {
     private OverallBoss boss;
     private FoVScript fov;
-    private bool doDamage;
 
     private float damage;
     private float earthDamage;
@@ -19,7 +18,6 @@ public class BossGolemSand : MonoBehaviour
     {
         boss = GetComponent<OverallBoss>();
         fov = GetComponent<FoVScript>();
-        doDamage = false;
 
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
@@ -33,28 +31,5 @@ public class BossGolemSand : MonoBehaviour
         boss.getDamage(5000, "Die");
         boss.screamAt();
         boss.lookAt();
-
-        doDamage = boss.DoDamage;
-
-        if (boss.Able)
-        {
-            DoDamage();
-        }
-    }
-
-    private void DoDamage()
-    {
-        if (doDamage)
-        {
-            if (!boss.Phase2)
-            {
-                combatSystem.LoseHealth(damage);
-            }
-            if (boss.Phase2)
-            {
-                combatSystem.LoseHealth(damage * 2);
-            }
-            boss.DoDamage = false;
-        }
     }
 }

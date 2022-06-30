@@ -14,9 +14,6 @@ public class GruntAgent : MonoBehaviour
 
     private float damage;
 
-    [SerializeField]
-    private float level = 1;
-
     /// <summary>
     /// References set to all necessary Context
     /// </summary>
