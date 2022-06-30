@@ -46,6 +46,7 @@ public class GolemScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
+        isdead = false;
         attackRange = navMeshAgent.stoppingDistance;
         speed = navMeshAgent.speed;
 
@@ -161,7 +162,7 @@ public class GolemScript : MonoBehaviour
             }
 
 
-            if (health.Dead && isdead)
+            if (health.Health <= 0 && isdead)
             {
                 isdead = true;
                 animator.SetTrigger("Die");
@@ -169,6 +170,7 @@ public class GolemScript : MonoBehaviour
                 Destroy(gameObject, 5.0f);
                 playerskillsystem.playerlevel.AddExp(1500);
             }
+            Debug.Log(health.Health);
         }
     }
 

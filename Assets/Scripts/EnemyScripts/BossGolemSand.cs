@@ -22,7 +22,6 @@ public class BossGolemSand : MonoBehaviour
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
-        damage = boss.Damage;
         earthDamage = boss.ElementalDamage;
     }
     private void Update()

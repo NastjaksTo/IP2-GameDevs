@@ -65,6 +65,7 @@ public class FatDragonScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
+        isdead = false;
         attackRange = navMeshAgent.stoppingDistance;
         shotSpeed = 20.0f;
         speed = navMeshAgent.speed;
@@ -206,7 +207,7 @@ public class FatDragonScript : MonoBehaviour
             }
 
 
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger("Die");

@@ -46,6 +46,7 @@ public class OverallEnemy : MonoBehaviour
         attackSwitch = Random.Range(1, 16);
 
         defend = false;
+        isdead = false;
     }
 
     private void Update()
@@ -148,7 +149,7 @@ public class OverallEnemy : MonoBehaviour
             }
 
 
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger(Die);

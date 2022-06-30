@@ -22,6 +22,7 @@ public class OverallBoss : MonoBehaviour
     private float magicDirection;
     private float damage;
     private float elementalDamage;
+    private float playerlevel;
 
     private int switchRange;
     private int switchMelee;
@@ -36,6 +37,7 @@ public class OverallBoss : MonoBehaviour
     public bool Able { get => able; set => able = value; }
     public float Damage { get => damage; set => damage = value; }
     public float ElementalDamage { get => elementalDamage; set => elementalDamage = value; }
+    public float Playerlevel { get => playerlevel; set => playerlevel = value; }
 
     private void Awake()
     {
@@ -48,6 +50,7 @@ public class OverallBoss : MonoBehaviour
         playerModel = GameObject.FindGameObjectWithTag("Player");
         movePositionTransform = playerModel.GetComponent<Transform>();
         spawnpoint = this.transform.position;
+        isdead = false;
 
         attackRange = navMeshAgent.stoppingDistance;
         timeToChangeAttack = 2f;
@@ -56,14 +59,17 @@ public class OverallBoss : MonoBehaviour
 
         doDamage = false;
         magicDirection = 0.5f;
-        health.Health = 600 + playerskillsystem.playerlevel.GetLevel() * 100;
-        damage = 30 + playerskillsystem.playerlevel.GetLevel() * 5;
-        elementalDamage = 2 + playerskillsystem.playerlevel.GetLevel() / 4;
+
+        health.Health = 600 + playerlevel * 100;
+        damage = 30 + playerlevel * 5;
+        elementalDamage = 4 + playerlevel / 4;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
+
+        playerlevel = playerskillsystem.playerlevel.GetLevel();
 
         if (able)
         {
@@ -177,14 +183,15 @@ public class OverallBoss : MonoBehaviour
             {
                 phase2 = true;
             }
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger(Die);
                 navMeshAgent.speed = 0;
-                playerskillsystem.playerlevel.AddExp(5000);
+                playerskillsystem.playerlevel.AddExp(Exp);
                 Destroy(gameObject, 5.0f);
             }
+            Debug.Log(health.Health);
         }
     }
     public void lookAt()

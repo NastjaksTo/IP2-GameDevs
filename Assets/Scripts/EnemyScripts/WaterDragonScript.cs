@@ -55,6 +55,7 @@ public class WaterDragonScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
+        isdead = false;
         attackRange = navMeshAgent.stoppingDistance;
         speed = navMeshAgent.speed;
 
@@ -180,8 +181,7 @@ public class WaterDragonScript : MonoBehaviour
                 health.Hit = false;
             }
 
-
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger("Die");
