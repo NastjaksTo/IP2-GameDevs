@@ -162,7 +162,7 @@ public class GolemScript : MonoBehaviour
             }
 
 
-            if (health.Health <= 0 && isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger("Die");
