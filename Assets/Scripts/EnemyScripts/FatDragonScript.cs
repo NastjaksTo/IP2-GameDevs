@@ -206,7 +206,6 @@ public class FatDragonScript : MonoBehaviour
                 health.Hit = false;
             }
 
-
             if (health.Health <= 0 && !isdead)
             {
                 isdead = true;

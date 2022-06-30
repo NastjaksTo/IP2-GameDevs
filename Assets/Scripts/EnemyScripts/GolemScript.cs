@@ -113,7 +113,6 @@ public class GolemScript : MonoBehaviour
     private void Attack()
     {
         animator.SetBool("Walk", false);
-        animator.SetBool("Idle", true);
         if (timer > timeToChangeAttack)
         {
             changeAttack();
@@ -124,7 +123,6 @@ public class GolemScript : MonoBehaviour
 
         if (!idle)
         {
-            animator.SetBool("Idle", false);
 
             if (attackSwitch < 5)
             {
