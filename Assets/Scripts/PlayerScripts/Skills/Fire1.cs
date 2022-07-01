@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static SkillTree;
+using static PlayerAttributes;
 
 public class Fire1 : MonoBehaviour
 {
-    public int damage;
+    private int damage;
     private GameObject enemy;
 
     private void Awake()
     {
         damage = 50 * (1 + skillTree.skillLevels[0]);
+        damage += (damage * (int)playerAttributesScript.magicDamage / 100);
     }
 
     private void OnTriggerEnter(Collider other)

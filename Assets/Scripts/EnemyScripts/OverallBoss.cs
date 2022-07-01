@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
@@ -32,6 +33,7 @@ public class OverallBoss : MonoBehaviour
     private bool phase2;
     private bool doDamage;
     private bool able;
+    private bool isStunned;
 
     public bool Phase2 { get => phase2; set => phase2 = value; }
     public PlayerAttributes Player { get => player; set => player = value; }
@@ -123,6 +125,7 @@ public class OverallBoss : MonoBehaviour
     /// <param name="Stomp">the name of the Parameter used in the Animator</param>
     public void WalkOrAttack(string Walk, string Magic, string Attack1, string Attack2, string Stomp)
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
@@ -176,6 +179,7 @@ public class OverallBoss : MonoBehaviour
     /// <param name="Magic">the name of the Parameter used in the Animator</param>
     private void Attack(string Walk, string Attack1, string Attack2, string Stomp, string Magic)
     {
+        if (isStunned) return;
         navMeshAgent.speed = 0;
         animator.SetBool(Walk, false);
 
@@ -256,6 +260,7 @@ public class OverallBoss : MonoBehaviour
     /// </summary>
     public void screamAt()
     {
+        if (isStunned) return;
         if (ps.transform.eulerAngles.y >= 210)
         {
             magicDirection = -0.5f;
@@ -266,6 +271,21 @@ public class OverallBoss : MonoBehaviour
         }
         ps.transform.Rotate(0, magicDirection, 0 * Time.deltaTime, Space.World);
     }
+    
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+
 
     /// <summary>
     /// if the Enemy is doing Damage the damage that the Player is loosing is transferred.

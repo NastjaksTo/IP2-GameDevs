@@ -80,6 +80,7 @@ public class SkeletonAgent : MonoBehaviour
 
     private void Patrolling()
     {
+        if (enemy.isStunned) return;
         if (isCurrentlyAttacking) return;
         if(isDead) return;
         if (hasPatrollingCooldown) return;
@@ -119,6 +120,7 @@ public class SkeletonAgent : MonoBehaviour
 
     private void ChasePlayer()
     {
+        if (enemy.isStunned) return;
         if(isDead) return;
         anim.SetBool("walking", false);
         agent.speed = 5f;
@@ -131,6 +133,7 @@ public class SkeletonAgent : MonoBehaviour
     
     private void CastSpell()
     {
+        if (enemy.isStunned) return;
         anim.SetBool("chasing", false);
         anim.SetBool("walking", false);
         agent.SetDestination(transform.position);
@@ -155,6 +158,7 @@ public class SkeletonAgent : MonoBehaviour
     
     private void AttackPlayer()
     {
+        if (enemy.isStunned) return;
         if (alreadyAttacked) return;
         anim.SetBool("walking", false);
         anim.SetBool("chasing", false);

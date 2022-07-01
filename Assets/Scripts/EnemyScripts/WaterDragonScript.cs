@@ -24,6 +24,7 @@ public class WaterDragonScript : MonoBehaviour
     private bool idle;
     private float attackRange;
     private bool isdead;
+    private bool isStunned;
 
     private int damage;
     private int waterDamage;
@@ -91,6 +92,7 @@ public class WaterDragonScript : MonoBehaviour
     /// </summary>
     private void WalkOrAttack()
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
@@ -152,6 +154,7 @@ public class WaterDragonScript : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        if (isStunned) return;
         navMeshAgent.speed = 0;
         animator.SetBool("Walk", false);
         if (timer > timeToChangeAttack)
@@ -210,6 +213,20 @@ public class WaterDragonScript : MonoBehaviour
                 playerskillsystem.playerlevel.AddExp(1500);
             }
         }
+    }
+
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
     }
 
     /// <summary>
