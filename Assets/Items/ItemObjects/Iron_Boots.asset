@@ -15,19 +15,20 @@ MonoBehaviour:
   itemName: Iron Boots
   characterDisplayName: Iron_Armor_boots
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 1f318193a83a7ff4e9feb97e1984ea8a, type: 3}
   istStackable: 0
   itemType: 3
   itemDescription: 'Boots made of iron.
 
 
-    + 20 Armor
+    + 5 Armor
 
-    + 10 Stamina'
+    - 5 Stamina'
   data:
-    Id: 6
+    Id: 4
     buffs:
     - attribute: 0
-      buffValue: 20
+      buffValue: 5
     - attribute: 7
-      buffValue: 10
+      buffValue: -5

@@ -23,9 +23,13 @@ MonoBehaviour:
 
 
     +
-    10 Armor'
+    5 Armor
+
+    + 15 Stamina'
   data:
-    Id: 4
+    Id: 19
     buffs:
     - attribute: 0
-      buffValue: 10
+      buffValue: 5
+    - attribute: 7
+      buffValue: 15

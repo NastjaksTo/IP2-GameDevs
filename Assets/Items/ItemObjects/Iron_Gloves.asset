@@ -15,15 +15,20 @@ MonoBehaviour:
   itemName: Iron Gloves
   characterDisplayName: Iron_Armor_gauntlets
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: e0d519aec4ba21640aa947cee4b4b978, type: 3}
   istStackable: 0
   itemType: 6
   itemDescription: 'Gloves made of iron.
 
 
-    + 20 Armor'
+    + 5 Armor
+
+    - 5 Stamina'
   data:
-    Id: 6
+    Id: 5
     buffs:
     - attribute: 0
-      buffValue: 20
+      buffValue: 5
+    - attribute: 7
+      buffValue: -5

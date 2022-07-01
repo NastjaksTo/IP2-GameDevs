@@ -15,15 +15,20 @@ MonoBehaviour:
   itemName: Iron Armor
   characterDisplayName: Iron_Armor_body
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: aaadf1a99b864dd4b895b7bbdc871303, type: 3}
   istStackable: 0
   itemType: 1
   itemDescription: 'Armor made from Iron.
 
 
-    + 120 Armor'
+    + 25 Armor
+
+    - 25 Stamina'
   data:
-    Id: 0
+    Id: 3
     buffs:
     - attribute: 0
-      buffValue: 120
+      buffValue: 25
+    - attribute: 7
+      buffValue: -25

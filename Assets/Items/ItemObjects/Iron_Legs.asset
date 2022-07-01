@@ -22,9 +22,13 @@ MonoBehaviour:
   itemDescription: 'Trousers made of iron.
 
 
-    + 20 Armor'
+    + 15 Armor
+
+    - 15 Stamina'
   data:
-    Id: 6
+    Id: 18
     buffs:
     - attribute: 0
-      buffValue: 20
+      buffValue: 15
+    - attribute: 7
+      buffValue: -15

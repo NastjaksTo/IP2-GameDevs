@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: Ring_magic
   m_EditorClassIdentifier: 
   itemName: Magic ring
+  characterDisplayName: 
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: c9f83a2ce49c7544c8c54df1d75f4ebf, type: 3}
   istStackable: 0
   itemType: 9
-  itemDescription: "The one ring to rule them all\n\n + 40 max Health\n + 40 max
-    Mana\n + 40 max Stamina"
+  itemDescription: "The one ring to rule them all\n\n + 15 max Health\n + 15 max
+    Mana\n + 15 max Stamina"
   data:
-    Id: 6
+    Id: 14
     buffs:
     - attribute: 4
-      buffValue: 40
+      buffValue: 15
     - attribute: 5
-      buffValue: 40
+      buffValue: 15
     - attribute: 7
-      buffValue: 40
+      buffValue: 15

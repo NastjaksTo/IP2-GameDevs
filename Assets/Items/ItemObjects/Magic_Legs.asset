@@ -22,13 +22,13 @@ MonoBehaviour:
   itemDescription: 'Trousers made with Magic.
 
 
-    + 25 Armor
+    + 6 Armor
 
-    + 25 Mana'
+    + 15 Mana'
   data:
-    Id: 11
+    Id: 20
     buffs:
     - attribute: 0
-      buffValue: 25
+      buffValue: 6
     - attribute: 5
-      buffValue: 25
+      buffValue: 15

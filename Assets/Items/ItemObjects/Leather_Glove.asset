@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Leather gloves
   characterDisplayName: Cloth_Armor_gauntlets
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 1b57d9e6c1f033d4cbb3f6bbba110d74, type: 3}
   istStackable: 0
   itemType: 6
@@ -22,9 +23,13 @@ MonoBehaviour:
 
 
     +
-    10 Armor'
+    5 Armor
+
+    + 5 Stamina'
   data:
-    Id: 4
+    Id: 8
     buffs:
     - attribute: 0
-      buffValue: 10
+      buffValue: 5
+    - attribute: 7
+      buffValue: 5

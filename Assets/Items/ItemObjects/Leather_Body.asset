@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Lether Armor
   characterDisplayName: Cloth_Armor_body
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 69ab6e44d5b3db5468fdab7ce7573dfc, type: 3}
   istStackable: 0
   itemType: 1
@@ -22,9 +23,13 @@ MonoBehaviour:
 
 
     +
-    20 Armor'
+    5 Armor
+
+    + 25 Stamina'
   data:
-    Id: 1
+    Id: 6
     buffs:
     - attribute: 0
-      buffValue: 20
+      buffValue: 5
+    - attribute: 7
+      buffValue: 25

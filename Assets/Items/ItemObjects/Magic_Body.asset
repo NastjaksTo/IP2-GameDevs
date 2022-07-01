@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Magic Armor
   characterDisplayName: Magic_Armor_body
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 20b0d4eebf346b5449f1de26c49fdc81, type: 3}
   istStackable: 0
   itemType: 1
@@ -23,11 +24,11 @@ MonoBehaviour:
 
     + 10 Armor
 
-    + 40 Mana'
+    + 15 Mana'
   data:
     Id: 9
     buffs:
     - attribute: 0
       buffValue: 10
     - attribute: 5
-      buffValue: 40
+      buffValue: 15
