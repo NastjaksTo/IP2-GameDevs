@@ -138,8 +138,15 @@ public class CombatSystem : MonoBehaviour
             spellreduction = Earth2.dmgredcution;
             applypotion(100 * (1 + skillTree.skillLevels[8]));
         }
-
-        damage = (amount - playerAttributesScript.currentArmor) * spellreduction;
+        if (playerAttributesScript.currentArmor == 0)
+        {
+            damage = amount * spellreduction;
+        }
+        else
+        {
+            damage = amount * (playerAttributesScript.currentArmor / 100) *spellreduction;
+        }
+       
         if (damage > 0)
         {
             playerAttributesScript.currentHealth -= damage;

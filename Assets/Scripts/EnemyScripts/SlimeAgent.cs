@@ -31,7 +31,7 @@ public class SlimeAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         health = GetComponent<EnemyHealthHandler>();
 
-        health.Health = 100 + enemy.Playerlevel * 5;
+        health.Health = 200 + enemy.Playerlevel * 25;
         fullHealth = (int)health.Health;
         damage = 10 + enemy.Playerlevel * 2;
     }

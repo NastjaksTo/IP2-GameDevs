@@ -32,8 +32,6 @@ public class PlayerSkillsystem : MonoBehaviour
     //private bool cooldown = true;                           // Boolean to save the status of the current cooldown.
 
     public GameObject lvlupeffect;                          // Reference to the level up visual effect.
-    
-    public TextMeshProUGUI textCurrentXP;                   // Reference to the UI text element for the current experience.
     public TextMeshProUGUI textCurrentLevel;                // Reference to the UI text element for the current level.
 
     private Animator anim;
@@ -57,7 +55,6 @@ public class PlayerSkillsystem : MonoBehaviour
     /// At the start set the LevelUI and the ExperienceUI to its correct values.
     /// </summary>
     private void Start() {
-        textCurrentXP.text = playerlevel.GetExp().ToString();
         textCurrentLevel.text = playerlevel.GetLevel().ToString();
         anim = transform.GetComponent<Animator>();
     }
@@ -67,7 +64,6 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void updateLevelUI()
     {
-        textCurrentXP.text = playerlevel.GetExp().ToString();
         textCurrentLevel.text = playerlevel.GetLevel().ToString();
 
     }
