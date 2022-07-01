@@ -31,6 +31,8 @@ public class PlayerQuests : MonoBehaviour
     public int currentQuestID = 1;
 
     public AudioClip questDone;
+    public AudioClip newQuest;
+    public AudioSource writingSound;
 
     public GameObject closeDialogBtn;
     public GameObject rayaEntrance;
@@ -50,8 +52,7 @@ public class PlayerQuests : MonoBehaviour
             QuestGiver currentQuestGiver = other.gameObject.GetComponent<QuestGiver>();
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
             {
-                SetQuestGiverUI("You", "What just happend? What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this. " +
-                                       "<br> <br>" + "Move - W A S D <br>Jump - SPACE<br>Sprint - SHIFT<br>Dodge - C");
+                SetQuestGiverUI("You", "What just happend? What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this.  \n  \n" + "Move - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
 
                 SetQuest(other.gameObject);
                 currentQuestID++;
@@ -63,7 +64,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the librarian";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Librarian", "Hey my friend. You want to know more about magic? Here you can have my spellbooks. You can use them to create magic. You will find the items in your inventory (I). <br><br>Drag a book in the book slot to equip. With right mouse button you can cast magic.");
+                SetQuestGiverUI("Librarian", "Hey my friend. You want to know more about magic? Here you can have my spellbooks. You can use them to create magic. You will find the items in your inventory (I).  \n  \nDrag a book in the book slot to equip. With right mouse button you can cast magic.");
                 
                 p_Inventory.CollectItem(books[0]);
                 p_Inventory.CollectItem(books[1]);
@@ -90,8 +91,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Prayed to the gods.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("The Runestone", "At the runestone you can pray to the gods. If you die or leave the game you will be reborn at the last runestone you prayed. " +
-                                                 "<br><br>If you have skillpoints, you can use them to upgrade your skills.");
+                SetQuestGiverUI("The Runestone", "At the runestone you can pray to the gods. If you die or leave the game you will be reborn at the last runestone you prayed. \n  \nIf you have skillpoints, you can use them to upgrade your skills.");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -103,7 +103,7 @@ public class PlayerQuests : MonoBehaviour
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
                 SetQuestGiverUI("Priest", "You want to.. WHAT? You want to kill the three titans? You are just a ordinary human. Haha.. good luck. Maybe the smith will give you a sword. " +
-                                          "<br><br>May the gods be with you!");
+                                          " \n  \nMay the gods be with you!");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -127,7 +127,7 @@ public class PlayerQuests : MonoBehaviour
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
                 SetQuestGiverUI("The Equipment", "You can pick up bags by pressing E. You will find the items in your inventory." +
-                                                 "<br><br>By pressing left mouse button you can attack.");
+                                                 " \n  \nBy pressing left mouse button you can attack.");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -138,8 +138,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the doctor.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Doctor", "Hey traveler the priest told me you want to kill the titans. Take these, they will help you. <br> <br>" +
-                                          "You can use potions by pressing G. They will heal you over time. <br>You can find new potions around the world and they reset if you pray at a runestone.");
+                SetQuestGiverUI("Doctor", "Hey traveler the priest told me you want to kill the titans. Take these, they will help you. \n  \nYou can use potions by pressing G. They will heal you over time.  \nYou can find new potions around the world and they reset if you pray at a runestone.");
                 SetQuest(other.gameObject);
                 combatSystem.maxpotions = 3;
                 combatSystem.refillPotions();
@@ -172,11 +171,13 @@ public class PlayerQuests : MonoBehaviour
     }
 
     IEnumerator TypeLine(string text) {
+        writingSound.Play();
         foreach (char c in text.ToCharArray()) {
             questGiverDescr.text += c;
             yield return new WaitForSecondsRealtime(0.025f);
         }
         closeDialogBtn.SetActive(true);
+        writingSound.Stop();
         newQuestAltertOpen();
     }
 
@@ -212,7 +213,7 @@ public class PlayerQuests : MonoBehaviour
     }
 
     private void newQuestAltertOpen(){
-        AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+        AudioSource.PlayClipAtPoint(newQuest, transform.position, 1);
         newQuestAlertText.text = "New Quest: " + playerQuests.titleText.text + " ( J )";
         newQuestAlert.SetActive(true);
         StartCoroutine(closeNewQuestAlert());
