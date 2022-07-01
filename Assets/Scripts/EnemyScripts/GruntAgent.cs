@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class GruntAgent : MonoBehaviour
 {
@@ -45,6 +44,7 @@ public class GruntAgent : MonoBehaviour
     {
         if (doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }

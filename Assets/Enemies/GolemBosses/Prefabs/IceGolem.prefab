@@ -9350,6 +9350,7 @@ GameObject:
   - component: {fileID: 1700277675}
   - component: {fileID: 5183398603658272095}
   - component: {fileID: 1980760228}
+  - component: {fileID: 324242293}
   m_Layer: 30
   m_Name: Golem_Ice_H6
   m_TagString: Enemy
@@ -9684,6 +9685,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &324242293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3057379341362171759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cf477d9aa5136489a2953444ee5e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: {fileID: 8300000, guid: ad98ab44d8804814286144d9e496d98f, type: 3}
+  hit: {fileID: 8300000, guid: 76a15c7ee3086664ba841a778fbac29a, type: 3}
+  hit2: {fileID: 8300000, guid: 76a15c7ee3086664ba841a778fbac29a, type: 3}
+  swoosh: {fileID: 8300000, guid: 085667bbf71a6b54abbbb892d05ff59c, type: 3}
+  swoosh2: {fileID: 8300000, guid: b35718048f71739499e25bae6fb7dfef, type: 3}
+  death: {fileID: 8300000, guid: 7751a7410a17a2c42951ff0775b82df2, type: 3}
+  scream: {fileID: 8300000, guid: dcca93de2611f6d44bfb920b11155494, type: 3}
+  magic: {fileID: 8300000, guid: e7380f1896044be4990ff953b83cc970, type: 3}
 --- !u!1 &3088052383869029769
 GameObject:
   m_ObjectHideFlags: 0

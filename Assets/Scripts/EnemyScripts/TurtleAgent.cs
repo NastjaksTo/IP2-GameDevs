@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class TurtleAgent : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class TurtleAgent : MonoBehaviour
     {
         if (doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }

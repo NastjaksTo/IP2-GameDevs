@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class CrabAgent : MonoBehaviour
 {
@@ -45,6 +46,7 @@ public class CrabAgent : MonoBehaviour
     {
         if (doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }

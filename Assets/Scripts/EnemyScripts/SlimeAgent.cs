@@ -7,6 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class SlimeAgent : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class SlimeAgent : MonoBehaviour
     {
         if(doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }

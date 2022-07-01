@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class OverallBoss : MonoBehaviour
 {
@@ -244,11 +245,13 @@ public class OverallBoss : MonoBehaviour
         {
             if (!phase2)
             {
+                enemySoundhandler.hitSound();
                 combatSystem.LoseHealth(damage);
             }
             if (phase2)
             {
-                combatSystem.LoseHealth(damage * 2);
+                enemySoundhandler.hitSound();
+                combatSystem.LoseHealth(damage * 1.3f);
             }
             doDamage = false;
         }

@@ -57,6 +57,7 @@ public class OverallEnemy : MonoBehaviour
     {
         timer += Time.deltaTime;
         playerlevel = playerskillsystem.playerlevel.GetLevel();
+        health.Defend = defend;
     }
 
     public void RandomRange(int begin, int end)
