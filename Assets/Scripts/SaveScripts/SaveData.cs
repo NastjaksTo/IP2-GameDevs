@@ -112,6 +112,7 @@ public class SaveData : MonoBehaviour
         transform.position = position;
         gameObject.GetComponent<CharacterController>().enabled = true;
         gameObject.GetComponent<FallDamage>().enabled = true;
+        playerQuests.CloseQuestGiverUI();
 
         playerQuests.currentQuestID = data.currentQuestID;
         playerQuests.titleText.text = data.playerQuestTitle;

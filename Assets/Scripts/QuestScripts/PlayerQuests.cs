@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static QuestGiver;
-using static PlayerSkillsystem;
 using static PlayerInventory;
 using static CombatSystem;
+using static UiScreenManager;
 
 public class PlayerQuests : MonoBehaviour
 {
@@ -228,5 +226,13 @@ public class PlayerQuests : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3);
         newQuestAlert.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen && closeDialogBtn.activeSelf)
+        {
+            CloseQuestGiverUI();
+        }
     }
 }
