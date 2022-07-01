@@ -70,7 +70,7 @@ public class GolemScript : MonoBehaviour
     }
 
     /// <summary>
-    /// if the Player is in Range, the Enemy will Run towards the Target. Once it is in Range it will perform a Meele attack.
+    /// if the Player can be seen, the Enemy will Run towards the Target. Once it is in Attackrange it will perform a Meele attack.
     /// 
     /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
     /// </summary>

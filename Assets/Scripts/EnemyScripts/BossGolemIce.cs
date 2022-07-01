@@ -38,16 +38,29 @@ public class BossGolemIce : MonoBehaviour
         damage = boss.Damage;
     }
     
+    /// <summary>
+    /// Start is called after Awake
+    /// the maxHealth from the Enemyhealthhandler is being read.
+    /// </summary>
     private void Start()
     {
         maxHealth = healthHandler.Health;
     }
 
+    /// <summary>
+    /// the Bossarena is getting closed
+    /// </summary>
     private void CloseArena()
     {
         bossarenaScript.CloseAllArenas();
     }
     
+    /// <summary>
+    /// Update is called every frame.
+    /// the Healthbar is filled with the numbers of the active Boss.
+    /// the necessary functions of the OverallBoss Script are being called.
+    /// if the Boss is dead the Quest is completed and the Arena is getting opened.
+    /// </summary>
     private void Update()
     {
         if (boss.isdead)

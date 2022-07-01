@@ -31,17 +31,28 @@ public class EnemySoundHandler : MonoBehaviour
     [SerializeField]
     AudioClip magic;
 
+    /// <summary>
+    /// Awake is called before Start
+    /// Initializes all Necessary
+    /// </summary>
     private void Awake()
     {
         audio = GetComponent<AudioSource>();
         enemySoundhandler = this;
     }
 
+    /// <summary>
+    /// Plays One Shot of the given AudioClip
+    /// </summary>
     private void stepSound()
     {
         audio.PlayOneShot(step, 0.05f);
     }
 
+    /// <summary>
+    /// Plays One Shot of the given AudioClip
+    /// wich of these two Clips is being played is chosen by a Random Number
+    /// </summary>
     public void hitSound()
     {
         int i = Random.Range(1, 3);
@@ -56,26 +67,41 @@ public class EnemySoundHandler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Plays One Shot of the given AudioClip
+    /// </summary>
     private void swooshSound()
     {
         audio.PlayOneShot(swoosh, 0.2f);
     }
 
+    /// <summary>
+    /// Plays One Shot of the given AudioClip
+    /// </summary>
     private void swoosh2Sound()
     {
         audio.PlayOneShot(swoosh2, 0.2f);
     }
 
+    /// <summary>
+    /// Plays One Shot of the given AudioClip
+    /// </summary>
     private void deathSound()
     {
         audio.PlayOneShot(death, 0.2f);
     }
 
+    /// <summary>
+    /// Plays One Shot of the given AudioClip
+    /// </summary>
     private void screamSound()
     {
         audio.PlayOneShot(scream, 0.2f);
     }
 
+    /// <summary>
+    /// Plays One Shot of the given AudioClip
+    /// </summary>
     private void magicSound()
     {
         audio.PlayOneShot(magic, 0.2f);

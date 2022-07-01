@@ -40,6 +40,9 @@ public class OverallBoss : MonoBehaviour
     public float ElementalDamage { get => elementalDamage; set => elementalDamage = value; }
     public float Playerlevel { get => playerlevel; set => playerlevel = value; }
 
+    /// <summary>
+    /// References set to all necessary Context
+    /// </summary>
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -66,6 +69,13 @@ public class OverallBoss : MonoBehaviour
         elementalDamage = 4 + playerlevel / 4;
     }
 
+    /// <summary>
+    /// Update is called once every Frame
+    /// the Timer to change Attacks is counting
+    /// the playerlevel is being checked
+    /// if the Enemy is able to do Damage the funktion is getting called
+    /// its getting checked in wich phase the Boss is currently
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
@@ -89,12 +99,28 @@ public class OverallBoss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// returns a random Number between begin (inkl.) and end (exkl.)
+    /// </summary>
+    /// <param name="begin">the first possible Number</param>
+    /// <param name="end">the Number after the last possible Number</param>
+    /// <returns></returns>
     private int RandomNumber(int begin, int end)
     {
         timer = 0.0f;
         return Random.Range(begin, end);
     }
 
+    /// <summary>
+    /// if the Enemy can see the Player, it is chasing (sometimes casting some Ranged Attacks) the Player, till the Player cant be seen anymore or the Player is in Attackrange
+    /// if the Player cant be seen anymore the Enemy is returning to its Spawnpoint
+    /// if the Player is in Attackrange the Enemy is Attacking
+    /// </summary>
+    /// <param name="Walk">the name of the Parameter used in the Animator</param>
+    /// <param name="Magic">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack1">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack2">the name of the Parameter used in the Animator</param>
+    /// <param name="Stomp">the name of the Parameter used in the Animator</param>
     public void WalkOrAttack(string Walk, string Magic, string Attack1, string Attack2, string Stomp)
     {
         if (fov.CanSeePlayer)
@@ -140,6 +166,14 @@ public class OverallBoss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Player is in Attackrange the Enemy is attacking the Player. Wich Attack it is using is chosen by a Randomnumber.
+    /// </summary>
+    /// <param name="Walk">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack1">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack2">the name of the Parameter used in the Animator</param>
+    /// <param name="Stomp">the name of the Parameter used in the Animator</param>
+    /// <param name="Magic">the name of the Parameter used in the Animator</param>
     private void Attack(string Walk, string Attack1, string Attack2, string Stomp, string Magic)
     {
         navMeshAgent.speed = 0;
@@ -178,6 +212,13 @@ public class OverallBoss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the enemy Health Script is detecting Damage this Function is triggered.
+    /// if the Health of the Enemy is below 50% the Boss is thrown into phase 2.
+    /// if the Health is 0 or below the Boss is dying and transferring experience to the Player
+    /// </summary>
+    /// <param name="Exp">the Number of the Experience the Player is getting</param>
+    /// <param name="Die">the name of the Parameter used in the Animator</param>
     public void getDamage(int Exp, string Die)
     {
         if (health.Hit)
@@ -196,6 +237,10 @@ public class OverallBoss : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// if the Enemy is seeing the Player, the Enemy is always looking always straight to the Player
+    /// </summary>
     public void lookAt()
     {
         if (fov.CanSeePlayer)
@@ -206,6 +251,9 @@ public class OverallBoss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// this function rotates the ParticleSystem in a 60 degree angle infront of the boss from left to the right
+    /// </summary>
     public void screamAt()
     {
         if (ps.transform.eulerAngles.y >= 210)
@@ -219,6 +267,11 @@ public class OverallBoss : MonoBehaviour
         ps.transform.Rotate(0, magicDirection, 0 * Time.deltaTime, Space.World);
     }
 
+    /// <summary>
+    /// if the Enemy is doing Damage the damage that the Player is loosing is transferred.
+    /// Although the hit Sound is played.
+    /// in the 2 Phase the Enemy is doing 30% more damage.
+    /// </summary>
     private void DoDamage()
     {
         if (doDamage)
@@ -237,26 +290,43 @@ public class OverallBoss : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// starting the ParticleSystem
+    /// </summary>
     private void startMagicAttack()
     {
         ps.Play();
     }
 
+    /// <summary>
+    /// stopping the ParticleSystem
+    /// </summary>
     private void stopMagicAttack()
     {
         ps.Stop();
     }
 
+    /// <summary>
+    /// is called while the Animation is playing
+    /// </summary>
     private void ableToDoDMG()
     {
         able = true;
     }
 
+    /// <summary>
+    /// is called while the Animation is playing
+    /// </summary>
     private void notAbleToDoDMG()
     {
         able = false;
     }
 
+    /// <summary>
+    /// is called when another Collider is triggering the own Collider
+    /// Only fully runned if the other Collider has the Player Tag
+    /// </summary>
+    /// <param name="other">the colliding Collider</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")

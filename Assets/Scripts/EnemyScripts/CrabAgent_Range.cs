@@ -58,6 +58,9 @@ public class CrabAgent_Range : MonoBehaviour
         lookAt();
     }
 
+    /// <summary>
+    /// if the Enemy can see the Player the Enemy is always looking in the direction of the Player
+    /// </summary>
     private void lookAt()
     {
         if (fov.CanSeePlayer)
@@ -68,6 +71,10 @@ public class CrabAgent_Range : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy can see the Player the Enemy is jumping and every 5 seconds shooting a fireball
+    /// is the Enemy cant see the Player the Enemy is no more jumping
+    /// </summary>
     private void Attack()
     {
         if (fov.CanSeePlayer)
@@ -87,6 +94,9 @@ public class CrabAgent_Range : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// a fireball is spawning in the on the spawnpoint and with directionall force towards the Player
+    /// </summary>
     private void SpawnBullet()
     {
             if (movePositionTransform != null)

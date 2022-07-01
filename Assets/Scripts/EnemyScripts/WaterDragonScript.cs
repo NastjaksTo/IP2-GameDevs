@@ -66,6 +66,13 @@ public class WaterDragonScript : MonoBehaviour
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
         waterDamage = 5 + playerskillsystem.playerlevel.GetLevel();
     }
+
+    /// <summary>
+    /// timer for Attackchange counting while Update
+    /// checking for Target
+    /// checking for incoming Damage
+    /// rotating the ParticleSystem in direction of the Player
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
@@ -77,6 +84,11 @@ public class WaterDragonScript : MonoBehaviour
         ps.transform.rotation = rotation;
     }
 
+    /// <summary>
+    /// if the Player can be seen, the Enemy will Run towards the Target and perform some Rangeattacks. Once it is in Attackrange it will perform a Meele attack.
+    /// 
+    /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
+    /// </summary>
     private void WalkOrAttack()
     {
         if (fov.CanSeePlayer)
@@ -134,6 +146,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy is nearby the Target one of the Three Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move.
+    /// While Attacking the Enemy ist not Walking
+    /// </summary>
     private void Attack()
     {
         navMeshAgent.speed = 0;
@@ -170,6 +186,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Target is doing Damage to the Enemy, the health is being lowered
+    /// if the health is equal or lower 0, the Enemy dies.
+    /// </summary>
     private void getDamage()
     {
         if (health.Hit)
@@ -192,6 +212,9 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy is able to hit the Player, the Player is getting damaged.
+    /// </summary>
     private void DoDamage()
     {
         if (doDamage)
@@ -201,6 +224,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Collider is getting triggered by the Player the Enemy is able to do Damage
+    /// </summary>
+    /// <param name="other">the Players Hitbox</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -209,6 +236,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Collider exiting trigger state the Enemy is no longer able to deal Damage
+    /// </summary>
+    /// <param name="other">the Players Hitbox</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -217,7 +248,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 11 is picked to choose the next Attackpattern. All Triggers are resetted. 
+    /// There is a bigger chance to hit Basic Attack and Claw Attack than Scream.
+    /// </summary>
     private void changeAttack()
     {
         attackSwitch = Random.Range(1, 12);
@@ -226,6 +260,10 @@ public class WaterDragonScript : MonoBehaviour
         animator.ResetTrigger("Scream");
     }
 
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 12 is picked to choose the next Attackpattern. All Triggers are resetted. 
+    /// There is a bigger chance to hit Walk than Water Attack or Fly and Water.
+    /// </summary>
     private void changeAttackRange()
     {
         attackSwitchRange = Random.Range(1, 13);
@@ -233,11 +271,17 @@ public class WaterDragonScript : MonoBehaviour
         animator.ResetTrigger("Fly and Water");
     }
 
+    /// <summary>
+    /// Start ParticleSystem
+    /// </summary>
     private void startSpillWater()
     {
         ps.Play();
     }
 
+    /// <summary>
+    /// Stop ParticleSystem
+    /// </summary>
     private void stopSpillWater()
     {
         ps.Stop();

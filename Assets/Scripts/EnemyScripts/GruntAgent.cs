@@ -50,6 +50,10 @@ public class GruntAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the triggerCollider is entered the Enemy is doing Damage
+    /// </summary>
+    /// <param name="other">the triggering Collider has to have the Tag Player</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

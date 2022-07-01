@@ -52,6 +52,11 @@ public class CrabAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if another Collider is colliding the function is called.
+    /// if the other Collider has the Tag Player the Enemy is doing Damage.
+    /// </summary>
+    /// <param name="other">the colliding Collider</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
