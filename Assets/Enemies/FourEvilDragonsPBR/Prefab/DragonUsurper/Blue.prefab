@@ -2281,10 +2281,9 @@ GameObject:
   m_Component:
   - component: {fileID: 434816}
   - component: {fileID: 8821998515487764305}
-  - component: {fileID: 4229073106846007254}
   m_Layer: 30
   m_Name: Spine01
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2314,22 +2313,10 @@ BoxCollider:
   m_GameObject: {fileID: 162668}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1300, y: 200, z: 200}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4229073106846007254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &163024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4066,6 +4053,8 @@ GameObject:
   - component: {fileID: 581213314934041074}
   - component: {fileID: 5826624386187488504}
   - component: {fileID: 1861223238}
+  - component: {fileID: 8397177821514821426}
+  - component: {fileID: 6523875465318774135}
   m_Layer: 30
   m_Name: Blue
   m_TagString: Enemy
@@ -4198,6 +4187,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &8397177821514821426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &6523875465318774135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194904}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.489256, y: 6.117988, z: 14.79172}
+  m_Center: {x: 0.10909049, y: 2.5589929, z: -0.38768196}
 --- !u!1 &196352
 GameObject:
   m_ObjectHideFlags: 0

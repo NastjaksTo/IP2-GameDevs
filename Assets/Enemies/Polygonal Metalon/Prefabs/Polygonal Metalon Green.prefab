@@ -980,10 +980,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4404446183828026}
   - component: {fileID: 219246226}
-  - component: {fileID: 4620490615362322283}
   m_Layer: 30
   m_Name: RigPelvis
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1016,23 +1015,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 1542714885045140}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.8328685
   m_Height: 3.2783904
   m_Direction: 0
   m_Center: {x: -0.40636715, y: 0.3328691, z: 0.00000060686534}
---- !u!114 &4620490615362322283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542714885045140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1568092028899822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1260,8 @@ GameObject:
   - component: {fileID: 903926968}
   - component: {fileID: 559798037}
   - component: {fileID: 4525738253874444072}
+  - component: {fileID: 5635670045139155208}
+  - component: {fileID: 314305338880794997}
   m_Layer: 30
   m_Name: Polygonal Metalon Green
   m_TagString: Enemy
@@ -1432,6 +1421,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5635670045139155208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783563462218004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &314305338880794997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783563462218004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.7018862, y: 2.8564982, z: 4.813613}
+  m_Center: {x: 0.12281203, y: 0.92824936, z: 0.021852612}
 --- !u!1 &1804318802084684
 GameObject:
   m_ObjectHideFlags: 0

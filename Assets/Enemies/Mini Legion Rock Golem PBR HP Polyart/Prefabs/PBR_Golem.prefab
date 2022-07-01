@@ -79,6 +79,8 @@ GameObject:
   - component: {fileID: 4732250420089888419}
   - component: {fileID: 713508833}
   - component: {fileID: 713508834}
+  - component: {fileID: 3224113377714103495}
+  - component: {fileID: 2508839721857301103}
   m_Layer: 30
   m_Name: PBR_Golem
   m_TagString: Enemy
@@ -210,6 +212,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6ab03b7591da546a38c7a08378c55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3224113377714103495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2508839721857301103
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.6897063, y: 4.630556, z: 2.689434}
+  m_Center: {x: 0.0004881223, y: 1.8152742, z: 0.20193169}
 --- !u!1 &1088256926929212
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,10 +493,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4432020802133832}
   - component: {fileID: 7679886736338148599}
-  - component: {fileID: 6057276904116005772}
   m_Layer: 30
   m_Name: Spine
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -501,23 +527,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 1304966682354858}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 99.99999
   m_Height: 410.2749
   m_Direction: 0
   m_Center: {x: -44.862526, y: 0.0000012423471, z: -0.000006869411}
---- !u!114 &6057276904116005772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304966682354858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1333540776615942
 GameObject:
   m_ObjectHideFlags: 0

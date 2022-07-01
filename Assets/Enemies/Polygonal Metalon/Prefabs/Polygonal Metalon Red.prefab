@@ -173,6 +173,8 @@ GameObject:
   - component: {fileID: 1928561542}
   - component: {fileID: 450374088}
   - component: {fileID: 1749375572}
+  - component: {fileID: 3693306195193172716}
+  - component: {fileID: 4662088309064923154}
   m_Layer: 30
   m_Name: Polygonal Metalon Red
   m_TagString: Enemy
@@ -334,6 +336,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3693306195193172716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128758269040250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4662088309064923154
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128758269040250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8695078, y: 2.6633377, z: 4.362235}
+  m_Center: {x: 0.19853085, y: 0.8316691, z: 0.073949814}
 --- !u!1 &1130806907750044
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,10 +999,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4503046169023880}
   - component: {fileID: 1386421592}
-  - component: {fileID: 8415944681865151962}
   m_Layer: 30
   m_Name: RigPelvis
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1008,23 +1034,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 1639718499868046}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 1.5
   m_Height: 4
   m_Direction: 0
   m_Center: {x: -0.5, y: 1, z: 0}
---- !u!114 &8415944681865151962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639718499868046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1654413139868126
 GameObject:
   m_ObjectHideFlags: 0

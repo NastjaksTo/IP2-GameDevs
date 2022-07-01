@@ -18,6 +18,7 @@ public class CrabAgent_Range : MonoBehaviour
     private float shotSpeed;
     private float fireRate;
     private float fireBallDamage;
+    private EnemyHealthHandler health;
 
     [SerializeField] 
     GameObject fireball;
@@ -36,6 +37,7 @@ public class CrabAgent_Range : MonoBehaviour
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         projectileSpawnpoint = GetComponentInChildren<Spawnpoint>().gameObject;
         animator = GetComponent<Animator>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
 
         spawnpoint = this.transform.position;
 
@@ -43,6 +45,7 @@ public class CrabAgent_Range : MonoBehaviour
         shotSpeed = 20.0f;
 
         fireBallDamage = 10 + enemy.Playerlevel * 2 ;
+        health.Health = 350 + enemy.Playerlevel * 5;
     }
 
     /// <summary>

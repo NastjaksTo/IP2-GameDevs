@@ -2,16 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerAttributes;
 
 
 public class Fire3 : MonoBehaviour
 {
-    public int damage;
+    private int damage;
     private GameObject enemy;
 
     private void Awake()
     {
         damage = 1000;
+        damage += (damage * (int)playerAttributesScript.magicDamage / 100);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -503,6 +503,8 @@ GameObject:
   - component: {fileID: 1889466955}
   - component: {fileID: 1797553525}
   - component: {fileID: 1937018198}
+  - component: {fileID: 7034032938675888162}
+  - component: {fileID: 7882436450469081203}
   m_Layer: 30
   m_Name: Red
   m_TagString: Enemy
@@ -638,6 +640,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &7034032938675888162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &7882436450469081203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130416}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.794564, y: 5.0267477, z: 8.812626}
+  m_Center: {x: 0.31450152, y: 2.0133724, z: -0.8038571}
 --- !u!1 &133440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,10 +1575,9 @@ GameObject:
   m_Component:
   - component: {fileID: 403890}
   - component: {fileID: 1526207484}
-  - component: {fileID: 3198118841011639172}
   m_Layer: 30
   m_Name: Spine
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1584,23 +1610,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 170000}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 200
   m_Height: 550
   m_Direction: 0
   m_Center: {x: 0, y: 10, z: 0}
---- !u!114 &3198118841011639172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &171462
 GameObject:
   m_ObjectHideFlags: 0

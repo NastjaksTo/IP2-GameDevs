@@ -24,7 +24,7 @@ public class GolemScript : MonoBehaviour
     private float attackRange;
     private bool isdead;
     private float speed;
-
+    private bool isStunned;
 
     private int damage;
 
@@ -76,6 +76,7 @@ public class GolemScript : MonoBehaviour
     /// </summary>
     private void WalkOrAttack()
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
@@ -112,6 +113,7 @@ public class GolemScript : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        if (isStunned) return;
         animator.SetBool("Walk", false);
         if (timer > timeToChangeAttack)
         {
@@ -170,6 +172,21 @@ public class GolemScript : MonoBehaviour
             }
         }
     }
+    
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+
 
     /// <summary>
     /// if the Enemy is able to hit the Player, the Player is getting damaged.

@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static PlayerAttributes;
+using static SkillTree;
 
 public class OverallEnemy : MonoBehaviour
 {
@@ -21,6 +24,7 @@ public class OverallEnemy : MonoBehaviour
     private float attackRange;
     private float speed;
     private float playerlevel;
+    public bool isStunned;
 
     private bool isdead;
     private bool defend;
@@ -62,6 +66,7 @@ public class OverallEnemy : MonoBehaviour
 
     public void WalkOrAttack(string Walk, string Attack1, string Attack2, int numAttack1, int numAttack2, int numDefend, [Optional] string Defend)
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
@@ -84,6 +89,7 @@ public class OverallEnemy : MonoBehaviour
 
     public void isFighting(string isFighting)
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             animator.SetBool(isFighting, true);
@@ -96,6 +102,7 @@ public class OverallEnemy : MonoBehaviour
 
     public void AttackMethod(int numAttack1, int numAttack2, string Walk, string Attack1, string Attack2, int numDefend, string Defend)
     {
+        if (isStunned) return;
         animator.SetBool(Walk, false);
 
         if (attackSwitch <= numAttack1)
@@ -138,6 +145,20 @@ public class OverallEnemy : MonoBehaviour
         }
     }
 
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+    
     public void GetDamage(string Hit, string Die, int Exp)
     {
         if (health.Hit)

@@ -69,6 +69,8 @@ public class PandoraAgent : MonoBehaviour
     public bool isInvincible;
     private bool hasDodgeCooldown;
 
+    private bool isStunned;
+    
     private bool hasBlockCooldown;
     public GameObject shield;
     
@@ -97,10 +99,10 @@ public class PandoraAgent : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         weaponInBlockRange = Physics.CheckSphere(transform.position, blockRange, whatIsWeapon);
         if(spellInDodgeRange && !isInvincible && !hasDodgeCooldown) anim.SetTrigger("dodging");
-        if (weaponInBlockRange && combatSystem.shouldPandoraBlock && !isInvincible && !hasBlockCooldown) anim.SetTrigger("blocking");
+        if(weaponInBlockRange && combatSystem.shouldPandoraBlock && !isInvincible && !hasBlockCooldown && !isStunned) anim.SetTrigger("blocking");
         if(playerInSightRange) anim.SetBool("inBattle", true); else anim.SetBool("inBattle", false);
         if(playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if(playerInAttackRange && playerInSightRange) AttackPlayer();
         GetDamage("hit", "die", 5000);
     }
 
@@ -160,6 +162,7 @@ public class PandoraAgent : MonoBehaviour
     
     private void ChasePlayer()
     {
+        if (isStunned) return;
         if(isCurrentlyAttacking) return;
         if(isDead) return;
         anim.SetBool("walking", true);
@@ -168,6 +171,7 @@ public class PandoraAgent : MonoBehaviour
     
     private void AttackPlayer()
     {
+        if (isStunned) return;
         anim.SetBool("walking", false);
         agent.SetDestination(transform.position);
         
@@ -333,6 +337,21 @@ public class PandoraAgent : MonoBehaviour
     {
         alreadyAttacked = false;
     }
+    
+    public void GetStunned(float Duration)
+    {
+        agent.SetDestination(transform.position);
+        isStunned = true;
+        anim.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        anim.SetBool("Stunned", false);
+        isStunned = false;
+    }
+
     
     private void OnDrawGizmosSelected()
     {

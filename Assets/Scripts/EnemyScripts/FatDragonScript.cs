@@ -27,6 +27,7 @@ public class FatDragonScript : MonoBehaviour
     private float attackRange;
     private bool isdead;
     private float fireBallDamage;
+    private bool isStunned;
 
     private int damage;
     private float speed;
@@ -99,6 +100,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void WalkOrAttack()
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             animator.SetBool("Walk", true);
@@ -156,6 +158,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        if (isStunned) return;
         navMeshAgent.speed = 0;
         animator.SetBool("Walk", false);
         animator.SetBool("Idle", true);
@@ -217,6 +220,20 @@ public class FatDragonScript : MonoBehaviour
         }
     }
 
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+    
     /// <summary>
     /// if the Enemy is able to hit the Player, the Player is getting damaged.
     /// </summary>
