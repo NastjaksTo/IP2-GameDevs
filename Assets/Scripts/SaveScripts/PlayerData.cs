@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using StarterAssets;
 
 namespace SaveScripts
 {
@@ -24,6 +25,8 @@ namespace SaveScripts
         public bool fireTitanDead;
         public bool iceTitanDead;
         public bool earthTitanDead;
+        public float sprintspeed;
+        public float movespeed;
     
         public List<int> savedcollectedLootbags = new List<int>();
 
@@ -47,6 +50,8 @@ namespace SaveScripts
             staminaSkillvalue = skillTree.staminaSkillvalue;
             manaregenValue = attributes.manaRegenerationSpeed;
             staminaregenValue = attributes.staminaRegenerationSpeed;
+            sprintspeed = ThirdPersonController.thirdPersonController.SprintSpeed;
+            movespeed = ThirdPersonController.thirdPersonController.moveSpeed;
             maxpotions = combatSystem.maxpotions;
             savedcollectedLootbags.AddRange(playerInventory.collectedLootbags);
             skilllevels = new int[18];

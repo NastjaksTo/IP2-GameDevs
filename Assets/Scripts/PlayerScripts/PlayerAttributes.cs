@@ -71,7 +71,7 @@ public class PlayerAttributes : MonoBehaviour {
         currentMana = maxMana;
         currentStamina = maxStamina;
 
-        manaRegenerationSpeed = 1;
+        manaRegenerationSpeed = 0.5f;
         staminaRegenerationSpeed = 5;
 
         hasWeaponEquiped = false;

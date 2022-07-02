@@ -12,16 +12,12 @@ public class PlayMode_Tests {
     private PlayerSkillsystem playerSkillsystem;
     private SkillTree skillTree;
 
+
     [OneTimeSetUp]
     public void LoadScene() {
         SceneManager.LoadScene("GameScene");
     }
-
-    //// A Test behaves as an ordinary method
-    //[Test]
-    //public void PlayMode_TestsSimplePasses()     {
-
-    //}
+    
 
     [UnityTest]
     public IEnumerator IsPlayerInScene_Test() {
@@ -60,11 +56,11 @@ public class PlayMode_Tests {
         playerAtr.currentArmor = 50;
         var StartHealth = playerAtr.currentHealth;
         playerComb.LoseHealth(50);
-        var CurrentHealth = playerAtr.currentHealth;
+        var CurrentHealth = StartHealth - (50 * 0.5f);
         playerAtr.currentArmor = 0;
         
         yield return null;
-        Assert.AreEqual(StartHealth, CurrentHealth);
+        Assert.AreEqual(playerAtr.currentHealth, CurrentHealth);
     }
     
     [UnityTest]
@@ -85,7 +81,9 @@ public class PlayMode_Tests {
     }
     
     [UnityTest]
-    public IEnumerator PlayerUsePoison_Test() {
+    public IEnumerator PlayerUsePoison_Test()
+    {
+        Time.timeScale = 1f;
         playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
         playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
 

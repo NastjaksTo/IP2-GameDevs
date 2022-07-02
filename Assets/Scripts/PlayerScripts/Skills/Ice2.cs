@@ -7,14 +7,12 @@ using static PlayerAttributes;
 
 public class Ice2 : MonoBehaviour
 {
-    public int damage;
     private GameObject enemy;
     private float stunduration;
     
     private void Awake()
     {
-        damage = 25 * (1 + skillTree.skillLevels[7]) + (int)(playerAttributesScript.magicDamage / 4);
-        stunduration = 1f + skillTree.skillLevels[7] + playerAttributesScript.magicDamage / 20;
+        stunduration = 1f + skillTree.skillLevels[7] + playerAttributesScript.magicDamage / 20f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,7 +48,6 @@ public class Ice2 : MonoBehaviour
             {
                 enemy.GetComponent<WaterDragonScript>().GetStunned(stunduration);
             }
-            enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
         }
     }
 }

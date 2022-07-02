@@ -5,13 +5,11 @@ using static SkillTree;
 
 public class Ice3 : MonoBehaviour
 {
-    public int damage;
     private GameObject enemy;
     private float stunduration;
 
     private void Awake()
     {
-        damage = 1;
         stunduration = 2f;
     }
     
@@ -44,7 +42,6 @@ public class Ice3 : MonoBehaviour
             {
                 enemy.GetComponent<WaterDragonScript>().GetStunned(stunduration);
             }
-            enemy.GetComponent<EnemyHealthHandler>().getDamage(damage);
         }
     }
 }

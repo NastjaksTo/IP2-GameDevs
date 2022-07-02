@@ -1,11 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using PlasticPipe.PlasticProtocol.Messages;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
-using static PlayerSkillsystem;
 using static CombatSystem;
 using static EnemySoundHandler;
 
@@ -46,7 +39,7 @@ public class SlimeAgent : MonoBehaviour
     {
         enemy.isFighting("isFighting");
         enemy.WalkOrAttack("Walk", "Attack1", "Attack2", 5, 15, 0);
-        enemy.GetDamage("GetHit", "Die", 50);
+        enemy.GetDamage("GetHit", "Die", 550);
     }
 
 

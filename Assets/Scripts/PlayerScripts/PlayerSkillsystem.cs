@@ -49,6 +49,7 @@ public class PlayerSkillsystem : MonoBehaviour
         playerlevel = new LevelSystem(); // Create new LevelSystem for the player
         playerskillsystem = this;
         controller = transform.GetComponent<CharacterController>();
+        updateLevelUI();
     }
 
     /// <summary>
@@ -101,6 +102,12 @@ public class PlayerSkillsystem : MonoBehaviour
     public void ManageStamina2()
     {
         playerAttributesScript.staminaRegenerationSpeed += 1.5f;
+    }
+    
+    public void ManageStamina3()
+    {
+        ThirdPersonController.thirdPersonController.moveSpeed += 4;
+        ThirdPersonController.thirdPersonController.SprintSpeed += 5;
     }
     
     /// <summary>

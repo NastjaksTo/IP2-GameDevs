@@ -11,7 +11,8 @@ public class BossArena : MonoBehaviour
     public GameObject pandoraArenaWall;
     public GameObject pandoraHealthBar;
     public GameObject pandora;
-    
+    public PandoraAgent pandoraAgent;
+
     public GameObject iceTitanArenaWall;
     public GameObject iceTitanHealthBar;
     public GameObject iceTitan;
@@ -44,6 +45,7 @@ public class BossArena : MonoBehaviour
             pandoraHealthBar.SetActive(true);
             pandoraArenaWall.SetActive(true);
             pandora.SetActive(true);
+            pandoraAgent.ResetRaya();
         }
         if (other.CompareTag("IceArena") && isIceTitanAlive)
         {

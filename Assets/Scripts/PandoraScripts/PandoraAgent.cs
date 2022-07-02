@@ -18,9 +18,9 @@ public class PandoraAgent : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer, whatIsSpell, whatIsWeapon;
 
-    private EnemyHealthHandler healthHandler;
+    public EnemyHealthHandler healthHandler;
     public float health;
-    public float maxHealth;
+    public float maxHealth = 15000;
     
     private bool walkPointSet;
     private bool hasPatrollingCooldown;
@@ -78,7 +78,6 @@ public class PandoraAgent : MonoBehaviour
     {
         healthBar = GameObject.Find("RayaHealthRepresentation").GetComponent<Image>();
         textHealthPoints = GameObject.Find("RayahealthValue").GetComponent<TextMeshProUGUI>();
-        maxHealth = health;
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         spawner = GameObject.Find("PandoraAttackSpawner").transform;
@@ -88,6 +87,26 @@ public class PandoraAgent : MonoBehaviour
         controller = player.GetComponent<ThirdPersonController>();
         savedmspeed = controller.moveSpeed;
         savedsspeed = controller.SprintSpeed;
+    }
+
+    public void ResetRaya()
+    {
+        healthHandler.Health = maxHealth;
+        savedmspeed = controller.moveSpeed;
+        savedsspeed = controller.SprintSpeed;
+        isInvincible = false;
+        hasDodgeCooldown = false;
+        hasBlockCooldown = false;
+        isStunned = false;
+        combatSystem.shouldPandoraBlock = false;
+        isCurrentlyAttacking = false;
+        alreadyAttacked = false;
+        isPhaseTwo = false;
+        usedDebuff = false;
+        isPhaseThree = false;
+        isDead = false;
+        hasPatrollingCooldown = false;
+        ResetAttack();
     }
 
     private void Update()
@@ -326,10 +345,11 @@ public class PandoraAgent : MonoBehaviour
         agent.speed += 5;
         agent.SetDestination(transform.position);
         alreadyAttacked = true;
-        applypotion(100);
+        applypotion(125);
         PlayPotionEffect();
         AudioSource.PlayClipAtPoint(spellsounds[3],transform.position, SpellAudioVolume);
-        Instantiate(aoeTwo, transform.position + transform.up * 3.5f, Quaternion.identity);
+        var aoetwo = Instantiate(aoeTwo, transform.position + transform.up * 3.5f, Quaternion.identity);
+        Destroy(aoetwo, 13f);
         anim.SetBool("screamingTwo", false);
     }
     
@@ -370,13 +390,13 @@ public class PandoraAgent : MonoBehaviour
         if (isInvincible) return;
         if (healthHandler.Hit)
         {
-            if (healthHandler.Health <= health * 0.6f && !isPhaseTwo)
+            if (healthHandler.Health <= maxHealth * 0.6f && !isPhaseTwo)
             {
                 anim.SetBool("screamingOne", true);
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
             
-            if (healthHandler.Health <= health * 0.3f && !isPhaseThree && isPhaseTwo)
+            if (healthHandler.Health <= maxHealth * 0.3f && !isPhaseThree && isPhaseTwo)
             {
                 anim.SetBool("screamingTwo", true);
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -405,14 +425,14 @@ public class PandoraAgent : MonoBehaviour
     // REGENERATION EFFECT
     public IEnumerator regeneratingHealth()
     {
-        regenerationTimer = 0.2f;
+        regenerationTimer = 0.1f;
         while (potionTickTimer.Count > 0)
         {
             for (int i = 0; i < potionTickTimer.Count; i++)
             {
                 potionTickTimer[i]--;
             }
-            if (healthHandler.Health < maxHealth) healthHandler.Health += 2;
+            if (healthHandler.Health < maxHealth) healthHandler.Health += 20;
             else potionTickTimer.Clear();
             potionTickTimer.RemoveAll(i => i == 0);
             yield return new WaitForSeconds(regenerationTimer);

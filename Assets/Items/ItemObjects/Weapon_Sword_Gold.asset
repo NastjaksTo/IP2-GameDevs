@@ -22,10 +22,10 @@ MonoBehaviour:
   itemDescription: 'A sword made of pure gold. Very decadent.
 
 
-    + 100 Physical
+    + 75 Physical
     damage'
   data:
     Id: 16
     buffs:
     - attribute: 6
-      buffValue: 100
+      buffValue: 75

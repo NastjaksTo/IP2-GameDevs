@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class HoverDesc : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public string descToShow;               // Reference to the description text.
+    [TextArea(15, 20)]public string descToShow;               // Reference to the description text.
     private float timeToWait = 0.33f;       // Float to save the time in which the description will appear.
     
     /// <summary>

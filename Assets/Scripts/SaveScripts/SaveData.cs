@@ -1,6 +1,7 @@
 using System.Collections;
 using Invector.CharacterController;
 using SaveScripts;
+using StarterAssets;
 using UIScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,8 @@ using static BossArena;
 
 public class SaveData : MonoBehaviour
 {
+    public static SaveData saveData;
+    public PandoraAgent pandoraAgent;
     public PlayerSkillsystem skillsystem;               // Reference to the PlayerSkillsystem script.
     public PlayerAttributes attributes;                 // Reference to the PlayerAttributes script.
     public PlayerInventory playerInventory;
@@ -38,6 +41,7 @@ public class SaveData : MonoBehaviour
     /// </summary>
     public void Awake()
     {
+        saveData = this;
         SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
         scenetransfer = GameObject.FindGameObjectWithTag("SceneTransfer");
         loaded = scenetransfer.GetComponent<SceneTransfer>().loaded;
@@ -70,6 +74,8 @@ public class SaveData : MonoBehaviour
         attributes.currentHealth = data.health;
         attributes.staminaRegenerationSpeed = data.staminaregenValue;
         attributes.manaRegenerationSpeed = data.manaregenValue;
+        ThirdPersonController.thirdPersonController.moveSpeed = data.movespeed;
+        ThirdPersonController.thirdPersonController.SprintSpeed = data.sprintspeed;
 
         combatsystem.maxpotions = data.maxpotions;
         combatsystem.potions = combatsystem.maxpotions;
@@ -158,6 +164,11 @@ public class SaveData : MonoBehaviour
         saving = false;
         savingUI.SetActive(false);
         savingText.SetActive(false);
+    }
+
+    public void ResetBossHealth()
+    {
+        pandoraAgent.health = pandoraAgent.maxHealth;
     }
 
     /// <summary>

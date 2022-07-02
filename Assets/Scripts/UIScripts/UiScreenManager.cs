@@ -2,8 +2,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static PlayerDisplay;
 using static PlayerQuests;
+using static PlayerSkillsystem;
 using static BossArena;
-using static PlayerQuests;
+using static SaveData;
 
 
 /// <summary>
@@ -38,8 +39,7 @@ public class UiScreenManager : MonoBehaviour {
 
     public static bool _isOneIngameUiOpen = false;
     private static bool _isOneInMenueUiOpen = false;
-
-    public SaveData savedata;
+    
 
     private void Awake() {
         ClosePauseContainerUi();
@@ -245,7 +245,7 @@ public class UiScreenManager : MonoBehaviour {
     /// Loads the last saved game state 
     /// </summary>
     public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
-        savedata.Loadgame();
+        saveData.Loadgame();
     }
 
 
@@ -261,9 +261,11 @@ public class UiScreenManager : MonoBehaviour {
             if (_inventoryUiOpen) {
                 CloseInventoryUi();
                 playerDisplay.UpdateSpellUI();
+                playerskillsystem.updateLevelUI();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
                 OpenInventoryUi();
                 playerDisplay.UpdateSpellUI();
+                playerskillsystem.updateLevelUI();
             }
         }
 
@@ -290,6 +292,7 @@ public class UiScreenManager : MonoBehaviour {
 
                 if (_skillUiOpen) {
                     CloseSkillUi();
+                    saveData.SaveGame();
                     SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
                 }
 

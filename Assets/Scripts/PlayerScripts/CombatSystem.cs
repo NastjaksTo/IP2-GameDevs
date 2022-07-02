@@ -33,7 +33,7 @@ public class CombatSystem : MonoBehaviour
     private bool inAnimation;
     private bool canDodge = true;
     
-    public List<int> potionTickTimer = new List<int>();
+    public List<float> potionTickTimer = new List<float>();
 
    
     public AudioClip[] spellsounds;
@@ -91,7 +91,7 @@ public class CombatSystem : MonoBehaviour
     public IEnumerator ReviveCooldown()
     {
         justrevived = true;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(240f);
         justrevived = false;
     }
     
@@ -114,7 +114,7 @@ public class CombatSystem : MonoBehaviour
         }
     }
 
-    public void applypotion(int ticks)
+    public void applypotion(float ticks)
     {
         if (potionTickTimer.Count <= 0)
         {
@@ -175,7 +175,6 @@ public class CombatSystem : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(spellsounds[2],transform.position, SpellAudioVolume);
         isAttacking = true;
-        Invoke(nameof(StopAttack), 0.025f);
     }
 
     public void StartAttack(AnimationEvent animationEvent)
@@ -244,7 +243,7 @@ public class CombatSystem : MonoBehaviour
             AudioSource.PlayClipAtPoint(spellsounds[1],transform.position, SpellAudioVolume);
             potions--;
             potionsUI.text = $"{potions}/{maxpotions}";
-            applypotion(100 * (1 + skillTree.skillLevels[9]));
+            applypotion(100 * (1 + (skillTree.skillLevels[9]/2f)));
             potioncooldown.UsePotion(5);
         }
 
