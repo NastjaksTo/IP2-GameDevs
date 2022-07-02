@@ -97,8 +97,9 @@ public class CombatSystem : MonoBehaviour
     
     public IEnumerator regeneratingHealth()
     {
-        if (skillTree.skillLevels[9] == 0) regenerationTimer = 0.4f;
-        else regenerationTimer = 0.5f - skillTree.skillLevels[9] * 0.19f;
+       
+        regenerationTimer = 1 * (0.125f - (0.025f * skillTree.skillLevels[9]));
+
         while (potionTickTimer.Count > 0)
         {
             for (int i = 0; i < potionTickTimer.Count; i++)

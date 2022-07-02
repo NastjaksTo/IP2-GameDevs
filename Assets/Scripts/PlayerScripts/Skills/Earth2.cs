@@ -13,7 +13,7 @@ public class Earth2 : MonoBehaviour
 
     public float regenerationTimer;
 
-    private bool canusepotion;
+    private bool canuseSpell;
 
     
     public List<float> potionTickTimer = new List<float>();
@@ -22,12 +22,14 @@ public class Earth2 : MonoBehaviour
     {
         dmgredcution = 0.4f - playerAttributesScript.magicDamage / 200;
         StartCoroutine(Earth2Duration());
+        applypotion(1 * ((1 + (skillTree.skillLevels[8]) / 1.125f)) + playerAttributesScript.magicDamage / 2);
     }
     
         
     public IEnumerator regeneratingHealth()
     {
-        regenerationTimer = 0.5f - skillTree.skillLevels[8] * 0.075f;
+        regenerationTimer = 1 * (0.25f - (0.05f * skillTree.skillLevels[8]));
+
         while (potionTickTimer.Count > 0)
         {
             for (int i = 0; i < potionTickTimer.Count; i++)
@@ -35,7 +37,7 @@ public class Earth2 : MonoBehaviour
                 potionTickTimer[i]--;
             }
 
-            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.20f;
+            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.01f;
             else potionTickTimer.Clear();
             potionTickTimer.RemoveAll(i => i == 0);
             yield return new WaitForSeconds(regenerationTimer);
@@ -44,6 +46,7 @@ public class Earth2 : MonoBehaviour
 
     public void applypotion(float ticks)
     {
+        canuseSpell = false;
         if (potionTickTimer.Count <= 0)
         {
             potionTickTimer.Add(ticks);
@@ -61,8 +64,8 @@ public class Earth2 : MonoBehaviour
         Debug.Log("earth2isnotactive");
     }
 
-    private void Update()
-    {
-        applypotion(1 * ((1 + (skillTree.skillLevels[8])/1.125f)) + playerAttributesScript.magicDamage / 2);
-    }
+    //private void Update()
+    //{
+    //    applypotion(1 * ((1 + (skillTree.skillLevels[8])/1.125f)) + playerAttributesScript.magicDamage / 2);
+    //}
 }

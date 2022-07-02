@@ -103,7 +103,7 @@ public class PandoraAgent : MonoBehaviour
         if(playerInSightRange) anim.SetBool("inBattle", true); else anim.SetBool("inBattle", false);
         if(playerInSightRange && !playerInAttackRange) ChasePlayer();
         if(playerInAttackRange && playerInSightRange) AttackPlayer();
-        GetDamage("hit", "die", 5000);
+        GetDamage("hit", "die", 1001);
     }
 
     public void Dodge()

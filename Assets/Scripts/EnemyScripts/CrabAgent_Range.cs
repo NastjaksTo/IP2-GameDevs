@@ -54,7 +54,7 @@ public class CrabAgent_Range : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        enemy.GetDamage("Take Damage", "Die", 300);
+        enemy.GetDamage("Take Damage", "Die", 250);
         Attack();
         fireRate -= Time.deltaTime;
 

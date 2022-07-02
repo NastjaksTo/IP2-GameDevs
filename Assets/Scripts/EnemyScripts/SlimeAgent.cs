@@ -46,7 +46,7 @@ public class SlimeAgent : MonoBehaviour
     {
         enemy.isFighting("isFighting");
         enemy.WalkOrAttack("Walk", "Attack1", "Attack2", 5, 15, 0);
-        enemy.GetDamage("GetHit", "Die", 100);
+        enemy.GetDamage("GetHit", "Die", 50);
     }
 
 

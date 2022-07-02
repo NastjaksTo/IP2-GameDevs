@@ -36,7 +36,7 @@ public class CrabAgent : MonoBehaviour
     private void Update()
     {
         enemy.WalkOrAttack("Run Forward", "Smash Attack", "Stab Attack", 5, 14, 15, "Defend");
-        enemy.GetDamage("Take Damage", "Die", 300);
+        enemy.GetDamage("Take Damage", "Die", 250);
     }
 
     /// <summary>

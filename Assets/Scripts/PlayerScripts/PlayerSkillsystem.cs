@@ -92,7 +92,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageMana2()
     {
-        playerAttributesScript.manaRegenerationSpeed += 5;
+        playerAttributesScript.manaRegenerationSpeed += 0.5f;
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageStamina2()
     {
-        playerAttributesScript.staminaRegenerationSpeed += 5;
+        playerAttributesScript.staminaRegenerationSpeed += 1.5f;
     }
     
     /// <summary>
