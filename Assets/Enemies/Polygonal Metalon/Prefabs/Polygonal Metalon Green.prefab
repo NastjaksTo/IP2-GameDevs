@@ -1262,6 +1262,8 @@ GameObject:
   - component: {fileID: 4525738253874444072}
   - component: {fileID: 5635670045139155208}
   - component: {fileID: 314305338880794997}
+  - component: {fileID: 1893184729440991683}
+  - component: {fileID: 2072163065975688692}
   m_Layer: 30
   m_Name: Polygonal Metalon Green
   m_TagString: Enemy
@@ -1421,6 +1423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStunned: 0
 --- !u!114 &5635670045139155208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1446,6 +1449,122 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.7018862, y: 2.8564982, z: 4.813613}
   m_Center: {x: 0.12281203, y: 0.92824936, z: 0.021852612}
+--- !u!114 &1893184729440991683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783563462218004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cf477d9aa5136489a2953444ee5e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: {fileID: 8300000, guid: 374e6ff1f37df0c4c94264662c90efd2, type: 3}
+  hit: {fileID: 8300000, guid: 34722b7c1ba99e54c87550473272fac9, type: 3}
+  hit2: {fileID: 8300000, guid: 34722b7c1ba99e54c87550473272fac9, type: 3}
+  swoosh: {fileID: 8300000, guid: 754dd9c6b6e5fb542943ca203d3393e0, type: 3}
+  swoosh2: {fileID: 8300000, guid: 01853f7154693854491cc1749041f626, type: 3}
+  death: {fileID: 8300000, guid: a701018242f41cd4f9ebae328844721b, type: 3}
+  scream: {fileID: 0}
+  magic: {fileID: 8300000, guid: 32dc4bd5787be844b94e3639f11200d7, type: 3}
+--- !u!82 &2072163065975688692
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783563462218004}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1804318802084684
 GameObject:
   m_ObjectHideFlags: 0

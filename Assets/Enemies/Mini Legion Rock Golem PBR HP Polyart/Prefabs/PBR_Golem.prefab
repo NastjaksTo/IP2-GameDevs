@@ -81,6 +81,8 @@ GameObject:
   - component: {fileID: 713508834}
   - component: {fileID: 3224113377714103495}
   - component: {fileID: 2508839721857301103}
+  - component: {fileID: 1856510946}
+  - component: {fileID: 1856510947}
   m_Layer: 30
   m_Name: PBR_Golem
   m_TagString: Enemy
@@ -237,6 +239,122 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.6897063, y: 4.630556, z: 2.689434}
   m_Center: {x: 0.0004881223, y: 1.8152742, z: 0.20193169}
+--- !u!82 &1856510946
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1856510947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067925524328404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cf477d9aa5136489a2953444ee5e6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: {fileID: 8300000, guid: 610a634dc9bf24a4aaf523ec7455bd85, type: 3}
+  hit: {fileID: 8300000, guid: 113d3867327206341a2d2f37f44eb4ff, type: 3}
+  hit2: {fileID: 8300000, guid: 4e84279b7e7a17e45b0179848f8e5dcc, type: 3}
+  swoosh: {fileID: 8300000, guid: 68760eac925e881479cf47200c05cf06, type: 3}
+  swoosh2: {fileID: 8300000, guid: 68760eac925e881479cf47200c05cf06, type: 3}
+  death: {fileID: 8300000, guid: f4e73587ac735ad4ca4cba5af3a79495, type: 3}
+  scream: {fileID: 8300000, guid: 80874657846264848a7a994b03caca33, type: 3}
+  magic: {fileID: 0}
 --- !u!1 &1088256926929212
 GameObject:
   m_ObjectHideFlags: 0

@@ -649,6 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStunned: 0
 --- !u!82 &8169578646571144120
 AudioSource:
   m_ObjectHideFlags: 0
@@ -660,7 +661,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -668,11 +669,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 2.47
   MinDistance: 0.91275024
-  MaxDistance: 500
+  MaxDistance: 20
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -680,23 +681,59 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.04563751
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -21.920595
+      outSlope: -21.920595
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.09127502
+      value: 0.5
+      inSlope: -5.480149
+      outSlope: -5.480149
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.16787872
+      value: 0.20379639
+      inSlope: -1.3700372
+      outSlope: -1.3700372
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.3839752
+      value: 0.088012695
+      inSlope: -0.19557701
+      outSlope: -0.19557701
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.3687703
+    - serializedVersion: 3
+      time: 0.7071289
+      value: 0.031677246
+      inSlope: -0.17050385
+      outSlope: -0.17050385
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.31983325
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.04565576
+      outSlope: -0.04565576
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
