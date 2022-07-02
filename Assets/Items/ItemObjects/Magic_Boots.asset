@@ -24,16 +24,16 @@ MonoBehaviour:
 
     + 2 Armor
 
-    + 10 Mana
+    + 5 Mana
 
-    +
-    20 Magic Damage'
+    + 5
+    Magic Damage'
   data:
     Id: 10
     buffs:
     - attribute: 0
       buffValue: 2
     - attribute: 5
-      buffValue: 10
+      buffValue: 5
     - attribute: 8
-      buffValue: 20
+      buffValue: 5

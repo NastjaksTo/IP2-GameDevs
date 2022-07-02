@@ -210,7 +210,7 @@ public class WaterDragonScript : MonoBehaviour
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(1500);
+                playerskillsystem.playerlevel.AddExp(3000);
             }
         }
     }

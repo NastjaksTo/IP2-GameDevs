@@ -75,7 +75,7 @@ public class SkeletonAgent : MonoBehaviour
         if((!fov.CanSeePlayer || !playerInSightRange) && !playerInAttackRange) Patrolling();
         if((fov.CanSeePlayer || playerInSightRange) && !playerInAttackRange && !inAnimation) ChasePlayer();
         if(playerInAttackRange && (fov.CanSeePlayer || playerInSightRange)) AttackPlayer();
-        GetDamage("Hit", "Die", 100);
+        GetDamage("Hit", "Die", 1000);
     }
 
     private void Patrolling()

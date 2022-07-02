@@ -134,7 +134,7 @@ public class PlayerInventory : MonoBehaviour {
 
 
     private IEnumerator closeAddItemAlert() {
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(5);
         addItemAlert.SetActive(false);
     }
 }

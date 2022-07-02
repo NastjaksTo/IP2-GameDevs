@@ -34,7 +34,7 @@ public class GruntAgent : MonoBehaviour
     private void Update()
     {
         enemy.WalkOrAttack("Run", "Attack1", "Attack2", 5, 15, 0);
-        enemy.GetDamage("Take Damage", "Die", 200);
+        enemy.GetDamage("Take Damage", "Die", 250);
     }
 
     /// <summary>

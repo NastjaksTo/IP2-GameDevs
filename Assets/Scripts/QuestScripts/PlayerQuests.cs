@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static QuestGiver;
-using static PlayerSkillsystem;
 using static PlayerInventory;
 using static CombatSystem;
+using static UiScreenManager;
 
 public class PlayerQuests : MonoBehaviour
 {
@@ -80,7 +78,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the priest";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Priest", "Hello my son. Did you pray already today? <br>We need to please the gods so they help us with the titans.  <br><br>May the gods be with you!");
+                SetQuestGiverUI("Priest", "Hello my son. Did you pray already today? \nWe need to please the gods so they help us with the titans.  \n\nMay the gods be with you!");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -127,7 +125,7 @@ public class PlayerQuests : MonoBehaviour
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
                 SetQuestGiverUI("The Equipment", "You can pick up bags by pressing E. You will find the items in your inventory." +
-                                                 " \n  \nBy pressing left mouse button you can attack.");
+                                                 " \n \nBy pressing left mouse button you can attack.");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -140,7 +138,7 @@ public class PlayerQuests : MonoBehaviour
                 StartCoroutine(closeCompletionUI());
                 SetQuestGiverUI("Doctor", "Hey traveler the priest told me you want to kill the titans. Take these, they will help you. \n  \nYou can use potions by pressing G. They will heal you over time.  \nYou can find new potions around the world and they reset if you pray at a runestone.");
                 SetQuest(other.gameObject);
-                combatSystem.maxpotions = 3;
+                combatSystem.maxpotions = 1;
                 combatSystem.refillPotions();
                 currentQuestID++;
             }
@@ -220,13 +218,21 @@ public class PlayerQuests : MonoBehaviour
     }
 
     private IEnumerator closeCompletionUI() {
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(5);
         completionUI.SetActive(false);
     }
 
     private IEnumerator closeNewQuestAlert()
     {
-        yield return new WaitForSecondsRealtime(3);
+        yield return new WaitForSecondsRealtime(5);
         newQuestAlert.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen && closeDialogBtn.activeSelf)
+        {
+            CloseQuestGiverUI();
+        }
     }
 }

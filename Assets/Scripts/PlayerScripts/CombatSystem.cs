@@ -35,6 +35,13 @@ public class CombatSystem : MonoBehaviour
     
     public List<int> potionTickTimer = new List<int>();
 
+   
+    public AudioClip[] spellsounds;
+    [Range(0, 1)] public float SpellAudioVolume = 0.5f;
+    public AudioSource HeartBeat;
+    private bool isHeartBeating;
+    
+
     private void Awake()
     {
         combatSystem = this;
@@ -90,8 +97,9 @@ public class CombatSystem : MonoBehaviour
     
     public IEnumerator regeneratingHealth()
     {
-        if (skillTree.skillLevels[9] == 0) regenerationTimer = 0.4f;
-        else regenerationTimer = 0.5f - skillTree.skillLevels[9] * 0.19f;
+       
+        regenerationTimer = 1 * (0.125f - (0.025f * skillTree.skillLevels[9]));
+
         while (potionTickTimer.Count > 0)
         {
             for (int i = 0; i < potionTickTimer.Count; i++)
@@ -165,6 +173,7 @@ public class CombatSystem : MonoBehaviour
 
     public void LightAttack(AnimationEvent animationEvent)
     {
+        AudioSource.PlayClipAtPoint(spellsounds[2],transform.position, SpellAudioVolume);
         isAttacking = true;
         Invoke(nameof(StopAttack), 0.025f);
     }
@@ -186,7 +195,7 @@ public class CombatSystem : MonoBehaviour
 
     public void Dodging()
     {
-        Debug.Log("Startdodging");
+        AudioSource.PlayClipAtPoint(spellsounds[0],transform.position, SpellAudioVolume);
         if (!invincible)
         {
             invincible = true;
@@ -232,10 +241,21 @@ public class CombatSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && potions > 0 && !potioncooldown.isCooldown)
         {
             PlayPotionEffect();
+            AudioSource.PlayClipAtPoint(spellsounds[1],transform.position, SpellAudioVolume);
             potions--;
             potionsUI.text = $"{potions}/{maxpotions}";
             applypotion(100 * (1 + skillTree.skillLevels[9]));
             potioncooldown.UsePotion(5);
+        }
+
+        if (playerAttributesScript.currentHealth <= 20 && !isHeartBeating)
+        {
+            HeartBeat.Play();
+            isHeartBeating = true;
+        } else if (playerAttributesScript.currentHealth >= 21 && isHeartBeating)
+        {
+            HeartBeat.Stop();
+            isHeartBeating = false;
         }
     }
 }

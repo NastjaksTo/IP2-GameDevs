@@ -82,6 +82,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void PlayLvlUpEffect()
     {
+        AudioSource.PlayClipAtPoint(spellsounds[8],spawner.position, SpellAudioVolume);
         var newLvlUpEffect = Instantiate(lvlupeffect, transform.position + (Vector3.up * 0.35f), transform.rotation * Quaternion.Euler (-90f, 0f, 0f));
         newLvlUpEffect.transform.parent = gameObject.transform;
     }
@@ -91,7 +92,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageMana2()
     {
-        playerAttributesScript.manaRegenerationSpeed += 5;
+        playerAttributesScript.manaRegenerationSpeed += 0.5f;
     }
 
     /// <summary>
@@ -99,7 +100,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageStamina2()
     {
-        playerAttributesScript.staminaRegenerationSpeed += 5;
+        playerAttributesScript.staminaRegenerationSpeed += 1.5f;
     }
     
     /// <summary>
@@ -122,6 +123,7 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (!(playerAttributesScript.currentMana >= 20)) return;
             playerAttributesScript.currentMana -= 20;
+            AudioSource.PlayClipAtPoint(spellsounds[1],transform.position+(transform.forward*2), SpellAudioVolume);
             anim.SetTrigger("castGroundSpell");
             var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
             Destroy(newfireball2, 2);
@@ -169,6 +171,7 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (!(playerAttributesScript.currentMana >= 15)) return;
             playerAttributesScript.currentMana -= 15;
+            AudioSource.PlayClipAtPoint(spellsounds[3],spawner.position, SpellAudioVolume);
             anim.SetTrigger("castTargetSpell");
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
             newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 40f; //* (2 * skillTree.SkillLevels[0]);

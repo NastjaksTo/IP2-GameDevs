@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using static PlayerDisplay;
 using static PlayerQuests;
 using static BossArena;
+using static PlayerQuests;
 
 
 /// <summary>
@@ -289,6 +290,7 @@ public class UiScreenManager : MonoBehaviour {
 
                 if (_skillUiOpen) {
                     CloseSkillUi();
+                    SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
                 }
 
                 if (_questUiOpen) {
