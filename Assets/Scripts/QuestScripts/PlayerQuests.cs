@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static QuestGiver;
-using static PlayerSkillsystem;
+using static PlayerInventory;
+using static CombatSystem;
+using static UiScreenManager;
 
 public class PlayerQuests : MonoBehaviour
 {
@@ -14,105 +14,225 @@ public class PlayerQuests : MonoBehaviour
     public TextMeshProUGUI descText;
     public TextMeshProUGUI rewardText;
 
+    public GameObject newQuestAlert;
+    public TextMeshProUGUI newQuestAlertText;
+
+    public GameObject completionUI;
+    public TextMeshProUGUI completionText;  
+    
+    public GameObject questGiverUI;
+    public TextMeshProUGUI questGiverTitel;
+    public TextMeshProUGUI questGiverDescr;
+    
+    public GameObject lootbags;
+    public ItemObject[] books;
+    public int currentQuestID = 1;
+
+    public AudioClip questDone;
+    public AudioClip newQuest;
+    public AudioSource writingSound;
+
+    public GameObject closeDialogBtn;
+    public GameObject rayaEntrance;
+    
+    public bool dialogueIsOpen;
+
     private void Awake()
     {
         playerQuests = this;
+        currentQuestID = 1;
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Quest1")
+        if (other.CompareTag("QuestGiver"))
         {
-            Debug.Log(other.gameObject.ToString());
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+            QuestGiver currentQuestGiver = other.gameObject.GetComponent<QuestGiver>();
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
+            {
+                SetQuestGiverUI("You", "What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this.  \n  \n" + "Move - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
+
+                SetQuest(other.gameObject);
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest2")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Find the librarian";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("Librarian", "Hey my friend. You want to know more about magic? Here you can have my spellbooks. You can use them to create magic. You will find the items in your inventory (I).  \n  \nDrag a book in the book slot to equip. With right mouse button you can cast magic.");
+                
+                p_Inventory.CollectItem(books[0]);
+                p_Inventory.CollectItem(books[1]);
+                p_Inventory.CollectItem(books[2]);
+
+                SetQuest(other.gameObject);
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest3")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Find the priest";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("Priest", "Hello my son. Did you pray already today? \nWe need to please the gods so they help us with the titans.  \n\nMay the gods be with you!");
+                SetQuest(other.gameObject);
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest4")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Prayed to the gods.";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("The Runestone", "At the runestone you can pray to the gods. If you die or leave the game you will be reborn at the last runestone you prayed. \n  \nIf you have skillpoints, you can use them to upgrade your skills.");
+                SetQuest(other.gameObject);
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest5")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Spoken to the priest.";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("Priest", "You want to.. WHAT? You want to kill the three titans? You are just a ordinary human. Haha.. good luck. Maybe the smith will give you a sword. " +
+                                          " \n  \nMay the gods be with you!");
+                SetQuest(other.gameObject);
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest6")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Find the smith.";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("Smith", "You need a sword? I have a old rusty one. It is in front of my house. You can take it. Unfortunately, I don't have any armour for you, but you'll find one.");
+                lootbags.SetActive(true);
+                SetQuest(other.gameObject);
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest7")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Find a sword.";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("The Equipment", "You can pick up bags by pressing E. You will find the items in your inventory." +
+                                                 " \n \nBy pressing left mouse button you can attack.");
+                SetQuest(other.gameObject);
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest8")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Find the doctor.";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("Doctor", "Hey traveler the priest told me you want to kill the titans. Take these, they will help you. \n  \nYou can use potions by pressing G. They will heal you over time.  \nYou can find new potions around the world and they reset if you pray at a runestone.");
+                SetQuest(other.gameObject);
+                combatSystem.maxpotions = 1;
+                combatSystem.refillPotions();
+                currentQuestID++;
+            }
+            if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest9")
+            {
+                quest.Complete();
+                AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+                completionText.text = "Quest complete: Go back to the priest.";
+                completionUI.SetActive(true);
+                StartCoroutine(closeCompletionUI());
+                SetQuestGiverUI("Priest", "Raya? She is here? You have to defeat here or else we our beautiful world will be doomed! People talked about a loud noise coming from the entrance to the ravine. You should check this out first.");
+                SetQuest(other.gameObject);
+                currentQuestID++;
+                rayaEntrance.SetActive(false);
+            }
         }
-        if (other.name == "Quest2")
-        {
-            if (quest.title != "Find information.") return;
-            quest.Complete();
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+    }
+
+    private void SetQuestGiverUI(String title, String descr) {
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        questGiverUI.SetActive(true);
+        dialogueIsOpen = true;
+        questGiverTitel.text = "";
+        questGiverDescr.text = "";
+        questGiverTitel.text = title;
+        StartCoroutine(TypeLine(descr));
+    }
+
+    IEnumerator TypeLine(string text) {
+        writingSound.Play();
+        foreach (char c in text.ToCharArray()) {
+            questGiverDescr.text += c;
+            yield return new WaitForSecondsRealtime(0.025f);
         }
-        if (other.name == "Quest3")
+        closeDialogBtn.SetActive(true);
+        writingSound.Stop();
+        newQuestAltertOpen();
+    }
+
+    public void TitanQuest()
+    {
+        quest.Complete();
+        AudioSource.PlayClipAtPoint(questDone, transform.position, 1);
+        completionText.text = "Quest complete: Find and defeat the titans.";
+        completionUI.SetActive(true);
+        StartCoroutine(closeCompletionUI());
+        SetQuestGiverUI("Raya", "You fool! You thought you could save the world by defeating my titans? You will never be a hero. And now... feel my wrath.");
+        playerQuests.titleText.text = "Go back to the priest.";
+        playerQuests.descText.text = "Ask the priest for informations about Raya.";
+        playerQuests.rewardText.text = "1000";
+        currentQuestID++;
+    }
+
+    public void CloseQuestGiverUI() {
+        Cursor.lockState = CursorLockMode.Locked;
+        closeDialogBtn.SetActive(false);
+        questGiverUI.SetActive(false);
+        dialogueIsOpen = false;
+        Time.timeScale = 1f;
+    }
+
+    public void SetQuest(GameObject other) {
+        QuestGiver currentQuest = other.GetComponent<QuestGiver>();
+        currentQuest.AcceptQuest();
+        Destroy(other.gameObject);
+        playerQuests.titleText.text = currentQuest.quest.title;
+        playerQuests.descText.text = currentQuest.quest.descrption;
+        playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+    }
+
+    private void newQuestAltertOpen(){
+        AudioSource.PlayClipAtPoint(newQuest, transform.position, 1);
+        newQuestAlertText.text = "New Quest: " + playerQuests.titleText.text + " ( J )";
+        newQuestAlert.SetActive(true);
+        StartCoroutine(closeNewQuestAlert());
+    }
+
+    private IEnumerator closeCompletionUI() {
+        yield return new WaitForSecondsRealtime(5);
+        completionUI.SetActive(false);
+    }
+
+    private IEnumerator closeNewQuestAlert()
+    {
+        yield return new WaitForSecondsRealtime(5);
+        newQuestAlert.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen && closeDialogBtn.activeSelf)
         {
-            if (quest.title != "Speak to the priest.") return;
-            quest.Complete();
-            Debug.Log(other.gameObject.ToString());
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
-        }
-        if (other.name == "Quest4")
-        {
-            if (quest.title != "Pray to the gods.") return;
-            quest.Complete();
-            Debug.Log(other.gameObject.ToString());
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
-        }
-        if (other.name == "Quest5")
-        {
-            if (quest.title != "Speak to the priest again.") return;
-            quest.Complete();
-            Debug.Log(other.gameObject.ToString());
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
-        }
-        if (other.name == "Quest6")
-        {
-            if (quest.title != "Get your sword.") return;
-            quest.Complete();
-            Debug.Log(other.gameObject.ToString());
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
-        }
-        if (other.name == "Quest7")
-        {
-            if (quest.title != "Pick up the sword.") return;
-            quest.Complete();
-            Debug.Log(other.gameObject.ToString());
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
-        }
-        if (other.name == "Quest8")
-        {
-            if (quest.title != "Visit the doctor.") return;
-            quest.Complete();
-            Debug.Log(other.gameObject.ToString());
-            QuestGiver currentQuest = other.GetComponent<QuestGiver>();
-            currentQuest.AcceptQuest();
-            Destroy(other.gameObject);
-            playerQuests.titleText.text = currentQuest.quest.title;
-            playerQuests.descText.text = currentQuest.quest.descrption;
-            playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
+            CloseQuestGiverUI();
         }
     }
 }

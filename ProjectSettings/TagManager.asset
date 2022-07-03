@@ -22,7 +22,10 @@ TagManager:
   - Enemy
   - QuestGiver
   - PleasureDoc
-  - Quest1
+  - PandoraArena
+  - FireArena
+  - IceArena
+  - EarthArena
   layers:
   - Default
   - TransparentFX
@@ -34,8 +37,8 @@ TagManager:
   - Obstacle
   - Ground
   - Lava
-  - 
-  - 
+  - PlayerSpells
+  - PlayerWeapons
   - 
   - 
   - 

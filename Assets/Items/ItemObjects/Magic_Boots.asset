@@ -15,24 +15,25 @@ MonoBehaviour:
   itemName: Magic Boots
   characterDisplayName: Magic_Armor_boots
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 4e71ff0faa302cb4991603a4ad9b38fd, type: 3}
   istStackable: 0
   itemType: 3
-  itemDescription: 'Boots made with magic.
+  itemDescription: 'Pure magic was worked into the seams.
 
 
-    + 10 Armor
-
-    + 20 Stamina
+    + 2 Armor
 
     +
-    30 Mana'
+    5 Mana
+
+    + 5 Magic Damage'
   data:
     Id: 10
     buffs:
     - attribute: 0
-      buffValue: 10
-    - attribute: 7
-      buffValue: 20
+      buffValue: 2
     - attribute: 5
-      buffValue: 30
+      buffValue: 5
+    - attribute: 8
+      buffValue: 5

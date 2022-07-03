@@ -13,45 +13,23 @@ public class Earth2 : MonoBehaviour
 
     public float regenerationTimer;
 
-    private bool canusepotion;
+    private bool canuseSpell;
 
     
-    public List<int> potionTickTimer = new List<int>();
+    public List<float> potionTickTimer = new List<float>();
     
     private void Awake()
     {
-        if (skillTree.skillLevels[2] == 0)
-        {
-            dmgredcution = 0.9f;
-        }
-        if (skillTree.skillLevels[2] == 1)
-        {
-            dmgredcution = 0.8f;
-        }
-        if (skillTree.skillLevels[2] == 2)
-        {
-            dmgredcution = 0.7f;
-        }
-        if (skillTree.skillLevels[2] == 3)
-        {
-            dmgredcution = 0.6f;
-        }
-        if (skillTree.skillLevels[2] == 4)
-        {
-            dmgredcution = 0.5f;
-        }
-        if (skillTree.skillLevels[2] == 5)
-        {
-            dmgredcution = 0.4f;
-        }
-
+        dmgredcution = 0.4f - playerAttributesScript.magicDamage / 200;
         StartCoroutine(Earth2Duration());
+        applypotion(1 * ((1 + (skillTree.skillLevels[8]) / 1.125f)) + playerAttributesScript.magicDamage / 2);
     }
     
         
     public IEnumerator regeneratingHealth()
     {
-        regenerationTimer = 0.5f - skillTree.skillLevels[8] * 0.23f;
+        regenerationTimer = 1 * (0.25f - (0.05f * skillTree.skillLevels[8]));
+
         while (potionTickTimer.Count > 0)
         {
             for (int i = 0; i < potionTickTimer.Count; i++)
@@ -59,15 +37,16 @@ public class Earth2 : MonoBehaviour
                 potionTickTimer[i]--;
             }
 
-            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.20f;
+            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.01f;
             else potionTickTimer.Clear();
             potionTickTimer.RemoveAll(i => i == 0);
             yield return new WaitForSeconds(regenerationTimer);
         }
     }
 
-    public void applypotion(int ticks)
+    public void applypotion(float ticks)
     {
+        canuseSpell = false;
         if (potionTickTimer.Count <= 0)
         {
             potionTickTimer.Add(ticks);
@@ -80,13 +59,13 @@ public class Earth2 : MonoBehaviour
     {
         earth2IsActive = true;
         Debug.Log("earth2isactive");
-        yield return new WaitForSecondsRealtime(19);
+        yield return new WaitForSeconds(19);
         earth2IsActive = false;
         Debug.Log("earth2isnotactive");
     }
 
-    private void Update()
-    {
-        applypotion(1 * (1 + skillTree.skillLevels[8]));
-    }
+    //private void Update()
+    //{
+    //    applypotion(1 * ((1 + (skillTree.skillLevels[8])/1.125f)) + playerAttributesScript.magicDamage / 2);
+    //}
 }

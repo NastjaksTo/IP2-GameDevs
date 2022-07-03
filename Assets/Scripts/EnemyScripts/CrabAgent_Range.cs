@@ -7,20 +7,18 @@ using static PlayerSkillsystem;
 
 public class CrabAgent_Range : MonoBehaviour
 {
+    public static CrabAgent_Range rangedCrab;
     private OverallEnemy enemy;
     private Transform movePositionTransform;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
-    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private GameObject projectileSpawnpoint;
     private float shotSpeed;
     private float fireRate;
     private float fireBallDamage;
-
-    [SerializeField]
-    private float level = 1;
+    private EnemyHealthHandler health;
 
     [SerializeField] 
     GameObject fireball;
@@ -32,21 +30,22 @@ public class CrabAgent_Range : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        rangedCrab = this;
         enemy = GetComponent<OverallEnemy>();
-        health = GetComponentInChildren<EnemyHealthHandler>();
         fov = GetComponent<FoVScript>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         projectileSpawnpoint = GetComponentInChildren<Spawnpoint>().gameObject;
         animator = GetComponent<Animator>();
+        health = GetComponentInChildren<EnemyHealthHandler>();
 
         spawnpoint = this.transform.position;
 
         fireRate = 5.0f;
         shotSpeed = 20.0f;
 
-        health.Health = 100;
-        fireBallDamage = 10;
+        fireBallDamage = 10 + enemy.Playerlevel * 2 ;
+        health.Health = 350 + enemy.Playerlevel * 5;
     }
 
     /// <summary>
@@ -55,13 +54,16 @@ public class CrabAgent_Range : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        enemy.GetDamage("Take Damage", "Die", 300);
+        enemy.GetDamage("Take Damage", "Die", 250);
         Attack();
         fireRate -= Time.deltaTime;
 
         lookAt();
     }
 
+    /// <summary>
+    /// if the Enemy can see the Player the Enemy is always looking in the direction of the Player
+    /// </summary>
     private void lookAt()
     {
         if (fov.CanSeePlayer)
@@ -72,6 +74,10 @@ public class CrabAgent_Range : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy can see the Player the Enemy is jumping and every 5 seconds shooting a fireball
+    /// is the Enemy cant see the Player the Enemy is no more jumping
+    /// </summary>
     private void Attack()
     {
         if (fov.CanSeePlayer)
@@ -91,6 +97,9 @@ public class CrabAgent_Range : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// a fireball is spawning in the on the spawnpoint and with directionall force towards the Player
+    /// </summary>
     private void SpawnBullet()
     {
             if (movePositionTransform != null)

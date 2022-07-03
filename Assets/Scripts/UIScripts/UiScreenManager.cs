@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static PlayerDisplay;
+using static PlayerQuests;
+using static PlayerSkillsystem;
+using static BossArena;
+using static SaveData;
 
 
 /// <summary>
@@ -22,6 +26,7 @@ public class UiScreenManager : MonoBehaviour {
 
     public static bool _deathUiOpen = false;
     public GameObject deathUi;                              //reference set in editor
+    public AudioClip deathSound;
 
     public GameObject pauseMenuUi;                          //reference set in editor
 
@@ -34,8 +39,7 @@ public class UiScreenManager : MonoBehaviour {
 
     public static bool _isOneIngameUiOpen = false;
     private static bool _isOneInMenueUiOpen = false;
-
-    public SaveData savedata;
+    
 
     private void Awake() {
         ClosePauseContainerUi();
@@ -132,10 +136,12 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void OpenDeathUi() {
         //alert.CloseCollectAlertUi();
+        bossarenaScript.CloseAllArenas();
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         deathUi.SetActive(true);
         _deathUiOpen = true;
+        AudioSource.PlayClipAtPoint(deathSound, transform.position, 1);
     }
 
     /// <summary>
@@ -179,7 +185,6 @@ public class UiScreenManager : MonoBehaviour {
     }
 
     //------------- IN menu UI -------------
-
 
     public void OpenMenuUi() {
         pauseMenuUi.SetActive(true);
@@ -239,8 +244,24 @@ public class UiScreenManager : MonoBehaviour {
     /// Loads the last saved game state 
     /// </summary>
     public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
-        savedata.Loadgame();
+        saveData.Loadgame();
     }
+
+
+    public void SwappInventoryQuestUi()
+    {
+        if (_inventoryUiOpen)
+        {
+            CloseInventoryUi();
+            OpenQuestUi();
+        }
+        else if (_questUiOpen)
+        {
+            CloseQuestUi();
+            OpenInventoryUi();
+        }
+    }
+
 
 
     /// <summary>
@@ -251,17 +272,19 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void Update() {
 
-        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_inventoryUiOpen) {
                 CloseInventoryUi();
                 playerDisplay.UpdateSpellUI();
+                playerskillsystem.updateLevelUI();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
                 OpenInventoryUi();
                 playerDisplay.UpdateSpellUI();
+                playerskillsystem.updateLevelUI();
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_questUiOpen) {
                 CloseQuestUi();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
@@ -269,7 +292,7 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_pauseMenuContainerUiOpen) {
                 ClosePauseContainerUi();
             } else {
@@ -284,6 +307,8 @@ public class UiScreenManager : MonoBehaviour {
 
                 if (_skillUiOpen) {
                     CloseSkillUi();
+                    saveData.SaveGame();
+                    SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
                 }
 
                 if (_questUiOpen) {
@@ -293,14 +318,7 @@ public class UiScreenManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Tab) && (_inventoryUiOpen || _questUiOpen)) {
-
-            if (_inventoryUiOpen) {
-                CloseInventoryUi();
-                OpenQuestUi();
-            } else if (_questUiOpen) {
-                CloseQuestUi();
-                OpenInventoryUi();
-            }
+            SwappInventoryQuestUi();
         }
     }
 }

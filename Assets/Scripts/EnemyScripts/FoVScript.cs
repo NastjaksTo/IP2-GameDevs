@@ -49,6 +49,11 @@ public class FoVScript : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 
     /// <summary>
     /// rangeChecks[]: if something on the targetMask enters the radius of the Enemy the rangeCheck Array gets an Item (cause the Player is the only one on this Mask its always the Player)

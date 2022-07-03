@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class QuestGiver : MonoBehaviour
 {
     public QuestSystem quest;
@@ -15,3 +14,4 @@ public class QuestGiver : MonoBehaviour
         player.quest = quest;
     }
 }
+

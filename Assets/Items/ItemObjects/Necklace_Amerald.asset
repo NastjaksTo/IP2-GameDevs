@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Necklace_Amerald
   m_EditorClassIdentifier: 
   itemName: Amerald Necklace
+  characterDisplayName: 
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: a1c2fccde5486974aba45dc8274c094b, type: 3}
   istStackable: 0
   itemType: 0
-  itemDescription: "This is an incredibly good description.\n\n + 30 max Health"
+  itemDescription: "Powefull necklace with a pice of the philosopers stone.\n\n +
+    30 max Health"
   data:
-    Id: 4
+    Id: 12
     buffs:
     - attribute: 4
       buffValue: 30

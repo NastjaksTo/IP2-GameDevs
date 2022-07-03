@@ -32,8 +32,6 @@ public class PlayerSkillsystem : MonoBehaviour
     //private bool cooldown = true;                           // Boolean to save the status of the current cooldown.
 
     public GameObject lvlupeffect;                          // Reference to the level up visual effect.
-    
-    public TextMeshProUGUI textCurrentXP;                   // Reference to the UI text element for the current experience.
     public TextMeshProUGUI textCurrentLevel;                // Reference to the UI text element for the current level.
 
     private Animator anim;
@@ -51,13 +49,13 @@ public class PlayerSkillsystem : MonoBehaviour
         playerlevel = new LevelSystem(); // Create new LevelSystem for the player
         playerskillsystem = this;
         controller = transform.GetComponent<CharacterController>();
+        updateLevelUI();
     }
 
     /// <summary>
     /// At the start set the LevelUI and the ExperienceUI to its correct values.
     /// </summary>
     private void Start() {
-        textCurrentXP.text = playerlevel.GetExp().ToString();
         textCurrentLevel.text = playerlevel.GetLevel().ToString();
         anim = transform.GetComponent<Animator>();
     }
@@ -67,7 +65,6 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void updateLevelUI()
     {
-        textCurrentXP.text = playerlevel.GetExp().ToString();
         textCurrentLevel.text = playerlevel.GetLevel().ToString();
 
     }
@@ -86,6 +83,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void PlayLvlUpEffect()
     {
+        AudioSource.PlayClipAtPoint(spellsounds[8],spawner.position, SpellAudioVolume);
         var newLvlUpEffect = Instantiate(lvlupeffect, transform.position + (Vector3.up * 0.35f), transform.rotation * Quaternion.Euler (-90f, 0f, 0f));
         newLvlUpEffect.transform.parent = gameObject.transform;
     }
@@ -95,7 +93,7 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageMana2()
     {
-        playerAttributesScript.manaRegenerationSpeed += 5;
+        playerAttributesScript.manaRegenerationSpeed += 0.5f;
     }
 
     /// <summary>
@@ -103,7 +101,13 @@ public class PlayerSkillsystem : MonoBehaviour
     /// </summary>
     public void ManageStamina2()
     {
-        playerAttributesScript.staminaRegenerationSpeed += 5;
+        playerAttributesScript.staminaRegenerationSpeed += 1.5f;
+    }
+    
+    public void ManageStamina3()
+    {
+        ThirdPersonController.thirdPersonController.moveSpeed += 4;
+        ThirdPersonController.thirdPersonController.SprintSpeed += 5;
     }
     
     /// <summary>
@@ -126,6 +130,7 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (!(playerAttributesScript.currentMana >= 20)) return;
             playerAttributesScript.currentMana -= 20;
+            AudioSource.PlayClipAtPoint(spellsounds[1],transform.position+(transform.forward*2), SpellAudioVolume);
             anim.SetTrigger("castGroundSpell");
             var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
             Destroy(newfireball2, 2);
@@ -173,6 +178,7 @@ public class PlayerSkillsystem : MonoBehaviour
         {
             if (!(playerAttributesScript.currentMana >= 15)) return;
             playerAttributesScript.currentMana -= 15;
+            AudioSource.PlayClipAtPoint(spellsounds[3],spawner.position, SpellAudioVolume);
             anim.SetTrigger("castTargetSpell");
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
             newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 40f; //* (2 * skillTree.SkillLevels[0]);

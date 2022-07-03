@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class TurtleAgent : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class TurtleAgent : MonoBehaviour
     private OverallEnemy enemy;
     private bool doDamage;
 
-    private int damage;
+    private float damage;
 
 
     /// <summary>
@@ -24,8 +25,8 @@ public class TurtleAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         health = GetComponent<EnemyHealthHandler>();
 
-        health.Health = 100;
-        damage = 10;
+        health.Health = 500 + enemy.Playerlevel * 5;
+        damage = 10 + enemy.Playerlevel * 2;
     }
 
     /// <summary>
@@ -47,6 +48,7 @@ public class TurtleAgent : MonoBehaviour
     {
         if (doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }

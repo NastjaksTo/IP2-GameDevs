@@ -28,11 +28,19 @@ public class CombatSystem : MonoBehaviour
     public bool invincible = false;
     public bool justrevived;
     public bool isAttacking;
+    public bool shouldPandoraBlock;
 
     private bool inAnimation;
     private bool canDodge = true;
     
-    public List<int> potionTickTimer = new List<int>();
+    public List<float> potionTickTimer = new List<float>();
+
+   
+    public AudioClip[] spellsounds;
+    [Range(0, 1)] public float SpellAudioVolume = 0.5f;
+    public AudioSource HeartBeat;
+    private bool isHeartBeating;
+    
 
     private void Awake()
     {
@@ -43,7 +51,7 @@ public class CombatSystem : MonoBehaviour
     private void Start()
     {
         canusepotion = true;
-        maxpotions = 3;
+        maxpotions = 0;
         refillPotions();
     }
     
@@ -83,14 +91,15 @@ public class CombatSystem : MonoBehaviour
     public IEnumerator ReviveCooldown()
     {
         justrevived = true;
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(240f);
         justrevived = false;
     }
     
     public IEnumerator regeneratingHealth()
     {
-        if (skillTree.skillLevels[9] == 0) regenerationTimer = 0.4f;
-        else regenerationTimer = 0.5f - skillTree.skillLevels[9] * 0.19f;
+       
+        regenerationTimer = 1 * (0.125f - (0.025f * skillTree.skillLevels[9]));
+
         while (potionTickTimer.Count > 0)
         {
             for (int i = 0; i < potionTickTimer.Count; i++)
@@ -105,7 +114,7 @@ public class CombatSystem : MonoBehaviour
         }
     }
 
-    public void applypotion(int ticks)
+    public void applypotion(float ticks)
     {
         if (potionTickTimer.Count <= 0)
         {
@@ -125,20 +134,23 @@ public class CombatSystem : MonoBehaviour
     public void LoseHealth(float amount)
     {
         if (invincible) return;
-
         float damage;
         float spellreduction = 1f;
         bool playerhasrevive = skillTree.skillLevels[15] == 1;
-        
         if (Earth1.earth1IsActive) spellreduction = Earth1.dmgredcution;
-
         if (Earth2.earth2IsActive)
         {
             spellreduction = Earth2.dmgredcution;
             applypotion(100 * (1 + skillTree.skillLevels[8]));
         }
-
-        damage = (amount - playerAttributesScript.currentArmor) * spellreduction;
+        if (playerAttributesScript.currentArmor == 0)
+        {
+            damage = amount * spellreduction;
+        }
+        else
+        {
+            damage = amount - (amount * (playerAttributesScript.currentArmor / 100)) * spellreduction;
+        }
         if (damage > 0)
         {
             playerAttributesScript.currentHealth -= damage;
@@ -157,21 +169,20 @@ public class CombatSystem : MonoBehaviour
 
     public void LightAttack(AnimationEvent animationEvent)
     {
-        Debug.Log("Lightattack");
+        AudioSource.PlayClipAtPoint(spellsounds[2],transform.position, SpellAudioVolume);
         isAttacking = true;
-        Invoke(nameof(StopAttack), 0.025f);
     }
 
     public void StartAttack(AnimationEvent animationEvent)
     {
-        Debug.Log("Startattack");
+        shouldPandoraBlock = true;
         playerAttributesScript.currentStamina -= 8;
         inAnimation = true;
     }
     
     public void StopAttack()
     {
-        Debug.Log("Stopattack");
+        shouldPandoraBlock = false;
         isAttacking = false;
         playerMovement._canMove = true;
         inAnimation = false;
@@ -179,7 +190,7 @@ public class CombatSystem : MonoBehaviour
 
     public void Dodging()
     {
-        Debug.Log("Startdodging");
+        AudioSource.PlayClipAtPoint(spellsounds[0],transform.position, SpellAudioVolume);
         if (!invincible)
         {
             invincible = true;
@@ -225,10 +236,21 @@ public class CombatSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && potions > 0 && !potioncooldown.isCooldown)
         {
             PlayPotionEffect();
+            AudioSource.PlayClipAtPoint(spellsounds[1],transform.position, SpellAudioVolume);
             potions--;
             potionsUI.text = $"{potions}/{maxpotions}";
-            applypotion(100 * (1 + skillTree.skillLevels[9]));
+            applypotion(100 * (1 + (skillTree.skillLevels[9]/2f)));
             potioncooldown.UsePotion(5);
+        }
+
+        if (playerAttributesScript.currentHealth <= 20 && !isHeartBeating)
+        {
+            HeartBeat.Play();
+            isHeartBeating = true;
+        } else if (playerAttributesScript.currentHealth >= 21 && isHeartBeating)
+        {
+            HeartBeat.Stop();
+            isHeartBeating = false;
         }
     }
 }

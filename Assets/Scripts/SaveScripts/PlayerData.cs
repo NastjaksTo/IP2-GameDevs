@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using StarterAssets;
 
 namespace SaveScripts
 {
@@ -17,6 +18,15 @@ namespace SaveScripts
         public int maxpotions;                  // Integer to save the maximum amount of potions carryable by the player.
         public float currentExp;                // Float to save the current experience.
         public float expToLvlUp;                // Float to save the experience needed to level up.
+        public int currentQuestID;
+        public string playerQuestTitle;
+        public string playerQuestDesc;
+        public string playerQuestReward;
+        public bool fireTitanDead;
+        public bool iceTitanDead;
+        public bool earthTitanDead;
+        public float sprintspeed;
+        public float movespeed;
     
         public List<int> savedcollectedLootbags = new List<int>();
 
@@ -28,7 +38,8 @@ namespace SaveScripts
         /// <param name="skillTree">Gets data from SkillTree</param>
         /// <param name="combatSystem">Gets data from CombatSystem</param>
         /// <param name="player">Gets data from SaveData</param>
-        public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, PlayerInventory playerInventory, SaveData player)
+        public PlayerData(LevelSystem levelsystem, PlayerAttributes attributes, SkillTree skillTree, CombatSystem combatSystem, 
+            PlayerInventory playerInventory, SaveData player, PlayerQuests playerQuests, BossArena bossArena)
         {
             level = PlayerSkillsystem.playerskillsystem.playerlevel.GetLevel();
             currentExp = PlayerSkillsystem.playerskillsystem.playerlevel.GetExp();
@@ -39,9 +50,19 @@ namespace SaveScripts
             staminaSkillvalue = skillTree.staminaSkillvalue;
             manaregenValue = attributes.manaRegenerationSpeed;
             staminaregenValue = attributes.staminaRegenerationSpeed;
+            sprintspeed = ThirdPersonController.thirdPersonController.SprintSpeed;
+            movespeed = ThirdPersonController.thirdPersonController.moveSpeed;
             maxpotions = combatSystem.maxpotions;
             savedcollectedLootbags.AddRange(playerInventory.collectedLootbags);
             skilllevels = new int[18];
+            currentQuestID = playerQuests.currentQuestID;
+            playerQuestTitle = playerQuests.titleText.text;
+            playerQuestDesc = playerQuests.descText.text;
+            playerQuestReward = playerQuests.rewardText.text;
+            iceTitanDead = bossArena.isIceTitanAlive;
+            earthTitanDead = bossArena.isEarthTitanAlive;
+            fireTitanDead = bossArena.isFireTitanAlive;
+            
             for (int i = 0; i <= 17; i++)
             {
                 skilllevels[i] = skillTree.skillLevels[i];

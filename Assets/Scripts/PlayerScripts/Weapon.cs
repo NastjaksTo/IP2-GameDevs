@@ -18,8 +18,12 @@ public class Weapon : MonoBehaviour
         if (other.CompareTag("Enemy") && combatSystem.isAttacking)
         {
             currentGo = other.gameObject;
-            Debug.Log("hitting");
+            if (currentGo.name == "Pandora")
+            {
+                if (currentGo.GetComponent<PandoraAgent>().isInvincible) return;
+            }
             currentGo.GetComponent<EnemyHealthHandler>().getDamage((int)playerAttributesScript.physicalDamage);
+            combatSystem.isAttacking = false;
         }
     }
 }

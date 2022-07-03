@@ -24,6 +24,7 @@ public class PlayerAttributes : MonoBehaviour {
     public float manaRegenerationSpeed;
 
     public float physicalDamage;
+    public float magicDamage;
     public float currentArmor;
 
     [HideInInspector] public bool fireKnowladgeEquiped;
@@ -35,6 +36,7 @@ public class PlayerAttributes : MonoBehaviour {
     public TextMeshProUGUI textMaxStamina;           //reference set in editor
     public TextMeshProUGUI textArmor;                //reference set in editor
     public TextMeshProUGUI textPhysicalDamage;       //reference set in editor
+    public TextMeshProUGUI textMagicDamage;       //reference set in editor
 
     private Transform chestOnPlayer;
     private Transform glovesOnPlayer;
@@ -69,7 +71,7 @@ public class PlayerAttributes : MonoBehaviour {
         currentMana = maxMana;
         currentStamina = maxStamina;
 
-        manaRegenerationSpeed = 1;
+        manaRegenerationSpeed = 0.5f;
         staminaRegenerationSpeed = 5;
 
         hasWeaponEquiped = false;
@@ -298,6 +300,10 @@ public class PlayerAttributes : MonoBehaviour {
                 physicalDamage = playerAttributes[i].totalAttributValue.TotalAttributeValue;
             }
 
+            if (playerAttributes[i].type == Attributes.MagicDamage) {
+                magicDamage = playerAttributes[i].totalAttributValue.TotalAttributeValue;
+            }
+
             if (playerAttributes[i].type == Attributes.FireKnowledge) {
                 if (playerAttributes[i].totalAttributValue.TotalAttributeValue == 1) {
                     fireKnowladgeEquiped = true;
@@ -343,6 +349,9 @@ public class PlayerAttributes : MonoBehaviour {
 
             if (playerAttributes[i].type == Attributes.PhysicalDamage)
                 textPhysicalDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
+
+            if (playerAttributes[i].type == Attributes.MagicDamage)
+                textMagicDamage.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();
 
             if (playerAttributes[i].type == Attributes.Armor) {
                 textArmor.text = playerAttributes[i].totalAttributValue.TotalAttributeValue.ToString();

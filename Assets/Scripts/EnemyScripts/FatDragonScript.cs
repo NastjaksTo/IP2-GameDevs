@@ -8,6 +8,7 @@ using static CombatSystem;
 
 public class FatDragonScript : MonoBehaviour
 {
+    public static FatDragonScript dragonBoss;
     private Transform movePositionTransform;
     private PlayerAttributes player;
     private GameObject playerModel;
@@ -26,8 +27,10 @@ public class FatDragonScript : MonoBehaviour
     private float attackRange;
     private bool isdead;
     private float fireBallDamage;
+    private bool isStunned;
 
     private int damage;
+    private float speed;
 
     [SerializeField]
     GameObject standProjectileSpawnpoint;
@@ -39,7 +42,7 @@ public class FatDragonScript : MonoBehaviour
     GameObject fireBall;
 
     [SerializeField]
-    Collider collider;
+    private Collider collider;
 
     public float FireBallDamage { get => fireBallDamage; set => fireBallDamage = value; }
 
@@ -48,6 +51,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        dragonBoss = this;
         playerModel = GameObject.FindGameObjectWithTag("Player");
         movePositionTransform = playerModel.GetComponent<Transform>();
         player = playerModel.GetComponent<PlayerAttributes>();
@@ -62,15 +66,19 @@ public class FatDragonScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 6.0f;
+        isdead = false;
+        attackRange = navMeshAgent.stoppingDistance;
         shotSpeed = 20.0f;
+        speed = navMeshAgent.speed;
+
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-        fireBallDamage = 20;
 
-        health.Health = 100;
-        damage = 20;
+        fireBallDamage = 20 + playerskillsystem.playerlevel.GetLevel() * 2;
+        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
+        health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
+
     }
 
     /// <summary>
@@ -92,10 +100,11 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void WalkOrAttack()
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
+            animator.SetBool("Walk", true);
             navMeshAgent.destination = movePositionTransform.position;
-            navMeshAgent.speed = 5;
             collider.isTrigger = false;
             idle = false;
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
@@ -117,12 +126,12 @@ public class FatDragonScript : MonoBehaviour
                 }
                 if(attackSwitchRange > 5 && attackSwitchRange <= 10)
                 {
-                    navMeshAgent.speed = 5;
+                    navMeshAgent.speed = speed;
                     animator.SetBool("Walk", true);
                 }
                 if (attackSwitchRange > 10)
                 {
-                    navMeshAgent.speed = 2;
+                    navMeshAgent.speed = speed / 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Shoot");
                     collider.isTrigger = true;
@@ -131,7 +140,8 @@ public class FatDragonScript : MonoBehaviour
         }
         if (!fov.CanSeePlayer)
         {
-            navMeshAgent.speed = 5;
+            navMeshAgent.speed = speed;
+            animator.SetBool("Walk", true);
             navMeshAgent.destination = spawnpoint;
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
@@ -148,6 +158,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        if (isStunned) return;
         navMeshAgent.speed = 0;
         animator.SetBool("Walk", false);
         animator.SetBool("Idle", true);
@@ -198,18 +209,31 @@ public class FatDragonScript : MonoBehaviour
                 health.Hit = false;
             }
 
-
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(1500);
+                playerskillsystem.playerlevel.AddExp(3000);
             }
         }
     }
 
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+    
     /// <summary>
     /// if the Enemy is able to hit the Player, the Player is getting damaged.
     /// </summary>
