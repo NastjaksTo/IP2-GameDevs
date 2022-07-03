@@ -186,7 +186,6 @@ public class UiScreenManager : MonoBehaviour {
 
     //------------- IN menu UI -------------
 
-
     public void OpenMenuUi() {
         pauseMenuUi.SetActive(true);
     }
@@ -249,6 +248,22 @@ public class UiScreenManager : MonoBehaviour {
     }
 
 
+    public void SwappInventoryQuestUi()
+    {
+        if (_inventoryUiOpen)
+        {
+            CloseInventoryUi();
+            OpenQuestUi();
+        }
+        else if (_questUiOpen)
+        {
+            CloseQuestUi();
+            OpenInventoryUi();
+        }
+    }
+
+
+
     /// <summary>
     /// Checks each frame the input for the keys I and Esc
     /// On I and if the DeathUi is closed: close the inventoryUI when its open, or open it if its closed and the menu is not opened.
@@ -303,14 +318,7 @@ public class UiScreenManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Tab) && (_inventoryUiOpen || _questUiOpen)) {
-
-            if (_inventoryUiOpen) {
-                CloseInventoryUi();
-                OpenQuestUi();
-            } else if (_questUiOpen) {
-                CloseQuestUi();
-                OpenInventoryUi();
-            }
+            SwappInventoryQuestUi();
         }
     }
 }

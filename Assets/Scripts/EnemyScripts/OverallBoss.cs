@@ -66,7 +66,7 @@ public class OverallBoss : MonoBehaviour
         doDamage = false;
         magicDirection = 0.5f;
 
-        health.Health = 600 + playerlevel * 100;
+        health.Health = 3000 + playerlevel * 100;
         damage = 30 + playerlevel * 5;
         elementalDamage = 4 + playerlevel / 4;
     }

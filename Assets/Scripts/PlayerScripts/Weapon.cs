@@ -22,8 +22,8 @@ public class Weapon : MonoBehaviour
             {
                 if (currentGo.GetComponent<PandoraAgent>().isInvincible) return;
             }
-            Debug.Log("hitting");
             currentGo.GetComponent<EnemyHealthHandler>().getDamage((int)playerAttributesScript.physicalDamage);
+            combatSystem.isAttacking = false;
         }
     }
 }

@@ -20,7 +20,7 @@ public class LevelSystem
     {
         level = 1;
         exp = 0;
-        skillpoints = 100;
+        skillpoints = 0;
         expToLevelUp = 500;
     }
 

@@ -199,17 +199,20 @@ public class SkeletonAgent : MonoBehaviour
     
     public void GetDamage(string Hit, string Die, int Exp)
     {
+
         if (healthHandler.Hit)
         {
+
+
             if (healthHandler.Health > 0)
             {
-                Debug.Log("is getting hit");
-                anim.Play("Hit");
                 healthHandler.Hit = false;
             }
             
-            if (healthHandler.Dead && !isDead)
+            if (healthHandler.Health <= 0 && !isDead)
             {
+                Debug.Log(health);
+                Debug.Log(healthHandler.Health);
                 isDead = true;
                 anim.SetTrigger(Die);
                 agent.speed = 0;

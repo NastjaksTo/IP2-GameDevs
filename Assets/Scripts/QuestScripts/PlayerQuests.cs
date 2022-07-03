@@ -50,7 +50,7 @@ public class PlayerQuests : MonoBehaviour
             QuestGiver currentQuestGiver = other.gameObject.GetComponent<QuestGiver>();
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
             {
-                SetQuestGiverUI("You", "What just happend? What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this.  \n  \n" + "Move - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
+                SetQuestGiverUI("You", "What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this.  \n  \n" + "Move - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
 
                 SetQuest(other.gameObject);
                 currentQuestID++;
@@ -149,7 +149,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Go back to the priest.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Priest", "brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                SetQuestGiverUI("Priest", "Raya? I should go an shave my legs.");
                 SetQuest(other.gameObject);
                 currentQuestID++;
                 rayaEntrance.SetActive(false);
@@ -186,9 +186,9 @@ public class PlayerQuests : MonoBehaviour
         completionText.text = "Quest complete: Find and defeat the titans.";
         completionUI.SetActive(true);
         StartCoroutine(closeCompletionUI());
-        SetQuestGiverUI("YOU", "grrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+        SetQuestGiverUI("Raya", "You fool! You thought you could save the world by defeating my titans? You will never be a hero. And now... feel my wrath.");
         playerQuests.titleText.text = "Go back to the priest.";
-        playerQuests.descText.text = "BLABLABLABLA";
+        playerQuests.descText.text = "Ask the priest for informations about Raya.";
         playerQuests.rewardText.text = "1000";
         currentQuestID++;
     }
