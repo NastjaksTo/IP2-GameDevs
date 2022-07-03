@@ -4319,6 +4319,7 @@ GameObject:
   - component: {fileID: 4344444843945759347}
   - component: {fileID: 8978027715576546274}
   - component: {fileID: 4344444843938610646}
+  - component: {fileID: 8339321190785166152}
   m_Layer: 30
   m_Name: SkelettMeleeSix
   m_TagString: Enemy
@@ -4498,6 +4499,20 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!136 &8339321190785166152
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344444843938505214}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.17
+  m_Height: 1.75
+  m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8606844412835043732
 GameObject:
