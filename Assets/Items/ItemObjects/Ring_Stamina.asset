@@ -19,8 +19,15 @@ MonoBehaviour:
   uiDisplayImage: {fileID: 21300000, guid: d5f7a1d647f0a6a45a73fa7891b6c090, type: 3}
   istStackable: 0
   itemType: 9
-  itemDescription: "The one ring to to run.\n\n- 50  max Health\n- 50  max Mana\n+100
-    max Stamina"
+  itemDescription: 'The one ring to to run.
+
+
+    - 50  max Health
+
+    - 50  max
+    Mana
+
+    +100 max Stamina'
   data:
     Id: 14
     buffs:

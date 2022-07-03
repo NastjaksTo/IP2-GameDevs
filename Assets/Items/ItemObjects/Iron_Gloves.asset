@@ -19,12 +19,13 @@ MonoBehaviour:
   uiDisplayImage: {fileID: 21300000, guid: e0d519aec4ba21640aa947cee4b4b978, type: 3}
   istStackable: 0
   itemType: 6
-  itemDescription: 'Gloves made of iron.
+  itemDescription: 'Gloves forged from the iron of an iron titan.
 
 
     + 5 Armor
 
-    - 5 Stamina'
+    -
+    5 Stamina'
   data:
     Id: 5
     buffs:

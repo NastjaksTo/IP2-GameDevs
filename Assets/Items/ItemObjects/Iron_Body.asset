@@ -19,12 +19,13 @@ MonoBehaviour:
   uiDisplayImage: {fileID: 21300000, guid: aaadf1a99b864dd4b895b7bbdc871303, type: 3}
   istStackable: 0
   itemType: 1
-  itemDescription: 'Armor made from Iron.
+  itemDescription: 'Boots forged from the iron of an iron titan.
 
 
     + 25 Armor
 
-    - 25 Stamina'
+    -
+    25 Stamina'
   data:
     Id: 3
     buffs:

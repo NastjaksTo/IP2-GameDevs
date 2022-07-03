@@ -19,12 +19,13 @@ MonoBehaviour:
   uiDisplayImage: {fileID: 21300000, guid: 9b183b631392a2d41abd14c6dae584e5, type: 3}
   istStackable: 0
   itemType: 8
-  itemDescription: 'Trousers made of iron.
+  itemDescription: 'Trousers forged from the iron of an iron titan.
 
 
     + 15 Armor
 
-    - 15 Stamina'
+    -
+    15 Stamina'
   data:
     Id: 18
     buffs:
