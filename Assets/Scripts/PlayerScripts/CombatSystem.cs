@@ -134,13 +134,10 @@ public class CombatSystem : MonoBehaviour
     public void LoseHealth(float amount)
     {
         if (invincible) return;
-
         float damage;
         float spellreduction = 1f;
         bool playerhasrevive = skillTree.skillLevels[15] == 1;
-        
         if (Earth1.earth1IsActive) spellreduction = Earth1.dmgredcution;
-
         if (Earth2.earth2IsActive)
         {
             spellreduction = Earth2.dmgredcution;
@@ -154,7 +151,6 @@ public class CombatSystem : MonoBehaviour
         {
             damage = amount - (amount * (playerAttributesScript.currentArmor / 100)) * spellreduction;
         }
-       
         if (damage > 0)
         {
             playerAttributesScript.currentHealth -= damage;

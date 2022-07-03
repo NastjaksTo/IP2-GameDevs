@@ -149,7 +149,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Go back to the priest.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Priest", "Raya? I should go an shave my legs.");
+                SetQuestGiverUI("Priest", "Raya? She is here? You have to defeat here or else we our beautiful world will be doomed! People talked about a loud noise coming from the entrance to the ravine. You should check this out first.");
                 SetQuest(other.gameObject);
                 currentQuestID++;
                 rayaEntrance.SetActive(false);

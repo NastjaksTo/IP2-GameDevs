@@ -321,7 +321,7 @@ public class PandoraAgent : MonoBehaviour
     {
         alreadyAttacked = true;
         var attackThree = Instantiate(orb, player.position+transform.up*2.33f, Quaternion.identity);
-        Destroy(attackThree, 25f);
+        Destroy(attackThree, 20f);
         Invoke(nameof(ResetAttack), timeBetweenAttacks);
         anim.SetBool("attackThree", false);
     }
@@ -345,11 +345,11 @@ public class PandoraAgent : MonoBehaviour
         agent.speed += 5;
         agent.SetDestination(transform.position);
         alreadyAttacked = true;
-        applypotion(25);
+        applypotion(100);
         PlayPotionEffect();
         AudioSource.PlayClipAtPoint(spellsounds[3],transform.position, SpellAudioVolume);
         var aoetwo = Instantiate(aoeTwo, transform.position + transform.up * 3.5f, Quaternion.identity);
-        Destroy(aoetwo, 13f);
+        Destroy(aoetwo, 11f);
         anim.SetBool("screamingTwo", false);
     }
     
