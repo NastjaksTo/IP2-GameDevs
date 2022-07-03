@@ -20,7 +20,7 @@ public class PandoraAgent : MonoBehaviour
 
     public EnemyHealthHandler healthHandler;
     public float health;
-    public float maxHealth = 15000;
+    public float maxHealth = 10000;
     
     private bool walkPointSet;
     private bool hasPatrollingCooldown;
@@ -64,7 +64,7 @@ public class PandoraAgent : MonoBehaviour
     public float regenerationTimer;
     public GameObject potioneffect;
 
-    public List<int> potionTickTimer = new List<int>();
+    public List<float> pandoraHealtTimer = new List<float>();
 
     public bool isInvincible;
     private bool hasDodgeCooldown;
@@ -345,7 +345,7 @@ public class PandoraAgent : MonoBehaviour
         agent.speed += 5;
         agent.SetDestination(transform.position);
         alreadyAttacked = true;
-        applypotion(125);
+        applypotion(25);
         PlayPotionEffect();
         AudioSource.PlayClipAtPoint(spellsounds[3],transform.position, SpellAudioVolume);
         var aoetwo = Instantiate(aoeTwo, transform.position + transform.up * 3.5f, Quaternion.identity);
@@ -426,27 +426,27 @@ public class PandoraAgent : MonoBehaviour
     public IEnumerator regeneratingHealth()
     {
         regenerationTimer = 0.1f;
-        while (potionTickTimer.Count > 0)
+        while (pandoraHealtTimer.Count > 0)
         {
-            for (int i = 0; i < potionTickTimer.Count; i++)
+            for (int i = 0; i < pandoraHealtTimer.Count; i++)
             {
-                potionTickTimer[i]--;
+                pandoraHealtTimer[i]--;
             }
             if (healthHandler.Health < maxHealth) healthHandler.Health += 20;
-            else potionTickTimer.Clear();
-            potionTickTimer.RemoveAll(i => i == 0);
+            else pandoraHealtTimer.Clear();
+            pandoraHealtTimer.RemoveAll(i => i == 0);
             yield return new WaitForSeconds(regenerationTimer);
         }
     }
 
-    public void applypotion(int ticks)
+    public void applypotion(float ticks)
     {
-        if (potionTickTimer.Count <= 0)
+        if (pandoraHealtTimer.Count <= 0)
         {
-            potionTickTimer.Add(ticks);
+            pandoraHealtTimer.Add(ticks);
             StartCoroutine(regeneratingHealth());
         }
-        else potionTickTimer.Add(ticks);
+        else pandoraHealtTimer.Add(ticks);
     }
     
     public void PlayPotionEffect()

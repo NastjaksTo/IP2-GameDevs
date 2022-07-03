@@ -814,7 +814,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 2147483648
-  health: 1500
+  health: 1000
   projectile: {fileID: 1117842336957138049, guid: 48a6218c30d4e5a448d3c6ccc2f1f060, type: 3}
   spawner: {fileID: 4867023147683935744}
   walkpoint: {x: 0, y: 0, z: 0}
@@ -825,7 +825,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   isAttacking: 0
-  sworddamage: 25
+  sworddamage: 20
   skeletonName: SkeletonFour
 --- !u!114 &6377933011385459492
 MonoBehaviour:
@@ -867,6 +867,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStunned: 0
+  sightRange: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1751959056101765816
 MonoBehaviour:
   m_ObjectHideFlags: 0

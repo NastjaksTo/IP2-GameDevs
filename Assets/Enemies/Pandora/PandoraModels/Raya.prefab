@@ -5229,8 +5229,9 @@ MonoBehaviour:
   whatIsWeapon:
     serializedVersion: 2
     m_Bits: 2048
-  health: 500
-  maxHealth: 500
+  healthHandler: {fileID: 0}
+  health: 10000
+  maxHealth: 10000
   timeBetweenAttacks: 3
   sightRange: 33
   attackRange: 22
@@ -5252,7 +5253,7 @@ MonoBehaviour:
   SpellAudioVolume: 0.5
   regenerationTimer: 0
   potioneffect: {fileID: 456768341000717931, guid: 2e2ac8fa38213974c83563a27ea5ed46, type: 3}
-  potionTickTimer: 
+  pandoraHealtTimer: []
   isInvincible: 0
   shield: {fileID: 7683461493747893127}
 --- !u!114 &8290636766066081732

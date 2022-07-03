@@ -28,7 +28,7 @@ public class PandoraAttack1 : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             AudioSource.PlayClipAtPoint(sounds, transform.position, 1);
-            combatSystem.LoseHealth(75);
+            combatSystem.LoseHealth(50);
             Destroy(gameObject, 2f);
         }
         if(other.gameObject.layer == 3 || other.gameObject.layer == 8) Destroy(gameObject);

@@ -28,6 +28,10 @@ public class OverallEnemy : MonoBehaviour
 
     private bool isdead;
     private bool defend;
+    
+    public float sightRange;
+    public LayerMask whatIsPlayer;
+    private bool playerInSightRange;
     public float Playerlevel { get => playerlevel; set => playerlevel = value; }
 
     /// <summary>
@@ -54,6 +58,8 @@ public class OverallEnemy : MonoBehaviour
 
         defend = false;
         isdead = false;
+
+        sightRange = 6.5f;
     }
 
     /// <summary>
@@ -67,6 +73,8 @@ public class OverallEnemy : MonoBehaviour
         timer += Time.deltaTime;
         playerlevel = playerskillsystem.playerlevel.GetLevel();
         health.Defend = defend;
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        if(playerInSightRange) transform.LookAt(new Vector3 (movePositionTransform.position.x, transform.position.y, movePositionTransform.position.z));
     }
 
     /// <summary>
@@ -79,6 +87,13 @@ public class OverallEnemy : MonoBehaviour
     {
         attackSwitch = Random.Range(begin, end);
     }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
 
     /// <summary>
     /// if the Enemy can see the Player, it is chasing the Player, till the Player cant be seen anymore or the Player is in Attackrange

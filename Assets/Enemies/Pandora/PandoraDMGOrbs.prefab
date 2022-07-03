@@ -9538,6 +9538,7 @@ GameObject:
   - component: {fileID: 5636362230495765551}
   - component: {fileID: 5542126143877645505}
   - component: {fileID: 3488987873631420644}
+  - component: {fileID: -8224059374177045599}
   - component: {fileID: 5601632871136290440}
   - component: {fileID: -4160435115460808692}
   m_Layer: 0
@@ -14305,7 +14306,19 @@ MonoBehaviour:
   x: 0
   y: 0
   z: 0
-  damage: 4
+--- !u!114 &-8224059374177045599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5633075034844788905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d471d899bb566f419db02cc426d0f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!135 &5601632871136290440
 SphereCollider:
   m_ObjectHideFlags: 0

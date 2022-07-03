@@ -650,6 +650,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStunned: 0
+  sightRange: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 2147483648
 --- !u!82 &8169578646571144120
 AudioSource:
   m_ObjectHideFlags: 0

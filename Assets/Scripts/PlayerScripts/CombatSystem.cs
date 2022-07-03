@@ -152,7 +152,7 @@ public class CombatSystem : MonoBehaviour
         }
         else
         {
-            damage = amount * (playerAttributesScript.currentArmor / 100) *spellreduction;
+            damage = amount - (amount * (playerAttributesScript.currentArmor / 100)) * spellreduction;
         }
        
         if (damage > 0)

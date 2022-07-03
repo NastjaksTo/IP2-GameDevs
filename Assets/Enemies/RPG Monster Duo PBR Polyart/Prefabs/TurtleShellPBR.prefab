@@ -1058,6 +1058,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStunned: 0
+  sightRange: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 2147483648
 --- !u!114 &7922038695283298572
 MonoBehaviour:
   m_ObjectHideFlags: 0
