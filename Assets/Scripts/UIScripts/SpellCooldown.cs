@@ -7,29 +7,36 @@ using TMPro;
 
 public class SpellCooldown : MonoBehaviour
 {
-    [SerializeField] private Image imageCooldown;
-    [SerializeField] private TMP_Text textCooldown;
+    [SerializeField] private Image imageCooldown;           // Reference to the image.
+    [SerializeField] private TMP_Text textCooldown;         // Reference to the text.
 
-    public bool isCooldown;
-    [SerializeField] private float cooldownTime = 10f;
-    [SerializeField] private float cooldownTimer = 5f;
+    public bool isCooldown;                                 // Bool to check whether or not the spell is on cooldown.
+    [SerializeField] private float cooldownTime = 10f;      // Float to save the cooldown time.
+    [SerializeField] private float cooldownTimer = 5f;      // Float to save the timer for the cooldown.
 
-    public static SpellCooldown spellcooldown;
+    public static SpellCooldown spellcooldown;              // Creates a static reference to this script.
 
+    /// <summary>
+    /// Assigns each value accordingly.
+    /// </summary>
     private void Awake()
     {
         isCooldown = false;
         spellcooldown = this;
     }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Sets cooldown to 0 when game starts.
+    /// </summary>
     void Start()
     {
         textCooldown.gameObject.SetActive(false);
         imageCooldown.fillAmount = 0f;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Checks if spell should be on cooldown, if it is then apply the cooldown.
+    /// </summary>
     void Update()
     {
         if (isCooldown)
@@ -38,6 +45,9 @@ public class SpellCooldown : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies the cooldown effect.
+    /// </summary>
     void ApplyCooldown()
     {
         cooldownTimer -= Time.deltaTime;
@@ -56,6 +66,10 @@ public class SpellCooldown : MonoBehaviour
         
     }
     
+    /// <summary>
+    /// Use the spell and assign its cooldown.
+    /// </summary>
+    /// <param name="cooldown">Gets the cooldown time.</param>
     public void UseSpell(float cooldown)
     {
         cooldownTime = cooldown;

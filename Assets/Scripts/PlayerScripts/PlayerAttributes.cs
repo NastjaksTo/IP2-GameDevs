@@ -9,7 +9,7 @@ using static SkillTree;
 public class PlayerAttributes : MonoBehaviour {
     public static PlayerAttributes playerAttributesScript;
 
-    public InventoryObject playerEquipment;     //reference to the EquipObject from the player. Referenz set in editor
+    public InventoryObject playerEquipment;     //reference to the EquipObject from the player. Reference set in editor
     public Attribute[] playerAttributes;        //array of the attributes that the player have. Attributes set in editor
 
     public int maxHealth;
@@ -31,17 +31,12 @@ public class PlayerAttributes : MonoBehaviour {
     [HideInInspector] public bool iceKnowladgeEquiped;
     [HideInInspector] public bool earthKnowladgeEquiped;
 
-    public TextMeshProUGUI textHealthPoints;         //reference set in editor
-    public TextMeshProUGUI textMaxMana;              //reference set in editor
-    public TextMeshProUGUI textMaxStamina;           //reference set in editor
-    public TextMeshProUGUI textArmor;                //reference set in editor
-    public TextMeshProUGUI textPhysicalDamage;       //reference set in editor
-    public TextMeshProUGUI textMagicDamage;       //reference set in editor
-
-    private Transform chestOnPlayer;
-    private Transform glovesOnPlayer;
-    private Transform trousersOnPlayer;
-    private Transform bootsOnPlayer;
+    public TextMeshProUGUI textHealthPoints;        
+    public TextMeshProUGUI textMaxMana;              
+    public TextMeshProUGUI textMaxStamina;           
+    public TextMeshProUGUI textArmor;                
+    public TextMeshProUGUI textPhysicalDamage;      
+    public TextMeshProUGUI textMagicDamage;       
 
     private GameObject weaponOnPlayer;
     public Transform weaponTransform;
@@ -50,9 +45,9 @@ public class PlayerAttributes : MonoBehaviour {
     private void Awake() => playerAttributesScript = this;
 
     /// <summary>
-    /// loob through all attributes of the player and set the parent.
-    /// loop  through the equipment and set the funktioncs
-    /// set the default player values, attribute values and set the disyplay of the attributes
+    /// loop through all attributes of the player and set the parent.
+    /// loop  through the equipment and set the functions
+    /// set the default player values, attribute values and set the display of the attributes
     /// </summary>
     private void Start() {
         for (int i = 0; i < playerAttributes.Length; i++) {
@@ -80,11 +75,11 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     /// <summary>
-    /// Remove the buff in the slot, from the player.
+    /// Remove the buff in the slot, from the player and change the his clothes;
     /// </summary>
     /// <param name="_slot">the slot with the item that is removed</param>
     public void OnRemoveItemFromEquip(InventorySlot _slot) {
-        if (_slot.ItemObject == null) { //wenn vorher nichts im slot ist
+        if (_slot.ItemObject == null) {
             return;
         }
         switch (_slot.parentUserInterface.inventory.type) {
@@ -95,13 +90,13 @@ public class PlayerAttributes : MonoBehaviour {
 
                 for (int i = 0; i < _slot.itemInInventorySlot.buffs.Length; i++) {
                     for (int j = 0; j < playerAttributes.Length; j++) {
-                        if (playerAttributes[j].type == _slot.itemInInventorySlot.buffs[i].attribute) { //wenn das attribut des items, dass gleiche ist wie auf dem Characterr
+                        if (playerAttributes[j].type == _slot.itemInInventorySlot.buffs[i].attribute) {
                             playerAttributes[j].totalAttributValue.RemoveModifier(_slot.itemInInventorySlot.buffs[i]);
                         }
                     }
                 }
 
-                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausger�stete Item etwas hat, was den Char angezogen werden kann
+                if (_slot.ItemObject.characterDisplay != null) {
                     switch (_slot.AllowedItems[0]) {
                         case ItemType.Weapon:
                             Destroy(weaponOnPlayer?.gameObject);
@@ -167,7 +162,7 @@ public class PlayerAttributes : MonoBehaviour {
     }
 
     /// <summary>
-    /// Add the buff of the item in the slot to the player
+    /// Add the buff of the item in the slot to the player and change his clothes
     /// </summary>
     /// <param name="_slot">the slot with the item that is add</param>
     public void OnAddItemToEquip(InventorySlot _slot) {
@@ -189,7 +184,7 @@ public class PlayerAttributes : MonoBehaviour {
                     }
                 }
 
-                if (_slot.ItemObject.characterDisplay != null) { //wenn das ausgeruestete Item etwas hat, was den Char angezogen werden kann
+                if (_slot.ItemObject.characterDisplay != null) { //if the equipped item has something that can be put on the char
                     switch (_slot.AllowedItems[0]) {
                         case ItemType.Weapon:
                             weaponOnPlayer = Instantiate(_slot.ItemObject.characterDisplay, weaponTransform);
@@ -201,7 +196,7 @@ public class PlayerAttributes : MonoBehaviour {
                     }
                 }
 
-                if (_slot.ItemObject.characterDisplayName != null) { //wenn das ausgeruestete Item etwas hat, was den Char angezogen werden kann
+                if (_slot.ItemObject.characterDisplayName != null) { 
                     switch (_slot.AllowedItems[0]) {
                         case ItemType.Armor:
                             var bodyName = _slot.ItemObject.characterDisplayName.ToString();
@@ -360,6 +355,9 @@ public class PlayerAttributes : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// regenerate mana and stamina
+    /// </summary>
     private void Update() {
         if (currentMana < maxMana) {
             currentMana += manaRegenerationSpeed * Time.deltaTime;

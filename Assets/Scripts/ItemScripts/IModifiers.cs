@@ -8,8 +8,8 @@ using UnityEngine;
 public interface IModifiers {
 
     /// <summary>
-    /// Add the baseBuffValue to the referenzt value and set the referenzt value to the result.
+    /// Add the baseBuffValue to the reference value and set the reference value to the result.
     /// </summary>
-    /// <param name="baseBuffValue">Total value of the buffs for the attribute before the new buff was added./param> 
+    /// <param name="baseBuffValue">Total value of the buffs for the attribute before the new buff was added.</param> 
     void AddValue(ref int baseBuffValue);
 }

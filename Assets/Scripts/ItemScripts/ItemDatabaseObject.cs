@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// Hold all itemsObjects that exist in the game and gives them an ID. This way you don't have to give each item an ID manually. A ItemDatabaseObject can be created in the editor.
-/// Extend ISerializationCallbackReceiver -> unity dont serialize dictinarys. So we use the two callbacks to manually serialize it.
+/// Extend ISerializationCallbackReceiver -> unity dont serialize dictionary. So we use the two callbacks to manually serialize it.
 /// </summary>
 [CreateAssetMenu(fileName = "New Item Database", menuName ="Inventory System/Items/Database")]
 public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiver {

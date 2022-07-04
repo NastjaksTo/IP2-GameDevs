@@ -4,14 +4,14 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Describes the ineraction of the player with the collectible Items on the map. 
-/// Connects the player with his inventories.
+/// Describes the interaction of the player with the collectible Items on the map. 
+/// Connects the player with his inventories (the inventory objects).
 /// </summary>
 public class PlayerInventory : MonoBehaviour {
 
-    public InventoryObject playerInventory;             // reference to the player's inventory inventory. referenz set in editor
-    public InventoryObject playerEquipment;             // reference to the player's equipment inventory. referenz set in editor
-    public PlayeInteractionAlert collectAlert;          // referenz set in editor
+    public InventoryObject playerInventory;             // reference to the player's inventory inventory. reference set in editor
+    public InventoryObject playerEquipment;             // reference to the player's equipment inventory. reference set in editor
+    public PlayeInteractionAlert collectAlert;          // reference set in editor
 
     private GroundItem item;
     private GroundItemBag itemBag;
@@ -24,7 +24,7 @@ public class PlayerInventory : MonoBehaviour {
 
     /// <summary>
     /// When the player collides with something, it is checked whether it is an item or a itemBag.
-    /// If it ist a item or a itemBag: the collect alert displayed and the item or the itemBag is temporarily stored.
+    /// If its a item or a itemBag: the collect alert displayed and the item or the itemBag is temporarily stored.
     /// </summary>
     /// <param name="other">The object with which the player collides.</param>
     public void OnTriggerEnter(Collider other) {
@@ -34,8 +34,8 @@ public class PlayerInventory : MonoBehaviour {
             itemBag = other.GetComponent<GroundItemBag>();
         }
     }
-    public void Awake()
-    {
+
+    public void Awake(){
         p_Inventory = this;
     }
     /// <summary>
@@ -105,10 +105,8 @@ public class PlayerInventory : MonoBehaviour {
 
 
     /// <summary>
-    /// Checks each frame the input for the key P, L and E.
-    /// On P: Save the current inventory and equipment of the player.
-    /// On L: Loads the player's last saved inventory and equipment.
-    /// On E: Collect an item or bag of items if one is available.
+    /// Checks each frame the input for the key E.
+    /// ///Collect an item or bag of items if one is available.
     /// </summary>
     private void Update() {
         if (Input.GetKeyDown(KeyCode.E)) 
@@ -132,9 +130,12 @@ public class PlayerInventory : MonoBehaviour {
         playerEquipment.Clear();
     }
 
-
+    /// <summary>
+    /// close the alert for adding an item to the inventory after 8 seconds
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator closeAddItemAlert() {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(8);
         addItemAlert.SetActive(false);
     }
 }

@@ -34,11 +34,11 @@ public class PlayerSkillsystem : MonoBehaviour
     public GameObject lvlupeffect;                          // Reference to the level up visual effect.
     public TextMeshProUGUI textCurrentLevel;                // Reference to the UI text element for the current level.
 
-    private Animator anim;
-    private CharacterController controller;
+    private Animator anim;                                  // Reference to the Animator of the player.
+    private CharacterController controller;                 // Reference to the Character Controller of the player.
 
-    public AudioClip[] spellsounds;
-    [Range(0, 1)] public float SpellAudioVolume = 0.5f;
+    public AudioClip[] spellsounds;                         // Array of audio clips to play when needed.
+    [Range(0, 1)] public float SpellAudioVolume = 0.5f;     // Float to set the volume of each audio clip.
     
     /// <summary>
     /// When the script instance is loaded, create a new levelsystem from the LevelSystem script.
@@ -104,6 +104,9 @@ public class PlayerSkillsystem : MonoBehaviour
         playerAttributesScript.staminaRegenerationSpeed += 1.5f;
     }
     
+    /// <summary>
+    /// Increases the movement and sprint speed of the player when called.
+    /// </summary>
     public void ManageStamina3()
     {
         ThirdPersonController.thirdPersonController.moveSpeed += 4;
@@ -224,11 +227,19 @@ public class PlayerSkillsystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Animation Event, gets called when an Animation starts.
+    /// Stops the player from moving.
+    /// </summary>
     public void StartCasting()
     {
         ThirdPersonController.thirdPersonController._canMove = false;
     }
-
+    
+    /// <summary>
+    /// Animation Event, gets called when an Animation ends.
+    /// Makes the player able to move again.
+    /// </summary>
     public void StopCasting()
     {
         ThirdPersonController.thirdPersonController._canMove = true;

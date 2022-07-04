@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using static PlayerSkillsystem;
 
 /// <summary>
-/// Display the playerstats (nur Balken)
+/// Display the stats of the player in the HUD
 /// </summary>
 public class PlayerStatDisplay : MonoBehaviour {
     public PlayerAttributes player;
@@ -26,7 +26,7 @@ public class PlayerStatDisplay : MonoBehaviour {
 
 
     /// <summary>
-    /// Update each frame the values to display it. Open the Death screen when the player have no healthpoint.
+    /// Update each frame the values to display it.
     /// </summary>
     void Update() {
 

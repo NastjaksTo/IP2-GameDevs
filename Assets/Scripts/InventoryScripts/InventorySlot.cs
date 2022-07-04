@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Delegates are used to pass methods as arguments to other methods 
 /// </summary>
-/// <param name="_slot"></param>
+/// <param name="_slot">the slot that should be updated</param>
 public delegate void SlotUpdated(InventorySlot _slot);
 
 
@@ -17,7 +15,7 @@ public class InventorySlot {
 
     public ItemType[] AllowedItems = new ItemType[0];                               //list of allowed items for the slot - 0 = all item types are allowed
     [System.NonSerialized] public InventoryInterface parentUserInterface;
-    [System.NonSerialized] public GameObject slotDisplay;                           //referenz to the display of the slot
+    [System.NonSerialized] public GameObject slotDisplay;                           //reference to the display of the slot
     [System.NonSerialized] public SlotUpdated OnAfterUpdate;
     [System.NonSerialized] public SlotUpdated OnBeforeUpdate;
     public Item itemInInventorySlot;                                
@@ -34,7 +32,7 @@ public class InventorySlot {
 
    public ItemObject ItemObject {
         get {
-            if (itemInInventorySlot.Id >= 0) { //wenn dass Item exestiert
+            if (itemInInventorySlot.Id >= 0) { //if the Item exist
                 return parentUserInterface.inventory.database.ItemObjects[itemInInventorySlot.Id];
             }
             return null;

@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using static PlayerAttributes;
 
-public class PlayerDisplay : MonoBehaviour
-{
+/// <summary>
+/// Display the current active spell on the UI
+/// </summary>
+public class PlayerDisplay : MonoBehaviour{
     public static PlayerDisplay playerDisplay;
     
     public GameObject spellUI;
