@@ -57,7 +57,6 @@ public class SaveData : MonoBehaviour
             equipment.Clear();
         }
 
-        
     }
 
     /// <summary>
