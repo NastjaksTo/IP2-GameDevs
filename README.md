@@ -10,8 +10,7 @@ Clemens Weber.
 This is our IP2 Project **Rise of a Legend**. 
 For more detailed information about the project have a look at the [Project dokumentation](https://confluence.mni.thm.de/display/SMSIP2SS22G3/SMS+IP-2+SoSe+2022%3A+Gruppe+3+Startseite).
 
-For more detailed information about the code have a look at the Code dokumentation: IP2-GameDevs/Assets/Docs/
-
+For more detailed information about the code have a look at the [Code dokumentation](https://drive.google.com/drive/folders/1v9l3Fb8pXi8aOR6cjQyc50UTz2wPxmR5?usp=sharing)
 
 ## Set up the project for development
 1. Download and Install Unity(Hub): https://unity3d.com/de/get-unity/download
