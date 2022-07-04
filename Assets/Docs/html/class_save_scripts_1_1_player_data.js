@@ -1,0 +1,26 @@
+var class_save_scripts_1_1_player_data =
+[
+    [ "PlayerData", "class_save_scripts_1_1_player_data.html#a0f1b130545c3a4646437b391f18913b7", null ],
+    [ "currentExp", "class_save_scripts_1_1_player_data.html#a3402690d1f6f12fe9adb47e53d7a75e9", null ],
+    [ "currentQuestID", "class_save_scripts_1_1_player_data.html#aba907c6e51ac4133dec4cd93470f31e6", null ],
+    [ "earthTitanDead", "class_save_scripts_1_1_player_data.html#ac6d4e99b32660b18eb305fbecbdad719", null ],
+    [ "expToLvlUp", "class_save_scripts_1_1_player_data.html#ae8e3ce7ef7c8a16b6aeecb6d4b666abe", null ],
+    [ "fireTitanDead", "class_save_scripts_1_1_player_data.html#a269d2a552416b45fab0627ff00491d04", null ],
+    [ "health", "class_save_scripts_1_1_player_data.html#a2d29380578307d2e92c8d6d88fce171f", null ],
+    [ "healthSkillvalue", "class_save_scripts_1_1_player_data.html#adae557c270a7022013c74a81a7d66434", null ],
+    [ "iceTitanDead", "class_save_scripts_1_1_player_data.html#a118b19d2f58ee5fa432a281755e3ef8a", null ],
+    [ "level", "class_save_scripts_1_1_player_data.html#ac601192c4bda1cc3d5220b7a35167b5d", null ],
+    [ "manaregenValue", "class_save_scripts_1_1_player_data.html#a1cceb74466e3ef99498136b3bb40038f", null ],
+    [ "manaSkillvalue", "class_save_scripts_1_1_player_data.html#a7f04edcdca325d2acb1d284d029ca567", null ],
+    [ "maxpotions", "class_save_scripts_1_1_player_data.html#ab1be30d110cbab77a85bb341d5c6b42c", null ],
+    [ "movespeed", "class_save_scripts_1_1_player_data.html#a6d3939112b03cf725653d1f771069375", null ],
+    [ "playerQuestDesc", "class_save_scripts_1_1_player_data.html#a59c26848e291387685bb5a9dd3e83f84", null ],
+    [ "playerQuestReward", "class_save_scripts_1_1_player_data.html#ad86b40b064dd76458d38e0589932977e", null ],
+    [ "playerQuestTitle", "class_save_scripts_1_1_player_data.html#ab82067517fd90db613823eb5093706ac", null ],
+    [ "position", "class_save_scripts_1_1_player_data.html#acdefe5ec42bf8d7f06e46bed5e923a9c", null ],
+    [ "savedcollectedLootbags", "class_save_scripts_1_1_player_data.html#acb20ade3a7bfe5a6a58e4e2eaaf3c6d1", null ],
+    [ "skilllevels", "class_save_scripts_1_1_player_data.html#a509a26e8cfcb87acd3499f5c7b5170f7", null ],
+    [ "sprintspeed", "class_save_scripts_1_1_player_data.html#aa1780a1507642a5d6b4a9e683d58545e", null ],
+    [ "staminaregenValue", "class_save_scripts_1_1_player_data.html#a42943323454e5050edecdf15146e107d", null ],
+    [ "staminaSkillvalue", "class_save_scripts_1_1_player_data.html#a90d9cabcd529c70f713b2b8af0cc23aa", null ]
+];
