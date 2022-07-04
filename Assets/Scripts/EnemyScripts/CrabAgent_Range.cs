@@ -44,8 +44,8 @@ public class CrabAgent_Range : MonoBehaviour
         fireRate = 5.0f;
         shotSpeed = 20.0f;
 
-        fireBallDamage = 10 + enemy.Playerlevel * 2 ;
-        health.Health = 350 + enemy.Playerlevel * 5;
+        fireBallDamage = 5 + enemy.Playerlevel * 2 ;
+        health.Health = 250 + enemy.Playerlevel * 5;
     }
 
     /// <summary>

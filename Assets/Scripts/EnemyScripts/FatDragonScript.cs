@@ -77,8 +77,8 @@ public class FatDragonScript : MonoBehaviour
 
     private void Start()
     {
-        fireBallDamage = 20 + playerskillsystem.playerlevel.GetLevel() * 2;
-        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
+        fireBallDamage = 10 + playerskillsystem.playerlevel.GetLevel() * 2;
+        damage = 5 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 

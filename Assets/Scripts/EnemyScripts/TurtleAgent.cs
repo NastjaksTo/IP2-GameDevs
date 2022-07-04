@@ -25,8 +25,8 @@ public class TurtleAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         health = GetComponent<EnemyHealthHandler>();
 
-        health.Health = 300 + enemy.Playerlevel * 5;
-        damage = 5 + enemy.Playerlevel * 2;
+        health.Health = 250 + enemy.Playerlevel * 3;
+        damage = 3 + enemy.Playerlevel * 2;
     }
 
     /// <summary>

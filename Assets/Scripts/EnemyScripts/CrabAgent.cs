@@ -24,8 +24,8 @@ public class CrabAgent : MonoBehaviour
         health = GetComponentInChildren<EnemyHealthHandler>();
         enemy = GetComponent<OverallEnemy>();
 
-        damage = 15 + enemy.Playerlevel * 3;
-        health.Health = 500 + enemy.Playerlevel * 5;
+        damage = 5 + enemy.Playerlevel * 3;
+        health.Health = 350 + enemy.Playerlevel * 5;
     }
 
     /// <summary>

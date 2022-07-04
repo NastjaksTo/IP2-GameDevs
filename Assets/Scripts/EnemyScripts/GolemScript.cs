@@ -56,7 +56,7 @@ public class GolemScript : MonoBehaviour
 
     private void Start()
     {
-        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
+        damage = 5 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 

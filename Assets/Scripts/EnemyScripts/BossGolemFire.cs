@@ -50,7 +50,7 @@ public class BossGolemFire : MonoBehaviour
         fov.Radius = 100.0f;
         fov.Angle = 180.0f;
 
-        fireDamage = boss.ElementalDamage * 40;
+        fireDamage = boss.ElementalDamage * 10;
     }
 
     /// <summary>
