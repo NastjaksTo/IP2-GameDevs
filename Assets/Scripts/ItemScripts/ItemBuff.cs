@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 [System.Serializable]
 public class ItemBuff : IModifiers {
-    public Attributes attribute;                //attribute that habe the buff
+    public Attributes attribute;                //attribute that have the buff
     public int buffValue;                       //buff value of the attribute
 
     /// <summary>
@@ -19,9 +19,9 @@ public class ItemBuff : IModifiers {
     }
 
     /// <summary>
-    /// Add the buffvalue to the basevalue (the attribute value from the player befor the buff from the item is applied) of the item
+    /// Add the buffvalue to the basevalue (the attribute value from the player before the buff from the item is applied) of the item
     /// </summary>
-    /// <param name="baseValue">value of attribute befor adding the buff</param>
+    /// <param name="baseValue">value of attribute before adding the buff</param>
     public void AddValue(ref int baseValue) {
         baseValue += buffValue;
     }

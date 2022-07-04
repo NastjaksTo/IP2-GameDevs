@@ -11,7 +11,7 @@ public class Item {
     public ItemBuff[] buffs;
 
     /// <summary>
-    ///  Konstruktor to set a item
+    ///  Constructor to set a item
     /// </summary>
     /// <param name="item"> the item that should be set </param>
     public Item(ItemObject item) {
@@ -27,7 +27,7 @@ public class Item {
     }
 
     /// <summary>
-    /// Konstruktor to set a default (empty) item
+    /// Constructor to set a default (empty) item
     /// </summary>
     public Item() {
         Id = -1;

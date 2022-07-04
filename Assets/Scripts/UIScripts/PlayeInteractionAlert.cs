@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayeInteractionAlert : MonoBehaviour {
 
     public static bool ClollectAlertOpen = false;
-    public GameObject ClollectAlertUI;                       //referenz set in editor
+    public GameObject ClollectAlertUI;                       //reference set in editor
     
     /// <summary>
     /// Close the collect alert.

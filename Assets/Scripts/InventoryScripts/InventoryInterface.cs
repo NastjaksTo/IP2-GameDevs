@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
@@ -19,7 +17,9 @@ public static class MouseData {
 
 
 /// <summary>
-/// Base class for all interface types to Display the Inventory - Just a representation of that what happen in the Inventory. And describes the behaivior on the Interface.
+/// Base class for all interface types to Display the inventory - Just a representation of that what happen in the Inventory. 
+/// Describes the behavior on the Interface.
+/// Put it on the gameobject for the inventory.
 /// </summary>
 public class InventoryInterface : MonoBehaviour {
     public InventoryObject inventory;                                                                               //Reference to the InventoryObject that should be displayd
@@ -33,17 +33,17 @@ public class InventoryInterface : MonoBehaviour {
 
 
     /// <summary>
-    ///  Start is called before the first frame update
+    ///  call the LoadInterface() on start
+    /// </summary>
+    void Start() {
+        LoadInterface();
+    }
+
+    /// <summary>
     ///  Loop over all items inside the interfaces database and link the items to the interface as the parent.
     ///  Create the slots and update them to make sure that all items can be displayed.
     ///  Add OnEnterInterface and OnExitInterface event to the interface.
     /// </summary>
-    void Start() {
-
-            LoadInterface();
- 
-    }
-
     public void LoadInterface() {
         if (!inventoryIsLoadet) {
             for (int i = 0; i < inventory.Container.Slots.Length; i++) {
@@ -60,7 +60,7 @@ public class InventoryInterface : MonoBehaviour {
 
     /// <summary>
     /// Set up the slot on the Interface. Creates a new dictionary with slotsOnInterface to prevent data problems.
-    /// Loops over each slot and pass them to the new dictinoary + add them the events to to enable drag and drop.
+    /// Loops over each slot and pass them to the new dictinoary + add them the events to enable drag and drop.
     /// </summary>
     public void CreateSlots() {
         slotsOnInterface = new Dictionary<GameObject, InventorySlot>();
@@ -129,7 +129,7 @@ public class InventoryInterface : MonoBehaviour {
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = _slot.ItemObject.uiDisplayImage;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = _slot.amountOfItemInInventorySlot == 1 ? "" : _slot.amountOfItemInInventorySlot.ToString("n0");
-        } else { //wenn ichts im slot drin ist muss die UI an der stelle f�r den slot geclerat werden
+        } else {
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().sprite = null;
             _slot.slotDisplay.transform.GetChild(0).GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0);
             _slot.slotDisplay.GetComponentInChildren<TextMeshProUGUI>().text = "";
@@ -205,7 +205,7 @@ public class InventoryInterface : MonoBehaviour {
     /// Created a temporary Item (a visual representation), that follow the mouse during the drag.
     /// </summary>
     /// <param name="obj">The object that is being dragged</param>
-    /// <returns>The created temporery item</returns>
+    /// <returns>The created temporary item</returns>
     public GameObject CreateTempItem(GameObject obj) {
 
         GameObject tempItem = null;
@@ -237,7 +237,7 @@ public class InventoryInterface : MonoBehaviour {
 
     /// <summary>
     /// On stop dragging: Destroys the temporary item on the mouse
-    /// If the mouse is over a slot, swapp the place of the Items we're dragging with the item in the slot BUT just when the slot that is dragged contains something
+    /// If the mouse is over a slot, swap the place of the Items we're dragging with the item in the slot BUT just when the slot that is dragged contains something
     /// </summary>
     /// <param name="obj">The Item that is being dragged.</param>
     public void OnEndDrag(GameObject obj) {
