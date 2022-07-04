@@ -63,6 +63,11 @@ public class WaterDragonScript : MonoBehaviour
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
+        
+    }
+
+    private void Start()
+    {
         damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
         waterDamage = 5 + playerskillsystem.playerlevel.GetLevel();
