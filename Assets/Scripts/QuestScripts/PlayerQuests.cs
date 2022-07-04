@@ -8,41 +8,51 @@ using static UiScreenManager;
 
 public class PlayerQuests : MonoBehaviour
 {
-    public static PlayerQuests playerQuests;
-    public QuestSystem quest;
-    public TextMeshProUGUI titleText;
-    public TextMeshProUGUI descText;
-    public TextMeshProUGUI rewardText;
+    public static PlayerQuests playerQuests;            // Creates a public static reference to this script.
+    public QuestSystem quest;                           // Reference to QuestSystem script.
+    public TextMeshProUGUI titleText;                   // Reference to the TitleText UI.
+    public TextMeshProUGUI descText;                    // Reference to the DescriptionText UI.
+    public TextMeshProUGUI rewardText;                  // Reference to the RewardText UI.
 
-    public GameObject newQuestAlert;
-    public TextMeshProUGUI newQuestAlertText;
+    public GameObject newQuestAlert;                    // Reference to the QuestAlert UI.
+    public TextMeshProUGUI newQuestAlertText;           // Reference to the QuestAlertText UI.
 
-    public GameObject completionUI;
-    public TextMeshProUGUI completionText;  
+    public GameObject completionUI;                     // Reference to the Completion UI.
+    public TextMeshProUGUI completionText;              // Reference to the CompletionText UI.
     
-    public GameObject questGiverUI;
-    public TextMeshProUGUI questGiverTitel;
-    public TextMeshProUGUI questGiverDescr;
+    public GameObject questGiverUI;                     // Reference to the current QuestGiver UI.
+    public TextMeshProUGUI questGiverTitel;             // Reference to the QuestGiverTitle UI.
+    public TextMeshProUGUI questGiverDescr;             // Reference to the QuestGiverDescription UI.
     
-    public GameObject lootbags;
-    public ItemObject[] books;
-    public int currentQuestID = 1;
+    public GameObject lootbags;                         // Reference to the Lootbags.
+    public ItemObject[] books;                          // Array of itemobjects to save all spellbooks.
+    public int currentQuestID = 1;                      // Integer gets initialized with the starting QuestID.
 
-    public AudioClip questDone;
-    public AudioClip newQuest;
-    public AudioSource writingSound;
+    public AudioClip questDone;                         // AudioClip when the quest is done.
+    public AudioClip newQuest;                          // AudioClip when a new quest is accepted.
+    public AudioSource writingSound;                    // AudioSource for the writing of the text.
 
-    public GameObject closeDialogBtn;
-    public GameObject rayaEntrance;
+    public GameObject closeDialogBtn;                   // Reference to the CloseButton UI.
+    public GameObject rayaEntrance;                     // Reference to Rayas entrance.
     
-    public bool dialogueIsOpen;
+    public bool dialogueIsOpen;                         // Bool to check whether or not the dialogue UI is open.
 
+    /// <summary>
+    /// Assigns values.
+    /// </summary>
     private void Awake()
     {
         playerQuests = this;
         currentQuestID = 1;
     }
 
+    /// <summary>
+    /// Checks if Player is colliding with a QuestGiver.
+    /// Checks the questname and questid.
+    /// If thats the case, complete the old quest and assign the new quest.
+    /// Sets all UI elements according to the new quest.
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("QuestGiver"))
@@ -157,6 +167,11 @@ public class PlayerQuests : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the Text and UI elements of the QuestGiver gameobject.
+    /// </summary>
+    /// <param name="title">Gets the title of the quest</param>
+    /// <param name="descr">Gets the description of the quest.</param>
     private void SetQuestGiverUI(String title, String descr) {
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
@@ -168,6 +183,11 @@ public class PlayerQuests : MonoBehaviour
         StartCoroutine(TypeLine(descr));
     }
 
+    /// <summary>
+    /// Types the description of the text. To create an immersive effect.
+    /// </summary>
+    /// <param name="text">Gets the text to write.</param>
+    /// <returns></returns>
     IEnumerator TypeLine(string text) {
         writingSound.Play();
         foreach (char c in text.ToCharArray()) {
@@ -179,6 +199,9 @@ public class PlayerQuests : MonoBehaviour
         newQuestAltertOpen();
     }
 
+    /// <summary>
+    /// If all titans are defeated set the new quest.
+    /// </summary>
     public void TitanQuest()
     {
         quest.Complete();
@@ -193,6 +216,9 @@ public class PlayerQuests : MonoBehaviour
         currentQuestID++;
     }
 
+    /// <summary>
+    /// Closes all UI elements and sets the timescale to 1 (unfreeze the game).
+    /// </summary>
     public void CloseQuestGiverUI() {
         Cursor.lockState = CursorLockMode.Locked;
         closeDialogBtn.SetActive(false);
@@ -201,6 +227,10 @@ public class PlayerQuests : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    /// <summary>
+    /// Sets the new quest and assigns values.
+    /// </summary>
+    /// <param name="other"></param>
     public void SetQuest(GameObject other) {
         QuestGiver currentQuest = other.GetComponent<QuestGiver>();
         currentQuest.AcceptQuest();
@@ -210,6 +240,9 @@ public class PlayerQuests : MonoBehaviour
         playerQuests.rewardText.text = currentQuest.quest.expReward.ToString();
     }
 
+    /// <summary>
+    /// Creates UI Alert for the new quest.
+    /// </summary>
     private void newQuestAltertOpen(){
         AudioSource.PlayClipAtPoint(newQuest, transform.position, 1);
         newQuestAlertText.text = "New Quest: " + playerQuests.titleText.text + " ( J )";
@@ -217,17 +250,28 @@ public class PlayerQuests : MonoBehaviour
         StartCoroutine(closeNewQuestAlert());
     }
 
+    /// <summary>
+    /// Closes the completion alert after a set amount of time.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator closeCompletionUI() {
         yield return new WaitForSecondsRealtime(5);
         completionUI.SetActive(false);
     }
 
+    /// <summary>
+    /// Closes the new quest alert after a set amount of time.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator closeNewQuestAlert()
     {
         yield return new WaitForSecondsRealtime(5);
         newQuestAlert.SetActive(false);
     }
 
+    /// <summary>
+    /// If Escape is pressed, close all UI elements.
+    /// </summary>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen && closeDialogBtn.activeSelf)

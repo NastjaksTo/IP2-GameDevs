@@ -220,6 +220,10 @@ public class FatDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stuns the enemy, making him do nothing for a set amount of time.
+    /// </summary>
+    /// <param name="Duration">Duration of the stun.</param>
     public void GetStunned(float Duration)
     {
         navMeshAgent.SetDestination(transform.position);
@@ -227,6 +231,12 @@ public class FatDragonScript : MonoBehaviour
         animator.SetBool("Stunned", true);
         StartCoroutine(Stunned(Duration));
     }
+    
+    /// <summary>
+    /// Starts the duration of the stun.
+    /// </summary>
+    /// <param name="time">Duration of the stun.</param>
+    /// <returns></returns>
     public IEnumerator Stunned(float time)
     {
         yield return new WaitForSeconds(time);

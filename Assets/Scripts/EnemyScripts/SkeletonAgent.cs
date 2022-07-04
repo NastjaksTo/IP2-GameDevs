@@ -54,6 +54,9 @@ public class SkeletonAgent : MonoBehaviour
     private WayPoints waypoints;
     private Transform currentWaypoint;
 
+    /// <summary>
+    /// Gets all references and assigns the values of skeleton enemies.
+    /// </summary>
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
@@ -68,6 +71,11 @@ public class SkeletonAgent : MonoBehaviour
         transform.position = currentWaypoint.position;
     }
 
+    /// <summary>
+    /// Creates spheres around skeletons which check for certain objects inside them.
+    /// If an player is inside the sightrange, the skeleton starts to chase him.
+    /// If an Player is inside the attackrange, the skeleton starts to attack him.
+    /// </summary>
     private void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -78,6 +86,9 @@ public class SkeletonAgent : MonoBehaviour
         GetDamage("Hit", "Die", 1000);
     }
 
+    /// <summary>
+    /// Starts patrolling to the next Waypoint.
+    /// </summary>
     private void Patrolling()
     {
         if (enemy.isStunned) return;
@@ -102,6 +113,10 @@ public class SkeletonAgent : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Starts the cooldown of patrolling. That way the skeleton stops at each waypoint for a set amount of time.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator patrollingCooldown()
     {
         hasPatrollingCooldown = true;
@@ -111,6 +126,10 @@ public class SkeletonAgent : MonoBehaviour
         hasPatrollingCooldown = false;
     }
     
+    /// <summary>
+    /// Starts the cooldown of spell usage.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator spellCooldown()
     {
         hasSpellCooldown = true;
@@ -118,6 +137,9 @@ public class SkeletonAgent : MonoBehaviour
         hasSpellCooldown = false;
     }
 
+    /// <summary>
+    /// Chases the player.
+    /// </summary>
     private void ChasePlayer()
     {
         if (enemy.isStunned) return;
@@ -131,6 +153,9 @@ public class SkeletonAgent : MonoBehaviour
         if(!hasSpellCooldown) CastSpell();
     }
     
+    /// <summary>
+    /// Casts a spell.
+    /// </summary>
     private void CastSpell()
     {
         if (enemy.isStunned) return;
@@ -147,6 +172,10 @@ public class SkeletonAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Animation Event, which gets called when the skeleton starts casting.
+    /// Instantiates the spell.
+    /// </summary>
     public void Casting()
     {
         StartCoroutine(spellCooldown());
@@ -156,6 +185,9 @@ public class SkeletonAgent : MonoBehaviour
         anim.SetBool("spellcast", false);
     }
     
+    /// <summary>
+    /// Starts attacking the player.
+    /// </summary>
     private void AttackPlayer()
     {
         if (enemy.isStunned) return;
@@ -174,22 +206,36 @@ public class SkeletonAgent : MonoBehaviour
         Invoke(nameof(ResetAttack), timeBetweenAttacks);
     }
     
+    /// <summary>
+    /// Resets the bool alreadyAttacked to false. That way the skeleton can attack again.
+    /// </summary>
     private void ResetAttack()
     {
         alreadyAttacked = false;
     }
     
+    /// <summary>
+    /// Animation Event, which gets called when the skeleton hits the player.
+    /// Sets the bool of isAttacking to true.
+    /// </summary>
     public void LightAttack(AnimationEvent animationEvent)
     {
         isAttacking = true;
         Invoke(nameof(StopAttack), 0.025f);
     }
 
+    /// <summary>
+    /// Animation Event, which gets called when the skeleton starts attacking.
+    /// Sets the inAnimation bool to true.
+    /// </summary>
     public void StartAttack(AnimationEvent animationEvent)
     {
         inAnimation = true;
     }
     
+    /// <summary>
+    /// Resets all attacking values.
+    /// </summary>
     public void StopAttack()
     {
         isAttacking = false;
@@ -197,18 +243,23 @@ public class SkeletonAgent : MonoBehaviour
         anim.SetBool("lightattack", false);
     }
     
+    /// <summary>
+    /// Gets called when the skeleton is getting hit.
+    /// Checks if the skeleton should die.
+    /// Calls die animation and gives player the experience.
+    /// Destroys the skeleton after 2 seconds.
+    /// </summary>
+    /// <param name="Hit">Name of the hit animation.</param>
+    /// <param name="Die">Name of the die animation.</param>
+    /// <param name="Exp">Amount of experience.</param>
     public void GetDamage(string Hit, string Die, int Exp)
     {
-
         if (healthHandler.Hit)
         {
-
-
             if (healthHandler.Health > 0)
             {
                 healthHandler.Hit = false;
             }
-            
             if (healthHandler.Health <= 0 && !isDead)
             {
                 Debug.Log(health);
@@ -222,6 +273,9 @@ public class SkeletonAgent : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Draws gizmos for each sphere (attackrange, sightrange);
+    /// </summary>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

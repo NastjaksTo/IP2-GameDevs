@@ -12,8 +12,8 @@ using static BossArena;
 
 public class SaveData : MonoBehaviour
 {
-    public static SaveData saveData;
-    public PandoraAgent pandoraAgent;
+    public static SaveData saveData;                    // Create public static reference to this script
+    public PandoraAgent pandoraAgent;                   // Reference to the PandoraAgent script.    
     public PlayerSkillsystem skillsystem;               // Reference to the PlayerSkillsystem script.
     public PlayerAttributes attributes;                 // Reference to the PlayerAttributes script.
     public PlayerInventory playerInventory;
@@ -172,7 +172,7 @@ public class SaveData : MonoBehaviour
     }
 
     /// <summary>
-    /// Whenever the player reaches an checkpoint and presses "E" the SkillTree interface opens and the game is saved.
+    /// Whenever the player reaches an checkpoint and presses "E" the SkillTree interface opens and the game is saved, Enemies spawn again and Potions are refilled.
     ///
     /// Manges the SaveUI to rotate while saving.
     /// </summary>
@@ -194,7 +194,6 @@ public class SaveData : MonoBehaviour
                 SceneManager.UnloadSceneAsync("EnemyScene");
             }
         }
-        
         if (saving)
         {
             savingUI.transform.eulerAngles -= new Vector3(0, 0, (Time.deltaTime * 40));
