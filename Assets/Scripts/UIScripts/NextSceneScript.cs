@@ -13,7 +13,7 @@ namespace UIScripts
         /// </summary>
         void OnEnable()
         {
-            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("GameScene");
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
         }
@@ -21,8 +21,7 @@ namespace UIScripts
         /// <summary>
         /// once the skipBtn is selected, the function will set the cursor locked and load the game-scene
         /// </summary>
-        public void NextScene()
-        {
+        public void NextScene() {
             SceneManager.LoadScene("GameScene");
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;

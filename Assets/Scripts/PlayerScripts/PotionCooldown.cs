@@ -15,20 +15,27 @@ public class PotionCooldown : MonoBehaviour
 
     public static PotionCooldown potioncooldown;
 
+    /// <summary>
+    /// Assign values when this script is instantiated.
+    /// </summary>
     private void Awake()
     {
         isCooldown = false;
         potioncooldown = this;
     }
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Reset values at the start of the game.
+    /// </summary>
     void Start()
     {
         textCooldown.gameObject.SetActive(false);
         imageCooldown.fillAmount = 0f;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// If potion should be on cooldown, apply the cooldown effect.
+    /// </summary>
     void Update()
     {
         if (isCooldown)
@@ -37,6 +44,9 @@ public class PotionCooldown : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies the cooldown effect.
+    /// </summary>
     void ApplyCooldown()
     {
         cooldownTimer -= Time.deltaTime;
@@ -55,6 +65,10 @@ public class PotionCooldown : MonoBehaviour
         
     }
     
+    /// <summary>
+    /// Uses the potion.
+    /// </summary>
+    /// <param name="cooldown">Gets the cooldown of the potion.</param>
     public void UsePotion(int cooldown)
     {
         cooldownTime = cooldown;

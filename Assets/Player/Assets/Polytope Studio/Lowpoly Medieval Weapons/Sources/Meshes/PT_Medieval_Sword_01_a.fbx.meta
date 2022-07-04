@@ -12,11 +12,6 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: PT_Medieval_Weapons_Material
-    second: {fileID: 2100000, guid: d20ab871c62edf04facff84d4ce183b5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: PT_Medieval_mat
     second: {fileID: 2100000, guid: 741114174bb42e0458ead3dc0d64ab38, type: 2}
   materials:

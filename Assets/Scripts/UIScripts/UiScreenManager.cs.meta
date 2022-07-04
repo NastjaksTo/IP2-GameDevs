@@ -3,7 +3,18 @@ guid: a804053a62520e945b2f50e8bbc5b9a2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerStatsUI: {instanceID: 0}
+  - inventoryUI: {instanceID: 0}
+  - skillUi: {instanceID: 0}
+  - questUi: {instanceID: 0}
+  - deathUi: {instanceID: 0}
+  - deathSound: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
+  - pauseMenuUi: {instanceID: 0}
+  - pauseMenuContainerUi: {instanceID: 0}
+  - optionsMenuUI: {instanceID: 0}
+  - controlMenuUI: {instanceID: 0}
+  - savedata: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

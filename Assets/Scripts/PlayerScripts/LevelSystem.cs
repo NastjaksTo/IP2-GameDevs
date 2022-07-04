@@ -20,7 +20,7 @@ public class LevelSystem
     {
         level = 1;
         exp = 0;
-        skillpoints = 100;
+        skillpoints = 0;
         expToLevelUp = 500;
     }
 
@@ -37,7 +37,7 @@ public class LevelSystem
             level++;
             skillpoints++;
             exp -= expToLevelUp;
-            expToLevelUp += expToLevelUp * 0.5f;
+            expToLevelUp += expToLevelUp * 0.175f;
             playerskillsystem.PlayLvlUpEffect();
             skillTree.UpdateAllSkillUI();
         }

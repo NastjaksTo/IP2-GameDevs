@@ -15,7 +15,6 @@ public class Orbit : MonoBehaviour
         target = GameObject.FindWithTag("Player").transform;
     }
 
-
     /// <summary>
     /// Perfom the rotation around the target.
     /// </summary>
@@ -25,6 +24,4 @@ public class Orbit : MonoBehaviour
         Vector3 pos = target.transform.position;
         transform.position = pos;
     }
-
-    
 }

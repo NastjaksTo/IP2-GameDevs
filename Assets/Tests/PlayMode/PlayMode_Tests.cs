@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Task = System.Threading.Tasks.Task;
 
 public class PlayMode_Tests {
     private GameObject player;
@@ -12,16 +16,14 @@ public class PlayMode_Tests {
     private PlayerSkillsystem playerSkillsystem;
     private SkillTree skillTree;
 
+
     [OneTimeSetUp]
-    public void LoadScene() {
+    public void LoadScene()
+    {
         SceneManager.LoadScene("GameScene");
+        //await Task.Delay(1);
+        //GameObject.Find("Bosses").SetActive(false);
     }
-
-    //// A Test behaves as an ordinary method
-    //[Test]
-    //public void PlayMode_TestsSimplePasses()     {
-
-    //}
 
     [UnityTest]
     public IEnumerator IsPlayerInScene_Test() {
@@ -32,7 +34,8 @@ public class PlayMode_Tests {
 
 
     [UnityTest]
-    public IEnumerator HasPlayerHealth_Test() {
+    public IEnumerator HasPlayerHealth_Test()
+    {
         playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
         var currentHealth = playerAtr.currentHealth;
         yield return null;
@@ -60,11 +63,11 @@ public class PlayMode_Tests {
         playerAtr.currentArmor = 50;
         var StartHealth = playerAtr.currentHealth;
         playerComb.LoseHealth(50);
-        var CurrentHealth = playerAtr.currentHealth;
+        var CurrentHealth = StartHealth - (50 * 0.5f);
         playerAtr.currentArmor = 0;
         
         yield return null;
-        Assert.AreEqual(StartHealth, CurrentHealth);
+        Assert.AreEqual(playerAtr.currentHealth, CurrentHealth);
     }
     
     [UnityTest]
@@ -85,7 +88,9 @@ public class PlayMode_Tests {
     }
     
     [UnityTest]
-    public IEnumerator PlayerUsePoison_Test() {
+    public IEnumerator PlayerUsePoison_Test()
+    {
+        Time.timeScale = 1f;
         playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
         playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
 
@@ -109,11 +114,11 @@ public class PlayMode_Tests {
         playerComb = GameObject.Find("PlayerArmature").GetComponent<CombatSystem>();
 
         var StartHealth = playerAtr.currentHealth;
-        playerComb.StartCoroutine(playerComb.BecomeTemporarilyInvincible());
+        playerComb.Dodging();
 
         playerComb.LoseHealth(10);
         var NewCurrentHealth = playerAtr.currentHealth;
-
+        
         playerComb.invincible = false;
         Debug.Log(StartHealth + " " + NewCurrentHealth);
 

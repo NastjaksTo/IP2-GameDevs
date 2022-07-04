@@ -36,7 +36,7 @@ public class ModifiableInt {
     }
 
     /// <summary>
-    /// Loop through all modifiers in list of modifires, update the totalBuffValue and set the TotalAttributeValueOfPlayer.
+    /// Loop through all modifiers in list of modifiers, update the totalBuffValue and set the TotalAttributeValueOfPlayer.
     /// </summary>
     public void UpdateModifiedValue() {
         
@@ -54,7 +54,7 @@ public class ModifiableInt {
     }
 
     /// <summary>
-    /// Add the modifier to the list of modifires
+    /// Add the modifier to the list of modifiers
     /// </summary>
     /// <param name="_modifier">The modifier to add</param>
     public void AddModifier(IModifiers _modifier) {
@@ -63,7 +63,7 @@ public class ModifiableInt {
     }
 
     /// <summary>
-    /// Remove the modifier from the list of modifires
+    /// Remove the modifier from the list of modifiers
     /// </summary>
     /// <param name="_modifier">The modifier to remove</param>
     public void RemoveModifier(IModifiers _modifier) {

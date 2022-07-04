@@ -4,45 +4,48 @@ using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
 
+
 public class CrabAgent_Range : MonoBehaviour
 {
+    public static CrabAgent_Range rangedCrab;
+    private OverallEnemy enemy;
     private Transform movePositionTransform;
     private Animator animator;
     private NavMeshAgent navMeshAgent;
     private FoVScript fov;
-    private EnemyHealthHandler health;
     private Vector3 spawnpoint;
     private GameObject projectileSpawnpoint;
     private float shotSpeed;
     private float fireRate;
-    private float damage;
-    private bool isdead;
-
-    [SerializeField]
-    private float level = 1;
+    private float fireBallDamage;
+    private EnemyHealthHandler health;
 
     [SerializeField] 
     GameObject fireball;
+
+    public float FireBallDamage { get => fireBallDamage; set => fireBallDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
     /// </summary>
     private void Awake()
     {
+        rangedCrab = this;
+        enemy = GetComponent<OverallEnemy>();
+        fov = GetComponent<FoVScript>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         projectileSpawnpoint = GetComponentInChildren<Spawnpoint>().gameObject;
-        fov = GetComponent<FoVScript>();
         animator = GetComponent<Animator>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponentInChildren<EnemyHealthHandler>();
-        spawnpoint = this.transform.position;
-        shotSpeed = 20.0f;
-        fireRate = 5.0f;
 
-        health.Health = 100;
-        damage = level * 10;
-        fov.Radius = 25.0f;
-        fov.Angle = 180.0f;
+        spawnpoint = this.transform.position;
+
+        fireRate = 5.0f;
+        shotSpeed = 20.0f;
+
+        fireBallDamage = 10 + enemy.Playerlevel * 2 ;
+        health.Health = 350 + enemy.Playerlevel * 5;
     }
 
     /// <summary>
@@ -51,84 +54,60 @@ public class CrabAgent_Range : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        WalkOrAttack();
-        getDamage();
+        enemy.GetDamage("Take Damage", "Die", 250);
+        Attack();
+        fireRate -= Time.deltaTime;
+
+        lookAt();
     }
 
     /// <summary>
-    /// if the Player is in Range, the Enemy will Jump in Place to show that its triggered. The Range is equal to the Attackrange. The Enemy will attack once the Player is been spotted.
-    /// 
-    /// if the Enemy cant see the Target anymore, it will stop Jumping and shooting. The Ranged Crab is not able to move.
+    /// if the Enemy can see the Player the Enemy is always looking in the direction of the Player
     /// </summary>
-    private void WalkOrAttack()
+    private void lookAt()
     {
         if (fov.CanSeePlayer)
         {
-            animator.SetTrigger("Jump");
+            Vector3 relativePos = movePositionTransform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+            this.transform.rotation = rotation;
+        }
+    }
+
+    /// <summary>
+    /// if the Enemy can see the Player the Enemy is jumping and every 5 seconds shooting a fireball
+    /// is the Enemy cant see the Player the Enemy is no more jumping
+    /// </summary>
+    private void Attack()
+    {
+        if (fov.CanSeePlayer)
+        {
+            animator.SetBool("Jump", true);
             navMeshAgent.destination = movePositionTransform.position;
-            Attack();
+            if(fireRate <= 0)
+            {
+                animator.SetTrigger("Cast Spell");
+                fireRate = 5.0f;
+            }
         }
         if (!fov.CanSeePlayer)
         {
             navMeshAgent.destination = spawnpoint;
-
-            if (Vector3.Distance(this.transform.position, spawnpoint) < 3.0f)
-            {
-                animator.SetBool("Walk Backward", false);
-            }
+            animator.SetBool("Jump", false);
         }
     }
 
     /// <summary>
-    /// if the Enemy is nearby the Target the Ranged Enemy is shooting Fireballs in the direction of the Target.
-    /// </summary>
-    private void Attack()
-    {
-        fireRate -= Time.deltaTime;
-        if(fireRate <= 0)
-        {
-            animator.SetTrigger("Cast Spell");
-            fireRate = 5.0f;
-        }
-    }
-
-    /// <summary>
-    /// if the Ranged Crab is shooting a Fireball it is spawned in the right Place
+    /// a fireball is spawning in the on the spawnpoint and with directionall force towards the Player
     /// </summary>
     private void SpawnBullet()
     {
-        if(movePositionTransform != null)
+            if (movePositionTransform != null)
             {
-            GameObject fireBall = Instantiate(fireball, projectileSpawnpoint.transform.position, Quaternion.identity);
-            Vector3 direction = movePositionTransform.position - (projectileSpawnpoint.transform.position - new Vector3(0,1,0));
+                GameObject fireBall = Instantiate(fireball, projectileSpawnpoint.transform.position, Quaternion.identity);
+                Vector3 direction = movePositionTransform.position - (projectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
-            fireBall.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
-        } 
-    }
-
-    /// <summary>
-    /// if the Target is doing Damage to the Enemy, the health is being lowered
-    /// if the health is equal or lower 0, the Enemy dies.
-    /// </summary>
-    private void getDamage()
-    {
-        if (health.Hit)
-        {
-            if (health.Health > 0)
-        {
-           
-                animator.SetTrigger("Take Damage");
-                health.Hit = false;
+                fireBall.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
             }
-
-        if (health.Dead && !isdead)
-        {
-                isdead = true;
-            animator.SetTrigger("Die");
-                navMeshAgent.speed = 0;
-                Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(300);
-        }
     }
-        }
 }

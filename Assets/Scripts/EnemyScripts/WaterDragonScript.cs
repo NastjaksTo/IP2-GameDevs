@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static CombatSystem;
 
 public class WaterDragonScript : MonoBehaviour
 {
@@ -23,12 +24,14 @@ public class WaterDragonScript : MonoBehaviour
     private bool idle;
     private float attackRange;
     private bool isdead;
+    private bool isStunned;
 
     private int damage;
     private int waterDamage;
+    private float speed;
 
     [SerializeField]
-    Collider collider;
+    private Collider col;
 
     public PlayerAttributes Player { get => player; set => player = value; }
     public int WaterDamage { get => waterDamage; set => waterDamage = value; }
@@ -53,18 +56,29 @@ public class WaterDragonScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 8.0f;
+        isdead = false;
+        attackRange = navMeshAgent.stoppingDistance;
+        speed = navMeshAgent.speed;
+
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
 
-        // rotationStand = Quaternion.Euler(new Vector3(70, -90, 0));
-        // rotationFly = Quaternion.Euler(new Vector3(0, -90, 0));
-
-        health.Health = 100;
-        damage = 20;
-        waterDamage = 1;
-
+        
     }
+
+    private void Start()
+    {
+        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
+        health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
+        waterDamage = 5 + playerskillsystem.playerlevel.GetLevel();
+    }
+
+    /// <summary>
+    /// timer for Attackchange counting while Update
+    /// checking for Target
+    /// checking for incoming Damage
+    /// rotating the ParticleSystem in direction of the Player
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
@@ -76,13 +90,19 @@ public class WaterDragonScript : MonoBehaviour
         ps.transform.rotation = rotation;
     }
 
+    /// <summary>
+    /// if the Player can be seen, the Enemy will Run towards the Target and perform some Rangeattacks. Once it is in Attackrange it will perform a Meele attack.
+    /// 
+    /// if the Enemy cant see the Target anymore, it will return to its original Position (Spawnpoint)
+    /// </summary>
     private void WalkOrAttack()
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
-            collider.isTrigger = false;
-            navMeshAgent.speed = 5;
+            navMeshAgent.speed = speed;
+            col.isTrigger = false;
             idle = false;
             animator.SetBool("Walk", true);
 
@@ -106,27 +126,24 @@ public class WaterDragonScript : MonoBehaviour
                 }
                 if (attackSwitchRange > 5 && attackSwitchRange <= 10)
                 {
-                    navMeshAgent.speed = 5;
+                    navMeshAgent.speed = speed;
                     animator.SetBool("Walk", true);
                 }
                 if (attackSwitchRange > 10)
                 {
-                    navMeshAgent.speed = 2;
+                    navMeshAgent.speed = speed / 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Water");
-                    collider.isTrigger = true;
+                    col.isTrigger = true;
                 }
             }
         }
         if (!fov.CanSeePlayer)
         {
-            navMeshAgent.speed = 5;
+            navMeshAgent.speed = speed;
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Basic Attack");
-            animator.ResetTrigger("Claw Attack");
-            animator.ResetTrigger("Water Attack");
-            animator.ResetTrigger("Fly and Water");
             animator.ResetTrigger("Scream");
+            animator.SetBool("Walk", true);
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
@@ -136,8 +153,13 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy is nearby the Target one of the Three Attackpatterns will be activated and once the Timer is run down there will be a new Random Number to calculate its next move.
+    /// While Attacking the Enemy ist not Walking
+    /// </summary>
     private void Attack()
     {
+        if (isStunned) return;
         navMeshAgent.speed = 0;
         animator.SetBool("Walk", false);
         if (timer > timeToChangeAttack)
@@ -172,6 +194,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Target is doing Damage to the Enemy, the health is being lowered
+    /// if the health is equal or lower 0, the Enemy dies.
+    /// </summary>
     private void getDamage()
     {
         if (health.Hit)
@@ -183,27 +209,57 @@ public class WaterDragonScript : MonoBehaviour
                 health.Hit = false;
             }
 
-
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(1500);
+                playerskillsystem.playerlevel.AddExp(3000);
             }
         }
     }
 
+    /// <summary>
+    /// Stuns the enemy, making him do nothing for a set amount of time.
+    /// </summary>
+    /// <param name="Duration">Duration of the stun.</param>
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    
+    /// <summary>
+    /// Starts the duration of the stun.
+    /// </summary>
+    /// <param name="time">Duration of the stun.</param>
+    /// <returns></returns>
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+
+    /// <summary>
+    /// if the Enemy is able to hit the Player, the Player is getting damaged.
+    /// </summary>
     private void DoDamage()
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            combatSystem.LoseHealth(damage);
             doDamage = false;
         }
     }
 
+    /// <summary>
+    /// if the Collider is getting triggered by the Player the Enemy is able to do Damage
+    /// </summary>
+    /// <param name="other">the Players Hitbox</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -212,6 +268,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Collider exiting trigger state the Enemy is no longer able to deal Damage
+    /// </summary>
+    /// <param name="other">the Players Hitbox</param>
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -220,7 +280,10 @@ public class WaterDragonScript : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 11 is picked to choose the next Attackpattern. All Triggers are resetted. 
+    /// There is a bigger chance to hit Basic Attack and Claw Attack than Scream.
+    /// </summary>
     private void changeAttack()
     {
         attackSwitch = Random.Range(1, 12);
@@ -229,6 +292,10 @@ public class WaterDragonScript : MonoBehaviour
         animator.ResetTrigger("Scream");
     }
 
+    /// <summary>
+    /// Every time the timer runs down, a new Random Number between 1 and 12 is picked to choose the next Attackpattern. All Triggers are resetted. 
+    /// There is a bigger chance to hit Walk than Water Attack or Fly and Water.
+    /// </summary>
     private void changeAttackRange()
     {
         attackSwitchRange = Random.Range(1, 13);
@@ -236,11 +303,17 @@ public class WaterDragonScript : MonoBehaviour
         animator.ResetTrigger("Fly and Water");
     }
 
+    /// <summary>
+    /// Start ParticleSystem
+    /// </summary>
     private void startSpillWater()
     {
         ps.Play();
     }
 
+    /// <summary>
+    /// Stop ParticleSystem
+    /// </summary>
     private void stopSpillWater()
     {
         ps.Stop();

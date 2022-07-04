@@ -4,23 +4,27 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// Describes the ineraction of the player with the collectible Items on the map. 
-/// Connects the player with his inventories.
+/// Describes the interaction of the player with the collectible Items on the map. 
+/// Connects the player with his inventories (the inventory objects).
 /// </summary>
 public class PlayerInventory : MonoBehaviour {
 
-    public InventoryObject playerInventory;             // reference to the player's inventory inventory. referenz set in editor
-    public InventoryObject playerEquipment;             // reference to the player's equipment inventory. referenz set in editor
-    public PlayeInteractionAlert collectAlert;          // referenz set in editor
+    public InventoryObject playerInventory;             // reference to the player's inventory inventory. reference set in editor
+    public InventoryObject playerEquipment;             // reference to the player's equipment inventory. reference set in editor
+    public PlayeInteractionAlert collectAlert;          // reference set in editor
 
     private GroundItem item;
     private GroundItemBag itemBag;
-    
+
+    public GameObject addItemAlert;
+    public AudioClip addItemSound;
+
     public List<int> collectedLootbags = new List<int>();
+    public static PlayerInventory p_Inventory;
 
     /// <summary>
     /// When the player collides with something, it is checked whether it is an item or a itemBag.
-    /// If it ist a item or a itemBag: the collect alert displayed and the item or the itemBag is temporarily stored.
+    /// If its a item or a itemBag: the collect alert displayed and the item or the itemBag is temporarily stored.
     /// </summary>
     /// <param name="other">The object with which the player collides.</param>
     public void OnTriggerEnter(Collider other) {
@@ -31,6 +35,9 @@ public class PlayerInventory : MonoBehaviour {
         }
     }
 
+    public void Awake(){
+        p_Inventory = this;
+    }
     /// <summary>
     /// When the player leaves the collision, a check is made to see if it is an item or an ItemBag.
     /// If there is no item or an ItemBag the temporarily stored informations reset and the collection message disappears.
@@ -45,16 +52,35 @@ public class PlayerInventory : MonoBehaviour {
     }
 
 
-    /// <summary>
-    /// Collects a single item: 
-    /// If it was added to the inventory -> close the collect alert and destroy the collected item on the Map.
-    /// </summary>
-    /// <param name="item">The item to be collected.</param>
-    public void ClollectItem(GroundItem item) {
-        Item _item = new Item(item.item);
-        if (playerInventory.AddItem(_item, 1)) { 
+    ///// <summary>
+    ///// Collects a single item from the ground: 
+    ///// If it was added to the inventory -> close the collect alert and destroy the collected item on the Map.
+    ///// </summary>
+    ///// <param name="item">The item to be collected.</param>
+    //public void CollectItem(GroundItem item) {
+    //    Item _item = new Item(item.item);
+    //    if (playerInventory.AddItem(_item, 1)) { 
+    //        collectAlert.CloseCollectAlertUi();
+    //        Destroy(item.gameObject);
+    //        addItemAlert.SetActive(true);
+    //        AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
+    //        StartCoroutine(closeAddItemAlert());
+    //    }
+    //}
+
+    ///// <summary>
+    ///// Collects a single item if someone give it to the player: 
+    ///// If it was added to the inventory -> close the collect alert and destroy the collected item on the Map.
+    ///// </summary>
+    ///// <param name="item">The item to be collected.</param>
+    public void CollectItem(ItemObject item) {
+        Item _item = new Item(item);
+        if (playerInventory.AddItem(_item, 1))
+        {
             collectAlert.CloseCollectAlertUi();
-            Destroy(item.gameObject); 
+            addItemAlert.SetActive(true);
+            AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
+            StartCoroutine(closeAddItemAlert());
         }
     }
 
@@ -63,7 +89,7 @@ public class PlayerInventory : MonoBehaviour {
     /// Then close the collect alert and destroy the collected bag on the map.
     /// </summary>
     /// <param name="_itemBag">The bag with items to be collected.</param>
-    public void ClollectItems(GroundItemBag _itemBag) { //TODO: wenn das inventar voll ist werden alle nicht hinzugef�gten Items auch zerst�rt!!!
+    public void CollectItems(GroundItemBag _itemBag) { //TODO: wenn das inventar voll ist werden alle nicht hinzugef�gten Items auch zerst�rt!!!
         collectedLootbags.Add(_itemBag.id);
         for (int i = 0; i < _itemBag.itemInBag.Length; i++) {
             Item _item = new Item(_itemBag.itemInBag[i]);
@@ -72,25 +98,26 @@ public class PlayerInventory : MonoBehaviour {
         
         collectAlert.CloseCollectAlertUi();
         Destroy(_itemBag.gameObject);
+        addItemAlert.SetActive(true);
+        AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
+        StartCoroutine(closeAddItemAlert());
     }
 
 
     /// <summary>
-    /// Checks each frame the input for the key P, L and E.
-    /// On P: Save the current inventory and equipment of the player.
-    /// On L: Loads the player's last saved inventory and equipment.
-    /// On E: Collect an item or bag of items if one is available.
+    /// Checks each frame the input for the key E.
+    /// ///Collect an item or bag of items if one is available.
     /// </summary>
     private void Update() {
         if (Input.GetKeyDown(KeyCode.E)) 
         {
             if (itemBag) {
-                ClollectItems(itemBag);
+                CollectItems(itemBag);
             }
 
-            if (item) {
-                ClollectItem(item);
-            }
+            //if (item) {
+            //    CollectItem(item);
+            //}
         }
     }
 
@@ -101,5 +128,14 @@ public class PlayerInventory : MonoBehaviour {
     private void OnApplicationQuit() {
         playerInventory.Clear();
         playerEquipment.Clear();
+    }
+
+    /// <summary>
+    /// close the alert for adding an item to the inventory after 8 seconds
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator closeAddItemAlert() {
+        yield return new WaitForSecondsRealtime(8);
+        addItemAlert.SetActive(false);
     }
 }

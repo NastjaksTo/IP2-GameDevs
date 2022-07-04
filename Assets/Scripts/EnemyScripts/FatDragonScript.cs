@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static CombatSystem;
 
 public class FatDragonScript : MonoBehaviour
 {
+    public static FatDragonScript dragonBoss;
     private Transform movePositionTransform;
     private PlayerAttributes player;
     private GameObject playerModel;
@@ -24,8 +26,11 @@ public class FatDragonScript : MonoBehaviour
     private float shotSpeed;
     private float attackRange;
     private bool isdead;
+    private float fireBallDamage;
+    private bool isStunned;
 
     private int damage;
+    private float speed;
 
     [SerializeField]
     GameObject standProjectileSpawnpoint;
@@ -37,13 +42,16 @@ public class FatDragonScript : MonoBehaviour
     GameObject fireBall;
 
     [SerializeField]
-    Collider collider;
+    private Collider col;
+
+    public float FireBallDamage { get => fireBallDamage; set => fireBallDamage = value; }
 
     /// <summary>
     /// References set to all necessary Context
     /// </summary>
     private void Awake()
     {
+        dragonBoss = this;
         playerModel = GameObject.FindGameObjectWithTag("Player");
         movePositionTransform = playerModel.GetComponent<Transform>();
         player = playerModel.GetComponent<PlayerAttributes>();
@@ -58,13 +66,20 @@ public class FatDragonScript : MonoBehaviour
         timeToChangeAttack = 1.5f;
         doDamage = false;
         idle = true;
-        attackRange = 6.0f;
+        isdead = false;
+        attackRange = navMeshAgent.stoppingDistance;
         shotSpeed = 20.0f;
+        speed = navMeshAgent.speed;
+
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
+    }
 
-        health.Health = 100;
-        damage = 20;
+    private void Start()
+    {
+        fireBallDamage = 20 + playerskillsystem.playerlevel.GetLevel() * 2;
+        damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
+        health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 
     /// <summary>
@@ -86,11 +101,12 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void WalkOrAttack()
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
+            animator.SetBool("Walk", true);
             navMeshAgent.destination = movePositionTransform.position;
-            navMeshAgent.speed = 5;
-            collider.isTrigger = false;
+            col.isTrigger = false;
             idle = false;
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
@@ -111,27 +127,23 @@ public class FatDragonScript : MonoBehaviour
                 }
                 if(attackSwitchRange > 5 && attackSwitchRange <= 10)
                 {
-                    navMeshAgent.speed = 5;
+                    navMeshAgent.speed = speed;
                     animator.SetBool("Walk", true);
                 }
                 if (attackSwitchRange > 10)
                 {
-                    navMeshAgent.speed = 2;
+                    navMeshAgent.speed = speed / 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Shoot");
-                    collider.isTrigger = true;
+                    col.isTrigger = true;
                 }
             }
         }
         if (!fov.CanSeePlayer)
         {
-            navMeshAgent.speed = 5;
+            navMeshAgent.speed = speed;
+            animator.SetBool("Walk", true);
             navMeshAgent.destination = spawnpoint;
-            animator.ResetTrigger("Basic Attack");
-            animator.ResetTrigger("Tail Attack");
-            animator.ResetTrigger("Shoot");
-            animator.ResetTrigger("Fly and Shoot");
-            animator.ResetTrigger("Scream");
 
             if (Vector3.Distance(this.transform.position, spawnpoint) < attackRange)
             {
@@ -147,6 +159,7 @@ public class FatDragonScript : MonoBehaviour
     /// </summary>
     private void Attack()
     {
+        if (isStunned) return;
         navMeshAgent.speed = 0;
         animator.SetBool("Walk", false);
         animator.SetBool("Idle", true);
@@ -197,18 +210,41 @@ public class FatDragonScript : MonoBehaviour
                 health.Hit = false;
             }
 
-
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(1500);
+                playerskillsystem.playerlevel.AddExp(3000);
             }
         }
     }
 
+    /// <summary>
+    /// Stuns the enemy, making him do nothing for a set amount of time.
+    /// </summary>
+    /// <param name="Duration">Duration of the stun.</param>
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    
+    /// <summary>
+    /// Starts the duration of the stun.
+    /// </summary>
+    /// <param name="time">Duration of the stun.</param>
+    /// <returns></returns>
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+    
     /// <summary>
     /// if the Enemy is able to hit the Player, the Player is getting damaged.
     /// </summary>
@@ -216,7 +252,7 @@ public class FatDragonScript : MonoBehaviour
     {
         if (doDamage)
         {
-            player.currentHealth = (int)(player.currentHealth - damage);
+            combatSystem.LoseHealth(damage);
             doDamage = false;
         }
     }
@@ -229,7 +265,6 @@ public class FatDragonScript : MonoBehaviour
         if (movePositionTransform != null)
         {
             GameObject fireball = Instantiate(fireBall, standProjectileSpawnpoint.transform.position, Quaternion.identity);
-            fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             Vector3 direction = movePositionTransform.position - (standProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);
@@ -244,7 +279,6 @@ public class FatDragonScript : MonoBehaviour
         if (movePositionTransform != null)
         {
             GameObject fireball = Instantiate(fireBall, flyProjectileSpawnpoint.transform.position, Quaternion.identity);
-            fireball.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             Vector3 direction = movePositionTransform.position - (flyProjectileSpawnpoint.transform.position - new Vector3(0, 1, 0));
 
             fireball.GetComponent<Rigidbody>().AddForce(direction.normalized * shotSpeed, ForceMode.Impulse);

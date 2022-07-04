@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static PlayerDisplay;
+using static PlayerQuests;
+using static PlayerSkillsystem;
+using static BossArena;
+using static SaveData;
 
 
-    /// <summary>
-    /// Manage the in game Uis. Open and close them and defines the functions of the buttons in the menus.
-    /// </summary>
+/// <summary>
+/// Manage the in game Uis. Open and close them and defines the functions of the buttons in the menus.
+/// </summary>
 public class UiScreenManager : MonoBehaviour {
 
     public static UiScreenManager uiScreenManager;
@@ -22,11 +26,12 @@ public class UiScreenManager : MonoBehaviour {
 
     public static bool _deathUiOpen = false;
     public GameObject deathUi;                              //reference set in editor
+    public AudioClip deathSound;
 
     public GameObject pauseMenuUi;                          //reference set in editor
 
     private static bool _pauseMenuContainerUiOpen = false;
-    public GameObject pauseMenuContainerUi;                  //reference set in editor
+    public GameObject pauseMenuContainerUi;                 //reference set in editor
 
 
     public GameObject optionsMenuUI;                        //reference set in editor
@@ -34,8 +39,7 @@ public class UiScreenManager : MonoBehaviour {
 
     public static bool _isOneIngameUiOpen = false;
     private static bool _isOneInMenueUiOpen = false;
-
-    public SaveData savedata;
+    
 
     private void Awake() {
         ClosePauseContainerUi();
@@ -81,7 +85,9 @@ public class UiScreenManager : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
-
+    /// <summary>
+    /// Opens the Quest UI. Makes the mouse pointer visible and freezes the game time. 
+    /// </summary>
     private void OpenQuestUi() {
         ClosePlayerStatsUi();
         Time.timeScale = 0f;
@@ -92,6 +98,9 @@ public class UiScreenManager : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Closes the Quest UI. Locks the Cursor and let the game time continue.
+    /// </summary>
     private void CloseQuestUi() {
         ShowPlayerStatsUi();
         Cursor.lockState = CursorLockMode.Locked;
@@ -132,10 +141,12 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void OpenDeathUi() {
         //alert.CloseCollectAlertUi();
+        bossarenaScript.CloseAllArenas();
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.Confined;
         deathUi.SetActive(true);
         _deathUiOpen = true;
+        AudioSource.PlayClipAtPoint(deathSound, transform.position, 1);
     }
 
     /// <summary>
@@ -162,7 +173,7 @@ public class UiScreenManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Closes the in pause menu UI. Locks the Cursor and let the game time continue if no other ui ist open.
+    /// Closes the in pause menu UI. Locks the Cursor and let the game time continue if no other ui is open.
     /// </summary>
     public void ClosePauseContainerUi() {
 
@@ -180,7 +191,9 @@ public class UiScreenManager : MonoBehaviour {
 
     //------------- IN menu UI -------------
 
-
+    /// <summary>
+    /// Open the pauseMenu Ui
+    /// </summary>
     public void OpenMenuUi() {
         pauseMenuUi.SetActive(true);
     }
@@ -238,38 +251,47 @@ public class UiScreenManager : MonoBehaviour {
     /// <summary>
     /// Loads the last saved game state 
     /// </summary>
-    public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
-        savedata.Loadgame();
+    public void LoadLastGameState() {
+        saveData.Loadgame();
+    }
+
+    /// <summary>
+    /// function to swap between the Quest ui and the Inventory ui
+    /// </summary>
+    public void SwappInventoryQuestUi()
+    {
+        if (_inventoryUiOpen)
+        {
+            CloseInventoryUi();
+            OpenQuestUi();
+        }
+        else if (_questUiOpen)
+        {
+            CloseQuestUi();
+            OpenInventoryUi();
+        }
     }
 
 
+
     /// <summary>
-    /// Checks each frame the input for the keys I and Esc
-    /// On I and if the DeathUi is closed: close the inventoryUI when its open, or open it if its closed and the menu is not opened.
-    /// On R and if the DeathUi is closed: close the skillUi when its open, or open it if its closed and the menu is not opened.
-    /// On Esc and if the DeathUi is closed: close the menuUI when its open, or open it if its closed.
+    /// Checks each frame the input of the keys to open or close the respective UIs
     /// </summary>
     public void Update() {
 
-        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_inventoryUiOpen) {
                 CloseInventoryUi();
                 playerDisplay.UpdateSpellUI();
+                playerskillsystem.updateLevelUI();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
                 OpenInventoryUi();
                 playerDisplay.UpdateSpellUI();
+                playerskillsystem.updateLevelUI();
             }
         }
 
-        //if (Input.GetKeyDown(KeyCode.K) && !_deathUiOpen) {
-        //    if (_skillUiOpen) {
-        //        CloseSkillUi();
-        //    } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
-        //        OpenSkillUi();
-        //    }
-        //}
-
-        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_questUiOpen) {
                 CloseQuestUi();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
@@ -277,7 +299,7 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen) {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
             if (_pauseMenuContainerUiOpen) {
                 ClosePauseContainerUi();
             } else {
@@ -292,6 +314,8 @@ public class UiScreenManager : MonoBehaviour {
 
                 if (_skillUiOpen) {
                     CloseSkillUi();
+                    saveData.SaveGame();
+                    SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
                 }
 
                 if (_questUiOpen) {
@@ -301,14 +325,7 @@ public class UiScreenManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Tab) && (_inventoryUiOpen || _questUiOpen)) {
-
-            if (_inventoryUiOpen) { // if the inventory is opem
-                CloseInventoryUi();
-                OpenQuestUi();
-            } else if (_questUiOpen) { // if the skilltree is open
-                CloseQuestUi();
-                OpenInventoryUi();
-            }
+            SwappInventoryQuestUi();
         }
     }
 }
