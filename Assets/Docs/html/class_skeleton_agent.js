@@ -1,0 +1,25 @@
+var class_skeleton_agent =
+[
+    [ "Casting", "class_skeleton_agent.html#a5dd351daf549f979865db8d25b84a5b6", null ],
+    [ "GetDamage", "class_skeleton_agent.html#a7236121a36972c9cf645e8e2a35f2e62", null ],
+    [ "LightAttack", "class_skeleton_agent.html#af30a06fffbe82047ae557ffb0cb5710b", null ],
+    [ "StartAttack", "class_skeleton_agent.html#a985c933fe864b5ae84542758b9ed7111", null ],
+    [ "StopAttack", "class_skeleton_agent.html#afb29f788242d166674cc6f071be302fb", null ],
+    [ "agent", "class_skeleton_agent.html#a8089225aa40bab8ad1675d030699efe8", null ],
+    [ "attackRange", "class_skeleton_agent.html#a7e15afb302363e405a208882ae63766c", null ],
+    [ "health", "class_skeleton_agent.html#a302eb6842ad81cabaa80926d3ffdaa89", null ],
+    [ "isAttacking", "class_skeleton_agent.html#a91e26a0236eb0d0825971ee0adfc324c", null ],
+    [ "player", "class_skeleton_agent.html#a1d3ecb4a51f5c009e92c64ed3ce19a9a", null ],
+    [ "playerInAttackRange", "class_skeleton_agent.html#a6b89ee2583b1f1974b347b10803aafab", null ],
+    [ "playerInSightRange", "class_skeleton_agent.html#a4d5577f41b4d77df9484caf7d3e373db", null ],
+    [ "projectile", "class_skeleton_agent.html#aad73f63a45f8460c56120293386c70db", null ],
+    [ "sightRange", "class_skeleton_agent.html#a0d2c57b287caf934e6a87d391841b2a5", null ],
+    [ "skeletonName", "class_skeleton_agent.html#a4db9b98e2d27b40aa5c9fe6faa117118", null ],
+    [ "spawner", "class_skeleton_agent.html#a51dbed0955d2b6456b1d9b686cb6f8ab", null ],
+    [ "sworddamage", "class_skeleton_agent.html#ab00e6ba942721a909c6a3c2d4425661b", null ],
+    [ "timeBetweenAttacks", "class_skeleton_agent.html#ae4321be4772f072975994a07774a56f3", null ],
+    [ "walkpoint", "class_skeleton_agent.html#ae1577815e63e5326a78c48281ab1d688", null ],
+    [ "walkPointRange", "class_skeleton_agent.html#a3db406b5b7148863569d90665388be3a", null ],
+    [ "whatIsGround", "class_skeleton_agent.html#a47569096d4cab7631b5b1c8fe16aa34c", null ],
+    [ "whatIsPlayer", "class_skeleton_agent.html#a096ef55d57d179d2d414d2b65f31e8c4", null ]
+];
