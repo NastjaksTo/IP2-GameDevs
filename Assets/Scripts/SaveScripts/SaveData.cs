@@ -33,6 +33,7 @@ public class SaveData : MonoBehaviour
     private bool saving;                                // Boolean for SaveUI to operate when saving.
     public GameObject savingUI;                         // Reference to the SaveUI Icon.
     public GameObject savingText;                       // Reference to the SaveUI Text.
+    public GameObject lootbags;
     
 
     /// <summary>
@@ -56,7 +57,6 @@ public class SaveData : MonoBehaviour
             inventory.Clear();
             equipment.Clear();
         }
-
     }
 
     /// <summary>
@@ -79,6 +79,7 @@ public class SaveData : MonoBehaviour
         combatsystem.maxpotions = data.maxpotions;
         combatsystem.potions = combatsystem.maxpotions;
 
+        lootbags.SetActive(true);
         playerInventory.collectedLootbags.AddRange(data.savedcollectedLootbags);
         
         for (int j = 0; j < data.savedcollectedLootbags.Count; j++)

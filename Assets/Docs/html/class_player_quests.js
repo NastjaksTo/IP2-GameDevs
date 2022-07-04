@@ -1,0 +1,27 @@
+var class_player_quests =
+[
+    [ "CloseQuestGiverUI", "class_player_quests.html#ab0dbe8a187c52789dbbdc64cdb189a0a", null ],
+    [ "SetQuest", "class_player_quests.html#afaa55025cd36556b6a9f3c7a67abe266", null ],
+    [ "TitanQuest", "class_player_quests.html#a0ce9d5a451c2c4ef432742594e649770", null ],
+    [ "books", "class_player_quests.html#a8a7cc15119dc5c9c7e2071261d102f0c", null ],
+    [ "closeDialogBtn", "class_player_quests.html#a5263a284c1b8459d469847bd69ed96ff", null ],
+    [ "completionText", "class_player_quests.html#a5d18ec006920c404e8fc3d7cc009c43b", null ],
+    [ "completionUI", "class_player_quests.html#aa85deface565d54206a1d826e41c585f", null ],
+    [ "currentQuestID", "class_player_quests.html#aa1a069de87fa4a998efc44903ef79fcc", null ],
+    [ "descText", "class_player_quests.html#aa5619c206a5fcb01902b2c516dda29e8", null ],
+    [ "dialogueIsOpen", "class_player_quests.html#af1c1628ad1130347736b735ad598d501", null ],
+    [ "lootbags", "class_player_quests.html#afa7f6b97fc514efdd3bec40e6ba120d8", null ],
+    [ "newQuest", "class_player_quests.html#a559d942a79c44e233758b9d9bb735c5e", null ],
+    [ "newQuestAlert", "class_player_quests.html#a186e6f3823ff7e5dff52f35558fc8ed5", null ],
+    [ "newQuestAlertText", "class_player_quests.html#a5207c07a0e4c744365a63aabd47cd233", null ],
+    [ "playerQuests", "class_player_quests.html#a4e06336f0cd2c7482cb8474494f50e70", null ],
+    [ "quest", "class_player_quests.html#a41d4be8b144992d22e92235ac46d6ef6", null ],
+    [ "questDone", "class_player_quests.html#af4c40d11c2db5727b7791260f722dafa", null ],
+    [ "questGiverDescr", "class_player_quests.html#a898bce06cf69aa4383c4e4814da9299c", null ],
+    [ "questGiverTitel", "class_player_quests.html#a46bc54ce6d417ac666267754fbcc6cf1", null ],
+    [ "questGiverUI", "class_player_quests.html#a5e36d799db0676206bbb74efa0bce5de", null ],
+    [ "rayaEntrance", "class_player_quests.html#ad12c16d61731d9893784a38d2445ff0f", null ],
+    [ "rewardText", "class_player_quests.html#af9f555a4deef91cd2d9bb97892d718cb", null ],
+    [ "titleText", "class_player_quests.html#aac3b528bf44238e45295e5f61ab187d7", null ],
+    [ "writingSound", "class_player_quests.html#ac7b3534b187103f477ec26e81689cd18", null ]
+];

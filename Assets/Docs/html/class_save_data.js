@@ -1,0 +1,25 @@
+var class_save_data =
+[
+    [ "Awake", "class_save_data.html#a3b4d4f2d7123af2ab8cb40664059264f", null ],
+    [ "Loadgame", "class_save_data.html#a7808b4c5e3798e582a2029acd23ff2ce", null ],
+    [ "ResetBossHealth", "class_save_data.html#a6a2f245a7c2bac9a355b9f8d80d91848", null ],
+    [ "SaveGame", "class_save_data.html#a997a3a751bb31dfbfd16e96f3a07a2bf", null ],
+    [ "attributes", "class_save_data.html#af34c564de0484e8a78b9b60c67d5254f", null ],
+    [ "combatsystem", "class_save_data.html#a1cae1440da2247d683bbc187ffabec68", null ],
+    [ "equipment", "class_save_data.html#a63c45d74c23ee3b51f3cafc8fe607422", null ],
+    [ "equipmentInterface", "class_save_data.html#a63eb52ee110a2d1b23f0c9bff9295fd0", null ],
+    [ "inventory", "class_save_data.html#a1ed7edccd2dd4bc07ee94de51bf63e93", null ],
+    [ "inventoryInterface", "class_save_data.html#a832e07ddfd4387fe9cc4c40617171471", null ],
+    [ "inventoryUI", "class_save_data.html#a4dbfa19aaadc3ae9c78dc517a60b6a78", null ],
+    [ "loaded", "class_save_data.html#a4286f190927bc62c23d46cc470c56fdb", null ],
+    [ "lootbags", "class_save_data.html#af3fee7c513236cb2d6b3a9c960abd939", null ],
+    [ "pandoraAgent", "class_save_data.html#afdb5e61e62b80fbab625668d7336492e", null ],
+    [ "playerInventory", "class_save_data.html#a45d7b5039e21db0efd4ed435cc015c0a", null ],
+    [ "saveData", "class_save_data.html#a170b6dd262d361a30328cace15822eb1", null ],
+    [ "savingText", "class_save_data.html#a31c6bc467f02f8a511701464e4facf79", null ],
+    [ "savingUI", "class_save_data.html#afd413a89afdf1f2305267fc617043b75", null ],
+    [ "scenetransfer", "class_save_data.html#a3d3ead6932c55183dbac665e7c2dedf0", null ],
+    [ "skilllevelsData", "class_save_data.html#aaad9d0f467b00b4faa03bf611c5afcee", null ],
+    [ "skillsystem", "class_save_data.html#a3dab9891ce87a3659f2c5423c4062e1d", null ],
+    [ "uimanager", "class_save_data.html#a1ee7b88503735b58a726ae74f5e413eb", null ]
+];

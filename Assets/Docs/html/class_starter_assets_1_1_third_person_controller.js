@@ -1,0 +1,27 @@
+var class_starter_assets_1_1_third_person_controller =
+[
+    [ "Jumping", "class_starter_assets_1_1_third_person_controller.html#afb03f4a3000711b3bbc32a22d4474e10", null ],
+    [ "_canMove", "class_starter_assets_1_1_third_person_controller.html#ab8856fb95ea200445e9c4edc906eda70", null ],
+    [ "anim", "class_starter_assets_1_1_third_person_controller.html#a53d1e3ea17f4a8e986f683a635b4d4df", null ],
+    [ "BottomClamp", "class_starter_assets_1_1_third_person_controller.html#a898a5d8c91506b506092564cb1347701", null ],
+    [ "CameraAngleOverride", "class_starter_assets_1_1_third_person_controller.html#a7652fc47e9f007ebef6e4d35f3a5c0e9", null ],
+    [ "CinemachineCameraTarget", "class_starter_assets_1_1_third_person_controller.html#af9db5ce12d47d529fe8338710405c1a7", null ],
+    [ "FallTimeout", "class_starter_assets_1_1_third_person_controller.html#ae322973cf3d2e4dc0cb3db73aa0e0b50", null ],
+    [ "FootstepAudioClips", "class_starter_assets_1_1_third_person_controller.html#a597912d24e9003af05686773ae0f4b91", null ],
+    [ "FootstepAudioVolume", "class_starter_assets_1_1_third_person_controller.html#a5535c556f5c8ee0662697d990a44dd25", null ],
+    [ "Gravity", "class_starter_assets_1_1_third_person_controller.html#af63d9bd53d523b9471d4591d1a7dc985", null ],
+    [ "Grounded", "class_starter_assets_1_1_third_person_controller.html#af7b6f469269277d3c6530bba6fa0108b", null ],
+    [ "GroundedOffset", "class_starter_assets_1_1_third_person_controller.html#ae5e8958bb4fc0a192f7ac185aeee8051", null ],
+    [ "GroundedRadius", "class_starter_assets_1_1_third_person_controller.html#a51ad1df25a5b6209938904cf9a1cffa3", null ],
+    [ "GroundLayers", "class_starter_assets_1_1_third_person_controller.html#a65192920d7f0b8b8753faf9fe4a4cdf4", null ],
+    [ "JumpHeight", "class_starter_assets_1_1_third_person_controller.html#aa22d182a9b69d26e9114d62be6fe83b5", null ],
+    [ "JumpTimeout", "class_starter_assets_1_1_third_person_controller.html#a2d6d72f060c81dada9c282423fc2fdc7", null ],
+    [ "LandingAudioClip", "class_starter_assets_1_1_third_person_controller.html#a18dd311502966d0da1fa01be38aa7448", null ],
+    [ "LockCameraPosition", "class_starter_assets_1_1_third_person_controller.html#a48cc6eee5d21b3c7ee0701a2c3de9d66", null ],
+    [ "moveSpeed", "class_starter_assets_1_1_third_person_controller.html#a4304d57c05b256b31f2d79d7f4dfd3c6", null ],
+    [ "RotationSmoothTime", "class_starter_assets_1_1_third_person_controller.html#addb0ac6d620a297c88954f27ad970242", null ],
+    [ "SpeedChangeRate", "class_starter_assets_1_1_third_person_controller.html#aadcd0936d5049047568d9ec6ead9cb49", null ],
+    [ "SprintSpeed", "class_starter_assets_1_1_third_person_controller.html#aa55cac3d6e07189a23577fccd467752d", null ],
+    [ "thirdPersonController", "class_starter_assets_1_1_third_person_controller.html#a8fd4183cc19e463a4b09207678af09fb", null ],
+    [ "TopClamp", "class_starter_assets_1_1_third_person_controller.html#a55fba3b956f3c0c0e3e2c1934baefd79", null ]
+];

@@ -122,7 +122,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the smith.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Smith", "You need a sword? I have a old rusty one. It is in front of my house. You can take it. Unfortunately, I don't have any armour for you, but you'll find one.");
+                SetQuestGiverUI("Smith", "You need a sword? I have a old rusty one. It is in front of my house. You can take it. \n \nUnfortunately, I don't have any armor for you, but you'll find one.");
                 lootbags.SetActive(true);
                 SetQuest(other.gameObject);
                 currentQuestID++;
