@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
+using static PlayerAttributes;
+using static SkillTree;
 
 public class OverallEnemy : MonoBehaviour
 {
@@ -21,11 +24,19 @@ public class OverallEnemy : MonoBehaviour
     private float attackRange;
     private float speed;
     private float playerlevel;
+    public bool isStunned;
 
     private bool isdead;
     private bool defend;
+    
+    public float sightRange;
+    public LayerMask whatIsPlayer;
+    private bool playerInSightRange;
     public float Playerlevel { get => playerlevel; set => playerlevel = value; }
 
+    /// <summary>
+    /// References set to all necessary Context
+    /// </summary>
     private void Awake()
     {
         movePositionTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -46,21 +57,59 @@ public class OverallEnemy : MonoBehaviour
         attackSwitch = Random.Range(1, 16);
 
         defend = false;
+        isdead = false;
+
+        sightRange = 6.5f;
     }
 
+    /// <summary>
+    /// Update is called once every Frame
+    /// the Timer to change Attacks is counting
+    /// the playerlevel is being checked
+    /// the defend bool is continously updated
+    /// </summary>
     private void Update()
     {
         timer += Time.deltaTime;
         playerlevel = playerskillsystem.playerlevel.GetLevel();
+        health.Defend = defend;
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        if(playerInSightRange) transform.LookAt(new Vector3 (movePositionTransform.position.x, transform.position.y, movePositionTransform.position.z));
     }
 
+    /// <summary>
+    /// returns a random Number between begin (inkl.) and end (exkl.)
+    /// </summary>
+    /// <param name="begin">the first possible Number</param>
+    /// <param name="end">the Number after the last possible Number</param>
+    /// <returns></returns>
     public void RandomRange(int begin, int end)
     {
         attackSwitch = Random.Range(begin, end);
     }
+    
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
 
+
+    /// <summary>
+    /// if the Enemy can see the Player, it is chasing the Player, till the Player cant be seen anymore or the Player is in Attackrange
+    /// if the Player cant be seen anymore the Enemy is returning to its Spawnpoint
+    /// if the Player is in Attackrange the Enemy is Attacking
+    /// </summary>
+    /// <param name="Walk">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack1">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack2">the name of the Parameter used in the Animator</param>
+    /// <param name="numAttack1">the name of the Parameter used in the Animator</param>
+    /// <param name="numAttack2">the name of the Parameter used in the Animator</param>
+    /// <param name="numDefend">the name of the Parameter used in the Animator</param>
+    /// <param name="Defend">the name of the Parameter used in the Animator</param>
     public void WalkOrAttack(string Walk, string Attack1, string Attack2, int numAttack1, int numAttack2, int numDefend, [Optional] string Defend)
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             navMeshAgent.destination = movePositionTransform.position;
@@ -81,8 +130,14 @@ public class OverallEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Enemy can see the Player the Bool is necessary to be set.
+    /// if the Enemy cant see the Player anymore the Bool is false again.
+    /// </summary>
+    /// <param name="isFighting">the name of the Parameter used in the Animator</param>
     public void isFighting(string isFighting)
     {
+        if (isStunned) return;
         if (fov.CanSeePlayer)
         {
             animator.SetBool(isFighting, true);
@@ -93,8 +148,19 @@ public class OverallEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// if the Player is in Attackrange the Enemy is attacking the Player. Wich Attack it is using is chosen by a Randomnumber.
+    /// </summary>
+    /// <param name="numAttack1">the name of the Parameter used in the Animator</param>
+    /// <param name="numAttack2">the name of the Parameter used in the Animator</param>
+    /// <param name="Walk">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack1">the name of the Parameter used in the Animator</param>
+    /// <param name="Attack2">the name of the Parameter used in the Animator</param>
+    /// <param name="numDefend">the name of the Parameter used in the Animator</param>
+    /// <param name="Defend">the name of the Parameter used in the Animator</param>
     public void AttackMethod(int numAttack1, int numAttack2, string Walk, string Attack1, string Attack2, int numDefend, string Defend)
     {
+        if (isStunned) return;
         animator.SetBool(Walk, false);
 
         if (attackSwitch <= numAttack1)
@@ -137,6 +203,38 @@ public class OverallEnemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Stuns the enemy, making him do nothing for a set amount of time.
+    /// </summary>
+    /// <param name="Duration">Duration of the stun.</param>
+    public void GetStunned(float Duration)
+    {
+        navMeshAgent.SetDestination(transform.position);
+        isStunned = true;
+        animator.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    
+    /// <summary>
+    /// Starts the duration of the stun.
+    /// </summary>
+    /// <param name="time">Duration of the stun.</param>
+    /// <returns></returns>
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Stunned", false);
+        isStunned = false;
+    }
+
+    /// <summary>
+    /// if the enemy Health Script is detecting Damage this Function is triggered.
+    /// if the Health of the Enemy is greater than 0 the hit Animation is played and the Bool is getting resetted.
+    /// if the Health is 0 or below the Boss is dying and transferring experience to the Player
+    /// </summary>
+    /// <param name="Hit">the name of the Parameter used in the Animator</param>
+    /// <param name="Die">the name of the Parameter used in the Animator</param>
+    /// <param name="Exp">the Number of the Experience the Player is getting</param>
     public void GetDamage(string Hit, string Die, int Exp)
     {
         if (health.Hit)
@@ -147,8 +245,7 @@ public class OverallEnemy : MonoBehaviour
                 health.Hit = false;
             }
 
-
-            if (health.Dead && !isdead)
+            if (health.Health <= 0 && !isdead)
             {
                 isdead = true;
                 animator.SetTrigger(Die);

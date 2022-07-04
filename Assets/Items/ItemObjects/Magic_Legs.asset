@@ -19,16 +19,21 @@ MonoBehaviour:
   uiDisplayImage: {fileID: 21300000, guid: 58b2ccd7ef999fd45906cad2eca85441, type: 3}
   istStackable: 0
   itemType: 8
-  itemDescription: 'Trousers made with Magic.
+  itemDescription: 'Pure magic was worked into the seams.
 
 
-    + 25 Armor
+    + 6 Armor
 
-    + 25 Mana'
+    +
+    5 Mana
+
+    + 15 Magic Damage'
   data:
-    Id: 11
+    Id: 20
     buffs:
     - attribute: 0
-      buffValue: 25
+      buffValue: 6
     - attribute: 5
-      buffValue: 25
+      buffValue: 5
+    - attribute: 8
+      buffValue: 15

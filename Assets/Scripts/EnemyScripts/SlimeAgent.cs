@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class SlimeAgent : MonoBehaviour
 {
@@ -28,10 +26,9 @@ public class SlimeAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         health = GetComponent<EnemyHealthHandler>();
 
-        health.Health = 100 + enemy.Playerlevel * 5;
+        health.Health = 200 + enemy.Playerlevel * 25;
         fullHealth = (int)health.Health;
         damage = 10 + enemy.Playerlevel * 2;
-
     }
 
     /// <summary>
@@ -43,7 +40,7 @@ public class SlimeAgent : MonoBehaviour
     {
         enemy.isFighting("isFighting");
         enemy.WalkOrAttack("Walk", "Attack1", "Attack2", 5, 15, 0);
-        enemy.GetDamage("GetHit", "Die", 100);
+        enemy.GetDamage("GetHit", "Die", 50);
     }
 
 
@@ -54,6 +51,7 @@ public class SlimeAgent : MonoBehaviour
     {
         if(doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }

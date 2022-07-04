@@ -51,6 +51,7 @@ public class Skill : MonoBehaviour
 
         if (id == 10 & skillTree.skillLevels[10] <= 4) playerskillsystem.ManageMana2();
         if (id == 11 & skillTree.skillLevels[11] <= 4) playerskillsystem.ManageStamina2();
+        if (id == 17 & skillTree.skillLevels[17] <= 0) playerskillsystem.ManageStamina3();
 
         skillTree.skillLevels[id]++; 
         if (id == 3 & skillTree.skillLevels[3] <= skillTree.skillCaps[3]) skillTree.healthSkillvalue += 10 * skillTree.skillLevels[3];

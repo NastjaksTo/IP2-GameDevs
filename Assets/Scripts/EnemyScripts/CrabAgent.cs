@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class CrabAgent : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class CrabAgent : MonoBehaviour
         enemy = GetComponent<OverallEnemy>();
 
         damage = 15 + enemy.Playerlevel * 3;
-        health.Health = 160 + enemy.Playerlevel * 5;
+        health.Health = 500 + enemy.Playerlevel * 5;
     }
 
     /// <summary>
@@ -35,7 +36,7 @@ public class CrabAgent : MonoBehaviour
     private void Update()
     {
         enemy.WalkOrAttack("Run Forward", "Smash Attack", "Stab Attack", 5, 14, 15, "Defend");
-        enemy.GetDamage("Take Damage", "Die", 300);
+        enemy.GetDamage("Take Damage", "Die", 250);
     }
 
     /// <summary>
@@ -45,11 +46,17 @@ public class CrabAgent : MonoBehaviour
     {
         if (doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }
     }
 
+    /// <summary>
+    /// if another Collider is colliding the function is called.
+    /// if the other Collider has the Tag Player the Enemy is doing Damage.
+    /// </summary>
+    /// <param name="other">the colliding Collider</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

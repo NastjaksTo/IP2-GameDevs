@@ -4862,6 +4862,7 @@ GameObject:
   - component: {fileID: 7579165558558149965}
   - component: {fileID: 7577631855698022301}
   - component: {fileID: 7670945567406760495}
+  - component: {fileID: -8592234490762178173}
   - component: {fileID: 2201893255680367527}
   m_Layer: 0
   m_Name: PandoraBeam
@@ -9692,7 +9693,19 @@ MonoBehaviour:
   x: 0
   y: 1
   z: 0
-  damage: 3.75
+--- !u!114 &-8592234490762178173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7776058732035113655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ea3b1f16d03f247977c1b804b5950a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 75
 --- !u!65 &2201893255680367527
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,7 +13,8 @@ namespace UIScripts
     public class LevelLoader : MonoBehaviour
     {
         public GameObject loadingScreen;            //reference for the Loading Screen to set active
-        public Slider slider;                       //reference for the slider to manipulate the value
+        List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+        public Image prograssBar;
 
         /// <summary>
         /// method for loading asynchronously a scene
@@ -20,28 +22,27 @@ namespace UIScripts
         /// <param name="sceneIndex">BuildIndex of which scene should be loaded asynchronously</param>
         public void LoadLevel(int sceneIndex)
         {
-            StartCoroutine(LoadAsynchronously(sceneIndex));
+            loadingScreen.SetActive(true);
+            scenesToLoad.Add(SceneManager.LoadSceneAsync(sceneIndex));
+            StartCoroutine(LoadAsynchronously());
         }
 
         /// <summary>
-        /// private method for asynchronously loading an scene
-        /// while the loadingScreen is visible
-        /// and the progress value of the bar changes to the progress od loading the scene in the background
+        /// private method for asynchronously loading an scene while the loadingScreen is visible and the progress value of the bar changes to the progress of loading the scene in the background
         /// </summary>
-        /// <param name="sceneIndex">in the method "LoadLevel" given sceneIndex</param>
-        private IEnumerator LoadAsynchronously(int sceneIndex)
+        private IEnumerator LoadAsynchronously()
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+            float totalProgress = 0;
 
-            loadingScreen.SetActive(true);
-
-            while (!operation.isDone)
+            for (int i = 0; i < scenesToLoad.Count; i++)
             {
-                float progress = Mathf.Clamp01(operation.progress / .9f);
+                while (!scenesToLoad[i].isDone)
+                {
 
-                slider.value = progress;
-
-                yield return null;
+                    totalProgress += scenesToLoad[i].progress;
+                    prograssBar.fillAmount = totalProgress / scenesToLoad.Count;
+                    yield return null;
+                }
             }
         }
     }

@@ -6,19 +6,22 @@ using rRandom = System.Random;
 
 public class KidAudio : MonoBehaviour
 {
-    private rRandom randomNumber = new rRandom();
-
-    private bool isPlayingSounds;
-    
-    private AudioSource[] sounds;
+    private rRandom randomNumber = new rRandom();       // Random Number.
+    private bool isPlayingSounds;                       // Checks if the sound is playing or not.
+    private AudioSource[] sounds;                       // Array of AudioClips.
 
     
-
+    /// <summary>
+    /// Gets all audio sources and saves them in the array.
+    /// </summary>
     private void Awake()
     {
         sounds = transform.GetComponents<AudioSource>();
     }
 
+    /// <summary>
+    /// Plays a random sound of the array.
+    /// </summary>
     private void PlaySound()
     {
         if (isPlayingSounds) return;
@@ -35,6 +38,10 @@ public class KidAudio : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Cooldown until the next sound is being played.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator playingSound()
     {
         isPlayingSounds = true;
@@ -42,6 +49,9 @@ public class KidAudio : MonoBehaviour
         isPlayingSounds = false;
     }
 
+    /// <summary>
+    /// Plays the sounds.
+    /// </summary>
     private void Update()
     {
         if (!isPlayingSounds)

@@ -8,74 +8,61 @@ using static PlayerSkillsystem;
 using rRandom = System.Random;
 using Random = UnityEngine.Random;
 using TMPro;
+using UnityEngine.SceneManagement;
 using static CombatSystem;
 
 public class PandoraAgent : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Transform player;
-
     public LayerMask whatIsGround, whatIsPlayer, whatIsSpell, whatIsWeapon;
-
-    private EnemyHealthHandler healthHandler;
+    public EnemyHealthHandler healthHandler;
     public float health;
-    public float maxHealth;
-    
+    public float maxHealth = 10000;
     private bool walkPointSet;
     private bool hasPatrollingCooldown;
-
     public float timeBetweenAttacks;
     private bool alreadyAttacked;
-
     public float sightRange, attackRange, dodgeRange, blockRange;
     public bool playerInSightRange, playerInAttackRange, spellInDodgeRange, weaponInBlockRange;
-
     public GameObject projectile;
     public GameObject beam;
     public GameObject orb;
     public GameObject aoeOne;
     public GameObject aoeTwo;
     public GameObject slowOne;
-    
     public Transform spawner;
     public int shootingPower;
-    
     private bool isDead;
     private bool isCurrentlyAttacking;
     private bool usedDebuff;
-
     private float savedmspeed;
     private float savedsspeed;
-    
     private Animator anim;
     private ThirdPersonController controller;
-
     private bool isPhaseTwo;
     private bool isPhaseThree;
     private rRandom randomNumber = new rRandom();
-    
     private Image healthBar;
-    private TextMeshProUGUI textHealthPoints;     
-    
+    private TextMeshProUGUI textHealthPoints;
     public AudioClip[] spellsounds;
     [Range(0, 1)] public float SpellAudioVolume = 0.5f;
-
     public float regenerationTimer;
     public GameObject potioneffect;
-
-    public List<int> potionTickTimer = new List<int>();
-
+    public List<float> pandoraHealtTimer = new List<float>();
     public bool isInvincible;
     private bool hasDodgeCooldown;
-
+    private bool isStunned;
     private bool hasBlockCooldown;
     public GameObject shield;
     
+    /// <summary>
+    /// Gets all references and assigns the values of pandora.
+    /// </summary>
     private void Awake()
     {
         healthBar = GameObject.Find("RayaHealthRepresentation").GetComponent<Image>();
         textHealthPoints = GameObject.Find("RayahealthValue").GetComponent<TextMeshProUGUI>();
-        maxHealth = health;
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         spawner = GameObject.Find("PandoraAttackSpawner").transform;
@@ -87,6 +74,36 @@ public class PandoraAgent : MonoBehaviour
         savedsspeed = controller.SprintSpeed;
     }
 
+    /// <summary>
+    /// Resets all values and bools of pandora.
+    /// </summary>
+    public void ResetRaya()
+    {
+        healthHandler.Health = maxHealth;
+        savedmspeed = controller.moveSpeed;
+        savedsspeed = controller.SprintSpeed;
+        isInvincible = false;
+        hasDodgeCooldown = false;
+        hasBlockCooldown = false;
+        isStunned = false;
+        combatSystem.shouldPandoraBlock = false;
+        isCurrentlyAttacking = false;
+        alreadyAttacked = false;
+        isPhaseTwo = false;
+        usedDebuff = false;
+        isPhaseThree = false;
+        isDead = false;
+        hasPatrollingCooldown = false;
+        ResetAttack();
+    }
+
+    /// <summary>
+    /// Creates spheres around pandora which check for certain objects inside them.
+    /// If an player is inside the sightrange, pandora starts to chase him.
+    /// If an Player is inside the attackrange, pandora starts to attack him.
+    /// If an Spell is inside the spellrange, pandora dodges the spell.
+    /// If the player is attacking inside the blockrange, pandora starts to block.
+    /// </summary>
     private void Update()
     {
         healthBar.fillAmount = healthHandler.Health / maxHealth;
@@ -96,13 +113,18 @@ public class PandoraAgent : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         weaponInBlockRange = Physics.CheckSphere(transform.position, blockRange, whatIsWeapon);
         if(spellInDodgeRange && !isInvincible && !hasDodgeCooldown) anim.SetTrigger("dodging");
-        if (weaponInBlockRange && combatSystem.shouldPandoraBlock && !isInvincible && !hasBlockCooldown) anim.SetTrigger("blocking");
+        if(weaponInBlockRange && combatSystem.shouldPandoraBlock && !isInvincible && !hasBlockCooldown && !isStunned) anim.SetTrigger("blocking");
         if(playerInSightRange) anim.SetBool("inBattle", true); else anim.SetBool("inBattle", false);
         if(playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
-        GetDamage("hit", "die", 5000);
+        if(playerInAttackRange && playerInSightRange) AttackPlayer();
+        GetDamage("hit", "die", 1001);
     }
 
+    /// <summary>
+    /// Animation Event, which gets called when pandora dodges a spell.
+    /// Starts the cooldown of dodging.
+    /// Makes her immune to damage while dodging.
+    /// </summary>
     public void Dodge()
     {
         if (!isInvincible)
@@ -112,7 +134,10 @@ public class PandoraAgent : MonoBehaviour
         StartCoroutine(dodgeCooldown());
     }
     
-    
+    /// <summary>
+    /// Animation Event, which gets called at the end of the dodge animation.
+    /// Resets the dodging values.
+    /// </summary>
     public void StopDodging()
     {
         anim.ResetTrigger("dodging");
@@ -122,6 +147,11 @@ public class PandoraAgent : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Animation Event, which gets called when pandora start blocking.
+    /// Starts the cooldown for blocking.
+    /// Makes her immune to damage while blocking.
+    /// </summary>
     public void Block()
     {
         shield.SetActive(true);
@@ -132,7 +162,10 @@ public class PandoraAgent : MonoBehaviour
         StartCoroutine(blockCooldown());
     }
     
-    
+    /// <summary>
+    /// Animation Event, which gets called at the end of the block animation.
+    /// Resets the blocking values.
+    /// </summary>
     public void StopBlocking()
     {
         shield.SetActive(false);
@@ -143,6 +176,10 @@ public class PandoraAgent : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Starts the block cooldown.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator blockCooldown()
     {
         hasBlockCooldown = true;
@@ -150,6 +187,10 @@ public class PandoraAgent : MonoBehaviour
         hasBlockCooldown = false;
     }
     
+    /// <summary>
+    /// Starts the dodge cooldown.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator dodgeCooldown()
     {
         hasDodgeCooldown = true;
@@ -157,27 +198,33 @@ public class PandoraAgent : MonoBehaviour
         hasDodgeCooldown = false;
     }
     
+    /// <summary>
+    /// Sets the destination to the players location. So Pandora chases after him.
+    /// </summary>
     private void ChasePlayer()
     {
+        if (isStunned) return;
         if(isCurrentlyAttacking) return;
         if(isDead) return;
         anim.SetBool("walking", true);
         agent.SetDestination(player.position);
     }
     
+    /// <summary>
+    /// Starts attacking the player.
+    /// Checks for the current phase pandora is in and casts spells randomly.
+    /// </summary>
     private void AttackPlayer()
     {
+        if (isStunned) return;
         anim.SetBool("walking", false);
         agent.SetDestination(transform.position);
-        
         Vector3 position = new Vector3 (player.position.x, transform.position.y, player.position.z);
         transform.LookAt(position);
-
         if (!alreadyAttacked && !isDead && !isCurrentlyAttacking)
         {
-            //ATTACK
             StartCoroutine(CurrentlyAttacking());
-            
+            // PHASE 1
             if (!isPhaseTwo && !isPhaseThree && !alreadyAttacked)
             {
                 int chooseAttack = randomNumber.Next(1, 101);
@@ -193,7 +240,7 @@ public class PandoraAgent : MonoBehaviour
                     anim.SetTrigger("debuffOne");
                 }
             }
-
+            // PHASE 2
             if (isPhaseTwo && !isPhaseThree && !alreadyAttacked)
             {
                 int chooseAttack = randomNumber.Next(1, 101);
@@ -214,7 +261,7 @@ public class PandoraAgent : MonoBehaviour
                     anim.SetBool("attackTwo", true);
                 }
             }
-            
+            // PHASE 3
             if (isPhaseThree && !alreadyAttacked)
             {
                 int chooseAttack = randomNumber.Next(1, 111);
@@ -244,6 +291,10 @@ public class PandoraAgent : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts the cooldown for attacks.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator CurrentlyAttacking()
     {
         isCurrentlyAttacking = true;
@@ -251,6 +302,10 @@ public class PandoraAgent : MonoBehaviour
         isCurrentlyAttacking = false;
     }
     
+    /// <summary>
+    /// Starts the duration for the slow effect.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SlowEffect()
     {
         controller.moveSpeed = 3.5f;
@@ -261,6 +316,10 @@ public class PandoraAgent : MonoBehaviour
         usedDebuff = false;
     }
 
+    /// <summary>
+    /// Animation Event, which gets called when pandora uses her debuff.
+    /// Starts the SlowEffect.
+    /// </summary>
     public void DebuffOne()
     {
         alreadyAttacked = true;
@@ -270,6 +329,11 @@ public class PandoraAgent : MonoBehaviour
         anim.ResetTrigger("debuffOne");
     }
     
+    /// <summary>
+    /// Animation Event, which gets called when pandora uses her first attack.
+    /// Instantiates the gameobject (fireball).
+    /// Destroys it after 5 seconds.
+    /// </summary>
     public void AttackOne()
     {
         alreadyAttacked = true;
@@ -281,6 +345,11 @@ public class PandoraAgent : MonoBehaviour
         anim.SetBool("attackOne", false);
     }
     
+    /// <summary>
+    /// Animation Event, which gets called when pandora uses her second attack.
+    /// Instantiates the gameobject (lightning beam).
+    /// Destroys it after 1.2seconds
+    /// </summary>
     public void AttackTwo()
     {
         alreadyAttacked = true;
@@ -293,15 +362,26 @@ public class PandoraAgent : MonoBehaviour
         anim.SetBool("attackTwo", false);
     }
     
+    /// <summary>
+    /// Animation Event, which gets called when pandora uses her third attack.
+    /// Instantiates the gameobject (damage orbs).
+    /// Destroys them after 20 seconds.
+    /// </summary>
     public void AttackThree()
     {
         alreadyAttacked = true;
         var attackThree = Instantiate(orb, player.position+transform.up*2.33f, Quaternion.identity);
-        Destroy(attackThree, 25f);
+        Destroy(attackThree, 20f);
         Invoke(nameof(ResetAttack), timeBetweenAttacks);
         anim.SetBool("attackThree", false);
     }
     
+    /// <summary>
+    /// Animation Event, which gets called when pandora reaches phase 2.
+    /// Play Sounds.
+    /// Instantiate the gameobject (AoE damage spell).
+    /// Destroys the gameobject after 3 seconds.
+    /// </summary>
     public void ScreamOne()
     {
         isPhaseTwo = true;
@@ -315,6 +395,13 @@ public class PandoraAgent : MonoBehaviour
         anim.SetBool("screamingOne", false);
     }
     
+    /// <summary>
+    /// Animation Event, which gets called when pandora reaches phase 3.
+    /// Applies potiontick to heal pandora.
+    /// Instantiates the gameobject (Healeffect).
+    /// Plays Sound.
+    /// Destroys the gameobject after 11 seconds.
+    /// </summary>
     public void ScreamTwo()
     {
         isPhaseThree = true;
@@ -324,15 +411,46 @@ public class PandoraAgent : MonoBehaviour
         applypotion(100);
         PlayPotionEffect();
         AudioSource.PlayClipAtPoint(spellsounds[3],transform.position, SpellAudioVolume);
-        Instantiate(aoeTwo, transform.position + transform.up * 3.5f, Quaternion.identity);
+        var aoetwo = Instantiate(aoeTwo, transform.position + transform.up * 3.5f, Quaternion.identity);
+        Destroy(aoetwo, 11f);
         anim.SetBool("screamingTwo", false);
     }
     
+    /// <summary>
+    /// Resets the bool alreadyAttacked. So pandora can start attacking again.
+    /// </summary>
     private void ResetAttack()
     {
         alreadyAttacked = false;
     }
     
+    /// <summary>
+    /// Stuns pandora, making her do nothing for a set amount of time.
+    /// </summary>
+    /// <param name="Duration">Duration of the stun.</param>
+    public void GetStunned(float Duration)
+    {
+        agent.SetDestination(transform.position);
+        isStunned = true;
+        anim.SetBool("Stunned", true);
+        StartCoroutine(Stunned(Duration));
+    }
+    
+    /// <summary>
+    /// Starts the duration of the stun.
+    /// </summary>
+    /// <param name="time">Duration of the stun.</param>
+    /// <returns></returns>
+    public IEnumerator Stunned(float time)
+    {
+        yield return new WaitForSeconds(time);
+        anim.SetBool("Stunned", false);
+        isStunned = false;
+    }
+
+    /// <summary>
+    /// Draws gizmos for each sphere (attackrange, sightrange, dodgerange);
+    /// </summary>
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -344,19 +462,26 @@ public class PandoraAgent : MonoBehaviour
     }
     
     
-    //....
+    /// <summary>
+    /// Check if pandora is getting hit.
+    /// If thats the case check how much HP pandora has and set her new phase at 66% HP to Phase 2, and to Phase 3 at 33%.
+    /// If Pandora reaches 0 HP, she dies.
+    /// </summary>
+    /// <param name="Hit">Animation name GetHit</param>
+    /// <param name="Die">Animation name of the die animation</param>
+    /// <param name="Exp">The amount of experience the player gets for defeating pandora.</param>
     public void GetDamage(string Hit, string Die, int Exp)
     {
         if (isInvincible) return;
         if (healthHandler.Hit)
         {
-            if (healthHandler.Health <= health * 0.6f && !isPhaseTwo)
+            if (healthHandler.Health <= maxHealth * 0.6f && !isPhaseTwo)
             {
                 anim.SetBool("screamingOne", true);
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
             
-            if (healthHandler.Health <= health * 0.3f && !isPhaseThree && isPhaseTwo)
+            if (healthHandler.Health <= maxHealth * 0.3f && !isPhaseThree && isPhaseTwo)
             {
                 anim.SetBool("screamingTwo", true);
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -371,38 +496,57 @@ public class PandoraAgent : MonoBehaviour
                 Destroy(textHealthPoints, 0.25f);
                 playerskillsystem.playerlevel.AddExp(Exp);
                 Destroy(GameObject.Find("PandoraAoETwo(Clone)"), 0.25f);
-                Destroy(gameObject, 2.0f);
+                Invoke(nameof(EndGame), 3.9f);
+                Destroy(gameObject, 4f);
             }
-        }
-    }
-    
-    // REGENERATION EFFECT
-    public IEnumerator regeneratingHealth()
-    {
-        regenerationTimer = 0.2f;
-        while (potionTickTimer.Count > 0)
-        {
-            for (int i = 0; i < potionTickTimer.Count; i++)
-            {
-                potionTickTimer[i]--;
-            }
-            if (healthHandler.Health < maxHealth) healthHandler.Health += 2;
-            else potionTickTimer.Clear();
-            potionTickTimer.RemoveAll(i => i == 0);
-            yield return new WaitForSeconds(regenerationTimer);
         }
     }
 
-    public void applypotion(int ticks)
+    /// <summary>
+    /// When pandora dies stop the game and load the credit scene.
+    /// </summary>
+    private void EndGame()
     {
-        if (potionTickTimer.Count <= 0)
-        {
-            potionTickTimer.Add(ticks);
-            StartCoroutine(regeneratingHealth());
-        }
-        else potionTickTimer.Add(ticks);
+        SceneManager.LoadScene("ScrollingCredits");
     }
     
+    /// <summary>
+    /// Increases the health of the player over time.
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator regeneratingHealth()
+    {
+        regenerationTimer = 0.1f;
+        while (pandoraHealtTimer.Count > 0)
+        {
+            for (int i = 0; i < pandoraHealtTimer.Count; i++)
+            {
+                pandoraHealtTimer[i]--;
+            }
+            if (healthHandler.Health < maxHealth) healthHandler.Health += 20;
+            else pandoraHealtTimer.Clear();
+            pandoraHealtTimer.RemoveAll(i => i == 0);
+            yield return new WaitForSeconds(regenerationTimer);
+        }
+    }
+    
+    /// <summary>
+    /// Calls the coroutine to regenerate health over time, for each tick.
+    /// </summary>
+    /// <param name="ticks">The amount of ticks.</param>
+    public void applypotion(float ticks)
+    {
+        if (pandoraHealtTimer.Count <= 0)
+        {
+            pandoraHealtTimer.Add(ticks);
+            StartCoroutine(regeneratingHealth());
+        }
+        else pandoraHealtTimer.Add(ticks);
+    }
+    
+    /// <summary>
+    /// Plays the potion effect when a potion is used.
+    /// </summary>
     public void PlayPotionEffect()
     {
         var newPotionEffect = Instantiate(potioneffect, transform.position + (Vector3.up * 0.35f), transform.rotation * Quaternion.Euler (-90f, 0f, 0f));

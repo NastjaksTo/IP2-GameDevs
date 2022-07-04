@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using static PlayerSkillsystem;
 using static CombatSystem;
+using static EnemySoundHandler;
 
 public class GruntAgent : MonoBehaviour
 {
@@ -14,9 +13,6 @@ public class GruntAgent : MonoBehaviour
 
     private float damage;
 
-    [SerializeField]
-    private float level = 1;
-
     /// <summary>
     /// References set to all necessary Context
     /// </summary>
@@ -26,7 +22,7 @@ public class GruntAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         health = GetComponentInChildren<EnemyHealthHandler>();
 
-        health.Health = 150 + enemy.Playerlevel * 5;
+        health.Health = 625 + enemy.Playerlevel * 5;
         damage = 20 + enemy.Playerlevel * 3;
     }
 
@@ -38,7 +34,7 @@ public class GruntAgent : MonoBehaviour
     private void Update()
     {
         enemy.WalkOrAttack("Run", "Attack1", "Attack2", 5, 15, 0);
-        enemy.GetDamage("Take Damage", "Die", 200);
+        enemy.GetDamage("Take Damage", "Die", 250);
     }
 
     /// <summary>
@@ -48,11 +44,16 @@ public class GruntAgent : MonoBehaviour
     {
         if (doDamage)
         {
+            enemySoundhandler.hitSound();
             combatSystem.LoseHealth(damage);
             doDamage = false;
         }
     }
 
+    /// <summary>
+    /// if the triggerCollider is entered the Enemy is doing Damage
+    /// </summary>
+    /// <param name="other">the triggering Collider has to have the Tag Player</param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

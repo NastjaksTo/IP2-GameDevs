@@ -5107,6 +5107,7 @@ GameObject:
   - component: {fileID: 8290636766066081731}
   - component: {fileID: 8290636766066081729}
   - component: {fileID: 8290636766066081732}
+  - component: {fileID: 8679699988800053150}
   m_Layer: 30
   m_Name: Pandora
   m_TagString: Enemy
@@ -5229,8 +5230,9 @@ MonoBehaviour:
   whatIsWeapon:
     serializedVersion: 2
     m_Bits: 2048
-  health: 500
-  maxHealth: 500
+  healthHandler: {fileID: 0}
+  health: 10000
+  maxHealth: 10000
   timeBetweenAttacks: 3
   sightRange: 33
   attackRange: 22
@@ -5252,7 +5254,7 @@ MonoBehaviour:
   SpellAudioVolume: 0.5
   regenerationTimer: 0
   potioneffect: {fileID: 456768341000717931, guid: 2e2ac8fa38213974c83563a27ea5ed46, type: 3}
-  potionTickTimer: 
+  pandoraHealtTimer: []
   isInvincible: 0
   shield: {fileID: 7683461493747893127}
 --- !u!114 &8290636766066081732
@@ -5267,6 +5269,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0f3bb2970216e48985fa0d29d7198a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8679699988800053150
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7378260972947497872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7683461493747893127
 GameObject:
   m_ObjectHideFlags: 0

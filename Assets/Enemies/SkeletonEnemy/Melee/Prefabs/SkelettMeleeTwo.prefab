@@ -1474,6 +1474,7 @@ GameObject:
   - component: {fileID: 676420122850085879}
   - component: {fileID: 5310286801624144486}
   - component: {fileID: 676420122859087010}
+  - component: {fileID: 1272251220411284775}
   m_Layer: 30
   m_Name: SkelettMeleeTwo
   m_TagString: Enemy
@@ -1572,7 +1573,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   isAttacking: 0
-  sworddamage: 25
+  sworddamage: 20
   skeletonName: SkeletonTwo
 --- !u!114 &676420122850085882
 MonoBehaviour:
@@ -1614,6 +1615,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f891380b6a250834f82e45ca7be2641d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStunned: 0
+  sightRange: 0
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &5310286801624144486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1648,6 +1654,20 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!136 &1272251220411284775
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676420122859452538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.17
+  m_Height: 1.75
+  m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &676420122859452540
 GameObject:

@@ -42,4 +42,5 @@ public enum Attributes {
     ManaPoints,
     PhysicalDamage,
     Stamina,
+    MagicDamage,
 }

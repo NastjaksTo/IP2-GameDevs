@@ -7,86 +7,68 @@ using static PlayerAttributes;
 
 public class Earth2 : MonoBehaviour
 {
-    public static float dmgredcution;
-    public static bool earth2IsActive;
+    public static float dmgredcution;                           // Float to save the damage reduction in.
+    public static bool earth2IsActive;                          // Bool to check whether or not the earthspell is active.
+    public float regenerationTimer;                             // Float to save the regeneration time.
     
-
-    public float regenerationTimer;
-
-    private bool canusepotion;
-
+    public List<float> spellTickTimer = new List<float>();      // Float list to save the each tick the spell goes through.
     
-    public List<int> potionTickTimer = new List<int>();
-    
+    /// <summary>
+    /// Sets the damage reduction according to the players skilllevel.
+    /// Starts the coroutine for the spell.
+    /// Applies the healing effect.
+    /// </summary>
     private void Awake()
     {
-        if (skillTree.skillLevels[2] == 0)
-        {
-            dmgredcution = 0.9f;
-        }
-        if (skillTree.skillLevels[2] == 1)
-        {
-            dmgredcution = 0.8f;
-        }
-        if (skillTree.skillLevels[2] == 2)
-        {
-            dmgredcution = 0.7f;
-        }
-        if (skillTree.skillLevels[2] == 3)
-        {
-            dmgredcution = 0.6f;
-        }
-        if (skillTree.skillLevels[2] == 4)
-        {
-            dmgredcution = 0.5f;
-        }
-        if (skillTree.skillLevels[2] == 5)
-        {
-            dmgredcution = 0.4f;
-        }
-
+        dmgredcution = 0.4f - playerAttributesScript.magicDamage / 200;
         StartCoroutine(Earth2Duration());
+        applypotion(1 * ((1 + (skillTree.skillLevels[8]) / 1.125f)) + playerAttributesScript.magicDamage / 2);
     }
-    
-        
+
+    /// <summary>
+    /// Increases the health of the player over time.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator regeneratingHealth()
     {
-        regenerationTimer = 0.5f - skillTree.skillLevels[8] * 0.23f;
-        while (potionTickTimer.Count > 0)
+        regenerationTimer = 1 * (0.25f - (0.05f * skillTree.skillLevels[8]));
+        while (spellTickTimer.Count > 0)
         {
-            for (int i = 0; i < potionTickTimer.Count; i++)
+            for (int i = 0; i < spellTickTimer.Count; i++)
             {
-                potionTickTimer[i]--;
+                spellTickTimer[i]--;
             }
-
-            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.20f;
-            else potionTickTimer.Clear();
-            potionTickTimer.RemoveAll(i => i == 0);
+            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.01f;
+            else spellTickTimer.Clear();
+            spellTickTimer.RemoveAll(i => i == 0);
             yield return new WaitForSeconds(regenerationTimer);
         }
     }
 
-    public void applypotion(int ticks)
+    /// <summary>
+    /// Calls the coroutine to regenerate health over time, for each tick.
+    /// </summary>
+    /// <param name="ticks">The amount of ticks.</param>
+    public void applypotion(float ticks)
     {
-        if (potionTickTimer.Count <= 0)
+        if (spellTickTimer.Count <= 0)
         {
-            potionTickTimer.Add(ticks);
+            spellTickTimer.Add(ticks);
             StartCoroutine(regeneratingHealth());
         }
-        else potionTickTimer.Add(ticks);
+        else spellTickTimer.Add(ticks);
     }
 
+    /// <summary>
+    /// Activates and deactivates the spell after a set amount of time.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Earth2Duration()
     {
         earth2IsActive = true;
         Debug.Log("earth2isactive");
-        yield return new WaitForSecondsRealtime(19);
+        yield return new WaitForSeconds(19);
         earth2IsActive = false;
         Debug.Log("earth2isnotactive");
-    }
-
-    private void Update()
-    {
-        applypotion(1 * (1 + skillTree.skillLevels[8]));
     }
 }
