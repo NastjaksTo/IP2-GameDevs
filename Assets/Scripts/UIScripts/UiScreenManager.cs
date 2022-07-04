@@ -316,6 +316,7 @@ public class UiScreenManager : MonoBehaviour {
                     CloseSkillUi();
                     saveData.SaveGame();
                     SceneManager.LoadSceneAsync("EnemyScene", LoadSceneMode.Additive);
+                    saveData.ResetAttributes();
                 }
 
                 if (_questUiOpen) {

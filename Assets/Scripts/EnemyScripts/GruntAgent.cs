@@ -22,8 +22,8 @@ public class GruntAgent : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAttributes>();
         health = GetComponentInChildren<EnemyHealthHandler>();
 
-        health.Health = 625 + enemy.Playerlevel * 5;
-        damage = 20 + enemy.Playerlevel * 3;
+        health.Health = 450 + enemy.Playerlevel * 5;
+        damage = 15 + enemy.Playerlevel * 3;
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ public class GruntAgent : MonoBehaviour
     private void Update()
     {
         enemy.WalkOrAttack("Run", "Attack1", "Attack2", 5, 15, 0);
-        enemy.GetDamage("Take Damage", "Die", 250);
+        enemy.GetDamage("Take Damage", "Die", 350);
     }
 
     /// <summary>

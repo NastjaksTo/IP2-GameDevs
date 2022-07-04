@@ -166,9 +166,11 @@ public class SaveData : MonoBehaviour
         savingText.SetActive(false);
     }
 
-    public void ResetBossHealth()
+    public void ResetAttributes()
     {
-        pandoraAgent.health = pandoraAgent.maxHealth;
+        attributes.currentHealth = attributes.maxHealth;
+        attributes.currentStamina = attributes.maxStamina;
+        attributes.currentMana = attributes.maxMana;
     }
 
     /// <summary>
@@ -192,6 +194,7 @@ public class SaveData : MonoBehaviour
                 combatsystem.refillPotions();
                 uimanager.OpenSkillUi();
                 SceneManager.UnloadSceneAsync("EnemyScene");
+                ResetAttributes();
             }
         }
         if (saving)
