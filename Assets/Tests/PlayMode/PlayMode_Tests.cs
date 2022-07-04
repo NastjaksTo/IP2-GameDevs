@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Task = System.Threading.Tasks.Task;
 
 public class PlayMode_Tests {
     private GameObject player;
@@ -14,10 +18,12 @@ public class PlayMode_Tests {
 
 
     [OneTimeSetUp]
-    public void LoadScene() {
+    public void LoadScene()
+    {
         SceneManager.LoadScene("GameScene");
+        //await Task.Delay(1);
+        //GameObject.Find("Bosses").SetActive(false);
     }
-    
 
     [UnityTest]
     public IEnumerator IsPlayerInScene_Test() {
@@ -28,7 +34,8 @@ public class PlayMode_Tests {
 
 
     [UnityTest]
-    public IEnumerator HasPlayerHealth_Test() {
+    public IEnumerator HasPlayerHealth_Test()
+    {
         playerAtr = GameObject.Find("PlayerArmature").GetComponent<PlayerAttributes>();
         var currentHealth = playerAtr.currentHealth;
         yield return null;

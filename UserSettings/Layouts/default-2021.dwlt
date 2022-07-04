@@ -20,37 +20,11 @@ MonoBehaviour:
     height: 973
   m_ShowMode: 4
   m_Title: Scene
-  m_RootView: {fileID: 3}
+  m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 421}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 395
-    y: 0
-    width: 637
-    height: 602
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 16}
-  m_Panes:
-  - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,9 +37,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 4}
-  - {fileID: 6}
+  - {fileID: 3}
   - {fileID: 5}
+  - {fileID: 4}
   m_Position:
     serializedVersion: 2
     x: 0
@@ -78,7 +52,7 @@ MonoBehaviour:
   m_TopViewHeight: 30
   m_UseBottomView: 1
   m_BottomViewHeight: 20
---- !u!114 &4
+--- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
   m_LastLoadedLayoutName: 
---- !u!114 &5
+--- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +95,7 @@ MonoBehaviour:
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
---- !u!114 &6
+--- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,19 +108,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
-  - {fileID: 7}
-  - {fileID: 11}
+  - {fileID: 6}
+  - {fileID: 10}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 30
     width: 1904
     height: 923
-  m_MinSize: {x: 400, y: 200}
-  m_MaxSize: {x: 32384, y: 16192}
+  m_MinSize: {x: 300, y: 200}
+  m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 86
---- !u!114 &7
+  controlID: 74
+--- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,20 +133,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
+  - {fileID: 7}
   - {fileID: 8}
-  - {fileID: 2}
   - {fileID: 9}
-  - {fileID: 10}
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1904
-    height: 602
-  m_MinSize: {x: 400, y: 100}
-  m_MaxSize: {x: 32384, y: 8096}
+    height: 257
+  m_MinSize: {x: 300, y: 100}
+  m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 954
+  controlID: 75
+--- !u!114 &7
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 263
+    height: 257
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 16}
+  m_Panes:
+  - {fileID: 16}
+  m_Selected: 0
+  m_LastSelected: 0
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -183,50 +182,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 0
+    x: 263
     y: 0
-    width: 395
-    height: 602
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 17}
-  m_Panes:
-  - {fileID: 17}
-  m_Selected: 0
-  m_LastSelected: 0
---- !u!114 &9
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
-  m_EditorClassIdentifier: 
-  m_Children: []
-  m_Position:
-    serializedVersion: 2
-    x: 1032
-    y: 0
-    width: 496
-    height: 602
+    width: 1437
+    height: 257
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 20}
+  m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 18}
-  - {fileID: 20}
-  m_Selected: 1
+  - {fileID: 17}
+  - {fileID: 19}
+  - {fileID: 15}
+  m_Selected: 2
   m_LastSelected: 1
---- !u!114 &10
+--- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,26 +210,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: NavMeshEditorWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1528
+    x: 1700
     y: 0
-    width: 376
-    height: 602
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 21}
+    width: 204
+    height: 257
+  m_MinSize: {x: 301, y: 381}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 14}
   m_Panes:
-  - {fileID: 21}
-  - {fileID: 19}
+  - {fileID: 20}
+  - {fileID: 18}
+  - {fileID: 13}
   - {fileID: 14}
-  - {fileID: 15}
-  m_Selected: 0
-  m_LastSelected: 3
---- !u!114 &11
+  m_Selected: 3
+  m_LastSelected: 0
+--- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,26 +239,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: TestRunnerWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 602
+    y: 257
     width: 1904
-    height: 321
-  m_MinSize: {x: 100, y: 121}
-  m_MaxSize: {x: 4000, y: 4021}
-  m_ActualView: {fileID: 23}
+    height: 666
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 11}
   m_Panes:
+  - {fileID: 21}
   - {fileID: 22}
-  - {fileID: 23}
-  - {fileID: 13}
   - {fileID: 12}
-  m_Selected: 1
+  - {fileID: 11}
+  m_Selected: 3
   m_LastSelected: 0
---- !u!114 &12
+--- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,31 +278,31 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 513
-    width: 1920
-    height: 478
+    x: 8
+    y: 338
+    width: 1904
+    height: 645
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 652
-    splitterInitialOffset: 0
+    ID: 493
+    splitterInitialOffset: 321
     currentActiveSplitter: -1
     realSizes:
-    - 306
-    - 102
+    - 252
+    - 323
     relativeSizes:
-    - 0.75
-    - 0.25
+    - 0.43826088
+    - 0.5617391
     minSizes:
     - 32
     - 32
     maxSizes:
     - 0
     - 0
-    lastTotalSize: 408
+    lastTotalSize: 575
     splitSize: 6
     xOffset: 0
     m_Version: 1
@@ -338,14 +312,14 @@ MonoBehaviour:
     oldSplitSize: 0
   m_TestTypeToolbarIndex: 0
   m_PlayModeTestListGUI:
-    m_Window: {fileID: 12}
+    m_Window: {fileID: 11}
     m_NewResultList:
     - id: 1009
       uniqueId: '[GameDev][suite]'
       name: GameDev
       fullName: GameDev
       resultStatus: 2
-      duration: 0.1274062
+      duration: 13.8823395
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -361,7 +335,7 @@ MonoBehaviour:
       name: PlayMode.dll
       fullName: C:/Unity/IP2-GameDevs/Library/ScriptAssemblies/PlayMode.dll
       resultStatus: 2
-      duration: 0.0125068
+      duration: 13.759793
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -377,58 +351,73 @@ MonoBehaviour:
       name: PlayMode_Tests
       fullName: PlayMode_Tests
       resultStatus: 2
-      duration: 0.0048582
-      messages: 'Invalid signature for SetUp or TearDown method: LoadScene'
+      duration: 13.755324
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
-      notRunnable: 1
+      notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 1
       categories: []
       parentId: 1021
       parentUniqueId: '[PlayMode][C:/Unity/IP2-GameDevs/Library/ScriptAssemblies/PlayMode.dll][suite]'
-    - id: 1012
-      uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.AreSkeletonsInScene_Test]
-      name: AreSkeletonsInScene_Test
-      fullName: PlayMode_Tests.AreSkeletonsInScene_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1010
-      parentUniqueId: PlayMode.dll/[PlayMode][PlayMode_Tests][suite]
-    - id: 1013
+    - id: 1003
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.HasPlayerHealth_Test]
       name: HasPlayerHealth_Test
       fullName: PlayMode_Tests.HasPlayerHealth_Test
       resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
-      output: 
-      stacktrace: 
+      duration: 3.4777167
+      messages: 'Unhandled log message: ''[Exception] NullReferenceException: Object
+        reference not set to an instance of an object''. Use UnityEngine.TestTools.LogAssert.Expect'
+      output: 'The referenced script on this Behaviour (Game Object ''PrefabPainterSceneSettings'')
+        is missing!
+
+        Asset ''StarterAssetsThirdPerson'': Transition ''Idle
+        Walk Run Blend -> dodge'' in state ''Idle Walk Run Blend'' doesn''t have
+        an Exit Time or any condition, transition will be ignored
+
+        Asset
+        ''StarterAssetsThirdPerson'': Transition ''Idle Walk Run Blend -> lightattack''
+        in state ''Idle Walk Run Blend'' doesn''t have an Exit Time or any condition,
+        transition will be ignored
+
+        NullReferenceException: Object reference
+        not set to an instance of an object
+
+'
+      stacktrace: 'PlayMode_Tests.LoadScene () (at Assets/Tests/PlayMode/PlayMode_Tests.cs:25)
+
+        System.Runtime.CompilerServices.AsyncMethodBuilderCore+<>c.<ThrowAsync>b__7_0
+        (System.Object state) (at <6073cf49ed704e958b8a66d540dea948>:0)
+
+        UnityEngine.UnitySynchronizationContext+WorkRequest.Invoke
+        () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+        UnityEngine.UnitySynchronizationContext.Exec
+        () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+        UnityEngine.UnitySynchronizationContext.ExecuteTasks
+        () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+        
+
+'
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1010
+      parentId: 1001
       parentUniqueId: PlayMode.dll/[PlayMode][PlayMode_Tests][suite]
     - id: 1011
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.IsPlayerInScene_Test]
       name: IsPlayerInScene_Test
       fullName: PlayMode_Tests.IsPlayerInScene_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
+      resultStatus: 1
+      duration: 0.0837469
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -443,10 +432,12 @@ MonoBehaviour:
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.PlayerIsInvincible_Test]
       name: PlayerIsInvincible_Test
       fullName: PlayMode_Tests.PlayerIsInvincible_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
-      output: 
+      resultStatus: 1
+      duration: 0.0231667
+      messages: 
+      output: '100 100
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -460,9 +451,9 @@ MonoBehaviour:
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.PlayerLoseHealth_Test]
       name: PlayerLoseHealth_Test
       fullName: PlayMode_Tests.PlayerLoseHealth_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
+      resultStatus: 1
+      duration: 0.0272517
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -477,9 +468,9 @@ MonoBehaviour:
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.PlayerLoseHealthWithArmor_Test]
       name: PlayerLoseHealthWithArmor_Test
       fullName: PlayMode_Tests.PlayerLoseHealthWithArmor_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
+      resultStatus: 1
+      duration: 0.0206116
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -494,10 +485,12 @@ MonoBehaviour:
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.PlayerLoseHealthWithEarthSpell_Test]
       name: PlayerLoseHealthWithEarthSpell_Test
       fullName: PlayMode_Tests.PlayerLoseHealthWithEarthSpell_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
-      output: 
+      resultStatus: 1
+      duration: 0.0264251
+      messages: 
+      output: 'earth1isactive
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -511,10 +504,16 @@ MonoBehaviour:
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.PlayerRevive_Test]
       name: PlayerRevive_Test
       fullName: PlayMode_Tests.PlayerRevive_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
-      output: 
+      resultStatus: 1
+      duration: 0.0252939
+      messages: 
+      output: '56
+
+        1
+
+        100
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -528,10 +527,12 @@ MonoBehaviour:
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.PlayerUsePoison_Test]
       name: PlayerUsePoison_Test
       fullName: PlayMode_Tests.PlayerUsePoison_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
-      output: 
+      resultStatus: 1
+      duration: 10.027074
+      messages: 
+      output: '100 73 88,79976
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -545,10 +546,16 @@ MonoBehaviour:
       uniqueId: PlayMode.dll/PlayMode_Tests/[PlayMode][PlayMode_Tests.zPlayerCanDie_Test]
       name: zPlayerCanDie_Test
       fullName: PlayMode_Tests.zPlayerCanDie_Test
-      resultStatus: 2
-      duration: 0
-      messages: 'OneTimeSetUp: Invalid signature for SetUp or TearDown method: LoadScene'
-      output: 
+      resultStatus: 1
+      duration: 0.0277916
+      messages: 
+      output: '88.79976
+
+        100
+
+        -80
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -558,17 +565,68 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1010
       parentUniqueId: PlayMode.dll/[PlayMode][PlayMode_Tests][suite]
-    m_ResultText: 'AreSkeletonsInScene_Test (0,000s)
+    m_ResultText: 'HasPlayerHealth_Test (3,478s)
 
       ---
 
-      OneTimeSetUp:
-      Invalid signature for SetUp or TearDown method: LoadScene'
-    m_ResultStacktrace: 
+      Unhandled log
+      message: ''[Exception] NullReferenceException: Object reference not set to
+      an instance of an object''. Use UnityEngine.TestTools.LogAssert.Expect
+
+      ---
+
+      PlayMode_Tests.LoadScene
+      () (at Assets/Tests/PlayMode/PlayMode_Tests.cs:25)
+
+      System.Runtime.CompilerServices.AsyncMethodBuilderCore+<>c.<ThrowAsync>b__7_0
+      (System.Object state) (at <6073cf49ed704e958b8a66d540dea948>:0)
+
+      UnityEngine.UnitySynchronizationContext+WorkRequest.Invoke
+      () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+      UnityEngine.UnitySynchronizationContext.Exec
+      () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+      UnityEngine.UnitySynchronizationContext.ExecuteTasks
+      () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+      ---
+
+      The referenced
+      script on this Behaviour (Game Object ''PrefabPainterSceneSettings'') is missing!
+
+      Asset
+      ''StarterAssetsThirdPerson'': Transition ''Idle Walk Run Blend -> dodge'' in
+      state ''Idle Walk Run Blend'' doesn''t have an Exit Time or any condition,
+      transition will be ignored
+
+      Asset ''StarterAssetsThirdPerson'': Transition
+      ''Idle Walk Run Blend -> lightattack'' in state ''Idle Walk Run Blend'' doesn''t
+      have an Exit Time or any condition, transition will be ignored
+
+      NullReferenceException:
+      Object reference not set to an instance of an object'
+    m_ResultStacktrace: 'PlayMode_Tests.LoadScene () (at Assets/Tests/PlayMode/PlayMode_Tests.cs:25)
+
+      System.Runtime.CompilerServices.AsyncMethodBuilderCore+<>c.<ThrowAsync>b__7_0
+      (System.Object state) (at <6073cf49ed704e958b8a66d540dea948>:0)
+
+      UnityEngine.UnitySynchronizationContext+WorkRequest.Invoke
+      () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+      UnityEngine.UnitySynchronizationContext.Exec
+      () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+      UnityEngine.UnitySynchronizationContext.ExecuteTasks
+      () (at <823fb226a3f9439cb41fdcb61f9c86a1>:0)
+
+      
+
+'
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 94a11aa1
-      m_LastClickedID: -1592090220
+      m_SelectedIDs: 18c96574
+      m_LastClickedID: 1952827672
       m_ExpandedIDs: 9f4bd6bec6a086cf5f04fafdffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -597,7 +655,7 @@ MonoBehaviour:
       - Uncategorized
     m_SelectedOption: 0
   m_EditModeTestListGUI:
-    m_Window: {fileID: 12}
+    m_Window: {fileID: 11}
     m_NewResultList:
     - id: 1000
       uniqueId: '[GameDev][suite]'
@@ -728,7 +786,7 @@ MonoBehaviour:
       selectedCategoryMask: 0
       availableCategories:
       - Uncategorized
---- !u!114 &13
+--- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -748,18 +806,18 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 705
-    width: 1920
-    height: 294
+    x: 8
+    y: 747
+    width: 1904
+    height: 236
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 136454
---- !u!114 &14
+  m_LastSelectedObjectID: 194402
+--- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -779,15 +837,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1130.4
-    y: 73.6
-    width: 404.59998
-    height: 463
+    x: 1342
+    y: 81
+    width: 569
+    height: 645
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &15
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -807,15 +865,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1541
-    y: 73
-    width: 378
-    height: 419
+    x: 1708
+    y: 81
+    width: 203
+    height: 236
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &16
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -835,10 +893,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 403
+    x: 271
     y: 81
-    width: 635
-    height: 581
+    width: 1435
+    height: 236
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -957,7 +1015,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -1073,9 +1131,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 237.74539, y: -12.923742, z: 197.84258}
+    m_Target: {x: 331.5165, y: 5.5701857, z: 352.9731}
     speed: 2
-    m_Value: {x: 237.74539, y: -12.923742, z: 197.84258}
+    m_Value: {x: 331.5165, y: 5.5701857, z: 352.9731}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1122,9 +1180,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.046823844, y: 0.43093133, z: -0.026596058, w: 0.9009302}
+    m_Target: {x: -0.027264236, y: 0.94712603, z: -0.31272188, w: -0.06843622}
     speed: 2
-    m_Value: {x: 0.0468572, y: 0.42952, z: -0.026522122, w: 0.9014509}
+    m_Value: {x: -0.027260564, y: 0.9469985, z: -0.31267977, w: -0.068427004}
   m_Size:
     m_Target: 20.385965
     speed: 2
@@ -1153,7 +1211,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &17
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1175,8 +1233,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 8
     y: 81
-    width: 394
-    height: 581
+    width: 262
+    height: 236
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1184,9 +1242,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 7ac40100
-      m_LastClickedID: 115834
-      m_ExpandedIDs: 7401fcff367efcffdc7efcffd681fcff2602fdffcc02fdff1681fdff7a01feff2202feff8e80feff5afefeff02fffeff5e7dffffd4faffff76bc0100
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 6a0bf6ff100cf6ffd2bff6ff343ff7ffda3ff7ff94f3f7ffe676f8ff8c77f8ff282bf9ffaea8f9ff54a9f9ff5e5efaff52dcfafff8dcfaffdc8efbffd090fbffcc13fcff7214fcffbc92fcff8ce6fcff4668fdffda79feff907afeffb030ffff803effffd2faffffd4faffffac070200f01b0200c0af020058b60200
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1202,7 +1260,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 8}
+        m_ClientGUIView: {fileID: 7}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1210,7 +1268,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &18
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1238,7 +1296,7 @@ MonoBehaviour:
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &19
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1258,10 +1316,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1439
-    y: 73
-    width: 480
-    height: 611
+    x: 1342
+    y: 81
+    width: 569
+    height: 645
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1457,9 +1515,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: e761ace889a78a946967af8d6890f71d, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 5bd61d42e42f44b4a922495212e06f3f, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107425310404425536, guid: e761ace889a78a946967af8d6890f71d, type: 2}
+  - m_Target: {fileID: 110700000, guid: 5bd61d42e42f44b4a922495212e06f3f, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1472,7 +1530,7 @@ MonoBehaviour:
   m_CurrentEditor: 1
   m_LayerEditor:
     m_SelectedLayerIndex: 0
---- !u!114 &20
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1492,10 +1550,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1040
+    x: 271
     y: 81
-    width: 494
-    height: 581
+    width: 1435
+    height: 236
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1533,7 +1591,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1542,29 +1600,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 494
-      height: 560
-    m_Scale: {x: 0.12864584, y: 0.12864584}
-    m_Translation: {x: 247, y: 280}
+      width: 1435
+      height: 215
+    m_Scale: {x: 0.09953704, y: 0.09953704}
+    m_Translation: {x: 717.5, y: 107.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1920
-      y: -2176.518
-      width: 3840
-      height: 4353.036
+      x: -7208.372
+      y: -1080
+      width: 14416.744
+      height: 2160
     m_MinimalGUI: 1
-  m_defaultScale: 0.12864584
-  m_LastWindowPixelSize: {x: 494, y: 581}
+  m_defaultScale: 0.09953704
+  m_LastWindowPixelSize: {x: 1435, y: 236}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &21
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1584,10 +1642,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1536
+    x: 1456
     y: 81
-    width: 375
-    height: 581
+    width: 455
+    height: 645
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1605,7 +1663,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &22
+--- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1626,15 +1684,15 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 8
-    y: 683
+    y: 338
     width: 1904
-    height: 300
+    height: 645
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_SearchFilter:
-    m_NameFilter: enemys
+    m_NameFilter: depend
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -1644,11 +1702,11 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 0
-    m_SearchArea: 1
+    m_SearchArea: 0
     m_Folders:
     - Assets
     m_Globs: []
-    m_OriginalText: enemys
+    m_OriginalText: depend
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
@@ -1659,9 +1717,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 50cc0100
-    m_LastClickedID: 117840
-    m_ExpandedIDs: 0000000058c700005ac700005cc700005ec7000060c7000062c7000064c7000066c7000068c700006ac700006cc700006ec7000070c7000072c7000074c7000076c7000078c700007ac700007cc700007ec7000080c7000082c7000084c7000086c7000088c700008ac700008cc700008ec7000090c7000092c7000094c7000096c7000098c700009ac700009cc700009ec70000a0c70000a2c70000a4c70000a6c70000a8c70000aac70000acc70000aec70000b0c70000b2c70000b4c70000b6c70000b8c70000bac70000bcc70000bec70000c0c70000c2c70000c4c70000c6c70000c8c70000cac70000ccc70000cec70000d0c70000d2c70000d4c70000d6c70000d8c70000dac70000dcc70000dec70000e0c70000e2c70000e4c70000e6c70000e8c70000eac70000ecc70000eec70000f0c70000f2c70000f4c70000f6c70000f8c70000fac70000fcc70000fec7000000c8000002c8000004c8000006c8000008c800000ac800000cc800000ec8000010c8000012c8000014c8000016c8000018c800001ac800001cc800001ec8000020c8000022c8000024c8000026c8000028c800002ac800002cc800002ec8000030c8000032c8000034c8000036c8000038c800003ac800003cc800003ec8000040c8000042c8000044c8000046c8000048c800004ac800004cc800004ec8000050c8000052c8000054c8000056c8000058c800005ac800005cc800005ec8000060c8000062c8000064c8000066c8000068c800006ac800006cc800006ec8000070c8000072c8000074c8000076c8000078c800007ac800007cc800007ec8000080c8000082c8000084c8000086c8000088c800008ac800008cc800008ec8000090c8000092c8000094c8000096c8000098c800009ac800009cc800009ec80000a0c80000a2c80000a4c80000a6c80000a8c80000aac8000000ca9a3b
+    m_SelectedIDs: 06da0000
+    m_LastClickedID: 55814
+    m_ExpandedIDs: 0000000012d8000014d8000016d8000018d800001ad800001cd800001ed8000020d8000022d8000024d8000026d8000028d800002ad800002cd800002ed8000030d8000032d8000034d8000036d8000038d800003ad800003cd800003ed8000040d8000042d8000044d8000046d8000048d800004ad800004cd800004ed8000050d8000052d8000054d8000056d8000058d800005ad800005cd800005ed8000060d8000062d8000064d8000066d8000068d800006ad800006cd800006ed8000070d8000072d8000074d8000076d8000078d800007ad800007cd800007ed8000080d8000082d8000084d8000086d8000088d800008ad800008cd800008ed8000090d8000092d8000094d8000096d8000098d800009ad800009cd800009ed80000a0d80000a2d80000a4d80000a6d80000a8d80000aad80000acd80000aed80000b0d80000b2d80000b4d80000b6d80000b8d80000bad80000bcd80000bed80000c0d80000c2d80000c4d80000c6d80000c8d80000cad80000ccd80000ced80000d0d80000d2d80000d4d80000d6d80000d8d80000dad80000dcd80000ded80000e0d80000e2d80000e4d80000e6d80000e8d80000ead80000ecd80000eed80000f0d80000f2d80000f4d80000f6d80000f8d80000fad80000fcd80000fed8000000d9000002d9000004d9000006d9000008d900000ad900000cd900000ed9000010d9000012d9000014d9000016d9000018d900001ad900001cd900001ed9000020d9000022d9000024d9000026d9000028d900002ad900002cd900002ed9000030d9000032d9000034d9000036d9000038d900003ad900003cd900003ed9000040d9000042d9000044d9000046d9000048d900004ad900004cd900004ed9000050d9000052d9000054d9000056d9000058d900005ad900005cd900005ed9000060d9000062d9000064d9000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1677,7 +1735,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 11}
+      m_ClientGUIView: {fileID: 10}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -1689,7 +1747,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000058c700005ac700005cc700005ec7000060c7000062c7000064c7000066c7000068c700006ac700006cc700006ec7000070c7000072c7000074c7000076c7000078c700007ac700007cc700007ec7000080c7000082c7000084c7000086c7000088c700008ac700008cc700008ec7000090c7000092c7000094c7000096c7000098c700009ac700009cc700009ec70000a0c70000a2c70000a4c70000a6c70000a8c70000aac70000acc70000aec70000b0c70000b2c70000b4c70000b6c70000b8c70000bac70000bcc70000bec70000c0c70000c2c70000c4c70000c6c70000c8c70000cac70000ccc70000cec70000d0c70000d2c70000d4c70000d6c70000d8c70000dac70000dcc70000dec70000e0c70000e2c70000e4c70000e6c70000e8c70000eac70000ecc70000eec70000f0c70000f2c70000f4c70000f6c70000f8c70000fac70000fcc70000fec7000000c8000002c8000004c8000006c8000008c800000ac800000cc800000ec8000010c8000012c8000014c8000016c8000018c800001ac800001cc800001ec8000020c8000022c8000024c8000026c8000028c800002ac800002cc800002ec8000030c8000032c8000034c8000036c8000038c800003ac800003cc800003ec8000040c8000042c8000044c8000046c8000048c800004ac800004cc800004ec8000050c8000052c8000054c8000056c8000058c800005ac800005cc800005ec8000060c8000062c8000064c8000066c8000068c800006ac800006cc800006ec8000070c8000072c8000074c8000076c8000078c800007ac800007cc800007ec8000080c8000082c8000084c8000086c8000088c800008ac800008cc800008ec8000090c8000092c8000094c8000096c8000098c800009ac800009cc800009ec80000a0c80000a2c80000a4c80000a6c80000a8c80000aac80000
+    m_ExpandedIDs: 0000000012d8000014d8000016d8000018d800001ad800001cd800001ed8000020d8000022d8000024d8000026d8000028d800002ad800002cd800002ed8000030d8000032d8000034d8000036d8000038d800003ad800003cd800003ed8000040d8000042d8000044d8000046d8000048d800004ad800004cd800004ed8000050d8000052d8000054d8000056d8000058d800005ad800005cd800005ed8000060d8000062d8000064d8000066d8000068d800006ad800006cd800006ed8000070d8000072d8000074d8000076d8000078d800007ad800007cd800007ed8000080d8000082d8000084d8000086d8000088d800008ad800008cd800008ed8000090d8000092d8000094d8000096d8000098d800009ad800009cd800009ed80000a0d80000a2d80000a4d80000a6d80000a8d80000aad80000acd80000aed80000b0d80000b2d80000b4d80000b6d80000b8d80000bad80000bcd80000bed80000c0d80000c2d80000c4d80000c6d80000c8d80000cad80000ccd80000ced80000d0d80000d2d80000d4d80000d6d80000d8d80000dad80000dcd80000ded80000e0d80000e2d80000e4d80000e6d80000e8d80000ead80000ecd80000eed80000f0d80000f2d80000f4d80000f6d80000f8d80000fad80000fcd80000fed8000000d9000002d9000004d9000006d9000008d900000ad900000cd900000ed9000010d9000012d9000014d9000016d9000018d900001ad900001cd900001ed9000020d9000022d9000024d9000026d9000028d900002ad900002cd900002ed9000030d9000032d9000034d9000036d9000038d900003ad900003cd900003ed9000040d9000042d9000044d9000046d9000048d900004ad900004cd900004ed9000050d9000052d9000054d9000056d9000058d900005ad900005cd900005ed9000060d9000062d9000064d90000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1714,9 +1772,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 7ac40100
-    m_LastClickedInstanceID: 115834
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300003a8d0000e27d000070910000ae840000e86c00008a7100003091000038600300c8fd0000f6090100bc090100a40901008e8500005c9800006a980000729800006c3a06000e95050070c00b007cc00b008ac00b007c870000728700006a870000628700005a8700005287000082b20000b6a3000066aa0000169d0000fce4000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1733,7 +1791,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 8}
+      m_ClientGUIView: {fileID: 7}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -1745,7 +1803,7 @@ MonoBehaviour:
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 209
---- !u!114 &23
+--- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1766,9 +1824,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 8
-    y: 683
+    y: 877
     width: 1904
-    height: 300
+    height: 106
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
