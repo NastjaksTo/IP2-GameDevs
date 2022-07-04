@@ -42,7 +42,7 @@ public class FatDragonScript : MonoBehaviour
     GameObject fireBall;
 
     [SerializeField]
-    private Collider collider;
+    private Collider col;
 
     public float FireBallDamage { get => fireBallDamage; set => fireBallDamage = value; }
 
@@ -73,12 +73,13 @@ public class FatDragonScript : MonoBehaviour
 
         fov.Radius = 50.0f;
         fov.Angle = 120.0f;
+    }
 
-
+    private void Start()
+    {
         fireBallDamage = 20 + playerskillsystem.playerlevel.GetLevel() * 2;
         damage = 20 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
-
     }
 
     /// <summary>
@@ -105,7 +106,7 @@ public class FatDragonScript : MonoBehaviour
         {
             animator.SetBool("Walk", true);
             navMeshAgent.destination = movePositionTransform.position;
-            collider.isTrigger = false;
+            col.isTrigger = false;
             idle = false;
             if (Vector3.Distance(this.transform.position, movePositionTransform.position) < attackRange)
             {
@@ -134,7 +135,7 @@ public class FatDragonScript : MonoBehaviour
                     navMeshAgent.speed = speed / 2;
                     animator.SetBool("Walk", false);
                     animator.SetTrigger("Fly and Shoot");
-                    collider.isTrigger = true;
+                    col.isTrigger = true;
                 }
             }
         }
