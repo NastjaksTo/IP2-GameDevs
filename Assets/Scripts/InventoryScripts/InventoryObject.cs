@@ -51,7 +51,7 @@ public class InventoryObject : ScriptableObject {
     /// <summary>
     /// Checks if the item already exists in the inventory.
     /// </summary>
-    /// <param name="_Item"></param>
+    /// <param name="_Item">the item to check</param>
     /// <returns>return the slot if the item exists and return null if not.</returns>
     public InventorySlot FindeItemOnInventory(Item _Item) {
         for (int i = 0; i < GetSlots.Length; i++) {
@@ -78,10 +78,10 @@ public class InventoryObject : ScriptableObject {
     }
 
     /// <summary>
-    /// Finde and set the first empty slot in the inventory.
+    /// Find and set the first empty slot in the inventory.
     /// </summary>
-    /// <param name="_item">the item that shoud set in the slot</param>
-    /// <param name="_amount">the amount of the item that shoud set in the slot</param>
+    /// <param name="_item">the item that should set in the slot</param>
+    /// <param name="_amount">the amount of the item that should set in the slot</param>
     /// <returns>returns the set slot ore</returns>
     public InventorySlot SetFirstEmptySlot(Item _item, int _amount) {
         for (int i = 0; i < GetSlots.Length; i++) {
@@ -91,7 +91,7 @@ public class InventoryObject : ScriptableObject {
             }
         }
 
-        //TODO: was passiert, wenn das INventar voll ist.
+        //TODO: was passiert, wenn das Inventar voll ist.
         return null;
     }
 

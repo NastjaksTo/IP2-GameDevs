@@ -85,7 +85,9 @@ public class UiScreenManager : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
-
+    /// <summary>
+    /// Opens the Quest UI. Makes the mouse pointer visible and freezes the game time. 
+    /// </summary>
     private void OpenQuestUi() {
         ClosePlayerStatsUi();
         Time.timeScale = 0f;
@@ -96,6 +98,9 @@ public class UiScreenManager : MonoBehaviour {
     }
 
 
+    /// <summary>
+    /// Closes the Quest UI. Locks the Cursor and let the game time continue.
+    /// </summary>
     private void CloseQuestUi() {
         ShowPlayerStatsUi();
         Cursor.lockState = CursorLockMode.Locked;
@@ -168,7 +173,7 @@ public class UiScreenManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// Closes the in pause menu UI. Locks the Cursor and let the game time continue if no other ui ist open.
+    /// Closes the in pause menu UI. Locks the Cursor and let the game time continue if no other ui is open.
     /// </summary>
     public void ClosePauseContainerUi() {
 
@@ -186,6 +191,9 @@ public class UiScreenManager : MonoBehaviour {
 
     //------------- IN menu UI -------------
 
+    /// <summary>
+    /// Open the pauseMenu Ui
+    /// </summary>
     public void OpenMenuUi() {
         pauseMenuUi.SetActive(true);
     }
@@ -243,11 +251,13 @@ public class UiScreenManager : MonoBehaviour {
     /// <summary>
     /// Loads the last saved game state 
     /// </summary>
-    public void LoadLastGameState() { //TODO: LOAD LAST SAVED GAME STATE
+    public void LoadLastGameState() {
         saveData.Loadgame();
     }
 
-
+    /// <summary>
+    /// function to swap between the Quest ui and the Inventory ui
+    /// </summary>
     public void SwappInventoryQuestUi()
     {
         if (_inventoryUiOpen)
@@ -265,10 +275,7 @@ public class UiScreenManager : MonoBehaviour {
 
 
     /// <summary>
-    /// Checks each frame the input for the keys I and Esc
-    /// On I and if the DeathUi is closed: close the inventoryUI when its open, or open it if its closed and the menu is not opened.
-    /// On R and if the DeathUi is closed: close the skillUi when its open, or open it if its closed and the menu is not opened.
-    /// On Esc and if the DeathUi is closed: close the menuUI when its open, or open it if its closed.
+    /// Checks each frame the input of the keys to open or close the respective UIs
     /// </summary>
     public void Update() {
 
