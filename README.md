@@ -12,6 +12,7 @@ For more detailed information about the project have a look at the [Project doku
 
 For more detailed information about the code have a look at the [Code dokumentation](https://drive.google.com/drive/folders/1v9l3Fb8pXi8aOR6cjQyc50UTz2wPxmR5?usp=sharing)
 
+
 ## Set up the project for development
 1. Download and Install Unity(Hub): https://unity3d.com/de/get-unity/download
 2. Open UnityHub and login
