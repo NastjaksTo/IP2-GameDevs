@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: Necklace_Magic
   m_EditorClassIdentifier: 
   itemName: Magic Necklace
+  characterDisplayName: 
   characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 9d8e73e78cbabc442b8ccad239061cfd, type: 3}
   istStackable: 0
   itemType: 0
   itemDescription: "Magic necklace.\n\n + 15 max Health\n + 15 Armor\n + 15 Physical
     damage"
   data:
-    Id: 5
+    Id: 16
     buffs:
-    - attribute: 5
-      buffValue: 15
-    - attribute: 7
-      buffValue: 15
     - attribute: 4
+      buffValue: 15
+    - attribute: 0
+      buffValue: 15
+    - attribute: 6
       buffValue: 15
