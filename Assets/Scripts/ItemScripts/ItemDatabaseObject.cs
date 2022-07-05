@@ -19,6 +19,7 @@ public class ItemDatabaseObject : ScriptableObject, ISerializationCallbackReceiv
     }
 
     public void OnBeforeSerialize() {
+        UpdateID();
     }
 
     /// <summary>

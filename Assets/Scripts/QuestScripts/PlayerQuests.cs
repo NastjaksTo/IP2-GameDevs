@@ -196,7 +196,7 @@ public class PlayerQuests : MonoBehaviour
         }
         closeDialogBtn.SetActive(true);
         writingSound.Stop();
-        newQuestAltertOpen();
+        //newQuestAltertOpen();
     }
 
     /// <summary>
@@ -225,6 +225,7 @@ public class PlayerQuests : MonoBehaviour
         questGiverUI.SetActive(false);
         dialogueIsOpen = false;
         Time.timeScale = 1f;
+        newQuestAltertOpen();
     }
 
     /// <summary>
@@ -255,7 +256,7 @@ public class PlayerQuests : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     private IEnumerator closeCompletionUI() {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(6);
         completionUI.SetActive(false);
     }
 
@@ -265,7 +266,7 @@ public class PlayerQuests : MonoBehaviour
     /// <returns></returns>
     private IEnumerator closeNewQuestAlert()
     {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(6);
         newQuestAlert.SetActive(false);
     }
 
