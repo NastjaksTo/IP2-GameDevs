@@ -176,6 +176,7 @@ public class PlayerQuests : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         questGiverUI.SetActive(true);
+        uiScreenManager.ClosePlayerStatsUi();
         dialogueIsOpen = true;
         questGiverTitel.text = "";
         questGiverDescr.text = "";
@@ -196,7 +197,7 @@ public class PlayerQuests : MonoBehaviour
         }
         closeDialogBtn.SetActive(true);
         writingSound.Stop();
-        newQuestAltertOpen();
+        //newQuestAltertOpen();
     }
 
     /// <summary>
@@ -223,8 +224,10 @@ public class PlayerQuests : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         closeDialogBtn.SetActive(false);
         questGiverUI.SetActive(false);
+        uiScreenManager.ShowPlayerStatsUi();
         dialogueIsOpen = false;
         Time.timeScale = 1f;
+        newQuestAltertOpen();
     }
 
     /// <summary>
@@ -255,7 +258,7 @@ public class PlayerQuests : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     private IEnumerator closeCompletionUI() {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(6);
         completionUI.SetActive(false);
     }
 
@@ -265,7 +268,7 @@ public class PlayerQuests : MonoBehaviour
     /// <returns></returns>
     private IEnumerator closeNewQuestAlert()
     {
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(6);
         newQuestAlert.SetActive(false);
     }
 

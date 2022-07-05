@@ -180,7 +180,7 @@ public class SaveData : MonoBehaviour
     /// </summary>
     private void Update() 
     {
-        if (Input.GetKeyDown(KeyCode.E) && CheckpointSystem.checkpointactive) 
+        if (Input.GetKeyDown(KeyCode.E) && CheckpointSystem.checkpointactive &&  !UiScreenManager._questUiOpen  && !UiScreenManager._inventoryUiOpen)
         {
             if (UiScreenManager._skillUiOpen) 
             {

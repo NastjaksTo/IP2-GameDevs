@@ -13,6 +13,7 @@ public class SkillTree : MonoBehaviour
     public int[] skillCaps;                         // Integer array of maximum level of skills.
 
     public TMP_Text spUI;                           // Reference to the skillpoint interface.
+    public TMP_Text skillPointsInventory;           // Reference to the skillpoint in inventory.
 
     public List<Skill> skillList;                   // Creates list which safes all skills.
     public GameObject skillHolder;                  // Reference gameobject where each skill reference is stored.
@@ -78,6 +79,7 @@ public class SkillTree : MonoBehaviour
     {
         skillPoints = playerskillsystem.ReturnSp();
         spUI.text = $"Remaining Skillpoints: {skillPoints}";
+        skillPointsInventory.text = skillPoints.ToString();
         foreach (var skill in skillList) skill.UpdateUI();
     }
 
