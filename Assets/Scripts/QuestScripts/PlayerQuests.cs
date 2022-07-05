@@ -176,6 +176,7 @@ public class PlayerQuests : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         questGiverUI.SetActive(true);
+        uiScreenManager.ClosePlayerStatsUi();
         dialogueIsOpen = true;
         questGiverTitel.text = "";
         questGiverDescr.text = "";
@@ -223,6 +224,7 @@ public class PlayerQuests : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         closeDialogBtn.SetActive(false);
         questGiverUI.SetActive(false);
+        uiScreenManager.ShowPlayerStatsUi();
         dialogueIsOpen = false;
         Time.timeScale = 1f;
         newQuestAltertOpen();

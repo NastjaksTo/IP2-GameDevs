@@ -15,13 +15,13 @@ public class UiScreenManager : MonoBehaviour {
     public static UiScreenManager uiScreenManager;
     public GameObject playerStatsUI;                        //reference set in editor
 
-    private static bool _inventoryUiOpen = false;
+    public static bool _inventoryUiOpen = false;
     public GameObject inventoryUI;                          //reference set in editor
 
     public static bool _skillUiOpen = false;
     public GameObject skillUi;                              //reference set in editor
 
-    private static bool _questUiOpen = false;
+    public static bool _questUiOpen = false;
     public GameObject questUi;                              //reference set in editor
 
     public static bool _deathUiOpen = false;
@@ -49,14 +49,14 @@ public class UiScreenManager : MonoBehaviour {
     /// <summary>
     /// Opens the playerstats UI.
     /// </summary>
-    private void ShowPlayerStatsUi() {
+    public void ShowPlayerStatsUi() {
         playerStatsUI.SetActive(true);
     }
 
     /// <summary>
     /// Closes the playerstats UI.
     /// </summary>
-    private void ClosePlayerStatsUi() {
+    public void ClosePlayerStatsUi() {
         playerStatsUI.SetActive(false);
     }
 
@@ -279,7 +279,7 @@ public class UiScreenManager : MonoBehaviour {
     /// </summary>
     public void Update() {
 
-        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
+        if (Input.GetKeyDown(KeyCode.I) && !_deathUiOpen && !playerQuests.dialogueIsOpen && !_skillUiOpen) {
             if (_inventoryUiOpen) {
                 CloseInventoryUi();
                 playerDisplay.UpdateSpellUI();
@@ -291,7 +291,7 @@ public class UiScreenManager : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen && !playerQuests.dialogueIsOpen) {
+        if (Input.GetKeyDown(KeyCode.J) && !_deathUiOpen && !playerQuests.dialogueIsOpen && !_skillUiOpen) {
             if (_questUiOpen) {
                 CloseQuestUi();
             } else if (!_pauseMenuContainerUiOpen && !_isOneIngameUiOpen) {
