@@ -183,7 +183,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerAttributesScript.currentMana -= 15;
             AudioSource.PlayClipAtPoint(spellsounds[3],spawner.position, SpellAudioVolume);
             anim.SetTrigger("castTargetSpell");
-            var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation);
+            var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
             newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 40f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newice1, 2);
             spellcooldown.UseSpell(5f * (1f - 0.5f * skillTree.skillLevels[16]));
