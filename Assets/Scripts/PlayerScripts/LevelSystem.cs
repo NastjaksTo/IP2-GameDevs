@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using TMPro;
 using static SkillTree;
@@ -32,12 +33,15 @@ public class LevelSystem
     public void AddExp(int amount) // Gain experience and level up
     {
         exp += amount;
-        if (exp >= expToLevelUp)
+        while (exp >= expToLevelUp)
         {
             level++;
             skillpoints++;
             exp -= expToLevelUp;
-            expToLevelUp += expToLevelUp * 0.175f;
+            if (level < 16)
+            {
+                expToLevelUp += expToLevelUp * 0.175f;
+            }
             playerskillsystem.PlayLvlUpEffect();
             skillTree.UpdateAllSkillUI();
         }

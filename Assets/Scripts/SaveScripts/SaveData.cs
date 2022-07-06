@@ -34,6 +34,7 @@ public class SaveData : MonoBehaviour
     public GameObject savingUI;                         // Reference to the SaveUI Icon.
     public GameObject savingText;                       // Reference to the SaveUI Text.
     public GameObject lootbags;
+    public GameObject rayaEntrance;
     
 
     /// <summary>
@@ -133,6 +134,11 @@ public class SaveData : MonoBehaviour
         bossarenaScript.isEarthTitanAlive = data.earthTitanDead;
         bossarenaScript.isFireTitanAlive = data.fireTitanDead;
         bossarenaScript.isIceTitanAlive = data.iceTitanDead;
+
+        if (!bossarenaScript.isEarthTitanAlive && !bossarenaScript.isFireTitanAlive && !bossarenaScript.isIceTitanAlive)
+        {
+            rayaEntrance.SetActive(false);
+        }
     }
 
     /// <summary>
