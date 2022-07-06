@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!200 &20000000
+ShaderVariantCollection:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Spells
+  m_Shaders:
+  - first: {fileID: -6465566751694194690, guid: 4d32926d90e26c34586a853602b8f05f, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: bc41b2ff9b3614a4aad28d468f59e950, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: f6a1776d52b856744ba06793c78b26fa, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: c8656138de019564bb4a7ff6f80ecaea, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: f410878430f3b62439d1d93696b84529, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: 0a59d4a4f5e06c24dadac62e04a6a9c0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800002, guid: 0a59d4a4f5e06c24dadac62e04a6a9c0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800004, guid: 0a59d4a4f5e06c24dadac62e04a6a9c0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800008, guid: 0a59d4a4f5e06c24dadac62e04a6a9c0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800012, guid: 0a59d4a4f5e06c24dadac62e04a6a9c0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800014, guid: 0a59d4a4f5e06c24dadac62e04a6a9c0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800016, guid: 0a59d4a4f5e06c24dadac62e04a6a9c0, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: 0ce943434ca06b143aa3d3af15f39478, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800002, guid: 0ce943434ca06b143aa3d3af15f39478, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800004, guid: 0ce943434ca06b143aa3d3af15f39478, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: 1bfe4b9ed49fce9428e9dab58d374609, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800002, guid: 1bfe4b9ed49fce9428e9dab58d374609, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800004, guid: 1bfe4b9ed49fce9428e9dab58d374609, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800000, guid: 446e5c06d7d127a459b63e0bc884cc21, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800002, guid: 446e5c06d7d127a459b63e0bc884cc21, type: 3}
+    second:
+      variants: []
+  - first: {fileID: 4800004, guid: 446e5c06d7d127a459b63e0bc884cc21, type: 3}
+    second:
+      variants: []
+  - first: {fileID: -6465566751694194690, guid: 3a3228571e17ac44ea1a10b00349079b, type: 3}
+    second:
+      variants: []
