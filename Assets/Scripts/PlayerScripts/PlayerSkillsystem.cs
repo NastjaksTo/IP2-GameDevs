@@ -127,7 +127,7 @@ public class PlayerSkillsystem : MonoBehaviour
             var newfireball3 = Instantiate(fire3, transform.position + (transform.forward * 10),
                 transform.rotation * Quaternion.Euler(0f, 0f, 0f));
             Destroy(newfireball3, 10);
-            spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(25f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else if (skillTree.skillLevels[6] > 0)
         {
@@ -137,7 +137,7 @@ public class PlayerSkillsystem : MonoBehaviour
             anim.SetTrigger("castGroundSpell");
             var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
             Destroy(newfireball2, 2);
-            spellcooldown.UseSpell(5f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else
         {
@@ -165,7 +165,7 @@ public class PlayerSkillsystem : MonoBehaviour
             AudioSource.PlayClipAtPoint(spellsounds[5],transform.position+(transform.forward*10), SpellAudioVolume);
             var newice3 = Instantiate(ice3, transform.position+(transform.forward*10)+(Vector3.up*10f), transform.rotation * Quaternion.Euler (90f, 0f, 0f));
             Destroy(newice3, 15);
-            spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(25f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else if (skillTree.skillLevels[7] > 0)
         {
@@ -175,7 +175,7 @@ public class PlayerSkillsystem : MonoBehaviour
             AudioSource.PlayClipAtPoint(spellsounds[4],transform.position+(transform.forward*2), SpellAudioVolume);
             var newice2 = Instantiate(ice2, transform.position + (transform.forward * 2), transform.rotation);
             Destroy(newice2, 3);
-            spellcooldown.UseSpell(5f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else
         {
@@ -201,10 +201,9 @@ public class PlayerSkillsystem : MonoBehaviour
             playerAttributesScript.currentMana -= 25;
             anim.SetTrigger("castEarthSpell");
             AudioSource.PlayClipAtPoint(spellsounds[7],transform.position, SpellAudioVolume);
-            var newearth3 = Instantiate(earth3, transform.position, transform.rotation);
+            Instantiate(earth3, transform.position, transform.rotation);
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
-            Destroy(newearth3, 10);
-            Destroy(newearth2, 18);
+            Destroy(newearth2, 12);
             spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else if (skillTree.skillLevels[8] > 0)
@@ -213,7 +212,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerAttributesScript.currentMana -= 20;
             anim.SetTrigger("castEarthSpell");
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
-            Destroy(newearth2, 18);
+            Destroy(newearth2, 12);
             spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else
@@ -222,7 +221,7 @@ public class PlayerSkillsystem : MonoBehaviour
             playerAttributesScript.currentMana -= 15;
             anim.SetTrigger("castEarthSpell");
             var newearth1 = Instantiate(earth1, transform.position, transform.rotation);
-            Destroy(newearth1, 18);
+            Destroy(newearth1, 12);
             spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
     }

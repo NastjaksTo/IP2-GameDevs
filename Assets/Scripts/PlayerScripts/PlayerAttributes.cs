@@ -331,7 +331,7 @@ public class PlayerAttributes : MonoBehaviour {
     /// <summary>
     /// set the display of the attribute values
     /// </summary>
-    private void SetUiAttributValues() {
+    public void SetUiAttributValues() {
         for (int i = 0; i < playerAttributes.Length; i++) {
             if (playerAttributes[i].type == Attributes.HealthPoints)
                 textHealthPoints.text = maxHealth.ToString();
