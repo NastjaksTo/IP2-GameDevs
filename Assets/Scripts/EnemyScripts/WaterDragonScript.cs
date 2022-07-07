@@ -68,7 +68,7 @@ public class WaterDragonScript : MonoBehaviour
 
     private void Start()
     {
-        damage = 5 + playerskillsystem.playerlevel.GetLevel() * 3;
+        damage = 7 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
         waterDamage = 5 + playerskillsystem.playerlevel.GetLevel();
     }
@@ -215,7 +215,7 @@ public class WaterDragonScript : MonoBehaviour
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(3000);
+                playerskillsystem.playerlevel.AddExp(2000);
             }
         }
     }

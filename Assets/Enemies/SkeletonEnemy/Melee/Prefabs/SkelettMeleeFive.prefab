@@ -1072,8 +1072,8 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 2147483648
-  health: 1000
-  projectile: {fileID: 1117842336957138049, guid: 48a6218c30d4e5a448d3c6ccc2f1f060, type: 3}
+  health: 750
+  projectile: {fileID: 8855577431386299065, guid: 1973c359dace071458e49cfe31d1aecd, type: 3}
   spawner: {fileID: 2260042310795380857}
   walkpoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   isAttacking: 0
-  sworddamage: 20
+  sworddamage: 9
   skeletonName: SkeletonFive
 --- !u!114 &312035962397662557
 MonoBehaviour:
