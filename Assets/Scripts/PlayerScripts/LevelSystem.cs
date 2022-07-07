@@ -38,7 +38,7 @@ public class LevelSystem
             level++;
             skillpoints++;
             exp -= expToLevelUp;
-            if (level < 16)
+            if (level < 11)
             {
                 expToLevelUp += expToLevelUp * 0.175f;
             }

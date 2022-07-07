@@ -66,7 +66,7 @@ public class PlayerAttributes : MonoBehaviour {
         currentMana = maxMana;
         currentStamina = maxStamina;
 
-        manaRegenerationSpeed = 0.5f;
+        manaRegenerationSpeed = 0.75f;
         staminaRegenerationSpeed = 5;
 
         hasWeaponEquiped = false;
@@ -331,7 +331,7 @@ public class PlayerAttributes : MonoBehaviour {
     /// <summary>
     /// set the display of the attribute values
     /// </summary>
-    private void SetUiAttributValues() {
+    public void SetUiAttributValues() {
         for (int i = 0; i < playerAttributes.Length; i++) {
             if (playerAttributes[i].type == Attributes.HealthPoints)
                 textHealthPoints.text = maxHealth.ToString();

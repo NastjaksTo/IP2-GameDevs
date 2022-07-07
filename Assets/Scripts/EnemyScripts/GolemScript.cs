@@ -57,7 +57,7 @@ public class GolemScript : MonoBehaviour
     private void Start()
     {
         damage = 5 + playerskillsystem.playerlevel.GetLevel() * 3;
-        health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
+        health.Health = 600 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 
     /// <summary>
@@ -171,7 +171,7 @@ public class GolemScript : MonoBehaviour
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(3000);
+                playerskillsystem.playerlevel.AddExp(2000);
             }
         }
     }
