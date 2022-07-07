@@ -120,24 +120,24 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         if (skillTree.skillLevels[12] > 0)
         {
-            if (!(playerAttributesScript.currentMana >= 25)) return;
-            playerAttributesScript.currentMana -= 25;
+            if (!(playerAttributesScript.currentMana >= 75)) return;
+            playerAttributesScript.currentMana -= 75;
             AudioSource.PlayClipAtPoint(spellsounds[2],transform.position + (transform.forward * 10), SpellAudioVolume);
             anim.SetTrigger("castGroundSpell");
             var newfireball3 = Instantiate(fire3, transform.position + (transform.forward * 10),
                 transform.rotation * Quaternion.Euler(0f, 0f, 0f));
             Destroy(newfireball3, 10);
-            spellcooldown.UseSpell(25f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else if (skillTree.skillLevels[6] > 0)
         {
-            if (!(playerAttributesScript.currentMana >= 20)) return;
-            playerAttributesScript.currentMana -= 20;
+            if (!(playerAttributesScript.currentMana >= 30)) return;
+            playerAttributesScript.currentMana -= 30;
             AudioSource.PlayClipAtPoint(spellsounds[1],transform.position+(transform.forward*2), SpellAudioVolume);
             anim.SetTrigger("castGroundSpell");
             var newfireball2 = Instantiate(fire2,transform.position+(transform.forward*2), transform.rotation);
             Destroy(newfireball2, 2);
-            spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(18f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else
         {
@@ -159,23 +159,23 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         if (skillTree.skillLevels[13] > 0)
         {
-            if (!(playerAttributesScript.currentMana >= 25)) return;
-            playerAttributesScript.currentMana -= 25;
+            if (!(playerAttributesScript.currentMana >= 75)) return;
+            playerAttributesScript.currentMana -= 75;
             anim.SetTrigger("castGroundSpell");
             AudioSource.PlayClipAtPoint(spellsounds[5],transform.position+(transform.forward*10), SpellAudioVolume);
             var newice3 = Instantiate(ice3, transform.position+(transform.forward*10)+(Vector3.up*10f), transform.rotation * Quaternion.Euler (90f, 0f, 0f));
             Destroy(newice3, 15);
-            spellcooldown.UseSpell(25f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else if (skillTree.skillLevels[7] > 0)
         {
-            if (!(playerAttributesScript.currentMana >= 20)) return;
-            playerAttributesScript.currentMana -= 20;
+            if (!(playerAttributesScript.currentMana >= 30)) return;
+            playerAttributesScript.currentMana -= 30;
             anim.SetTrigger("castGroundSpell");
             AudioSource.PlayClipAtPoint(spellsounds[4],transform.position+(transform.forward*2), SpellAudioVolume);
             var newice2 = Instantiate(ice2, transform.position + (transform.forward * 2), transform.rotation);
             Destroy(newice2, 3);
-            spellcooldown.UseSpell(15f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(18f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else
         {
@@ -186,7 +186,7 @@ public class PlayerSkillsystem : MonoBehaviour
             var newice1 = Instantiate(ice1, spawner.position, Camera.main.transform.rotation * Quaternion.Euler(90f, 0f, 0f));
             newice1.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * 40f; //* (2 * skillTree.SkillLevels[0]);
             Destroy(newice1, 2);
-            spellcooldown.UseSpell(5f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(7f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
     }
 
@@ -197,19 +197,19 @@ public class PlayerSkillsystem : MonoBehaviour
     {
         if (skillTree.skillLevels[14] > 0)
         {
-            if (!(playerAttributesScript.currentMana >= 25)) return;
-            playerAttributesScript.currentMana -= 25;
+            if (!(playerAttributesScript.currentMana >= 75)) return;
+            playerAttributesScript.currentMana -= 75;
             anim.SetTrigger("castEarthSpell");
             AudioSource.PlayClipAtPoint(spellsounds[7],transform.position, SpellAudioVolume);
             Instantiate(earth3, transform.position, transform.rotation);
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth2, 12);
-            spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(60f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
         else if (skillTree.skillLevels[8] > 0)
         {
-            if (!(playerAttributesScript.currentMana >= 20)) return;
-            playerAttributesScript.currentMana -= 20;
+            if (!(playerAttributesScript.currentMana >= 60)) return;
+            playerAttributesScript.currentMana -= 60;
             anim.SetTrigger("castEarthSpell");
             var newearth2 = Instantiate(earth2, transform.position, transform.rotation);
             Destroy(newearth2, 12);
@@ -217,12 +217,12 @@ public class PlayerSkillsystem : MonoBehaviour
         }
         else
         {
-            if (!(playerAttributesScript.currentMana >= 15)) return;
-            playerAttributesScript.currentMana -= 15;
+            if (!(playerAttributesScript.currentMana >= 50)) return;
+            playerAttributesScript.currentMana -= 50;
             anim.SetTrigger("castEarthSpell");
             var newearth1 = Instantiate(earth1, transform.position, transform.rotation);
             Destroy(newearth1, 12);
-            spellcooldown.UseSpell(40f * (1f - 0.5f * skillTree.skillLevels[16]));
+            spellcooldown.UseSpell(30f * (1f - 0.5f * skillTree.skillLevels[16]));
         }
     }
 

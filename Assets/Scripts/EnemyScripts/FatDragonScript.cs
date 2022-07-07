@@ -78,7 +78,7 @@ public class FatDragonScript : MonoBehaviour
     private void Start()
     {
         fireBallDamage = 10 + playerskillsystem.playerlevel.GetLevel() * 2;
-        damage = 5 + playerskillsystem.playerlevel.GetLevel() * 3;
+        damage = 7 + playerskillsystem.playerlevel.GetLevel() * 3;
         health.Health = 500 + playerskillsystem.playerlevel.GetLevel() * 20;
     }
 
@@ -216,7 +216,7 @@ public class FatDragonScript : MonoBehaviour
                 animator.SetTrigger("Die");
                 navMeshAgent.speed = 0;
                 Destroy(gameObject, 5.0f);
-                playerskillsystem.playerlevel.AddExp(3000);
+                playerskillsystem.playerlevel.AddExp(2000);
             }
         }
     }

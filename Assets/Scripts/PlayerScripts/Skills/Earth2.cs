@@ -38,7 +38,7 @@ public class Earth2 : MonoBehaviour
             {
                 spellTickTimer[i]--;
             }
-            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.01f;
+            if (playerAttributesScript.currentHealth < playerAttributesScript.maxHealth) playerAttributesScript.currentHealth += 0.025f;
             else spellTickTimer.Clear();
             spellTickTimer.RemoveAll(i => i == 0);
             yield return new WaitForSeconds(regenerationTimer);

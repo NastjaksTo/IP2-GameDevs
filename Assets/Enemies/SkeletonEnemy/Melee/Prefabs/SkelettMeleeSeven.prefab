@@ -4106,7 +4106,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 2147483648
-  health: 1000
+  health: 750
   projectile: {fileID: 8855577431386299065, guid: 1973c359dace071458e49cfe31d1aecd, type: 3}
   spawner: {fileID: 3240079712972700104}
   walkpoint: {x: 0, y: 0, z: 0}
@@ -4117,7 +4117,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   isAttacking: 0
-  sworddamage: 20
+  sworddamage: 9
   skeletonName: SkeletonSeven
 --- !u!114 &4034883150776380652
 MonoBehaviour:
