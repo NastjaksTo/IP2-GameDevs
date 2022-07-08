@@ -32,7 +32,7 @@ public class Earth2 : MonoBehaviour
     public IEnumerator regeneratingHealth()
     {
         regenerationTimer = 1 * (0.25f - (0.05f * skillTree.skillLevels[8]));
-        while (spellTickTimer.Count > 0)
+        while (spellTickTimer.Count > 0 && earth2IsActive)
         {
             for (int i = 0; i < spellTickTimer.Count; i++)
             {
@@ -67,7 +67,7 @@ public class Earth2 : MonoBehaviour
     {
         earth2IsActive = true;
         Debug.Log("earth2isactive");
-        yield return new WaitForSeconds(19);
+        yield return new WaitForSeconds(10);
         earth2IsActive = false;
         Debug.Log("earth2isnotactive");
     }

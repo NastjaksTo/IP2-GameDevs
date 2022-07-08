@@ -72,7 +72,7 @@ public class BossGolemIce : MonoBehaviour
         healthBar.fillAmount = healthHandler.Health / maxHealth;
         textHealthPoints.text = healthHandler.Health.ToString();
         boss.WalkOrAttack("Walk", "Magic", "BottomSlash", "SlashHit", "Stomp");
-        boss.getDamage(5000, "Die");
+        boss.getDamage(10000, "Die");
         boss.lookAt();
     }
 }
