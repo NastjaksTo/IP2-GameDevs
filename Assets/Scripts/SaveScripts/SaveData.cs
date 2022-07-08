@@ -134,6 +134,7 @@ public class SaveData : MonoBehaviour
         bossarenaScript.isEarthTitanAlive = data.earthTitanDead;
         bossarenaScript.isFireTitanAlive = data.fireTitanDead;
         bossarenaScript.isIceTitanAlive = data.iceTitanDead;
+        bossarenaScript.ShowAllSmokes();
 
         if (!bossarenaScript.isEarthTitanAlive && !bossarenaScript.isFireTitanAlive && !bossarenaScript.isIceTitanAlive)
         {

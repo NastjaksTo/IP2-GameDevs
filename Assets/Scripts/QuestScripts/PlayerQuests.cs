@@ -5,6 +5,7 @@ using UnityEngine;
 using static PlayerInventory;
 using static CombatSystem;
 using static UiScreenManager;
+using static SaveData;
 
 public class PlayerQuests : MonoBehaviour
 {
@@ -228,6 +229,7 @@ public class PlayerQuests : MonoBehaviour
         dialogueIsOpen = false;
         Time.timeScale = 1f;
         newQuestAltertOpen();
+        saveData.SaveGame();
     }
 
     /// <summary>

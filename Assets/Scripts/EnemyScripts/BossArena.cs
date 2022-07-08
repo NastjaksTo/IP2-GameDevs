@@ -9,21 +9,25 @@ public class BossArena : MonoBehaviour
     public static BossArena bossarenaScript;
     
     public GameObject pandoraArenaWall;
+    public GameObject pandoraArenaSmoke;
     public GameObject pandoraHealthBar;
     public GameObject pandora;
     public PandoraAgent pandoraAgent;
 
     public GameObject iceTitanArenaWall;
+    public GameObject iceTitanArenaSmoke;
     public GameObject iceTitanHealthBar;
     public GameObject iceTitan;
     public bool isIceTitanAlive;
     
     public GameObject fireTitanArenaWall;
+    public GameObject fireTitanArenaSmoke;
     public GameObject fireTitanHealthBar;
     public GameObject fireTitan;
     public bool isFireTitanAlive;
     
     public GameObject earthTitanArenaWall;
+    public GameObject earthTitanArenaSmoke;
     public GameObject earthTitanHealthBar;
     public GameObject earthTitan;
     public bool isEarthTitanAlive;
@@ -36,6 +40,7 @@ public class BossArena : MonoBehaviour
         isIceTitanAlive = true;
         bossarenaScript = this;
         CloseAllArenas();
+        ShowAllSmokes();
     }
 
     private void OnTriggerExit(Collider other)
@@ -44,6 +49,7 @@ public class BossArena : MonoBehaviour
         {
             pandoraHealthBar.SetActive(true);
             pandoraArenaWall.SetActive(true);
+            pandoraArenaSmoke.SetActive(false);
             pandora.SetActive(true);
             pandoraAgent.ResetRaya();
         }
@@ -51,18 +57,21 @@ public class BossArena : MonoBehaviour
         {
             iceTitanArenaWall.SetActive(true);
             iceTitanHealthBar.SetActive(true);
+            iceTitanArenaSmoke.SetActive(false);
             iceTitan.SetActive(true);
         }
         if (other.CompareTag("FireArena") && isFireTitanAlive)
         {
             fireTitanArenaWall.SetActive(true);
             fireTitanHealthBar.SetActive(true);
+            fireTitanArenaSmoke.SetActive(false);
             fireTitan.SetActive(true);
         }
         if (other.CompareTag("EarthArena") && isEarthTitanAlive)
         {
             earthTitanArenaWall.SetActive(true);
             earthTitanHealthBar.SetActive(true);
+            earthTitanArenaSmoke.SetActive(false);
             earthTitan.SetActive(true);
         }
     }
@@ -81,6 +90,14 @@ public class BossArena : MonoBehaviour
         iceTitanArenaWall.SetActive(false);
         iceTitanHealthBar.SetActive(false);
         iceTitan.SetActive(false);
+    }
+
+    public void ShowAllSmokes()
+    {
+        if(isEarthTitanAlive) earthTitanArenaSmoke.SetActive(true);
+        if(isFireTitanAlive) fireTitanArenaSmoke.SetActive(true);
+        if(isIceTitanAlive) iceTitanArenaSmoke.SetActive(true);
+        pandoraArenaSmoke.SetActive(true);
     }
 
     public void QuestCompletion()

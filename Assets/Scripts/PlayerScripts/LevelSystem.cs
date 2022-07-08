@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using static SkillTree;
 using static PlayerSkillsystem;
+using static PlayerAttributes;
 
 public class LevelSystem
 {
@@ -38,6 +39,13 @@ public class LevelSystem
             level++;
             skillpoints++;
             exp -= expToLevelUp;
+            if (level % 5 == 0)
+            {
+                playerAttributesScript.playerAttributes[0].totalAttributValue.TotalAttributeValue += 15;
+                playerAttributesScript.playerAttributes[1].totalAttributValue.TotalAttributeValue += 10;
+                playerAttributesScript.playerAttributes[2].totalAttributValue.TotalAttributeValue += 5;
+                playerAttributesScript.AttributeModified();
+            }
             if (level < 11)
             {
                 expToLevelUp += expToLevelUp * 0.175f;
