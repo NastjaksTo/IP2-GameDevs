@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: EarthBook
   m_EditorClassIdentifier: 
   itemName: Book of Earth
+  characterDisplayName: 
+  characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 415a56721afef8b49a704cc75ded134e, type: 3}
   istStackable: 0
   itemType: 10
-  itemDescription: Book to learn earth skills. You can equip them to use the skill.
+  itemDescription: 'Book to learn earth skills. You can equip them to use the skill.
+
+
+    Earth
+    protects you.'
   data:
-    Id: 12
+    Id: 1
     buffs:
     - attribute: 1
       buffValue: 1

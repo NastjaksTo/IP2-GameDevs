@@ -61,7 +61,7 @@ public class PlayerQuests : MonoBehaviour
             QuestGiver currentQuestGiver = other.gameObject.GetComponent<QuestGiver>();
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
             {
-                SetQuestGiverUI("You", "What was this dream? This dude wants me to kill the titans? And he talked about magic? I should ask my friend the librarian about this.  \n  \n" + "Move - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
+                SetQuestGiverUI("You", "Our world has been infested with these titans for so many years and Raya seems to be responsible for that.\n \nThis voice tells me that our world can be liberated. And it said something about magic? I should ask the librarian if the can tell me more about it. \n\nPerhaps this horror will soon finally come to an end.\n\nMove - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
 
                 SetQuest(other.gameObject);
                 currentQuestID++;
@@ -73,8 +73,9 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the librarian";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Librarian", "Hey my friend. You want to know more about magic? Here you can have my spellbooks. You can use them to create magic. You will find the items in your inventory (I).  \n  \nDrag a book in the book slot to equip. With right mouse button you can cast magic.");
-                
+                SetQuestGiverUI("The Librarian", "Hello. You want to know more about magic? \n\nSomeone tried to research the powers of the three titans and wrote these books. So far, no one has been able to use these abilities. I don't know if it really works but you can have the books, maybe they will help you \n\nWith the help of your divine powers you are able to cast magic. Equip a book in your inventory to use the powers. \n\nOpen Inventory - I  \nCast Spell - right mouse button");
+
+
                 p_Inventory.CollectItem(books[0]);
                 p_Inventory.CollectItem(books[1]);
                 p_Inventory.CollectItem(books[2]);
@@ -89,7 +90,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the priest";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Priest", "Hello my son. Did you pray already today? \nWe need to please the gods so they help us with the titans.  \n\nMay the gods be with you!");
+                SetQuestGiverUI("The Priest", "Hello my son.\n\nDid you pray already today? \n\nSince we stopped praying to the gods, we have been plagued by these titans. \n\nWe have to pray to them again, only they can give us the strength to get through this.  \n\nMay the gods be with you!");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -100,7 +101,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Prayed to the gods.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("The Runestone", "At the runestone you can pray to the gods. If you die or leave the game you will be reborn at the last runestone you prayed. \n  \nIf you have skillpoints, you can use them to upgrade your skills.");
+                SetQuestGiverUI("The Runestone", "At the runestone you can pray to the gods. \n\nIf you die or leave the game you will be reborn at the last runestone you prayed. \n\nYour powers will be replenished here.\n\nIf you have skillpoints, you can use them to upgrade your skills. \n\nInteract - E");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -111,8 +112,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Spoken to the priest.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Priest", "You want to.. WHAT? You want to kill the three titans? You are just a ordinary human. Haha.. good luck. Maybe the smith will give you a sword. " +
-                                          " \n  \nMay the gods be with you!");
+                SetQuestGiverUI("The Priest", "You want to.. WHAT?\n\nYou want to kill the three titans? You are just a ordinary human. Haha.. \n\nThose who tried burned in the lava, froze from the cold, or fell into the ravines before they even saw a titan. \n\nGood luck.\nMaybe the smith will give you a sword. \n\nMay the gods be with you!");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -123,7 +123,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the smith.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Smith", "You need a sword? I have a old rusty one. It is in front of my house. You can take it. \n \nUnfortunately, I don't have any armor for you, but you'll find one.");
+                SetQuestGiverUI("The Smith", "Do you know the legend of the magic mole?\n\nOh.. you need a sword?\nI have a old rusty one. It is in front of my house. You can take it. \n\nUnfortunately, I don't have any armor for you, but you'll find one.\n\nAlways take a good look around.");
                 lootbags.SetActive(true);
                 SetQuest(other.gameObject);
                 currentQuestID++;
@@ -135,8 +135,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find a sword.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("The Equipment", "You can pick up bags by pressing E. You will find the items in your inventory." +
-                                                 " \n \nBy pressing left mouse button you can attack.");
+                SetQuestGiverUI("The Equipment", "You can pick up bags by pressing E. \nYou will find the items in your inventory.\n\nYou can equip them by dropping it in your equipment. \nThe items will give you different buffs.\n\nAttack - left mouse button");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -147,7 +146,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the doctor.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Doctor", "Hey traveler the priest told me you want to kill the titans. Take these, they will help you. \n  \nYou can use potions by pressing G. They will heal you over time.  \nYou can find new potions around the world and they reset if you pray at a runestone.");
+                SetQuestGiverUI("The Doctor", "Hello Dion.\n\nThe priest told me you want to kill the titans. Take these health potion, they will help you. \n\nYou can find new potion bottles around the world and they fill if you pray at a runestone. \n\nUse potion - G ");
                 SetQuest(other.gameObject);
                 combatSystem.maxpotions = 1;
                 combatSystem.refillPotions();
@@ -160,7 +159,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Go back to the priest.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("Priest", "Raya? She is here? You have to defeat here or else we our beautiful world will be doomed! People talked about a loud noise coming from the entrance to the ravine. You should check this out first.");
+                SetQuestGiverUI("The Priest", "Raya? She is here?\n\nYou have to defeat here or else we our beautiful world will be doomed! \n\nPeople talked about a loud noise coming from the entrance to the ravine.\nYou should check this out first.");
                 SetQuest(other.gameObject);
                 currentQuestID++;
                 rayaEntrance.SetActive(false);
@@ -194,7 +193,7 @@ public class PlayerQuests : MonoBehaviour
         writingSound.Play();
         foreach (char c in text.ToCharArray()) {
             questGiverDescr.text += c;
-            yield return new WaitForSecondsRealtime(0.025f);
+            yield return new WaitForSecondsRealtime(0.035f);
         }
         closeDialogBtn.SetActive(true);
         writingSound.Stop();
@@ -211,7 +210,7 @@ public class PlayerQuests : MonoBehaviour
         completionText.text = "Quest complete: Find and defeat the titans.";
         completionUI.SetActive(true);
         StartCoroutine(closeCompletionUI());
-        SetQuestGiverUI("Raya", "You fool! You thought you could save the world by defeating my titans? You will never be a hero. And now... feel my wrath.");
+        SetQuestGiverUI("Raya", "You fool! \n\nYou thought you could save the world by defeating my titans? \nYou will never be a hero. \n\nAnd now... feel my wrath.");
         playerQuests.titleText.text = "Go back to the priest.";
         playerQuests.descText.text = "Ask the priest for informations about Raya.";
         playerQuests.rewardText.text = "1000";
