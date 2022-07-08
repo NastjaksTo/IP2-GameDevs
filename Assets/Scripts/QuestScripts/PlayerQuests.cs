@@ -61,7 +61,7 @@ public class PlayerQuests : MonoBehaviour
             QuestGiver currentQuestGiver = other.gameObject.GetComponent<QuestGiver>();
             if (currentQuestID == currentQuestGiver.quest.questID && other.name == "Quest1")
             {
-                SetQuestGiverUI("You", "Our world has been infested with these titans for so many years and Raya seems to be responsible for that.\n \nThis voice tells me that our world can be liberated. And it said something about magic? I should ask the librarian if the can tell me more about it. \n\nPerhaps this horror will soon finally come to an end.\n\nMove - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
+                SetQuestGiverUI("You", "Our world has been infested with these titans for so many years and Raya seems to be responsible for that.\n \nThis voice tells me that our world can be liberated. And it said something about magic? I should ask the librarian if she can tell me more about it. \n\nPerhaps this horror will soon finally come to an end.\n\nMove - W A S D  \nJump - SPACE \nSprint - SHIFT  \nDodge - C");
 
                 SetQuest(other.gameObject);
                 currentQuestID++;
@@ -112,7 +112,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Spoken to the priest.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("The Priest", "You want to.. WHAT?\n\nYou want to kill the three titans? You are just a ordinary human. Haha.. \n\nThose who tried burned in the lava, froze from the cold, or fell into the ravines before they even saw a titan. \n\nGood luck.\nMaybe the smith will give you a sword. \n\nMay the gods be with you!");
+                SetQuestGiverUI("The Priest", "You want to.. WHAT?\n\nYou want to kill the three titans? You are just a ordinary human. Haha.. \n\nThose who tried burned in the lava, froze to death, or fell into the ravines before they even saw a titan. \n\nGood luck.\nMaybe the smith will give you a sword. \n\nMay the gods be with you!");
                 SetQuest(other.gameObject);
                 currentQuestID++;
             }
@@ -146,7 +146,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Find the doctor.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("The Doctor", "Hello Dion.\n\nThe priest told me you want to kill the titans. Take these health potion, they will help you. \n\nYou can find new potion bottles around the world and they fill if you pray at a runestone. \n\nUse potion - G ");
+                SetQuestGiverUI("The Doctor", "Hello Dion.\n\nThe priest told me you want to kill the titans. Take the health potion, they will help you. \n\nYou can find new potion bottles around the world and they fill up if you pray at a runestone. \n\nUse potion - G ");
                 SetQuest(other.gameObject);
                 combatSystem.maxpotions = 1;
                 combatSystem.refillPotions();
@@ -159,7 +159,7 @@ public class PlayerQuests : MonoBehaviour
                 completionText.text = "Quest complete: Go back to the priest.";
                 completionUI.SetActive(true);
                 StartCoroutine(closeCompletionUI());
-                SetQuestGiverUI("The Priest", "Raya? She is here?\n\nYou have to defeat here or else we our beautiful world will be doomed! \n\nPeople talked about a loud noise coming from the entrance to the ravine.\nYou should check this out first.");
+                SetQuestGiverUI("The Priest", "Raya? She is here?\n\nYou have to defeat here or else our beautiful world will be doomed! \n\nPeople talked about a loud noise coming from the entrance to the ravine.\nYou should check this out first.");
                 SetQuest(other.gameObject);
                 currentQuestID++;
                 rayaEntrance.SetActive(false);
