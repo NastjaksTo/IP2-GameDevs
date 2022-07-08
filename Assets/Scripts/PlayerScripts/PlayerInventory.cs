@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using static SaveData;
 
 /// <summary>
 /// Describes the interaction of the player with the collectible Items on the map. 
@@ -82,6 +83,8 @@ public class PlayerInventory : MonoBehaviour {
             AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
             StartCoroutine(closeAddItemAlert());
         }
+        playerInventory.Save();
+        playerEquipment.Save();
     }
 
     /// <summary>
@@ -100,6 +103,8 @@ public class PlayerInventory : MonoBehaviour {
         Destroy(_itemBag.gameObject);
         addItemAlert.SetActive(true);
         AudioSource.PlayClipAtPoint(addItemSound, transform.position, 1);
+        playerInventory.Save();
+        playerEquipment.Save();
         StartCoroutine(closeAddItemAlert());
     }
 

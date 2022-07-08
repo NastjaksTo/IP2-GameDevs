@@ -1127,7 +1127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 690, y: -322}
+  m_AnchoredPosition: {x: 690, y: -265}
   m_SizeDelta: {x: 727.1755, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &179093649
@@ -1284,7 +1284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 690, y: -510.875}
+  m_AnchoredPosition: {x: 690, y: -453.875}
   m_SizeDelta: {x: 727.1755, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &265035047
@@ -1327,8 +1327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Character \nSkillsystem\nSpecial effects\nCombatsystem\nQuestsystem\nSave
-    and Load\nRaya\nSound"
+  m_text: "Character \nSkillsystem\nSpecial effects\nCombatsystem\nSave and Load\nRaya\nSkeletons\nQuestsystem\nSounds\nBalancing"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
   m_sharedMaterial: {fileID: 460195167016757540, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
@@ -2489,8 +2488,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 688, y: -735}
-  m_SizeDelta: {x: 727.1755, y: 40}
+  m_AnchoredPosition: {x: 688, y: -698}
+  m_SizeDelta: {x: 727.1755, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &558400596
 Animator:
@@ -2980,7 +2979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1259, y: -858.875}
+  m_AnchoredPosition: {x: 1259, y: -853.1}
   m_SizeDelta: {x: 727.1755, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &633368476
@@ -3025,11 +3024,18 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'MenuSystem
 
+    Volume Options
+
+    Menu Sounds
+
     Intro
 
+    Scrolling
     Credits
 
-    Sound'
+    Loading Screen
+
+    Death Screen'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
   m_sharedMaterial: {fileID: 460195167016757540, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
@@ -5466,7 +5472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1259, y: -740}
+  m_AnchoredPosition: {x: 1259, y: -697.6}
   m_SizeDelta: {x: 727.1755, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1192399056
@@ -6732,7 +6738,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enemies
+  m_text: 'Titans
+
+    Minibosse
+
+    Enemies
+
+    Enemysounds'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
   m_sharedMaterial: {fileID: 460195167016757540, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
@@ -6826,8 +6838,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 688, y: -798.875}
-  m_SizeDelta: {x: 727.1755, y: 10}
+  m_AnchoredPosition: {x: 688, y: -807.8}
+  m_SizeDelta: {x: 727.1755, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1547538139
 MonoBehaviour:
@@ -7862,7 +7874,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1268, y: -323}
+  m_AnchoredPosition: {x: 1268, y: -266}
   m_SizeDelta: {x: 727.1755, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1882964526
@@ -8388,7 +8400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1268, y: -506.375}
+  m_AnchoredPosition: {x: 1268, y: -449.375}
   m_SizeDelta: {x: 727.1755, y: 189}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2056347736
@@ -8431,21 +8443,25 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Design
+  m_text: 'Design & UI
 
-    UI
-
-    Environment
-
-    Inventory
+    Inventory System
 
     Items
 
+    Equiptment
+
+    Attributes
+
     Story
 
-    Sound
+    Environment
 
-    Questsystem'
+    Questsystem
+
+    Sounds
+
+    Balancing'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}
   m_sharedMaterial: {fileID: 460195167016757540, guid: 30e6e49a63ebd4c439bde2f3099c2946, type: 2}

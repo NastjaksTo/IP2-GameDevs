@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: FireBook
   m_EditorClassIdentifier: 
   itemName: Book of Fire
+  characterDisplayName: 
+  characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: 6f7a0ef7ded274941914b0c18fa94c9a, type: 3}
   istStackable: 0
   itemType: 10
-  itemDescription: Book to learn fire skills. You can equip them to use the skill.
+  itemDescription: 'Book to learn fire skills. You can equip them to use the skill.
+
+
+    Fire 
+    damage  the enemies.'
   data:
-    Id: 10
+    Id: 2
     buffs:
     - attribute: 2
       buffValue: 1
