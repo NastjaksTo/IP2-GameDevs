@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: IceBook
   m_EditorClassIdentifier: 
   itemName: Book of Ice
+  characterDisplayName: 
+  characterDisplay: {fileID: 0}
+  ItemNameToDisplay: 
   uiDisplayImage: {fileID: 21300000, guid: df5a30bc3adf52842adcd6316a27bd64, type: 3}
   istStackable: 0
   itemType: 10
-  itemDescription: Book to learn ice skills. You can equip them to use the skill.
+  itemDescription: 'Book to learn ice skills. You can equip them to use the skill.
+
+
+    Ice
+    freezes the enemies.'
   data:
-    Id: 11
+    Id: 3
     buffs:
     - attribute: 3
       buffValue: 1

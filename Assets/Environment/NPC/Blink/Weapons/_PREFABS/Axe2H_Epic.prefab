@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329f701ec53fa694988077718eb730bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitsound: {fileID: 8300000, guid: 3665bf01a989d374abbe5f1a057043be, type: 3}
+  AudioVolume: 0.25
 --- !u!65 &5308165547217001949
 BoxCollider:
   m_ObjectHideFlags: 0

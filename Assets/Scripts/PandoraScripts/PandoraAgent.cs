@@ -160,6 +160,7 @@ public class PandoraAgent : MonoBehaviour
             isInvincible = true;
         }
         StartCoroutine(blockCooldown());
+        Invoke(nameof(StopBlocking), 2f);
     }
     
     /// <summary>
@@ -183,7 +184,7 @@ public class PandoraAgent : MonoBehaviour
     IEnumerator blockCooldown()
     {
         hasBlockCooldown = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
         hasBlockCooldown = false;
     }
     
